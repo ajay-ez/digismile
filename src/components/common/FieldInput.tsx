@@ -52,6 +52,7 @@ const FieldInput = ({
                   height: "55px",
                   padding: "14px 20px",
                   width: "100%",
+                  backgroundColor: "white",
 
                   borderRadius: "8px",
                   "& .MuiFormLabel-asterisk": { color: "#F39200" },

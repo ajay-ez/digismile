@@ -2,7 +2,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import Image from "next/image";
-import { digismileLogoImage } from "@/utils/images";
+import { digismileLogoImage } from "@/assets/images";
 
 interface LogoProps {
   width?: string;
