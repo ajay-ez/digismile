@@ -1,6 +1,6 @@
 // components/Testimonial.tsx
 import React from "react";
-import { Card, CardContent, Avatar, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 
 interface TestimonialProps {
@@ -36,7 +36,7 @@ const TestimonialReview: React.FC<TestimonialProps> = ({
         </Box>
         <div>
           <Typography variant="body1" className="mt-2">
-            "{review}"
+            {review}
           </Typography>
         </div>
       </CardContent>
