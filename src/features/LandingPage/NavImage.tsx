@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { dentist, doctor_2 } from "@/assets/images";
+import { home_1, home_2, home_3 } from "@/assets/images";
 import Image from "next/image";
 import { Button, AppBar, Typography, Box } from "@mui/material";
 import DigiSmileLogo from "@/components/icons/DigiSmileLogo";
@@ -11,12 +11,13 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
 
 const carouselItems = [
-  { src: dentist, alt: "Image 1", text: "Text over Image 1" },
-  { src: doctor_2, alt: "Image 2", text: "Text over Image 2" },
+  { src: home_1, alt: "Image 1", text: "Text over Image 1" },
+  { src: home_2, alt: "Image 2", text: "Text over Image 2" },
+  { src: home_3, alt: "Image 3", text: "Text over Image 2" },
 ];
 
 const settings = {
-  dots: true,
+  dots: false,
   infinite: true,
   speed: 500,
   slidesToShow: 1,
@@ -33,7 +34,7 @@ const NavImage = () => {
   };
 
   return (
-    <div className="relative mb-4">
+    <div className="relative">
       <AppBar
         position="absolute"
         color="transparent"
@@ -49,21 +50,21 @@ const NavImage = () => {
           <Box className="flex gap-4 items-center ">
             <DigiSmileLogo />
             <Button
-              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4"
+              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
               onClick={() => navigateToSection("about")}
             >
               About
             </Button>
             <Button
-              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4"
+              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
               onClick={() => navigateToSection("services")}
             >
               Services
             </Button>
             <Button
-              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4"
+              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
               onClick={() => navigateToSection("contact")}
             >
@@ -90,29 +91,32 @@ const NavImage = () => {
       {/* Carousel */}
       <Slider {...settings}>
         {carouselItems.map((item, index) => (
-          <div key={index} className="relative">
-            <Box height={"70vh"}>
-              <Image className="w-full" src={item.src} alt={item.alt} />
-            </Box>
+          <div key={index} className="relative h-[80vh]">
+            <Image className="w-full" src={item.src} alt={item.alt} />
 
-            <div className="absolute inset-0 flex items-center justify-start text-white text-3xl font-bold m-2">
-              DENTAL CARE
-              <br /> FOR LIFE
+            <div className="absolute inset-0 flex   items-center justify-start text-white text-3xl font-bold m-2 mx-12">
+              <Box>
+                <Typography variant="h4" className="font-bold font-league">
+                  DENTAL CARE
+                  <br /> FOR LIFE
+                </Typography>
+                <Box className="mt-2">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    sx={{ position: "absolute", zIndex: 20 }}
+                    className="bg-red-900 text-white px-6 font-bold hover:bg-red-600 "
+                    onClick={() => navigateToSection("book_appointment")}
+                  >
+                    Book Appointment
+                    <KeyboardDoubleArrowRightIcon />
+                  </Button>
+                </Box>
+              </Box>
             </div>
 
-            <div className="absolute inset-0 flex items-center justify-start m-2">
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                sx={{ position: "absolute", bottom: "90px", zIndex: 20 }}
-                className="bg-red-900 text-white px-6 font-bold hover:bg-red-600 "
-                onClick={() => navigateToSection("book_appointment")}
-              >
-                Book Appointment
-                <KeyboardDoubleArrowRightIcon />
-              </Button>
-            </div>
+            <div className="absolute inset-0 flex items-center justify-start m-2"></div>
           </div>
         ))}
       </Slider>

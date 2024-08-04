@@ -1,35 +1,41 @@
 // pages/index.tsx
-import { dentist } from "@/assets/images";
+import {
+  testimonial_1,
+  testimonial_2,
+  testimonial_3,
+  testimonial_4,
+} from "@/assets/images";
 import TestimonialReview from "@/components/common/TestimonialReview";
 import { Typography, Box, Grid } from "@mui/material";
+
 const testimonials = [
   {
     username: "John Doe",
-    userImage: dentist,
+    userImage: testimonial_1,
     profession: "Software Engineer",
     review:
-      "This is an amazing service! Highly recommended. We provide many services, from tooth cleanings to dental implants, and cosmetic dentistry. Our services are designed to be budget-friendly, ensuring high-quality dental care is accessible and affordable.",
+      "I had a fantastic experience at this dental clinic! The staff was incredibly friendly, and the care I received was top-notch. From routine cleanings to more complex procedures, they ensure everything is done with the highest level of professionalism.",
   },
   {
     username: "Jane Smith",
-    userImage: dentist,
+    userImage: testimonial_2,
     profession: "Graphic Designer",
     review:
-      "Outstanding service! The attention to detail is unparalleled. From creative consultations to design implementations, they ensure every aspect is covered. Their commitment to excellence is truly impressive.",
+      "This dental clinic exceeded my expectations! The team is attentive and thorough, making every visit pleasant. They provide comprehensive dental care and always take the time to explain procedures and options, which I greatly appreciate.",
   },
   {
     username: "Emily Johnson",
-    userImage: dentist,
+    userImage: testimonial_3,
     profession: "Marketing Manager",
     review:
-      "Excellent experience! The team was very professional and provided top-notch marketing strategies tailored to our needs. Their expertise helped us achieve our goals and stand out in a competitive market.",
+      "An exceptional dental clinic! Their expertise in both preventive and cosmetic dentistry is impressive. The team is knowledgeable and dedicated to providing personalized care, which has made a significant difference in my dental health.",
   },
   {
     username: "Michael Brown",
-    userImage: dentist,
+    userImage: testimonial_4,
     profession: "Financial Advisor",
     review:
-      "Exceptional service! They offer comprehensive financial planning with a personalized approach. Their advice has been invaluable in helping us navigate complex financial decisions and secure our future.",
+      "Outstanding dental care! The clinic offers a wide range of services with a focus on comfort and patient satisfaction. From routine check-ups to advanced treatments, they have consistently provided excellent care and support.",
   },
 ];
 
@@ -39,7 +45,7 @@ const Testimonial: React.FC = () => {
       <Box className="flex justify-center">
         <Typography
           variant="h3"
-          className="text-center border-[1px] border-digiRed rounded-lg p-3"
+          className="text-center border-[1px] border-digiRed rounded-lg p-3 font-bold"
         >
           Testimonials
         </Typography>
@@ -50,7 +56,6 @@ const Testimonial: React.FC = () => {
           {testimonials.map((testimonial, index) => (
             <Grid item xs={12} md={6} key={index}>
               <TestimonialReview
-                key={index}
                 username={testimonial.username}
                 userImage={testimonial.userImage}
                 profession={testimonial.profession}

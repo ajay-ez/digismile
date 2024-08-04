@@ -1,12 +1,15 @@
 import React from "react";
 import ServiceExplore from "@/components/common/ServiceExplore";
-import { dentist } from "@/assets/images";
+import { pediatric_dentis, root_canal, tooth_whitening } from "@/assets/images";
 import { Box, Typography } from "@mui/material";
 
 const Services = () => {
   return (
     <div className=" bg-digiWhiteGray p-3">
-      <Typography variant="h3" className="text-center bg-digiWhiteGray p-3">
+      <Typography
+        variant="h3"
+        className="text-center bg-digiWhiteGray p-3 font-bold"
+      >
         Our Services
       </Typography>
       <Typography className="text-center m-2 font-medium">
@@ -14,15 +17,15 @@ const Services = () => {
         <span className="text-digiRed"> Optimal Oral Health.</span>
       </Typography>
       <Box className="flex" gap={4}>
-        <ServiceExplore alt="service 1" image={dentist} title="Root canal" />
+        <ServiceExplore alt="service 1" image={root_canal} title="Root canal" />
         <ServiceExplore
           alt="service 1"
-          image={dentist}
+          image={tooth_whitening}
           title="Tooth whitening "
         />
         <ServiceExplore
           alt="service 1"
-          image={dentist}
+          image={pediatric_dentis}
           title="Pediatric-dentistry"
         />
       </Box>

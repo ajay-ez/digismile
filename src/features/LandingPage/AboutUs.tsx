@@ -1,4 +1,4 @@
-import { dentist } from "@/assets/images";
+import { doctor } from "@/assets/images";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import Image from "next/image";
@@ -11,7 +11,7 @@ const AboutUs = () => {
           className="bg-digiDarkGray border-l border-t rounded-tl-[100px] rounded-br-[100px] p-8"
           width={"50%"}
         >
-          <Typography variant="h3" className="text-center mb-8">
+          <Typography variant="h3" className="text-center mb-8 font-bold">
             Who are We
           </Typography>
           <Typography className="text-center">
@@ -36,7 +36,7 @@ const AboutUs = () => {
           </Box>
         </Box>
         <Box width={"40%"}>
-          <Image className="rounded-full" src={dentist} alt="dr. image" />
+          <Image className="rounded-full" src={doctor} alt="dr. image" />
           <Typography className="text-digiRed font-semibold text-center">
             Dr. Abdeel Mahmood
           </Typography>

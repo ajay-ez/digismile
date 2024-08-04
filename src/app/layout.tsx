@@ -1,23 +1,55 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import {
+  Inter,
+  Atkinson_Hyperlegible,
+  Bangers,
+  League_Spartan,
+  Fredoka,
+} from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
-export const metadata: Metadata = {
-  title: "Digismile Clinic",
-  description:
-    "Discover top-notch dental care at Digismile. Our experienced team offers a range of services, including preventive, restorative, and cosmetic dentistry, tailored to meet your needs. Enjoy a comfortable and personalized experience with the latest technology. Schedule your appointment today for a healthier, brighter smile!",
-};
+const atkinson = Atkinson_Hyperlegible({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-atkinson",
+  weight: "400",
+});
+
+const bangers = Bangers({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bangers",
+  weight: "400",
+});
+
+const league = League_Spartan({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-league",
+});
+
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fredoka",
+});
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html
+      lang="en"
+      className={`${inter.variable} ${atkinson.variable} ${bangers.variable} ${league.variable} ${fredoka.variable}`}
+    >
+      <body>{children}</body>
     </html>
   );
 }

@@ -26,16 +26,20 @@ const TestimonialReview: React.FC<TestimonialProps> = ({
             className="w-16 h-16 mr-4 rounded-full"
           />
           <Box>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" className="font-atkinson">
               {username}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              className="font-atkinson"
+            >
               {profession}
             </Typography>
           </Box>
         </Box>
         <div>
-          <Typography variant="body1" className="mt-2">
+          <Typography variant="body1" className="mt-2 font-atkinson ">
             {review}
           </Typography>
         </div>

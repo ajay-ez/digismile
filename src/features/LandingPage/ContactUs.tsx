@@ -6,11 +6,11 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 const ContactUs = () => {
   return (
     <div>
-      <Typography variant="h3" className="text-center p-3">
+      <Typography variant="h3" className="text-center p-4 font-bold">
         Contact Us
       </Typography>
 
-      <div className="flex p-3 justify-between bg-digiLightBlue">
+      <div className="flex p-3 justify-between bg-digiLightBlue rounded-xl m-3">
         <Box width={"50%"} className="flex flex-col justify-center gap-4">
           <Typography variant="h5">Smile Experts Dental</Typography>
           <Box className="flex items-center gap-2">

@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 import colors from "./src/theme/colors";
 import screens from "./src/theme/screen";
+import fontFamily from "./src/theme/fontFamily";
 
 const config: Config = {
   content: [
@@ -17,8 +18,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      colors: colors,
-      screens: screens,
+      colors,
+      screens,
+      fontFamily,
     },
   },
   plugins: [],

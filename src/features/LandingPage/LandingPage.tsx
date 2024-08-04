@@ -21,10 +21,9 @@ const LandingPage = () => {
     <div className="flex flex-col gap-4">
       <div data-aos="fade-up">
         <NavImageComponent />
-      </div>
-      <div data-aos="fade-up" data-aos-delay="100">
         <UserWelcome />
       </div>
+
       <div id="services" data-aos="fade-up" data-aos-delay="100">
         <Services />
       </div>
