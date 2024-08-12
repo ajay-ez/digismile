@@ -83,7 +83,7 @@ const LoginPage = () => {
             </Formik>
           </Box>
           <Typography variant="body2" align="center" className="mt-4">
-            Don't have account?
+            Don&apos;t have account?
             <Link href="/signup" className="text-blue-900 text-lg">
               Sign up
             </Link>
