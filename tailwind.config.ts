@@ -12,11 +12,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "signup-shadow": "0px 4px 4px 0px #000",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "orange-gradient": "linear-gradient(to right, #ff7e5f, #feb47b)",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "signup-gradient":
+          "linear-gradient(90deg, #B2DAE5 5.72%, #63797F 100%)",
+        "signup-child-gradient":
+          "linear-gradient(290.61deg, #B2DAE5 2.03%, #A4D6E3 98.12%",
       },
       colors,
       screens,

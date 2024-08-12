@@ -30,7 +30,7 @@ const NavImage = () => {
   const router = useRouter();
 
   const navigateToSection = (id: string) => {
-    router.push(`#${id}`);
+    router.push(`${id}`);
   };
 
   return (
@@ -52,23 +52,30 @@ const NavImage = () => {
             <Button
               className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
-              onClick={() => navigateToSection("about")}
+              onClick={() => navigateToSection("#about")}
             >
               About
             </Button>
             <Button
               className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
-              onClick={() => navigateToSection("services")}
+              onClick={() => navigateToSection("#services")}
             >
               Services
             </Button>
             <Button
               className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
-              onClick={() => navigateToSection("contact")}
+              onClick={() => navigateToSection("#contact")}
             >
               Contact Us
+            </Button>
+            <Button
+              className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
+              sx={{ flexGrow: 1 }}
+              onClick={() => navigateToSection("signup")}
+            >
+              Sign up
             </Button>
           </Box>
           <Box className="flex flex-col gap-2">
