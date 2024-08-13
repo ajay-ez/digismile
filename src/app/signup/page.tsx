@@ -10,7 +10,7 @@ import {
   emailValidation,
   passwordValidation,
   requiredCharField,
-  contactNumberValidation,
+  contactNumberValidation
 } from "@/validations";
 import { SignupFormValues } from "@/types";
 import SignupContainer from "@/components/common/SignupContainer";
@@ -25,7 +25,7 @@ const SignupSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password")], "Passwords must match")
     .required("Confirm Password is required"),
-  phoneNumber: contactNumberValidation,
+  phoneNumber: contactNumberValidation
 });
 
 const SignupPage = () => {
@@ -37,7 +37,7 @@ const SignupPage = () => {
     password: "",
     confirmPassword: "",
     phoneNumber: "",
-    problem: "",
+    problem: ""
   };
 
   return (
@@ -48,14 +48,14 @@ const SignupPage = () => {
       >
         <Box
           mt={8}
-          className="overflow-scroll shadow-signup-shadow p-8 rounded-lg bg-signup-child-gradient "
+          className="overflow-scroll shadow-signup-shadow p-8 rounded-lg bg-signup-child-gradient"
         >
-          <Box className=" mb-4">
+          <Box className="mb-4">
             <Typography variant="h4" component="h1">
               Create an Account
             </Typography>
             <Typography variant="body1" className="text-[#737373]">
-              Enter your details below to create your account and get started
+              Enter your details below to create your account and get started
             </Typography>
           </Box>
           <Formik

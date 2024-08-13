@@ -19,7 +19,7 @@ const FieldInput = ({
   type,
   required = false,
   disabled = false,
-  isEditMode = false,
+  isEditMode = false
 }: Properties) => {
   return (
     <Box width="100%">
@@ -27,7 +27,7 @@ const FieldInput = ({
         sx={{
           color: "#000 !important",
           fontWeight: 600,
-          fontSize: "16px",
+          fontSize: "16px"
           // "& .MuiFormLabel-asterisk": { color: "#F39200" },
           // "&.Mui-focused": { color: "#000" },
           // "&.Mui-error": { color: "#d32f2f" },
@@ -57,8 +57,8 @@ const FieldInput = ({
                   borderRadius: "8px",
                   "& .MuiFormLabel-asterisk": { color: "#F39200" },
                   "&.Mui-focused": { color: "#000" },
-                  "&.Mui-error": { color: "#d32f2f" },
-                },
+                  "&.Mui-error": { color: "#d32f2f" }
+                }
               }}
             />
           )}

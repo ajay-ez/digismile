@@ -5,24 +5,23 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { Container, Button, Typography, Box } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 
 import FieldInput from "@/components/common/FieldInput";
 import { emailValidation, passwordValidation } from "@/validations";
 import { LoginFormValues } from "@/types";
-import DigismileLogo from "@/components/icons/DigiSmileLogo";
 import SignupContainer from "@/components/common/SignupContainer";
 import Link from "next/link";
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
-  password: passwordValidation,
+  password: passwordValidation
 });
 
 const LoginPage = () => {
   const initialLoginValues: LoginFormValues = {
     email: "",
-    password: "",
+    password: ""
   };
 
   return (

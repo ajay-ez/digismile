@@ -1,20 +1,9 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/navigation";
-import { Button, Typography, Container, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import LandingPage from "@/features/LandingPage/LandingPage";
 
 const HomePage: React.FC = () => {
-  const router = useRouter();
-
-  const navigateToLogin = () => {
-    router.push("/login");
-  };
-
-  const navigateToSignup = () => {
-    router.push("/signup");
-  };
-
   return (
     <Box>
       <LandingPage />

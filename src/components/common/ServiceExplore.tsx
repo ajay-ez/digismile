@@ -9,6 +9,7 @@ interface Properties {
   alt: string;
 }
 const ServiceExplore = ({ title, image, navLink, alt }: Properties) => {
+  console.log(navLink);
   return (
     <Box className="border-l border-t rounded-tl-[80px] rounded-br-[80px] bg-digiLightBlue">
       <div className="flex justify-center">

@@ -1,22 +1,22 @@
 // BookAppointmentForm.tsx
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
 import { Box, Button, Grid } from "@mui/material";
-import {
-  requiredCharField,
-  contactNumberValidation,
-  booleanValidation,
-} from "@/validations";
+// import {
+//   requiredCharField,
+//   contactNumberValidation,
+//   booleanValidation
+// } from "@/validations";
 
-const validationSchema = Yup.object({
-  firstName: requiredCharField("First Name"),
-  lastName: requiredCharField("Last Name"),
-  contact: contactNumberValidation,
-  problem: requiredCharField("Health Problem"),
-  dob: Yup.date().required("Date of Birth is required").nullable(),
-  privacyPolicy: booleanValidation,
-});
+// const validationSchema = Yup.object({
+//   firstName: requiredCharField("First Name"),
+//   lastName: requiredCharField("Last Name"),
+//   contact: contactNumberValidation,
+//   problem: requiredCharField("Health Problem"),
+//   dob: Yup.date().required("Date of Birth is required").nullable(),
+//   privacyPolicy: booleanValidation,
+// });
 
 const initialValues = {
   firstName: "",
@@ -24,7 +24,7 @@ const initialValues = {
   contact: "",
   problem: "",
   dob: "",
-  privacyPolicy: false,
+  privacyPolicy: false
 };
 
 const AppointmentForm = () => {
