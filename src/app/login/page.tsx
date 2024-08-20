@@ -31,7 +31,7 @@ const LoginPage = () => {
           <Box>
             <Box className="mb-4">
               <Typography variant="h4" component="h1" className="text-center">
-                Create an Account
+                Welcome Back
               </Typography>
               <Typography
                 variant="body1"

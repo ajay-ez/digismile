@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { home_1, home_2, home_3 } from "@/assets/images";
 import Image from "next/image";
 import { Button, AppBar, Typography, Box } from "@mui/material";
-import DigiSmileLogo from "@/components/icons/DigiSmileLogo";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
@@ -13,7 +12,7 @@ import { useRouter } from "next/navigation";
 const carouselItems = [
   { src: home_1, alt: "Image 1", text: "Text over Image 1" },
   { src: home_2, alt: "Image 2", text: "Text over Image 2" },
-  { src: home_3, alt: "Image 3", text: "Text over Image 2" },
+  { src: home_3, alt: "Image 3", text: "Text over Image 2" }
 ];
 
 const settings = {
@@ -23,7 +22,7 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 2000
 };
 
 const NavImage = () => {
@@ -43,23 +42,23 @@ const NavImage = () => {
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 10,
+          zIndex: 10
         }}
       >
-        <Box className="flex justify-between items-center p-3">
-          <Box className="flex gap-4 items-center ">
+        <Box className="flex justify-end items-center p-3">
+          {/* <Box className="flex gap-4 items-center ">
             <DigiSmileLogo />
             <Button
               className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
-              onClick={() => navigateToSection("#about")}
+              onClick={() => navigateToSection("about-us")}
             >
               About
             </Button>
             <Button
               className="text-white hover:bg-green-300 p-1 font-bold rounded-3xl px-4 font-atkinson"
               sx={{ flexGrow: 1 }}
-              onClick={() => navigateToSection("#services")}
+              onClick={() => navigateToSection("clinic-services")}
             >
               Services
             </Button>
@@ -77,7 +76,7 @@ const NavImage = () => {
             >
               Sign up
             </Button>
-          </Box>
+          </Box> */}
           <Box className="flex flex-col gap-2">
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
@@ -114,7 +113,7 @@ const NavImage = () => {
                     size="large"
                     sx={{ position: "absolute", zIndex: 20 }}
                     className="bg-red-900 text-white px-6 font-bold hover:bg-red-600 "
-                    onClick={() => navigateToSection("book_appointment")}
+                    onClick={() => navigateToSection("#book_appointment")}
                   >
                     Book Appointment
                     <KeyboardDoubleArrowRightIcon />
