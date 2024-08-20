@@ -50,6 +50,13 @@ export default function Navbar() {
           <Button className="font-bold capitalize" color="inherit">
             Contact
           </Button>
+          <Button
+            className="font-bold capitalize"
+            color="inherit"
+            onClick={() => navigateToSection("signup")}
+          >
+            Signup
+          </Button>
         </Box>
         <Box className="flex gap-2">
           <Image
