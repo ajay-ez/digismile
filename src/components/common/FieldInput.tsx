@@ -25,12 +25,12 @@ const FieldInput = ({
     <Box width="100%">
       <FormLabel
         sx={{
-          color: "text-kc-grey",
+          color: "#000 !important",
           fontWeight: 600,
           fontSize: "16px",
-          "& .MuiFormLabel-asterisk": { color: "#F39200" },
-          "&.Mui-focused": { color: "#000" },
-          "&.Mui-error": { color: "#d32f2f" },
+          // "& .MuiFormLabel-asterisk": { color: "#F39200" },
+          // "&.Mui-focused": { color: "#000" },
+          // "&.Mui-error": { color: "#d32f2f" },
         }}
       >
         {label}

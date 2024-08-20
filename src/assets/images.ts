@@ -12,8 +12,16 @@ import testimonial_1 from "@/assets/testimonialImages/testimonial_1.jpg";
 import testimonial_2 from "@/assets/testimonialImages/testimonial_2.webp";
 import testimonial_3 from "@/assets/testimonialImages/testimonial_3.jpg";
 import testimonial_4 from "@/assets/testimonialImages/testimonial_4.jpg";
+import signup_top_left from "@/assets/SignupImages/signup_top_left.svg";
+import signup_top_right from "@/assets/SignupImages/signup_top_right.svg";
+import signup_bottom_left from "@/assets/SignupImages/signup_bottom_left.svg";
+import signup_teeth from "@/assets/SignupImages/signup_teeth.svg";
 
 export {
+  signup_bottom_left,
+  signup_teeth,
+  signup_top_right,
+  signup_top_left,
   digismileLogoImage,
   home_1,
   home_2,
