@@ -13,3 +13,39 @@ class Users(db.Model):
     address = db.Column(db.Text, nullable=True)
     phone_number = db.Column(db.String(20), nullable=True)
     problem = db.Column(db.Text, nullable=True)
+
+class doctor(db.Model):
+    __tablename__ = 'doctor'
+    
+    doctor_id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    specialization = db.Column(db.String(100), unique=False, nullable=True)
+
+class DoctorAvailabilty(db.Model):
+    __tablename__ = 'DoctorAvailablity'
+
+    availability_id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    doctor_id = db.Column(db.UUID(as_uuid=True), db.ForeignKey('doctor.doctor_id'), nullable=False)
+    start_time = db.Column(db.Date, nullable=False)
+    end_time = db.Column(db.Date, nullable=False)
+    doctor = db.relationship('Doctor', backref='availability')
+
+class Appointment(db.Model):
+    __tablename__ = 'appointments'
+
+    appointment_id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = db.Column(db.UUID(as_uuid=True), db.ForeignKey('users.user_id'), nullable=False)
+    doctor_id = db.Column(db.UUID(as_uuid=True), db.ForeignKey('doctor.doctor_id'), nullable=False)
+    appointment_id = db.Column(db.Date, nullable=False)
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    # status = db.Column(db.String(20), nullable=False, default='scheduled',
+    #                    check='status IN('scheduled', 'completed', 'cancelled')')
+    status = db.Column(db.String(20), default='scheduled', index=True)
+    user = db.relationship('Users', backref='appointments')
+    doctor = db.relationship('Doctor', backref='appointments')
+
+    __table_args__ = (
+        db.CheckConstraint("status IN('scheduled', 'completed', 'cancelled')", name='status_check'),
+    )
