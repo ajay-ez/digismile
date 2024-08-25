@@ -8,6 +8,7 @@ import { Box } from "@mui/material";
 import Image from "next/image";
 import { digismileLogoImage, dummy_profile } from "@/assets/images";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
   const router = useRouter();
@@ -24,7 +25,13 @@ export default function Navbar() {
       className="bg-[#1E285F]"
     >
       <Toolbar className="flex justify-between items-center p-2">
-        <Image src={digismileLogoImage} height={50} alt="digismile" />
+        <Image
+          onClick={() => navigateToSection("/")}
+          src={digismileLogoImage}
+          height={50}
+          alt="digismile"
+          className="cursor-pointer"
+        />
         <Box className="flex">
           <Button
             onClick={() => navigateToSection("/")}
@@ -34,11 +41,13 @@ export default function Navbar() {
             Home
           </Button>
           <Button
-            onClick={() => navigateToSection("about-us")}
+            // onClick={() => navigateToSection("about-us")}
             className="font-bold capitalize"
             color="inherit"
           >
-            About
+            <Link href={"about-us"} prefetch>
+              About
+            </Link>
           </Button>
           <Button
             onClick={() => navigateToSection("clinic-services")}

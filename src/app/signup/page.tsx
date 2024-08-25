@@ -4,6 +4,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Container, Button, Typography, Box, Grid } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 import FieldInput from "@/components/common/FieldInput";
 import {
@@ -18,26 +19,54 @@ import Link from "next/link";
 
 const SignupSchema = Yup.object().shape({
   name: requiredCharField("Name"),
-  dob: requiredCharField("Date of Birth"),
+  date_of_birth: requiredCharField("Date of Birth"),
   address: requiredCharField("Address"),
   email: emailValidation,
   password: passwordValidation,
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password")], "Passwords must match")
     .required("Confirm Password is required"),
-  phoneNumber: contactNumberValidation
+  phone_number: contactNumberValidation
 });
 
 const SignupPage = () => {
+  const router = useRouter();
   const initialSignupValues: SignupFormValues = {
     name: "",
-    dob: "",
+    date_of_birth: "",
     address: "",
     email: "",
     password: "",
     confirmPassword: "",
-    phoneNumber: "",
+    phone_number: "",
     problem: ""
+  };
+
+  const handleSignup = async (values: SignupFormValues) => {
+    try {
+      delete values.confirmPassword;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(values)
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const { token } = data;
+        localStorage.setItem("token", token);
+        router.push("/");
+      } else {
+        console.error("Login failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
@@ -61,9 +90,7 @@ const SignupPage = () => {
           <Formik
             initialValues={initialSignupValues}
             validationSchema={SignupSchema}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
+            onSubmit={handleSignup}
           >
             {() => (
               <Form>
@@ -82,7 +109,7 @@ const SignupPage = () => {
                   <Grid item xs={12} md={6}>
                     <Box mb={2}>
                       <FieldInput
-                        name="dob"
+                        name="date_of_birth"
                         type="date"
                         label="Date of Birth"
                         required
@@ -125,7 +152,7 @@ const SignupPage = () => {
                   <Grid item xs={12} md={6}>
                     <Box mb={2}>
                       <FieldInput
-                        name="phoneNumber"
+                        name="phone_number"
                         type="tel"
                         label="Phone Number"
                         placeholder="Enter your phone number"

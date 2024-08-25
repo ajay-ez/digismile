@@ -25,9 +25,15 @@ import about_1 from "@/assets/aboutImages/about_1.svg";
 import about_2 from "@/assets/aboutImages/about_2.svg";
 import dr_image from "@/assets/aboutImages/dr_image.svg";
 import dummy_profile from "@/assets/aboutImages/dummy_profile.svg";
-
+import faq from "@/assets/aboutImages/faq.svg";
+import community_care from "@/assets/aboutImages/community_care.svg";
+import smile_journey from "@/assets/clinicServices/smile_journey.svg";
+import service_detail from "@/assets/clinicServices/service_detail.svg";
 export {
   signup_bottom_left,
+  community_care,
+  service_detail,
+  smile_journey,
   signup_teeth,
   signup_top_right,
   signup_top_left,
@@ -52,5 +58,6 @@ export {
   about_1,
   about_2,
   dummy_profile,
-  dr_image
+  dr_image,
+  faq
 };

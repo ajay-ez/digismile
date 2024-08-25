@@ -14,14 +14,17 @@ const config: Config = {
     extend: {
       boxShadow: {
         "signup-shadow": "0px 4px 4px 0px #000",
-        "service-shadow": "0px 12px 4px 0px #00000040"
+        "service-shadow": "0px 12px 4px 0px #00000040",
+        "schedule-shadow": "0px 8px 4px 0px #00000040"
       },
       backgroundImage: {
         "orange-gradient": "linear-gradient(to right, #ff7e5f, #feb47b)",
         "signup-gradient":
           "linear-gradient(90deg, #B2DAE5 5.72%, #63797F 100%)",
         "signup-child-gradient":
-          "linear-gradient(290.61deg, #B2DAE5 2.03%, #A4D6E3 98.12%"
+          "linear-gradient(290.61deg, #B2DAE5 2.03%, #A4D6E3 98.12%",
+        "schedule-gradient":
+          "linear-gradient(120.75deg, rgba(154, 184, 198, 0) 1.62%, #C5ECFF 88.27%)"
       },
       colors,
       screens,

@@ -5,6 +5,8 @@ const colors = {
   digiGray: "#d9d9d9",
   digiWhiteGray: "#eaeaea",
   digiDarkGray: "#bfbdbd",
-  digiRed: "#ed3d3d"
+  digiRed: "#ed3d3d",
+  digiFaqBlue: "#1376F8",
+  digiDarkBlue: "#011632"
 };
 export default colors;

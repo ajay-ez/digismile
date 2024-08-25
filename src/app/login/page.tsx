@@ -1,12 +1,10 @@
 "use client";
 
 import React from "react";
-
+import { useRouter } from "next/navigation";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-
 import { Button, Typography, Box } from "@mui/material";
-
 import FieldInput from "@/components/common/FieldInput";
 import { emailValidation, passwordValidation } from "@/validations";
 import { LoginFormValues } from "@/types";
@@ -19,9 +17,37 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const initialLoginValues: LoginFormValues = {
     email: "",
     password: ""
+  };
+
+  const handleLogin = async (values: LoginFormValues) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(values)
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const { token } = data;
+        localStorage.setItem("token", token);
+        router.push("/");
+      } else {
+        console.error("Login failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
@@ -43,9 +69,7 @@ const LoginPage = () => {
             <Formik
               initialValues={initialLoginValues}
               validationSchema={LoginSchema}
-              onSubmit={(values) => {
-                console.log(values);
-              }}
+              onSubmit={handleLogin}
             >
               {() => (
                 <Form>
@@ -82,7 +106,7 @@ const LoginPage = () => {
             </Formik>
           </Box>
           <Typography variant="body2" align="center" className="mt-4">
-            Don&apos;t have account?
+            Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-blue-900 text-lg">
               Sign up
             </Link>

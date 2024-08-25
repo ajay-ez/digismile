@@ -5,9 +5,9 @@ export interface LoginFormValues {
 
 export interface SignupFormValues extends LoginFormValues {
   name: string;
-  dob: string;
+  date_of_birth: string;
   address: string;
-  phoneNumber: string;
-  confirmPassword: string;
+  phone_number: string;
+  confirmPassword?: string;
   problem: string;
 }
