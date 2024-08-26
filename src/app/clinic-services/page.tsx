@@ -1,4 +1,4 @@
-import ClinicService from "@/features/services/ClinicService";
+import ServiceCard from "@/features/services/ServiceCard";
 import React from "react";
 import projectConstants from "@/projectContants";
 import { Stack, Typography } from "@mui/material";
@@ -17,7 +17,7 @@ const ClinicServices = () => {
         </Typography>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
           {projectConstants.clinicService.map((service) => (
-            <ClinicService
+            <ServiceCard
               key={service.alt}
               title={service.title}
               desc={service.desc}

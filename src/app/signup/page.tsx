@@ -189,6 +189,7 @@ const SignupPage = () => {
                           type="submit"
                           variant="text"
                           className=" rounded-lg font-bold max-w-md text-black"
+                          onClick={() => router.push("/")}
                         >
                           Cancel
                         </Button>

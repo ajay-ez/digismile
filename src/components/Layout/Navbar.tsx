@@ -24,7 +24,7 @@ export default function Navbar() {
       }}
       className="bg-[#1E285F]"
     >
-      <Toolbar className="flex justify-between items-center p-2">
+      <Toolbar className="flex justify-between items-center p-4 rounded-3xl">
         <Image
           onClick={() => navigateToSection("/")}
           src={digismileLogoImage}
@@ -77,9 +77,10 @@ export default function Navbar() {
           />
           <Button
             variant="contained"
-            className="bg-white text-[#1E285F] hover:bg-white font-bold rounded-xl capitalize"
+            className="bg-white text-[#1E285F] hover:bg-white font-bold rounded-xl capitalize p-2 px-4"
+            onClick={() => navigateToSection("#book_appointment")}
           >
-            Book Now
+            Request An Appointment
           </Button>
         </Box>
       </Toolbar>

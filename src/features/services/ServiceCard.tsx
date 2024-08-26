@@ -9,7 +9,7 @@ interface Properties {
   image: StaticImageData;
   alt: string;
 }
-const ClinicService = ({ title, desc, image, alt }: Properties) => {
+const ServiceCard = ({ title, desc, image, alt }: Properties) => {
   return (
     <div className="bg-white border-[1px] rounded-lg shadow-service-shadow flex flex-col gap-3 justify-center items-center p-6">
       <Image src={image} alt={alt} className="bg-blue-300 rounded-lg" />
@@ -25,4 +25,4 @@ const ClinicService = ({ title, desc, image, alt }: Properties) => {
   );
 };
 
-export default ClinicService;
+export default ServiceCard;

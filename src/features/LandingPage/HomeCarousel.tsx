@@ -4,10 +4,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { home_1, home_2, home_3 } from "@/assets/images";
 import Image from "next/image";
-import { Button, AppBar, Typography, Box } from "@mui/material";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { AppBar, Typography, Box, Button } from "@mui/material";
+// import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
+import { Call } from "@mui/icons-material";
 
 const carouselItems = [
   { src: home_1, alt: "Image 1", text: "Text over Image 1" },
@@ -25,7 +26,7 @@ const settings = {
   autoplaySpeed: 2000
 };
 
-const NavImage = () => {
+const HomeCarousel = () => {
   const router = useRouter();
 
   const navigateToSection = (id: string) => {
@@ -100,13 +101,22 @@ const NavImage = () => {
           <div key={index} className="relative h-[80vh]">
             <Image className="w-full" src={item.src} alt={item.alt} />
 
-            <div className="absolute inset-0 flex   items-center justify-start text-white text-3xl font-bold m-2 mx-12">
+            <div className="absolute inset-0 flex  items-center justify-center text-white text-3xl font-bold">
               <Box>
-                <Typography variant="h4" className="font-bold font-league">
-                  DENTAL CARE
-                  <br /> FOR LIFE
+                <Typography
+                  variant="h5"
+                  className="font-bold font-league text-digiDarkBlue text-center"
+                >
+                  Welcome Back!
                 </Typography>
-                <Box className="mt-2">
+                <Typography
+                  variant="h4"
+                  className="font-bold font-league text-digiDarkBlue text-center mt-2"
+                >
+                  Get your best ever
+                  <br /> Dental Experience!
+                </Typography>
+                {/* <Box className="mt-2">
                   <Button
                     variant="contained"
                     color="primary"
@@ -118,11 +128,39 @@ const NavImage = () => {
                     Book Appointment
                     <KeyboardDoubleArrowRightIcon />
                   </Button>
-                </Box>
+                </Box> */}
               </Box>
             </div>
 
-            <div className="absolute inset-0 flex items-center justify-start m-2"></div>
+            <div className="absolute inset-0 flex flex-col  justify-end m-12">
+              <div className="flex gap-8 items-center">
+                <Button
+                  variant="contained"
+                  className="rounded-xl capitalize p-2 px-4"
+                  onClick={() => {
+                    navigateToSection("/login");
+                  }}
+                >
+                  Login
+                </Button>
+                <Button
+                  variant="contained"
+                  className="rounded-xl capitalize p-2 px-4"
+                  onClick={() => {
+                    navigateToSection("/signup");
+                  }}
+                >
+                  Signup
+                </Button>
+                <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
+                  <Call className="text-blue-600" />
+                </div>
+                <div>
+                  <Typography className="font-bold">Call us</Typography>
+                  <Typography>(571) 374-8000</Typography>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </Slider>
@@ -130,4 +168,4 @@ const NavImage = () => {
   );
 };
 
-export default NavImage;
+export default HomeCarousel;

@@ -3,6 +3,7 @@ import digismileLogoImage from "@/assets/digismile-logo.png";
 import home_1 from "@/assets/homepageImages/home_1.svg";
 import home_2 from "@/assets/homepageImages/home_2.svg";
 import home_3 from "@/assets/homepageImages/home_3.svg";
+import appointment from "@/assets/homepageImages/appointment.svg";
 import root_canal from "@/assets/serviceImages/service_1.svg";
 import tooth_whitening from "@/assets/serviceImages/service_2.svg";
 import pediatric_dentis from "@/assets/serviceImages/service_3.svg";
@@ -31,6 +32,7 @@ import smile_journey from "@/assets/clinicServices/smile_journey.svg";
 import service_detail from "@/assets/clinicServices/service_detail.svg";
 export {
   signup_bottom_left,
+  appointment,
   community_care,
   service_detail,
   smile_journey,

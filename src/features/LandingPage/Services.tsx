@@ -1,38 +1,33 @@
 import React from "react";
-import ServiceExplore from "@/components/common/ServiceExplore";
-import { pediatric_dentis, root_canal, tooth_whitening } from "@/assets/images";
-import { Box, Typography } from "@mui/material";
+
+import { Typography } from "@mui/material";
+import projectConstants from "@/projectContants";
+import ServiceCard from "../services/ServiceCard";
 
 const Services = () => {
   return (
-    <div className=" bg-digiWhiteGray p-3">
-      <Typography
-        variant="h3"
-        className="text-center bg-digiWhiteGray p-3 font-bold"
-      >
+    <div className="bg-blue-white-gradient py-3">
+      <Typography variant="h3" className="text-center p-3 font-bold">
         Our Services
       </Typography>
-      <Typography className="text-center m-2 font-medium">
-        Comprehensive Services for
-        <span className="text-digiRed"> Optimal Oral Health.</span>
+      <Typography className="text-center m-2 font-bold">
+        Comprehensive Services for Optimal Oral Health.
       </Typography>
-      <Box className="flex" gap={4}>
-        <ServiceExplore alt="service 1" image={root_canal} title="Root canal" />
-        <ServiceExplore
-          alt="service 1"
-          image={tooth_whitening}
-          title="Tooth whitening "
-        />
-        <ServiceExplore
-          alt="service 1"
-          image={pediatric_dentis}
-          title="Pediatric-dentistry"
-        />
-      </Box>
-      <Typography className="font-medium text-center mt-2">
-        Our state-of-the-art facilities are equipped with the
-        <span className="text-digiRed"> latest technology </span>
-        to ensure optimal care for both children and adults
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        {projectConstants.clinicService.slice(0, 3).map((service) => (
+          <ServiceCard
+            key={service.alt}
+            title={service.title}
+            desc={service.desc}
+            image={service.image}
+            alt={service.alt}
+          />
+        ))}
+      </div>
+      <Typography className="font-semibold text-center mt-2">
+        Our state-of-the-art facilities are equipped with the latest technology
+        to <br />
+        ensure optimal care for both children and adults
       </Typography>
     </div>
   );

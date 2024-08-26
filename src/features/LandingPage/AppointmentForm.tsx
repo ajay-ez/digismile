@@ -87,7 +87,7 @@ const AppointmentForm = () => {
             <Grid item xs={12}>
               <Box mt={2} className="flex justify-center">
                 <Button
-                  className="bg-black text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-gray-800"
+                  className="bg-[#065084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800"
                   type="submit"
                 >
                   Confirm Appointment

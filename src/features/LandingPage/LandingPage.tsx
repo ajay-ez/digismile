@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import "aos/dist/aos.css";
-import NavImageComponent from "./NavImage";
+import HomeCarousel from "./HomeCarousel";
 import Services from "./Services";
 import BookAppointment from "./BookAppointment";
-import AboutUs from "./AboutUs";
+import WhoWeAre from "./WhoWeAre";
 import Testimonial from "./Testimonial";
 import ContactUs from "./ContactUs";
-import UserWelcome from "./UserWelcome";
+// import UserWelcome from "./UserWelcome";
 import AOS from "aos";
 import DigiLayout from "@/components/Layout";
+import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 
 const LandingPage = () => {
   useEffect(() => {
@@ -22,21 +23,35 @@ const LandingPage = () => {
     <DigiLayout>
       <div className="flex flex-col gap-4">
         <div data-aos="fade-up">
-          <NavImageComponent />
-          <UserWelcome />
+          <HomeCarousel />
+          {/* <UserWelcome /> */}
         </div>
 
         <div id="services" data-aos="fade-up" data-aos-delay="100">
           <Services />
         </div>
+
+        <div
+          id="book_appointment"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="bg-blue-white-gradient"
+        >
+          <BookAppointment />
+        </div>
         <div id="about" data-aos="fade-up" data-aos-delay="100">
-          <AboutUs />
+          <WhoWeAre />
         </div>
         <div id="testimonials" data-aos="fade-up" data-aos-delay="100">
           <Testimonial />
         </div>
-        <div id="book_appointment" data-aos="fade-up" data-aos-delay="100">
-          <BookAppointment />
+        <div
+          id="schedule"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="mx-8 "
+        >
+          <ClinicSchedule renderToHome={true} />
         </div>
         <div id="contact" data-aos="fade-up" data-aos-delay="100">
           <ContactUs />

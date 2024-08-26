@@ -12,7 +12,7 @@ const UserWelcome = () => {
           className="bg-black text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-gray-800 font-league"
           type="submit"
         >
-          Check Appointment
+          Check Appointments
         </Button>
       </Box>
     </div>

@@ -2,7 +2,7 @@ import DigiLayout from "@/components/Layout";
 import { AboutDoctor } from "@/features/about-us/AboutDoctor";
 import { CommunityCare } from "@/features/about-us/CommunityCare";
 import { NewPatients } from "@/features/about-us/NewPatients";
-import { Schedule } from "@/features/about-us/Schedule";
+import { AboutClinic } from "@/features/about-us/AboutClinic";
 import { Stack, Typography } from "@mui/material";
 
 import React from "react";
@@ -15,7 +15,7 @@ const AboutUs = () => {
           About Us
         </Typography>
         <AboutDoctor />
-        <Schedule />
+        <AboutClinic />
         <CommunityCare />
         <NewPatients />
       </Stack>

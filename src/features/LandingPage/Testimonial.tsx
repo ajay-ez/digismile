@@ -42,12 +42,9 @@ const testimonials = [
 
 const Testimonial: React.FC = () => {
   return (
-    <div>
+    <div className="bg-blue-white-gradient">
       <Box className="flex justify-center">
-        <Typography
-          variant="h3"
-          className="text-center border-[1px] border-digiRed rounded-lg p-3 font-bold"
-        >
+        <Typography variant="h3" className="text-center p-3 font-bold">
           Testimonials
         </Typography>
       </Box>
