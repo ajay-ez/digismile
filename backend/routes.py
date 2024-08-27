@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 from backend import db, bcrypt
-from backend.models import Users
-# , Appointment, doctor, DoctorAvailabilty
+from backend.models import Users, Appointment, doctor, DoctorAvailabilty
 from datetime import datetime
 
 main = Blueprint('main', __name__)
@@ -67,41 +66,43 @@ def register():
     
     return jsonify({'message': 'User registered successfully!'}), 201
 
-# @main.route('/book_appointment', methods=['POST'])
-# def book_appointment():
-#     data = request.get_json()
-#     user_id = data.get('user_id')
-#     doctor_id = data.get('doctor_id')
-#     appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
-#     start_time = datetime.strptime(data.get('start_time'), '%H:%M').time()
-#     end_time = datetime.strptime(data.get('end_time'), '%H:%M').time()
-#     description = data.get('description', '')
+@main.route('/book_appointment', methods=['POST'])
+def book_appointment():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    doctor_id = data.get('doctor_id')
+    appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
+    # start_time = datetime.strptime(data.get('start_time'), '%H:%M').time()
+    # end_time = datetime.strptime(data.get('end_time'), '%H:%M').time()
+    description = data.get('description', '')
 
-#     availability = DoctorAvailabilty.query.filter_by(
-#         doctor_id=doctor_id,
-#         available_date=appointment_date,
-#         ).first()
+    # availability = DoctorAvailabilty.query.filter_by(
+    #     doctor_id=doctor_id,
+    #     available_date=appointment_date,
+    #     ).first()
     
-#     if not availability:
-#         return jsonify({'error': 'Doctor not available for this date'}), 400
+    # if not availability:
+    #     return jsonify({'error': 'Doctor not available for this date'}), 400
     
-#     if not (availability.start_time <=start_time and availability.end_time >= end_time):
-#         return jsonify({'error': 'Doctor not available during the requested time.'}), 400
+    # if not (availability.start_time <=start_time and availability.end_time >= end_time):
+    #     return jsonify({'error': 'Doctor not available during the requested time.'}), 400
     
 
-#     #Book the appointment
-#     new_appointment = Appointment(
-#         user_id=user_id,
-#         doctor_id=doctor_id,
-#         appointment_date=appointment_date,
-#         start_time=start_time,
-#         end_time=end_time,
-#         description=description,
-#         status='scheduled'
-#     )
+    #Book the appointment
+    new_appointment = Appointment(
+        user_id=user_id,
+        doctor_id=doctor_id,
+        appointment_date=appointment_date,
+        # start_time=start_time,
+        # end_time=end_time,
+        start_time="12:00",
+        end_time="22:00",
+        description=description,
+        status='scheduled'
+    )
 
 
-#     db.session.add(new_appointment)
-#     db.session.commit()
+    db.session.add(new_appointment)
+    db.session.commit()
 
-#     return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
+    return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
