@@ -4,7 +4,7 @@ import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 
 export const AboutClinic = () => {
   return (
-    <div className="flex gap-8 mt-3 items-center justify-center">
+    <div className="flex gap-8 mt-3 items-center justify-center ">
       <div className="p-3 w-[50%] rounded-lg">
         <Typography variant="h4" className="text-left mb-5">
           Our Practice and Services

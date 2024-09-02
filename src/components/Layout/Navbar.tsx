@@ -73,7 +73,8 @@ export default function Navbar() {
             alt="Profile"
             width={66}
             height={66}
-            className="rounded-full"
+            className="rounded-full cursor-pointer"
+            onClick={() => navigateToSection("profile")}
           />
           <Button
             variant="contained"

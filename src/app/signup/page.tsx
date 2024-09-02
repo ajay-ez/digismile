@@ -16,6 +16,7 @@ import {
 import { SignupFormValues } from "@/types";
 import SignupContainer from "@/components/common/SignupContainer";
 import Link from "next/link";
+import { useRegisterMutation } from "@/services/apiServices/authService";
 
 const SignupSchema = Yup.object().shape({
   name: requiredCharField("Name"),
@@ -31,6 +32,7 @@ const SignupSchema = Yup.object().shape({
 
 const SignupPage = () => {
   const router = useRouter();
+  const [registerUser] = useRegisterMutation();
   const initialSignupValues: SignupFormValues = {
     name: "",
     date_of_birth: "",
@@ -43,30 +45,9 @@ const SignupPage = () => {
   };
 
   const handleSignup = async (values: SignupFormValues) => {
-    try {
-      delete values.confirmPassword;
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(values)
-        }
-      );
+    delete values.confirmPassword;
 
-      if (response.ok) {
-        const data = await response.json();
-        const { token } = data;
-        localStorage.setItem("token", token);
-        router.push("/");
-      } else {
-        console.error("Login failed:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
+    registerUser(values);
   };
 
   return (

@@ -10,6 +10,7 @@ import { emailValidation, passwordValidation } from "@/validations";
 import { LoginFormValues } from "@/types";
 import SignupContainer from "@/components/common/SignupContainer";
 import Link from "next/link";
+import { useLoginMutation } from "@/services/apiServices/authService";
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
@@ -18,6 +19,7 @@ const LoginSchema = Yup.object().shape({
 
 const LoginPage = () => {
   const router = useRouter();
+  const [userLogin] = useLoginMutation();
 
   const initialLoginValues: LoginFormValues = {
     email: "",
@@ -25,29 +27,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async (values: LoginFormValues) => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(values)
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const { token } = data;
-        localStorage.setItem("token", token);
-        router.push("/");
-      } else {
-        console.error("Login failed:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
+    userLogin(values);
   };
 
   return (

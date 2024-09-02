@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const AboutDoctor = () => {
   return (
-    <div className="flex gap-2 mt-3 items-center justify-center">
+    <div className="flex gap-2 mt-3 items-center justify-center  ">
       <div className="bg-white p-3 w-[50%] rounded-lg">
         <Typography variant="h4" className="text-left mb-5">
           Dr. Andleeb Mahmood

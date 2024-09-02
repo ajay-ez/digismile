@@ -98,7 +98,7 @@ const HomeCarousel = () => {
       {/* Carousel */}
       <Slider {...settings}>
         {carouselItems.map((item, index) => (
-          <div key={index} className="relative h-[80vh]">
+          <div key={index} className="relative h-[90vh]">
             <Image className="w-full" src={item.src} alt={item.alt} />
 
             <div className="absolute inset-0 flex  items-center justify-center text-white text-3xl font-bold">

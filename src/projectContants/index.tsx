@@ -56,24 +56,28 @@ const projectConstants = {
       header: "Root Canal",
       desc: "Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth. Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth. Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth.",
       headerImage: root_canal_clinic,
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       asset: service_detail
     },
     {
       header: "Teeth Whitening",
       desc: "It's never been easier to brighten your smile at home. There are all kinds of products you can try. It's never been easier to brighten your smile at home. There are all kinds of products you can try. It's never been easier to brighten your smile at home. There are all kinds of products you can try.",
       headerImage: root_canal_clinic,
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       asset: service_detail
     },
     {
       header: "Dental Implants",
       desc: "A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or bridge. A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or bridge. A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or bridge.",
       headerImage: root_canal_clinic,
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       asset: service_detail
     },
     {
       header: "Prevention",
       desc: "Preventive dentistry is dental care that helps maintain good oral health. a combination of regular dental. Preventive dentistry is dental care that helps maintain good oral health. a combination of regular dental. Preventive dentistry is dental care that helps maintain good oral health. a combination of regular dental.",
       headerImage: root_canal_clinic,
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
       asset: service_detail
     }
   ],

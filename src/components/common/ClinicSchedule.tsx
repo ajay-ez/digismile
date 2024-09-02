@@ -5,12 +5,14 @@ interface Props {
 }
 export const ClinicSchedule = ({ renderToHome }: Props) => {
   return (
-    <div className={`${renderToHome ? "bg-blue-white-gradient" : ""}`}>
-      <Typography variant="h3" className="text-center underline mb-2">
+    <div
+      className={`${renderToHome ? "bg-blue-white-gradient" : ""} flex flex-col items-center`}
+    >
+      <Typography variant="h3" className="text-center  mb-2">
         Schedule
       </Typography>
       <div
-        className={` p-8 shadow-schedule-shadow rounded-lg ${renderToHome ? " bg-schedule-home-gradient" : "bg-schedule-gradient"}`}
+        className={` p-8 shadow-schedule-shadow rounded-lg ${renderToHome ? " bg-schedule-home-gradient w-[100%]" : "bg-schedule-gradient w-[70%]"}`}
       >
         <div className={`${renderToHome ? "flex justify-between" : ""}`}>
           <div>

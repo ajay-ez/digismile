@@ -6,10 +6,10 @@ import Image from "next/image";
 export const CommunityCare = () => {
   return (
     <div>
-      <Typography variant="h4" className="my-8 text-center mb-16">
+      <Typography variant="h4" className="my-8 text-center mb-16 font-bold">
         Excellence in Dentistry and Community Care
       </Typography>
-      <div className="flex gap-4 mt-3 items-center justify-center">
+      <div className="flex gap-4 mt-3 items-center justify-center  ">
         <div className="bg-white p-3 w-[30%] rounded-lg">
           <Image src={community_care} alt="d-1" />
         </div>

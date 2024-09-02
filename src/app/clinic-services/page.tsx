@@ -41,14 +41,14 @@ const ClinicServices = () => {
           <Image src={faq} alt="Faq's" className="w-[40%]" />
         </div>
         <div>
-          <Stack gap="15px" className="p-4">
+          <Stack gap={4} className="p-4 ">
             {projectConstants.clinicServiceDetails.map(
               (serviceDetail: any, index: number) => (
                 <ClinicServiceDetail
                   header={serviceDetail.header}
                   asset={serviceDetail.asset}
                   desc={serviceDetail.desc}
-                  headerImage={serviceDetail.headerImage}
+                  videoUrl={serviceDetail.videoUrl}
                   index={index}
                   key={serviceDetail.header}
                 />

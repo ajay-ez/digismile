@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import React from "react";
+import { ReduxProvider } from "@/providers/ReduxProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,7 +51,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${atkinson.variable} ${bangers.variable} ${league.variable} ${fredoka.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }

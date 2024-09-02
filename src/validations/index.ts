@@ -19,5 +19,5 @@ export const contactNumberValidation = Yup.string()
   .required("Contact number is required");
 
 export const booleanValidation = Yup.boolean()
-  .oneOf([true], "You must accept this option")
+  .oneOf([true], "You must accept this")
   .required("This field is required");

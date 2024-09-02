@@ -1,22 +1,21 @@
-// BookAppointmentForm.tsx
 import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
 import { Box, Button, Grid } from "@mui/material";
-// import {
-//   requiredCharField,
-//   contactNumberValidation,
-//   booleanValidation
-// } from "@/validations";
+import {
+  requiredCharField,
+  contactNumberValidation,
+  booleanValidation
+} from "@/validations";
 
-// const validationSchema = Yup.object({
-//   firstName: requiredCharField("First Name"),
-//   lastName: requiredCharField("Last Name"),
-//   contact: contactNumberValidation,
-//   problem: requiredCharField("Health Problem"),
-//   dob: Yup.date().required("Date of Birth is required").nullable(),
-//   privacyPolicy: booleanValidation,
-// });
+const validationSchema = Yup.object({
+  firstName: requiredCharField("First Name"),
+  lastName: requiredCharField("Last Name"),
+  contact: contactNumberValidation,
+  problem: requiredCharField("Health Problem"),
+  dob: Yup.date().required("Date of Birth is required").nullable(),
+  privacyPolicy: booleanValidation
+});
 
 const initialValues = {
   firstName: "",
@@ -35,7 +34,7 @@ const AppointmentForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      //   validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       {() => (
@@ -58,7 +57,7 @@ const AppointmentForm = () => {
               <FieldInput label="Problem" name="problem" type="text" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box display="flex" alignItems="center">
+              <Box display="flex flex-col" alignItems="center">
                 <Field name="privacyPolicy">
                   {({ field }: { field: any; meta: any }) => (
                     <Box display="flex" alignItems="center">
