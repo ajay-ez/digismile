@@ -22,13 +22,14 @@ class doctor(db.Model):
     specialization = db.Column(db.String(100), unique=False, nullable=True)
 
 class DoctorAvailabilty(db.Model):
-    __tablename__ = 'DoctorAvailablity'
+    __tablename__ = 'doctoravailability'
 
     availability_id = db.Column(db.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     doctor_id = db.Column(db.UUID(as_uuid=True), db.ForeignKey('doctor.doctor_id'), nullable=False)
+    available_date = db.Column(db.Date, nullable=False)
     start_time = db.Column(db.Date, nullable=False)
     end_time = db.Column(db.Date, nullable=False)
-    doctor = db.relationship('doctor', backref='availability')
+    doctor = db.relationship('doctor', backref='DoctorAvailability')
 
 class Appointment(db.Model):
     __tablename__ = 'appointments'
@@ -49,3 +50,16 @@ class Appointment(db.Model):
     __table_args__ = (
         db.CheckConstraint("status IN('scheduled', 'completed', 'cancelled')", name='status_check'),
     )
+
+
+class MedicalRecord(db.Model):
+    __tablename__ = 'medical_records'
+
+    id = db.column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), db.ForeignKey('users.email'), nullable=False)
+    prescription = db.Column(db.String)
+    problem = db.Column(db.String(255), nullable=False)
+    document = db.Column(db.String(255), nullable=True)
+    date = db.Column(db.String(255), nullable=True)
+
+    user = db.relationship('Users', backref=db.backref('medical_records', lazy=True))

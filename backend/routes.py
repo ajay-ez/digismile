@@ -5,7 +5,7 @@ from datetime import datetime
 
 main = Blueprint('main', __name__)
 
-@main.route('/login', methods=['POST'])
+@main.route('/login', methods=['GET'])
 def login():
     data = request.json
     email = data.get('email')
@@ -66,37 +66,59 @@ def register():
     
     return jsonify({'message': 'User registered successfully!'}), 201
 
-@main.route('/book_appointment', methods=['POST'])
-def book_appointment():
+@main.route('/book_appointment_existing_user', methods=['POST'])
+def book_appointment(): #If user has logged in
+    doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
+
     data = request.get_json()
     user_id = data.get('user_id')
-    doctor_id = data.get('doctor_id')
+    # doctor_id = data.get('doctor_id')
     appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
-    # start_time = datetime.strptime(data.get('start_time'), '%H:%M').time()
-    # end_time = datetime.strptime(data.get('end_time'), '%H:%M').time()
+    start_time = datetime.strptime(data.get('start_time'), '%H:%M:%S').time()
+    end_time = datetime.strptime(data.get('end_time'), '%H:%M:%S').time()
     description = data.get('description', '')
 
-    # availability = DoctorAvailabilty.query.filter_by(
-    #     doctor_id=doctor_id,
-    #     available_date=appointment_date,
-    #     ).first()
+    appointment = Appointment.query.filter_by(
+        doctor_id=doctor_id,
+        appointment_date=appointment_date,
+        ).all()
     
-    # if not availability:
+    print(appointment)
+
+    if appointment == []:
+        print("appointment is None")
+
+        #Book the appointment
+        new_appointment = Appointment(
+        user_id=user_id,
+        doctor_id=doctor_id,
+        appointment_date=appointment_date,
+        start_time=start_time,
+        end_time=end_time,
+        description=description,
+        status='scheduled'
+        )
+
+        db.session.add(new_appointment)
+        db.session.commit()
+
+        return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
+
+    # if not appointment:
     #     return jsonify({'error': 'Doctor not available for this date'}), 400
     
-    # if not (availability.start_time <=start_time and availability.end_time >= end_time):
-    #     return jsonify({'error': 'Doctor not available during the requested time.'}), 400
+    # for available_entries in appointment: 
+    #     if (available_entries.start_time <= start_time and available_entries.end_time >= end_time):
+    #         return jsonify({'error': 'Doctor not available during the requested time.'}), 400
     
-
+    print("running")
     #Book the appointment
     new_appointment = Appointment(
         user_id=user_id,
         doctor_id=doctor_id,
         appointment_date=appointment_date,
-        # start_time=start_time,
-        # end_time=end_time,
-        start_time="12:00",
-        end_time="22:00",
+        start_time=start_time,
+        end_time=end_time,
         description=description,
         status='scheduled'
     )
@@ -104,5 +126,22 @@ def book_appointment():
 
     db.session.add(new_appointment)
     db.session.commit()
-
     return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
+
+
+@main.route('/get_appointments', methods=['GET'])
+def get_appointments():
+    try:
+        current_appointments = Appointment.query.all()
+
+        appointments_data = []
+        for data in current_appointments:
+            appointments_data.append({
+                'appointment_date': data.appointment_date.strftime('%Y-%m-%d'),
+                'start_time': data.start_time.strftime('%H:%M'),
+                'end_time': data.end_time.strftime('%H:%M'),
+            })
+        return jsonify(appointments_data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
