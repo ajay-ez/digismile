@@ -14,7 +14,7 @@ export default function Navbar() {
   const router = useRouter();
 
   const navigateToSection = (id: string) => {
-    router.push(`${id}`);
+    router.push(`/${id}`);
   };
   return (
     <AppBar
@@ -74,7 +74,11 @@ export default function Navbar() {
             width={66}
             height={66}
             className="rounded-full cursor-pointer"
-            onClick={() => navigateToSection("profile")}
+            onClick={() =>
+              navigateToSection(
+                "profile/4423?tab=user-profile&subTab=prescription"
+              )
+            }
           />
           <Button
             variant="contained"

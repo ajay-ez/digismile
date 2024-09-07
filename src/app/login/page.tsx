@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Typography, Box } from "@mui/material";
@@ -18,7 +17,6 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
-  const router = useRouter();
   const [userLogin] = useLoginMutation();
 
   const initialLoginValues: LoginFormValues = {
