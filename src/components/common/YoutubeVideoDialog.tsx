@@ -30,7 +30,7 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
         variant="contained"
         color="inherit"
         onClick={handleClickOpen}
-        className="capitalize"
+        className="capitalize youtube-button"
       >
         Watch Here
       </Button>

@@ -5,11 +5,14 @@ import {
   Table,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
-  Typography
+  Typography,
+  Button
 } from "@mui/material";
+import Image from "next/image";
 import { getFormattedDateTime } from "@/utils/dateUtils";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import { doctor } from "@/assets/images";
 
 export const UpcommingAppointmentTable = () => {
   const events = [
@@ -52,32 +55,34 @@ export const UpcommingAppointmentTable = () => {
     <Box>
       <TableContainer component={Box} sx={{ borderRadius: 1 }}>
         <Table>
-          <TableHead>
-            <TableRow className="font-bold">
-              <TableCell className="font-bold text-center border-none">
-                Date & Time
-              </TableCell>
-              <TableCell className="font-bold text-center border-none">
-                Treatment
-              </TableCell>
-              <TableCell className="font-bold text-center border-none">
-                Dowload
-              </TableCell>
-            </TableRow>
-          </TableHead>
-
           <TableBody>
             {events.map((event: any, index: number) => (
               <TableRow key={index}>
                 <TableCell className="text-center border-none">
+                  <Image
+                    src={doctor}
+                    alt="Doctor"
+                    height={158}
+                    width={158}
+                    className="rounded-full"
+                  />
+                </TableCell>
+                <TableCell className="text-center border-none font-semibold text-xl">
+                  Dr. Mahmood
+                  <Typography className="text-xs text-left">
+                    Dental Specialist
+                  </Typography>
+                </TableCell>
+                <TableCell className="text-center border-none text-lg">
+                  {event.description}
+                </TableCell>
+                <TableCell className="text-center border-none text-lg">
                   {getFormattedDateTime(event.startDate, true)}
-                </TableCell>
-
-                <TableCell className="text-center border-none">
-                  {event.name}
-                </TableCell>
-                <TableCell className="text-center border-none">
-                  {event.handledBy}
+                  <Typography className="text-left text-sm">Dc</Typography>
+                  <Button variant="text" className="capitalize text-black">
+                    <CancelOutlinedIcon className="text-red-500 mx-2" />
+                    Cancel
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -86,7 +91,7 @@ export const UpcommingAppointmentTable = () => {
       </TableContainer>
       {events.length === 0 && (
         <Typography textAlign={"center"} mt={2}>
-          No Event Found
+          No Appointments Found
         </Typography>
       )}
     </Box>

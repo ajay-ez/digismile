@@ -5,7 +5,7 @@ import React from "react";
 
 export const ProfileCard = () => {
   return (
-    <div className="w-[60%] shadow-2xl rounded-2xl p-3 ">
+    <div className="w-[60%] shadow-2xl rounded-2xl p-4 py-8 m-4">
       <div className="flex gap-8 items-center">
         <Image
           src={dummy_profile}

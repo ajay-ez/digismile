@@ -53,14 +53,14 @@ export const DocumentTable = () => {
       <TableContainer component={Box} sx={{ borderRadius: 1 }}>
         <Table>
           <TableHead>
-            <TableRow className="font-bold">
-              <TableCell className="font-bold text-center border-none">
+            <TableRow>
+              <TableCell className="font-extrabold text-center text-xl border-none">
                 Date & Time
               </TableCell>
-              <TableCell className="font-bold text-center border-none">
+              <TableCell className="font-extrabold text-center text-xl border-none">
                 Treatment
               </TableCell>
-              <TableCell className="font-bold text-center border-none">
+              <TableCell className="font-extrabold text-center text-xl border-none">
                 Dowload
               </TableCell>
             </TableRow>
@@ -69,14 +69,14 @@ export const DocumentTable = () => {
           <TableBody>
             {events.map((event: any, index: number) => (
               <TableRow key={index}>
-                <TableCell className="text-center border-none">
+                <TableCell className="text-center text-sm  border-none">
                   {getFormattedDateTime(event.startDate, true)}
                 </TableCell>
 
-                <TableCell className="text-center border-none">
+                <TableCell className="text-center text-sm   border-none">
                   {event.name}
                 </TableCell>
-                <TableCell className="text-center border-none">
+                <TableCell className="text-center text-sm   border-none">
                   {event.handledBy}
                 </TableCell>
               </TableRow>

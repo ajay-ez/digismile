@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import React from "react";
 import { requiredCharField } from "@/validations";
 import Image from "next/image";
-import { testimonial_3 } from "@/assets/images";
+import { doctor } from "@/assets/images";
 const LoginSchema = Yup.object().shape({
   city: requiredCharField("City"),
   problem: requiredCharField("Problem")
@@ -20,12 +20,13 @@ export const QuickAppointmentForm = () => {
   return (
     <Box className="bg-digiLightBlue rounded-2xl p-12 px-24 mb-4 flex flex-col justify-center items-center ">
       <Image
-        height={80}
-        width={80}
-        src={testimonial_3}
-        alt="Doctor Mahmood"
-        className="rounded-2xl"
+        src={doctor}
+        alt="Doctor"
+        height={158}
+        width={158}
+        className="rounded-full p-2"
       />
+
       <Formik
         initialValues={initialLoginValues}
         validationSchema={LoginSchema}

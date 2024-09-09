@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
   const tab = searchParams.get("tab");
 
   return (
-    <div className="h-[100vh] w-[320px] p-4 bg-[#104F7C] sticky top-2 rounded-2xl flex flex-col justify-between items-center ">
+    <div className="h-[100vh] w-[320px] p-4 bg-[#104F7C] sticky top-2 rounded-2xl flex flex-col justify-between items-center">
       <Image
         src={digismileLogoImage}
         alt="digismile"
@@ -55,10 +55,11 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       <div>
-        <Typography className="font-bold text-white text-xl">Rahul</Typography>
-        <Typography className="text-white">rahul@gmail.com</Typography>
-
-        <Image src={dummy_profile} alt="profile picture" />
+        <Image src={dummy_profile} alt="profile picture" className="mb-4" />
+        <Typography className="font-bold text-white text-xl ">Rahul</Typography>
+        <Typography className="text-white text-center">
+          rahul@gmail.com
+        </Typography>
       </div>
     </div>
   );

@@ -11,10 +11,12 @@ import ClinicServiceDetail from "@/features/services/ClinicServiceDetail";
 const ClinicServices = () => {
   return (
     <DigiLayout>
-      <div className="bg-seviceBg min-h-screen">
+      <div className="bg-seviceBg min-h-screen ">
         <Typography variant="h3" className="text-center  underline">
           Services
         </Typography>
+
+        {/* Service Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
           {projectConstants.clinicService.map((service) => (
             <ServiceCard
@@ -27,10 +29,13 @@ const ClinicServices = () => {
           ))}
         </div>
       </div>
-      <div className="bg-[#CEE5FE]">
-        <div className="flex items-center justify-center mx-3">
+
+      <div className="bg-blue-white-gradient flex flex-col gap-24">
+        <div className="flex items-center justify-center mx-3 pt-16">
           <SmileJourney />
         </div>
+
+        {/* Faqs */}
         <div className="flex gap-10 p-8 ">
           <div className="w-[50%]">
             <Typography variant="h3" className="text-center mb-16  underline">
@@ -40,6 +45,8 @@ const ClinicServices = () => {
           </div>
           <Image src={faq} alt="Faq's" className="w-[40%]" />
         </div>
+
+        {/* Services with video */}
         <div>
           <Stack gap={4} className="p-4 ">
             {projectConstants.clinicServiceDetails.map(

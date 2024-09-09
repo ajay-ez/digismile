@@ -9,7 +9,7 @@ interface UserProfileProps {
 export const UserProfile = ({ userId }: UserProfileProps) => {
   return (
     <Stack>
-      <div className="flex m-4 p-4 gap-4 items-center justify-center">
+      <div className="flex m-4 p-4 gap-8 items-center justify-center">
         <ProfileCard />
         <UpcomingAppointmentCalendar />
       </div>
