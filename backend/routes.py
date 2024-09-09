@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from backend import db, bcrypt
 from backend.models import Users, Appointment, doctor, DoctorAvailabilty, MedicalRecord
 from datetime import datetime
+import uuid
 
 main = Blueprint('main', __name__)
 
@@ -176,3 +177,34 @@ def add_medical_record():
     db.session.commit()
 
     return jsonify({'message': 'Medical record added successfulllt!'}), 201
+
+@main.route('/get_medical_records/<uuid:user_id>', methods=['GET'])
+def get_medical_records(user_id):
+    # fetch the user by user_id
+    user = Users.query.filter_by(user_id=user_id).first()
+    print('name: ', user.email)
+    # If user does't exist return error
+    if not user:
+        return jsonify({'message': 'User not Found'}), 404
+    
+    # Query the MedicalRecord table for the user's records
+    medical_records = MedicalRecord.query.filter_by(email=user.email).all()
+
+    # If no records found, return an error
+    if not medical_records:
+        return jsonify({'message': 'No medical records found for the user'}), 404
+    
+    records = []
+    for record in medical_records:
+        records.append({
+            'email': record.email,
+            'prescription': record.prescription,
+            'problem': record.problem,
+            'document': record.document,
+            'date': record.date
+        })
+
+    return jsonify({
+        'user_id': user_id,
+        'medical_records': records
+    }), 200
