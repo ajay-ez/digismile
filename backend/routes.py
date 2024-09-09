@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from backend import db, bcrypt
-from backend.models import Users, Appointment, doctor, DoctorAvailabilty
+from backend.models import Users, Appointment, doctor, DoctorAvailabilty, MedicalRecord
 from datetime import datetime
 
 main = Blueprint('main', __name__)
@@ -86,8 +86,6 @@ def book_appointment(): #If user has logged in
     print(appointment)
 
     if appointment == []:
-        print("appointment is None")
-
         #Book the appointment
         new_appointment = Appointment(
         user_id=user_id,
@@ -145,3 +143,36 @@ def get_appointments():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
+
+@main.route('/add_medical_record', methods=['POST'])
+def add_medical_record():
+    data = request.get_json()
+    
+    # Extract data from request
+    email = data.get('email')
+    prescription = data.get('prescription')
+    problem = data.get('problem')
+    document = data.get('document', None)
+    date = data.get('date')
+
+    # Validdate the required fields
+    if not all([email, prescription, problem, date]):
+        return jsonify({'error': 'Missing required fields'}), 400
+    
+    # Validate if the user exists
+    user = Users.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    
+    new_record = MedicalRecord(
+        email = email,
+        prescription=prescription,
+        problem=problem,
+        document=document,
+        date=date
+    )
+
+    db.session.add(new_record)
+    db.session.commit()
+
+    return jsonify({'message': 'Medical record added successfulllt!'}), 201
