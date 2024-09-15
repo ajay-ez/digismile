@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from backend import db, bcrypt
 from backend.models import Users, Appointment, doctor, DoctorAvailabilty, MedicalRecord
+from backend.auth import encode_token, decode_token, token_required
 from datetime import datetime
 import uuid
 
@@ -24,7 +25,8 @@ def login():
 
     # if not user or check(user.password_hash, password):
     if not user or bcrypt.check_password_hash(user.password_hash, password):
-        return jsonify({'message': 'login successful'}), 200
+        token = encode_token(user.user_id)
+        return jsonify({'message': 'login successful'}, {'token': token}), 200
     return jsonify({'message': 'Invalid Credentials'}), 401
 
 @main.route('/register', methods=['POST'])
@@ -68,7 +70,8 @@ def register():
     return jsonify({'message': 'User registered successfully!'}), 201
 
 @main.route('/book_appointment_existing_user', methods=['POST'])
-def book_appointment(): #If user has logged in
+@token_required
+def book_appointment_existing_user(): #If user has logged in
     doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
 
     data = request.get_json()
@@ -208,3 +211,38 @@ def get_medical_records(user_id):
         'user_id': user_id,
         'medical_records': records
     }), 200
+
+@main.route('/get_user_appointments/<uuid:user_id>', methods=['GET'])
+def get_user_appointments(user_id):
+    user = Users.query.filter_by(user_id=user_id).first()
+    print("email: ", user.email)
+    if not user:
+        return jsonify({'message': 'User not Found'}), 404
+    
+    all_appointments = Appointment.query.filter_by(user_id=user_id).all()
+    print("all_appointments:", all_appointments)
+    upcoming_app = []
+
+    prev_app = []
+    for a in all_appointments:
+        today = datetime.today().date()
+        if a.appointment_date <= today:
+            prev_app.append({
+            'date': str(a.appointment_date),
+            'start_time': str(a.start_time),
+            'end_time': str(a.end_time),
+            'description': a.description
+            })
+        else:
+            upcoming_app.append({
+            'date': str(a.appointment_date),
+            'start_time': str(a.start_time),
+            'end_time': str(a.end_time),
+            'description': a.description
+        })
+
+    return jsonify({
+        'user_id': user_id,
+        'previous_appointments': prev_app,
+        'upcoming_appointments': upcoming_app
+    })
