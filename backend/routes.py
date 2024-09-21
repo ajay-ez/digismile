@@ -1,33 +1,31 @@
 from flask import Blueprint, request, jsonify
 from backend import db, bcrypt
 from backend.models import Users, Appointment, doctor, DoctorAvailabilty, MedicalRecord
-from backend.auth import encode_token, decode_token, token_required
+from backend.auth import encode_token
 from datetime import datetime
 import uuid
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 main = Blueprint('main', __name__)
 
-@main.route('/login', methods=['GET'])
+@main.route('/login', methods=['POST'])
 def login():
     data = request.json
     email = data.get('email')
     password = data.get('password')
+
     if not email or not password:
         return jsonify({'message': 'Email and password are required'}), 400
-
-    def check(old, new):
-        if new == old:
-            return True
-        else:
-            return False
-
+    
     user = Users.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({'message': 'email not registered'})
 
-    # if not user or check(user.password_hash, password):
-    if not user or bcrypt.check_password_hash(user.password_hash, password):
-        token = encode_token(user.user_id)
-        return jsonify({'message': 'login successful'}, {'token': token}), 200
+    if bcrypt.check_password_hash(user.password_hash, password):
+        token = encode_token(user)
+        return jsonify({'message': 'Login Successful', 'token': token}), 200
     return jsonify({'message': 'Invalid Credentials'}), 401
+    
 
 @main.route('/register', methods=['POST'])
 def register():
@@ -70,12 +68,13 @@ def register():
     return jsonify({'message': 'User registered successfully!'}), 201
 
 @main.route('/book_appointment_existing_user', methods=['POST'])
-@token_required
+@jwt_required()
 def book_appointment_existing_user(): #If user has logged in
+    user = get_jwt_identity()
+    user_id = user['user_id']
     doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
-
     data = request.get_json()
-    user_id = data.get('user_id')
+    # user_id = data.get('user_id')
     # doctor_id = data.get('doctor_id')
     appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
     start_time = datetime.strptime(data.get('start_time'), '%H:%M:%S').time()
@@ -246,3 +245,18 @@ def get_user_appointments(user_id):
         'previous_appointments': prev_app,
         'upcoming_appointments': upcoming_app
     })
+
+@main.route('/get_user_details', methods=['GET'])
+@jwt_required()
+def get_user_details(user_id):
+    user_token = get_jwt_identity()
+    user_id = user_token['user_id']
+    user = Users.query.filter_by(user_id=user_id).first()
+    email = user.email
+    name = user.name
+    dob = user.date_of_birth
+    address = user.address
+    problem = user.problem
+    phone_number = user.phone_number
+
+    return jsonify({'message': ''})

@@ -1,41 +1,15 @@
-import jwt
-from flask import request, jsonify
-from datetime import datetime, timedelta
-from backend import app
+from flask import jsonify
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+import datetime
 
-def encode_token(user_id):
-    try:
-        payload = {
-            'exp': datetime.utcnow() + timedelta(hours=1),
-            'iat': datetime.utcnow(),
-            'sub': user_id
-        }
-        return jwt.encode(payload, app.config['SECRET_KEY'], algorithm='HS256')
-    except Exception as e:
-        return str(e)
-    
-def decode_token(token):
-    try:
-        payload = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
-        return payload['sub']
-    except jwt.ExpiredSignatureError:
-        return 'Token expired. Please log in again.'
-    except jwt.InvalidTokenError:
-        return 'Invalid token. Please Login again'
-    
+# Function to encode a JWT token
+def encode_token(user):
+    token = create_access_token(identity={'user_id': user.user_id}, expires_delta=datetime.timedelta(hours=1))
+    print(token)
+    return token
 
-def token_required(f):
-    def decorator(*args, **kwargs):
-        token = None
-        if 'Authorization' in request.headers:
-            token = request.headers['Authorization'].split(" ")[1]
-        if not token:
-            return jsonify({'message': 'Token is missing!'}, 401)
-        
-        decoded_user_id = decode_token(token)
-
-        if isinstance(decoded_user_id, str):
-            return jsonify({'message': decoded_user_id}), 401
-        
-        return f(decoded_user_id, *args, **kwargs)
-    return decorator
+# Token-required decorator for securing routes
+@jwt_required()
+def protected_route():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200

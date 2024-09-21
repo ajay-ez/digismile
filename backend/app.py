@@ -1,5 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-from backend.config import Config
+# from flask_sqlalchemy import SQLAlchemy
+# from backend.config import Config
 from backend import create_app
 
 app = create_app()
