@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
-from backend import db, bcrypt
+from backend import db, bcrypt, mail
 from backend.models import Users, Appointment, doctor, DoctorAvailabilty, MedicalRecord
 from backend.auth import encode_token
 from datetime import datetime
 import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from backend.utils import generate_random_password
+from flask_mail import Mail, Message
 
 main = Blueprint('main', __name__)
 
@@ -23,7 +25,7 @@ def login():
 
     if bcrypt.check_password_hash(user.password_hash, password):
         token = encode_token(user)
-        return jsonify({'message': 'Login Successful', 'token': token}), 200
+        return jsonify({'message': 'Login Successful', 'token': token, 'user_id': user.user_id}), 200
     return jsonify({'message': 'Invalid Credentials'}), 401
     
 
@@ -72,48 +74,39 @@ def register():
 def book_appointment_existing_user(): #If user has logged in
     user = get_jwt_identity()
     user_id = user['user_id']
+    print("user--->>>>", user)
+    print("user_id ------->>>", user_id)
     doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
     data = request.get_json()
-    # user_id = data.get('user_id')
-    # doctor_id = data.get('doctor_id')
     appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
     start_time = datetime.strptime(data.get('start_time'), '%H:%M:%S').time()
     end_time = datetime.strptime(data.get('end_time'), '%H:%M:%S').time()
     description = data.get('description', '')
 
-    appointment = Appointment.query.filter_by(
-        doctor_id=doctor_id,
-        appointment_date=appointment_date,
-        ).all()
+    # appointment = Appointment.query.filter_by(
+    #     doctor_id=doctor_id,
+    #     appointment_date=appointment_date,
+    #     ).all()
     
-    print(appointment)
+    # if appointment == []:
+    #     #Book the appointment
+    #     new_appointment = Appointment(
+    #     user_id=user_id,
+    #     doctor_id=doctor_id,
+    #     appointment_date=appointment_date,
+    #     start_time=start_time,
+    #     end_time=end_time,
+    #     description=description,
+    #     status='scheduled'
+    #     )
 
-    if appointment == []:
-        #Book the appointment
-        new_appointment = Appointment(
-        user_id=user_id,
-        doctor_id=doctor_id,
-        appointment_date=appointment_date,
-        start_time=start_time,
-        end_time=end_time,
-        description=description,
-        status='scheduled'
-        )
+    #     db.session.add(new_appointment)
+    #     db.session.commit()
 
-        db.session.add(new_appointment)
-        db.session.commit()
-
-        return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
-
-    # if not appointment:
-    #     return jsonify({'error': 'Doctor not available for this date'}), 400
+    #     return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 20
     
-    # for available_entries in appointment: 
-    #     if (available_entries.start_time <= start_time and available_entries.end_time >= end_time):
-    #         return jsonify({'error': 'Doctor not available during the requested time.'}), 400
-    
-    print("running")
-    #Book the appointment
+    # print("running")
+    # #Book the appointment
     new_appointment = Appointment(
         user_id=user_id,
         doctor_id=doctor_id,
@@ -248,15 +241,94 @@ def get_user_appointments(user_id):
 
 @main.route('/get_user_details', methods=['GET'])
 @jwt_required()
-def get_user_details(user_id):
+def get_user_details():
     user_token = get_jwt_identity()
     user_id = user_token['user_id']
+    print("user_token--->>>>>", user_token)
+    print("user_id ->>>", user_id)
     user = Users.query.filter_by(user_id=user_id).first()
     email = user.email
     name = user.name
     dob = user.date_of_birth
+    # Parse the date string to a datetime object
+    # date_obj = datetime.strptime(dob, "%a, %d %b %Y %H:%M:%S %Z")
+
+    # Format the date as dd-mm-yyyy
+    formatted_date = dob.strftime("%d-%m-%Y")
     address = user.address
     problem = user.problem
     phone_number = user.phone_number
 
-    return jsonify({'message': ''})
+    return jsonify({'name': name,
+                    'email': email,
+                    'dob': formatted_date,
+                    'address': address,
+                    'problem': problem,
+                    'phone_number': phone_number
+                    })
+
+@main.route('/new_user_appointment', methods=['POST'])
+def new_user_appointment():
+    data = request.json
+
+    first_name = data.get('first_name').strip()
+    last_name = data.get('last_name').strip()
+    email = data.get('email')
+    date_of_birth = data.get('date_of_birth')
+    phone_number = data.get('phone_number')
+    problem = data.get('problem')
+
+    if not all([first_name, last_name, email, date_of_birth, phone_number, problem]):
+        return jsonify({'message': 'All fields are required'}), 400
+    
+    existing_user = Users.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({'message': 'Email is already registered'}), 400
+    
+    generated_password = generate_random_password()
+
+    password_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
+    name = first_name + ' ' + last_name
+    doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
+    appointment_date = data.get('appointment_date')
+    start_time = data.get('start_time')
+    end_time = data.get('end_time')
+    description = data.get('description')
+    try:
+        new_user = Users(
+            name = name,
+            email = email,
+            password_hash = password_hash,
+            date_of_birth = date_of_birth,
+            address = 'not_added',
+            phone_number = phone_number,
+            role='patient'
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+        user = Users.query.filter_by(email=email).first()
+
+
+        new_appointment = Appointment(
+            user_id=user.user_id,
+            doctor_id=doctor_id,
+            appointment_date=appointment_date,
+            start_time=start_time,
+            end_time=end_time,
+            description=description,
+            status='scheduled'
+        )
+
+
+        db.session.add(new_appointment)
+        db.session.commit()
+
+        msg = Message('Your Account Details for Digismile',
+                    recipients=[email])
+        msg.body = f"Dear {first_name}, Your account has been created successfully. Please use the following credentials to log in:\n\nEmail: {email}\nPassword: {generated_password}\n\nThank you!"
+        mail.send(msg)
+        return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': 'failed to boook appointment.', 'error': str(e)}), 500
