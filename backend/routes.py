@@ -7,6 +7,7 @@ import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from backend.utils import generate_random_password
 from flask_mail import Mail, Message
+from backend.calender import add_appointment
 
 main = Blueprint('main', __name__)
 
@@ -72,9 +73,8 @@ def register():
 @main.route('/book_appointment_existing_user', methods=['POST'])
 @jwt_required()
 def book_appointment_existing_user(): #If user has logged in
-    user = get_jwt_identity()
-    user_id = user['user_id']
-    print("user--->>>>", user)
+    user_token = get_jwt_identity()
+    user_id = user_token['user_id']
     print("user_id ------->>>", user_id)
     doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
     data = request.get_json()
@@ -120,6 +120,12 @@ def book_appointment_existing_user(): #If user has logged in
 
     db.session.add(new_appointment)
     db.session.commit()
+    user = Users.query.filter_by(user_id=user_id).first()
+    email = user.email
+
+    print(f'start_time : {start_time}, {appointment_date}')
+    add_appointment(email, appointment_date, start_time, end_time, description)
+
     return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
 
 
@@ -269,6 +275,7 @@ def get_user_details():
 
 @main.route('/new_user_appointment', methods=['POST'])
 def new_user_appointment():
+
     data = request.json
 
     first_name = data.get('first_name').strip()
@@ -332,3 +339,38 @@ def new_user_appointment():
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': 'failed to boook appointment.', 'error': str(e)}), 500
+    
+
+@main.route('/change_password', methods=['POST'])
+@jwt_required()
+def change_password():
+    try:
+        data = request.get_json()
+
+        user_token = get_jwt_identity()
+        print(f'user token : {user_token}')
+        user_id = user_token["user_id"]
+        print(data)
+        old_pass = data.get('old_password')
+        new_pass = data.get('new_password')
+
+        if not old_pass or not new_pass:
+            return jsonify({'message': 'Old password and new password are required!'}), 400
+        
+        user = Users.query.filter_by(user_id=user_id).first()
+
+        if not user:
+            return jsonify({'message':'user not found'}), 404
+        
+        if not bcrypt.check_password_hash(user.password_hash, old_pass):
+            return jsonify({'message': 'Old password is incorrect!'}), 401
+        
+        new_pass_hash = bcrypt.generate_password_hash(new_pass).decode('utf-8')
+        user.password_hash = new_pass_hash
+        db.session.commit()
+
+        return jsonify({'message':'Password updated successfully'}), 200
+    
+    except Exception as e:
+        print(f"error {e}")
+        return jsonify({'message': 'An error occured'}), 500
