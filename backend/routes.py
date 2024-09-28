@@ -48,7 +48,7 @@ def register():
 
     # Check if the email already exists
     if Users.query.filter_by(email=email).first():
-        return jsonify({'message': 'Email is already registered', , 'status_code': 400}), 400
+        return jsonify({'message': 'Email is already registered', 'status_code': 400}), 400
     
     # Hash the password
     password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
