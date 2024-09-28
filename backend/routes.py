@@ -18,16 +18,16 @@ def login():
     password = data.get('password')
 
     if not email or not password:
-        return jsonify({'message': 'Email and password are required'}), 400
+        return jsonify({'message': 'Email and password are required', 'status_code': 400}), 400
     
     user = Users.query.filter_by(email=email).first()
     if not user:
-        return jsonify({'message': 'email not registered'})
+        return jsonify({'message': 'email not registered', 'status_code': 401}), 401
 
     if bcrypt.check_password_hash(user.password_hash, password):
         token = encode_token(user)
-        return jsonify({'message': 'Login Successful', 'token': token, 'user_id': user.user_id}), 200
-    return jsonify({'message': 'Invalid Credentials'}), 401
+        return jsonify({'message': 'Login Successful', 'token': token, 'user_id': user.user_id, 'status_code': 200}), 200
+    return jsonify({'message': 'Invalid Credentials', 'status_code': 401}), 401
     
 
 @main.route('/register', methods=['POST'])
@@ -44,11 +44,11 @@ def register():
 
     # Validate the input
     if not all([name, email, password]):
-        return jsonify({'message': 'Name, email and password are required'}), 400
+        return jsonify({'message': 'Name, email and password are required', 'status_code': 400}), 400
 
     # Check if the email already exists
     if Users.query.filter_by(email=email).first():
-        return jsonify({'message': 'Email is already registered'}), 400
+        return jsonify({'message': 'Email is already registered', , 'status_code': 400}), 400
     
     # Hash the password
     password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -68,66 +68,56 @@ def register():
     db.session.add(new_user)
     db.session.commit()
     
-    return jsonify({'message': 'User registered successfully!'}), 201
+    return jsonify({'message': 'User registered successfully!', 'status_code': 201}), 201
 
 @main.route('/book_appointment_existing_user', methods=['POST'])
 @jwt_required()
 def book_appointment_existing_user(): #If user has logged in
-    user_token = get_jwt_identity()
-    user_id = user_token['user_id']
-    print("user_id ------->>>", user_id)
-    doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
-    data = request.get_json()
-    appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
-    start_time = datetime.strptime(data.get('start_time'), '%H:%M:%S').time()
-    end_time = datetime.strptime(data.get('end_time'), '%H:%M:%S').time()
-    description = data.get('description', '')
+    try:
+        user_token = get_jwt_identity()
+        user_id = user_token['user_id']
+        print("user_id ------->>>", user_id)
+        doctor_id = "033273c5-25e5-4b26-b125-a0a4b2e594d7"
+        data = request.get_json()
+        if not data:
+                return jsonify({'message': 'No input data provided', 'status_code': 400}), 400
 
-    # appointment = Appointment.query.filter_by(
-    #     doctor_id=doctor_id,
-    #     appointment_date=appointment_date,
-    #     ).all()
-    
-    # if appointment == []:
-    #     #Book the appointment
-    #     new_appointment = Appointment(
-    #     user_id=user_id,
-    #     doctor_id=doctor_id,
-    #     appointment_date=appointment_date,
-    #     start_time=start_time,
-    #     end_time=end_time,
-    #     description=description,
-    #     status='scheduled'
-    #     )
+        # appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
+        # start_time = datetime.strptime(data.get('start_time'), '%H:%M:%S').time()
+        # end_time = datetime.strptime(data.get('end_time'), '%H:%M:%S').time()
+        # description = data.get('description', '')
+        try:
+            appointment_date = datetime.strptime(data.get('appointment_date'), '%Y-%m-%d').date()
+            start_time = datetime.strptime(data.get('start_time'), '%H:%M:%S').time()
+            end_time = datetime.strptime(data.get('end_time'), '%H:%M:%S').time()
+            description = data.get('description', '')
 
-    #     db.session.add(new_appointment)
-    #     db.session.commit()
+        except (TypeError, ValueError) as e:
+            return jsonify({'message': 'Invalid date or time format. Please provide valid values.', 'status_code': 400}), 400
 
-    #     return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 20
-    
-    # print("running")
-    # #Book the appointment
-    new_appointment = Appointment(
-        user_id=user_id,
-        doctor_id=doctor_id,
-        appointment_date=appointment_date,
-        start_time=start_time,
-        end_time=end_time,
-        description=description,
-        status='scheduled'
-    )
+        new_appointment = Appointment(
+            user_id=user_id,
+            doctor_id=doctor_id,
+            appointment_date=appointment_date,
+            start_time=start_time,
+            end_time=end_time,
+            description=description,
+            status='scheduled'
+        )
 
 
-    db.session.add(new_appointment)
-    db.session.commit()
-    user = Users.query.filter_by(user_id=user_id).first()
-    email = user.email
+        db.session.add(new_appointment)
+        db.session.commit()
+        user = Users.query.filter_by(user_id=user_id).first()
+        email = user.email
 
-    print(f'start_time : {start_time}, {appointment_date}')
-    add_appointment(email, appointment_date, start_time, end_time, description)
+        print(f'start_time : {start_time}, {appointment_date}')
+        add_appointment(email, appointment_date, start_time, end_time, description)
 
-    return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
-
+        return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id), 'status_code': 201}), 201
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'message': 'An error occurred while booking the appointment', 'status_code': 500}), 500
 
 @main.route('/get_appointments', methods=['GET'])
 def get_appointments():
@@ -159,12 +149,12 @@ def add_medical_record():
 
     # Validdate the required fields
     if not all([email, prescription, problem, date]):
-        return jsonify({'error': 'Missing required fields'}), 400
+        return jsonify({'error': 'Missing required fields', 'status_code': 400}), 400
     
     # Validate if the user exists
     user = Users.query.filter_by(email=email).first()
     if not user:
-        return jsonify({'error': 'User not found'}), 404
+        return jsonify({'error': 'User not found', 'status_code': 404}), 404
     
     new_record = MedicalRecord(
         email = email,
@@ -177,7 +167,7 @@ def add_medical_record():
     db.session.add(new_record)
     db.session.commit()
 
-    return jsonify({'message': 'Medical record added successfulllt!'}), 201
+    return jsonify({'message': 'Medical record added successfully!', 'status_code': 201}), 201
 
 @main.route('/get_medical_records/<uuid:user_id>', methods=['GET'])
 def get_medical_records(user_id):
@@ -286,11 +276,11 @@ def new_user_appointment():
     problem = data.get('problem')
 
     if not all([first_name, last_name, email, date_of_birth, phone_number, problem]):
-        return jsonify({'message': 'All fields are required'}), 400
+        return jsonify({'message': 'All fields are required', 'status_code': 400}), 400
     
     existing_user = Users.query.filter_by(email=email).first()
     if existing_user:
-        return jsonify({'message': 'Email is already registered'}), 400
+        return jsonify({'message': 'Email is already registered', 'status_code': 400}), 400
     
     generated_password = generate_random_password()
 
@@ -335,10 +325,10 @@ def new_user_appointment():
                     recipients=[email])
         msg.body = f"Dear {first_name}, Your account has been created successfully. Please use the following credentials to log in:\n\nEmail: {email}\nPassword: {generated_password}\n\nThank you!"
         mail.send(msg)
-        return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id)}), 201
+        return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id), 'status_code': 201}), 201
     except Exception as e:
         db.session.rollback()
-        return jsonify({'message': 'failed to boook appointment.', 'error': str(e)}), 500
+        return jsonify({'message': 'failed to boook appointment.', 'error': str(e), 'status_code': 500}), 500
     
 
 @main.route('/change_password', methods=['POST'])
@@ -355,22 +345,22 @@ def change_password():
         new_pass = data.get('new_password')
 
         if not old_pass or not new_pass:
-            return jsonify({'message': 'Old password and new password are required!'}), 400
+            return jsonify({'message': 'Old password and new password are required!', 'status_code': 400}), 400
         
         user = Users.query.filter_by(user_id=user_id).first()
 
         if not user:
-            return jsonify({'message':'user not found'}), 404
+            return jsonify({'message':'user not found',, 'status_code': 404}), 404
         
         if not bcrypt.check_password_hash(user.password_hash, old_pass):
-            return jsonify({'message': 'Old password is incorrect!'}), 401
+            return jsonify({'message': 'Old password is incorrect!','status_code': 401}), 401
         
         new_pass_hash = bcrypt.generate_password_hash(new_pass).decode('utf-8')
         user.password_hash = new_pass_hash
         db.session.commit()
 
-        return jsonify({'message':'Password updated successfully'}), 200
+        return jsonify({'message':'Password updated successfully', 'status_code': 200}), 200
     
     except Exception as e:
         print(f"error {e}")
-        return jsonify({'message': 'An error occured'}), 500
+        return jsonify({'message': 'An error occured', 'status_code': 500}), 500
