@@ -3,10 +3,10 @@ import {
   signup_top_left,
   signup_top_right,
   signup_teeth,
-} from "@/assets/images";
-import { Container } from "@mui/material";
-import Image from "next/image";
-import React from "react";
+} from '@/assets/images';
+import { Container } from '@mui/material';
+import Image from 'next/image';
+import React from 'react';
 
 interface Properties {
   children: React.ReactNode;

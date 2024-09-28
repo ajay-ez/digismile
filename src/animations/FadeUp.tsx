@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
-  tag: "h1" | "h2" | "h3" | "h4" | "p" | "div";
+  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'div';
   children: ReactNode;
   className?: string;
   to?: string;

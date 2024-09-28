@@ -1,17 +1,15 @@
-"use client";
+'use client';
 
-import { useSearchParams } from "next/navigation";
-import { AppointmentTabs } from "./Appointments/Tabs/AppointmentTabs";
-import { UserProfile } from "./User/UserProfile";
-import Sidebar from "@/components/common/Sidebar";
+import { useParams, useSearchParams } from 'next/navigation';
+import { AppointmentTabs } from './Appointments/Tabs/AppointmentTabs';
+import { UserProfile } from './User/UserProfile';
+import Sidebar from '@/components/common/Sidebar';
 
-type TabsProps = {
-  userId: string;
-};
-export function Tabs({ userId }: TabsProps) {
+export function Tabs() {
   const searchParams = useSearchParams();
+  const { userId } = useParams() as { userId: string };
 
-  const tab = searchParams.get("tab");
+  const tab = searchParams.get('tab');
 
   return (
     <div className="flex gap-4">
@@ -19,8 +17,8 @@ export function Tabs({ userId }: TabsProps) {
         <Sidebar />
       </div>
       <div>
-        {tab === "user-profile" && <UserProfile userId={userId} />}
-        {tab === "appointments" && <AppointmentTabs userId={userId} />}
+        {tab === 'user-profile' && <UserProfile userId={userId} />}
+        {tab === 'appointments' && <AppointmentTabs userId={userId} />}
       </div>
     </div>
   );

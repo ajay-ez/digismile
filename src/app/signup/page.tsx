@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import { Container, Button, Typography, Box, Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
+import React from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { Container, Button, Typography, Box, Grid } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
-import FieldInput from "@/components/common/FieldInput";
+import FieldInput from '@/components/common/FieldInput';
 import {
   emailValidation,
   passwordValidation,
   requiredCharField,
   contactNumberValidation
-} from "@/validations";
-import { SignupFormValues } from "@/types";
-import SignupContainer from "@/components/common/SignupContainer";
-import Link from "next/link";
-import { useRegisterMutation } from "@/services/apiServices/authService";
+} from '@/validations';
+import { SignupFormValues } from '@/types';
+import SignupContainer from '@/components/common/SignupContainer';
+import Link from 'next/link';
+import { useRegisterMutation } from '@/services/apiServices/authService';
 
 const SignupSchema = Yup.object().shape({
-  name: requiredCharField("Name"),
-  date_of_birth: requiredCharField("Date of Birth"),
-  address: requiredCharField("Address"),
+  name: requiredCharField('Name'),
+  date_of_birth: requiredCharField('Date of Birth'),
+  address: requiredCharField('Address'),
   email: emailValidation,
   password: passwordValidation,
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Passwords must match")
-    .required("Confirm Password is required"),
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Confirm Password is required'),
   phone_number: contactNumberValidation
 });
 
@@ -34,14 +34,14 @@ const SignupPage = () => {
   const router = useRouter();
   const [registerUser] = useRegisterMutation();
   const initialSignupValues: SignupFormValues = {
-    name: "",
-    date_of_birth: "",
-    address: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phone_number: "",
-    problem: ""
+    name: '',
+    date_of_birth: '',
+    address: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    phone_number: '',
+    problem: ''
   };
 
   const handleSignup = async (values: SignupFormValues) => {
@@ -170,7 +170,7 @@ const SignupPage = () => {
                           type="submit"
                           variant="text"
                           className=" rounded-lg font-bold max-w-md text-black"
-                          onClick={() => router.push("/")}
+                          onClick={() => router.push('/')}
                         >
                           Cancel
                         </Button>
@@ -188,7 +188,7 @@ const SignupPage = () => {
                   </Grid>
                   <Grid item xs={12} mt={2}>
                     <Typography variant="body2" align="center">
-                      Already have an account?{" "}
+                      Already have an account?{' '}
                       <Link href="/login" className="text-blue-900 text-lg">
                         Login
                       </Link>

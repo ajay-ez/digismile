@@ -10,19 +10,18 @@ const validationSchema = Yup.object({
   message: Yup.string()
     .trim()
     .min(10, "Message must be at least 10 characters long")
-    .required("Message is required"),
+    .required("Message is required")
 });
 
 const initialValues = {
   name: "",
   email: "",
-  message: "",
+  message: ""
 };
 
 const ContactUsForm = () => {
-  const handleSubmit = (values: any) => {
-    console.log(values);
-  };
+  // eslint-disable-next-line no-unused-vars
+  const handleSubmit = (values: any) => {};
 
   return (
     <Formik
@@ -62,7 +61,7 @@ const ContactUsForm = () => {
                       padding: "10px",
                       borderRadius: "8px",
                       border: "1px solid #ccc",
-                      fontSize: "16px",
+                      fontSize: "16px"
                     }}
                   />
                   <ErrorMessage

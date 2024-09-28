@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { Typography } from "@mui/material";
-import projectConstants from "@/projectContants";
-import ServiceCard from "../services/ServiceCard";
+import { Typography } from '@mui/material';
+import projectConstants from '@/projectContants';
+import ServiceCard from '../services/ServiceCard';
 
 const Services = () => {
   return (

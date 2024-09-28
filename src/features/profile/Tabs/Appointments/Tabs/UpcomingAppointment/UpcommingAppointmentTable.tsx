@@ -14,7 +14,12 @@ import { getFormattedDateTime } from "@/utils/dateUtils";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { doctor } from "@/assets/images";
 
-export const UpcommingAppointmentTable = () => {
+type UpcommingAppointmentProps = {
+  UpcommingAppointmentProps: any;
+};
+export const UpcommingAppointmentTable = ({
+  upcoming_appointments
+}: UpcommingAppointmentProps) => {
   const events = [
     {
       id: 1,
@@ -56,7 +61,7 @@ export const UpcommingAppointmentTable = () => {
       <TableContainer component={Box} sx={{ borderRadius: 1 }}>
         <Table>
           <TableBody>
-            {events.map((event: any, index: number) => (
+            {upcoming_appointments?.map((event: any, index: number) => (
               <TableRow key={index}>
                 <TableCell className="text-center border-none">
                   <Image

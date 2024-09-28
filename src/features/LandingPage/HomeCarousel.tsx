@@ -1,19 +1,19 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { home_1, home_2, home_3 } from "@/assets/images";
-import Image from "next/image";
-import { AppBar, Typography, Box, Button } from "@mui/material";
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { home_1, home_2, home_3 } from '@/assets/images';
+import Image from 'next/image';
+import { AppBar, Typography, Box, Button } from '@mui/material';
 // import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { useRouter } from "next/navigation";
-import { Call } from "@mui/icons-material";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useRouter } from 'next/navigation';
+import { Call } from '@mui/icons-material';
 
 const carouselItems = [
-  { src: home_1, alt: "Image 1", text: "Text over Image 1" },
-  { src: home_2, alt: "Image 2", text: "Text over Image 2" },
-  { src: home_3, alt: "Image 3", text: "Text over Image 2" }
+  { src: home_1, alt: 'Image 1', text: 'Text over Image 1' },
+  { src: home_2, alt: 'Image 2', text: 'Text over Image 2' },
+  { src: home_3, alt: 'Image 3', text: 'Text over Image 2' }
 ];
 
 const settings = {
@@ -138,7 +138,7 @@ const HomeCarousel = () => {
                   variant="contained"
                   className="rounded-xl capitalize p-2 px-4"
                   onClick={() => {
-                    navigateToSection("/login");
+                    navigateToSection('/login');
                   }}
                 >
                   Login
@@ -147,7 +147,7 @@ const HomeCarousel = () => {
                   variant="contained"
                   className="rounded-xl capitalize p-2 px-4"
                   onClick={() => {
-                    navigateToSection("/signup");
+                    navigateToSection('/signup');
                   }}
                 >
                   Signup

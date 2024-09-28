@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import moment from "moment";
 
 export function getFormattedDateTime(
   date: string | Date,
@@ -6,4 +7,8 @@ export function getFormattedDateTime(
 ) {
   const format = includeTime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD";
   return dayjs(date).format(format);
+}
+
+export function formatTimeToHoursAndMinutes(time: string) {
+  return moment(time, "HH:mm:ss").format("HH:mm");
 }

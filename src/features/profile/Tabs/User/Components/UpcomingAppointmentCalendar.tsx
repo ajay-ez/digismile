@@ -1,20 +1,20 @@
-"use client";
-import React from "react";
-import { Box } from "@mui/material";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+'use client';
+import React from 'react';
+import { Box } from '@mui/material';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import {
   LocalizationProvider,
   DateCalendar,
   PickersDay,
   PickersDayProps
-} from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs, { Dayjs } from "dayjs";
+} from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 function AppointmentDay(props: PickersDayProps<Dayjs>) {
   const { day, ...other } = props;
-  const isToday = dayjs().isSame(day, "day");
+  const isToday = dayjs().isSame(day, 'day');
   return (
     <>
       <PickersDay

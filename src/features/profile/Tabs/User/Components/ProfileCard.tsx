@@ -1,7 +1,7 @@
-import { dummy_profile } from "@/assets/images";
-import { Typography } from "@mui/material";
-import Image from "next/image";
-import React from "react";
+import { dummy_profile } from '@/assets/images';
+import { Typography } from '@mui/material';
+import Image from 'next/image';
+import React from 'react';
 
 export const ProfileCard = () => {
   return (

@@ -13,50 +13,20 @@ import { getFormattedDateTime } from "@/utils/dateUtils";
 import Image from "next/image";
 import { doctor } from "@/assets/images";
 import CalendarMonth from "@mui/icons-material/CalendarMonth";
+import { formatTimeToHoursAndMinutes } from "@/utils/dateUtils";
+type AppointmentHistoryTableProps = {
+  previous_appointments?: any;
+};
 
-export const AppointmentHistoryTable = () => {
-  const events = [
-    {
-      id: 1,
-      name: "Annual Meetup",
-      type: "Conference",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-09-12",
-      description: "A conference for industry professionals.",
-      handledBy: "John Doe",
-      organisation: "Tech Corp",
-      subEvents: "Workshops, Panels"
-    },
-    {
-      id: 2,
-      name: "Product Launch",
-      type: "Launch",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-10-01",
-      description: "Launch of the new product line.",
-      handledBy: "Jane Smith",
-      organisation: "Innovate Ltd",
-      subEvents: "Live Demo, Q&A"
-    },
-    {
-      id: 3,
-      name: "Charity Auction",
-      type: "Fundraiser",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-11-15",
-      description: "An auction to raise funds for charity.",
-      handledBy: "Emily Brown",
-      organisation: "Helping Hands",
-      subEvents: "Auction, Networking"
-    }
-  ];
-
+export const AppointmentHistoryTable = ({
+  previous_appointments
+}: AppointmentHistoryTableProps) => {
   return (
     <Box>
       <TableContainer component={Box} sx={{ borderRadius: 1 }}>
         <Table>
           <TableBody>
-            {events.map((event: any, index: number) => (
+            {previous_appointments?.map((event: any, index: number) => (
               <TableRow key={index}>
                 <TableCell className="text-center border-none">
                   <Image
@@ -73,13 +43,16 @@ export const AppointmentHistoryTable = () => {
                     Dental Specialist
                   </Typography>
                 </TableCell>
-                <TableCell className="text-center border-none text-lg">
+                <TableCell className="text-center border-none text-lg ">
                   {event.description}
                 </TableCell>
-                <TableCell className="text-center border-none text-lg">
-                  {getFormattedDateTime(event.startDate, true)}
+                <TableCell className="text-left border-none text-lg ">
+                  {`${getFormattedDateTime(event.date)} ${formatTimeToHoursAndMinutes(event.start_time) + "-" + formatTimeToHoursAndMinutes(event.end_time)}`}
                   <Typography className="text-left text-sm">Dc</Typography>
-                  <Button variant="text" className="capitalize text-black">
+                  <Button
+                    variant="text"
+                    className="capitalize text-black text-left"
+                  >
                     <CalendarMonth className="text-blue-500 mx-2" />
                     Reschedule
                   </Button>
@@ -89,7 +62,7 @@ export const AppointmentHistoryTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {events.length === 0 && (
+      {previous_appointments?.length === 0 && (
         <Typography textAlign={"center"} mt={2}>
           No Event Found
         </Typography>

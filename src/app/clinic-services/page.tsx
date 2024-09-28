@@ -1,13 +1,13 @@
-import ServiceCard from "@/features/services/ServiceCard";
-import React from "react";
-import projectConstants from "@/projectContants";
-import { Stack, Typography } from "@mui/material";
-import DigiLayout from "@/components/Layout";
-import FAQ from "@/features/services/Faqs";
-import { faq } from "@/assets/images";
-import Image from "next/image";
-import SmileJourney from "@/features/services/SmileJourney";
-import ClinicServiceDetail from "@/features/services/ClinicServiceDetail";
+import ServiceCard from '@/features/services/ServiceCard';
+import React from 'react';
+import projectConstants from '@/projectContants';
+import { Stack, Typography } from '@mui/material';
+import DigiLayout from '@/components/Layout';
+import FAQ from '@/features/services/Faqs';
+import { faq } from '@/assets/images';
+import Image from 'next/image';
+import SmileJourney from '@/features/services/SmileJourney';
+import ClinicServiceDetail from '@/features/services/ClinicServiceDetail';
 const ClinicServices = () => {
   return (
     <DigiLayout>

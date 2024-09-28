@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   TableBody,
@@ -8,43 +8,43 @@ import {
   TableHead,
   TableRow,
   Typography
-} from "@mui/material";
-import { getFormattedDateTime } from "@/utils/dateUtils";
+} from '@mui/material';
+import { getFormattedDateTime } from '@/utils/dateUtils';
 
 export const DocumentTable = () => {
   const events = [
     {
       id: 1,
-      name: "Annual Meetup",
-      type: "Conference",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-09-12",
-      description: "A conference for industry professionals.",
-      handledBy: "John Doe",
-      organisation: "Tech Corp",
-      subEvents: "Workshops, Panels"
+      name: 'Annual Meetup',
+      type: 'Conference',
+      startDate: '2024-09-07 12:34:56',
+      endDate: '2024-09-12',
+      description: 'A conference for industry professionals.',
+      handledBy: 'John Doe',
+      organisation: 'Tech Corp',
+      subEvents: 'Workshops, Panels'
     },
     {
       id: 2,
-      name: "Product Launch",
-      type: "Launch",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-10-01",
-      description: "Launch of the new product line.",
-      handledBy: "Jane Smith",
-      organisation: "Innovate Ltd",
-      subEvents: "Live Demo, Q&A"
+      name: 'Product Launch',
+      type: 'Launch',
+      startDate: '2024-09-07 12:34:56',
+      endDate: '2024-10-01',
+      description: 'Launch of the new product line.',
+      handledBy: 'Jane Smith',
+      organisation: 'Innovate Ltd',
+      subEvents: 'Live Demo, Q&A'
     },
     {
       id: 3,
-      name: "Charity Auction",
-      type: "Fundraiser",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-11-15",
-      description: "An auction to raise funds for charity.",
-      handledBy: "Emily Brown",
-      organisation: "Helping Hands",
-      subEvents: "Auction, Networking"
+      name: 'Charity Auction',
+      type: 'Fundraiser',
+      startDate: '2024-09-07 12:34:56',
+      endDate: '2024-11-15',
+      description: 'An auction to raise funds for charity.',
+      handledBy: 'Emily Brown',
+      organisation: 'Helping Hands',
+      subEvents: 'Auction, Networking'
     }
   ];
 
@@ -85,7 +85,7 @@ export const DocumentTable = () => {
         </Table>
       </TableContainer>
       {events.length === 0 && (
-        <Typography textAlign={"center"} mt={2}>
+        <Typography textAlign={'center'} mt={2}>
           No Event Found
         </Typography>
       )}

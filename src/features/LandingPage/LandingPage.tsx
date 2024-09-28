@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import "aos/dist/aos.css";
-import HomeCarousel from "./HomeCarousel";
-import Services from "./Services";
-import BookAppointment from "./BookAppointment";
-import WhoWeAre from "./WhoWeAre";
-import Testimonial from "./Testimonial";
-import ContactUs from "./ContactUs";
+import React, { useEffect } from 'react';
+import 'aos/dist/aos.css';
+import HomeCarousel from './HomeCarousel';
+import Services from './Services';
+import BookAppointment from './BookAppointment';
+import WhoWeAre from './WhoWeAre';
+import Testimonial from './Testimonial';
+import ContactUs from './ContactUs';
 // import UserWelcome from "./UserWelcome";
-import AOS from "aos";
-import DigiLayout from "@/components/Layout";
-import { ClinicSchedule } from "@/components/common/ClinicSchedule";
+import AOS from 'aos';
+import DigiLayout from '@/components/Layout';
+import { ClinicSchedule } from '@/components/common/ClinicSchedule';
 
 const LandingPage = () => {
   useEffect(() => {

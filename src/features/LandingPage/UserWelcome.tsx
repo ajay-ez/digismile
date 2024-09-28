@@ -1,5 +1,5 @@
-import { Typography, Box, Button } from "@mui/material";
-import React from "react";
+import { Typography, Box, Button } from '@mui/material';
+import React from 'react';
 
 const UserWelcome = () => {
   return (

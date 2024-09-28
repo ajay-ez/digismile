@@ -1,5 +1,5 @@
-import React from "react";
-import { PrescriptionCard } from "./PrescriptionCard";
+import React from 'react';
+import { PrescriptionCard } from './PrescriptionCard';
 
 export const Prescription = () => {
   return (

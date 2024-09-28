@@ -1,7 +1,7 @@
-import { about_1, about_2, dr_image } from "@/assets/images";
-import { Typography } from "@mui/material";
-import React from "react";
-import Image from "next/image";
+import { about_1, about_2, dr_image } from '@/assets/images';
+import { Typography } from '@mui/material';
+import React from 'react';
+import Image from 'next/image';
 
 export const AboutDoctor = () => {
   return (

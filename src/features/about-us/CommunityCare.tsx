@@ -1,7 +1,7 @@
-import { community_care } from "@/assets/images";
-import { Typography } from "@mui/material";
-import React from "react";
-import Image from "next/image";
+import { community_care } from '@/assets/images';
+import { Typography } from '@mui/material';
+import React from 'react';
+import Image from 'next/image';
 
 export const CommunityCare = () => {
   return (

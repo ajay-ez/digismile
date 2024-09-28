@@ -1,7 +1,7 @@
-import { Stack, Typography } from "@mui/material";
-import React from "react";
-import Image from "next/image";
-import { service_detail } from "@/assets/images";
+import { Stack, Typography } from '@mui/material';
+import React from 'react';
+import Image from 'next/image';
+import { service_detail } from '@/assets/images';
 
 export const NewPatients = () => {
   return (

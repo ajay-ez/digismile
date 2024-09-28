@@ -3,5 +3,11 @@
   "plugins": ["sonarjs"],
   "globals": {
     "JSX": "readonly"
+  },
+  "rules": {
+    "no-console": "error",
+    "no-debugger": "error",
+    "no-unused-vars": "warn"
+   
   }
 }

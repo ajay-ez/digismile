@@ -1,19 +1,19 @@
-import FieldInput from "@/components/common/FieldInput";
-import { Box, Button } from "@mui/material";
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
-import React from "react";
-import { requiredCharField } from "@/validations";
-import Image from "next/image";
-import { doctor } from "@/assets/images";
+import FieldInput from '@/components/common/FieldInput';
+import { Box, Button } from '@mui/material';
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import React from 'react';
+import { requiredCharField } from '@/validations';
+import Image from 'next/image';
+import { doctor } from '@/assets/images';
 const LoginSchema = Yup.object().shape({
-  city: requiredCharField("City"),
-  problem: requiredCharField("Problem")
+  city: requiredCharField('City'),
+  problem: requiredCharField('Problem')
 });
 export const QuickAppointmentForm = () => {
   const initialLoginValues = {
-    city: "",
-    problem: ""
+    city: '',
+    problem: ''
   };
   const handleSubmit = () => {};
 

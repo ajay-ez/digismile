@@ -8,11 +8,14 @@ import { OptionKey, useTabOptions } from "./hooks/useTabOptions";
 import { AppointmentHistoryTable } from "./AppointmentHistory/AppointmentHistoryTable";
 import { UpcommingAppointmentTable } from "./UpcomingAppointment/UpcommingAppointmentTable";
 import { QuickAppointment } from "./QuickAppointments/QuickAppointment";
+import { useGetAppointmentsQuery } from "@/services/apiServices/appointmentService";
 
 type TabsProps = {
   userId: string;
 };
 export function AppointmentTabs({ userId }: TabsProps) {
+  const { data } = useGetAppointmentsQuery(userId);
+
   const { menuItems } = useTabOptions({ userId });
 
   const searchParams = useSearchParams();
@@ -20,8 +23,16 @@ export function AppointmentTabs({ userId }: TabsProps) {
   const tab = searchParams.get("subTab");
 
   const categoryRenderer: Record<OptionKey, ReactNode> = {
-    "appointment-history": <AppointmentHistoryTable />,
-    "upcoming-appointments": <UpcommingAppointmentTable />,
+    "appointment-history": (
+      <AppointmentHistoryTable
+        previous_appointments={data?.previous_appointments}
+      />
+    ),
+    "upcoming-appointments": (
+      <UpcommingAppointmentTable
+        upcoming_appointments={data?.upcoming_appointments}
+      />
+    ),
     "quick-appointments": <QuickAppointment />
   };
 

@@ -27,9 +27,8 @@ const initialValues = {
 };
 
 const AppointmentForm = () => {
-  const handleSubmit = (values: any) => {
-    console.log(values);
-  };
+  // eslint-disable-next-line no-unused-vars
+  const handleSubmit = (values: any) => {};
 
   return (
     <Formik

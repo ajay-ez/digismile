@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import projectConstants from "@/projectContants";
-import FadeUp from "@/animations/FadeUp";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import projectConstants from '@/projectContants';
+import FadeUp from '@/animations/FadeUp';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 export default function FAQ() {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -21,10 +21,10 @@ export default function FAQ() {
           <FadeUp
             key={faq._id}
             tag="div"
-            className={`border-b rounded-3xl border-[#666] p-5 ${activeId === faq._id ? "bg-digiFaqBlue" : ""}`}
+            className={`border-b rounded-3xl border-[#666] p-5 ${activeId === faq._id ? 'bg-digiFaqBlue' : ''}`}
           >
             <div
-              className={`flex items-center justify-between cursor-pointer ${activeId === faq._id ? "text-white" : "text-[#011632]"}`}
+              className={`flex items-center justify-between cursor-pointer ${activeId === faq._id ? 'text-white' : 'text-[#011632]'}`}
               onClick={() => toggleActive(faq._id)}
             >
               <p className="text-xl  md:text-2xl">{faq.question}</p>
@@ -35,7 +35,7 @@ export default function FAQ() {
               {activeId === faq._id && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
+                  animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                 >

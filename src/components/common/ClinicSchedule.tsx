@@ -1,20 +1,20 @@
-import { Typography } from "@mui/material";
-import React from "react";
+import { Typography } from '@mui/material';
+import React from 'react';
 interface Props {
   renderToHome: boolean;
 }
 export const ClinicSchedule = ({ renderToHome }: Props) => {
   return (
     <div
-      className={`${renderToHome ? "bg-blue-white-gradient" : ""} flex flex-col items-center`}
+      className={`${renderToHome ? 'bg-blue-white-gradient' : ''} flex flex-col items-center`}
     >
       <Typography variant="h3" className="text-center  mb-2">
         Schedule
       </Typography>
       <div
-        className={` p-8 shadow-schedule-shadow rounded-lg ${renderToHome ? " bg-schedule-home-gradient w-[100%]" : "bg-schedule-gradient w-[70%]"}`}
+        className={` p-8 shadow-schedule-shadow rounded-lg ${renderToHome ? ' bg-schedule-home-gradient w-[100%]' : 'bg-schedule-gradient w-[70%]'}`}
       >
-        <div className={`${renderToHome ? "flex justify-between" : ""}`}>
+        <div className={`${renderToHome ? 'flex justify-between' : ''}`}>
           <div>
             <Typography variant="h6" className="my-8">
               DC Office

@@ -4,39 +4,39 @@ import {
   testimonial_2,
   testimonial_3,
   testimonial_4
-} from "@/assets/images";
-import TestimonialReview from "@/components/common/TestimonialReview";
-import { Typography, Box, Grid } from "@mui/material";
-import React from "react";
+} from '@/assets/images';
+import TestimonialReview from '@/components/common/TestimonialReview';
+import { Typography, Box, Grid } from '@mui/material';
+import React from 'react';
 
 const testimonials = [
   {
-    username: "John Doe",
+    username: 'John Doe',
     userImage: testimonial_1,
-    profession: "Software Engineer",
+    profession: 'Software Engineer',
     review:
-      "I had a fantastic experience at this dental clinic! The staff was incredibly friendly, and the care I received was top-notch. From routine cleanings to more complex procedures, they ensure everything is done with the highest level of professionalism."
+      'I had a fantastic experience at this dental clinic! The staff was incredibly friendly, and the care I received was top-notch. From routine cleanings to more complex procedures, they ensure everything is done with the highest level of professionalism.'
   },
   {
-    username: "Jane Smith",
+    username: 'Jane Smith',
     userImage: testimonial_2,
-    profession: "Graphic Designer",
+    profession: 'Graphic Designer',
     review:
-      "This dental clinic exceeded my expectations! The team is attentive and thorough, making every visit pleasant. They provide comprehensive dental care and always take the time to explain procedures and options, which I greatly appreciate."
+      'This dental clinic exceeded my expectations! The team is attentive and thorough, making every visit pleasant. They provide comprehensive dental care and always take the time to explain procedures and options, which I greatly appreciate.'
   },
   {
-    username: "Emily Johnson",
+    username: 'Emily Johnson',
     userImage: testimonial_3,
-    profession: "Marketing Manager",
+    profession: 'Marketing Manager',
     review:
-      "An exceptional dental clinic! Their expertise in both preventive and cosmetic dentistry is impressive. The team is knowledgeable and dedicated to providing personalized care, which has made a significant difference in my dental health."
+      'An exceptional dental clinic! Their expertise in both preventive and cosmetic dentistry is impressive. The team is knowledgeable and dedicated to providing personalized care, which has made a significant difference in my dental health.'
   },
   {
-    username: "Michael Brown",
+    username: 'Michael Brown',
     userImage: testimonial_4,
-    profession: "Financial Advisor",
+    profession: 'Financial Advisor',
     review:
-      "Outstanding dental care! The clinic offers a wide range of services with a focus on comfort and patient satisfaction. From routine check-ups to advanced treatments, they have consistently provided excellent care and support."
+      'Outstanding dental care! The clinic offers a wide range of services with a focus on comfort and patient satisfaction. From routine check-ups to advanced treatments, they have consistently provided excellent care and support.'
   }
 ];
 

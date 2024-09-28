@@ -1,7 +1,7 @@
-import { dr_image } from "@/assets/images";
-import { Typography } from "@mui/material";
-import React from "react";
-import Image from "next/image";
+import { dr_image } from '@/assets/images';
+import { Typography } from '@mui/material';
+import React from 'react';
+import Image from 'next/image';
 
 const WhoWeAre = () => {
   return (

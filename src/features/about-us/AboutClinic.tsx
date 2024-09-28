@@ -1,6 +1,6 @@
-import React from "react";
-import { Typography } from "@mui/material";
-import { ClinicSchedule } from "@/components/common/ClinicSchedule";
+import React from 'react';
+import { Typography } from '@mui/material';
+import { ClinicSchedule } from '@/components/common/ClinicSchedule';
 
 export const AboutClinic = () => {
   return (

@@ -1,6 +1,6 @@
-import { Box, FormLabel, TextField } from "@mui/material";
-import { Field, ErrorMessage } from "formik";
-import React from "react";
+import { Box, FormLabel, TextField } from '@mui/material';
+import { Field, ErrorMessage } from 'formik';
+import React from 'react';
 
 interface Properties {
   label: string;
@@ -25,9 +25,9 @@ const FieldInput = ({
     <Box width="100%">
       <FormLabel
         sx={{
-          color: "#000 !important",
+          color: '#000 !important',
           fontWeight: 600,
-          fontSize: "16px"
+          fontSize: '16px'
           // "& .MuiFormLabel-asterisk": { color: "#F39200" },
           // "&.Mui-focused": { color: "#000" },
           // "&.Mui-error": { color: "#d32f2f" },
@@ -48,16 +48,16 @@ const FieldInput = ({
               variant="outlined"
               InputProps={{
                 sx: {
-                  color: "#000",
-                  height: "55px",
-                  padding: "14px 20px",
-                  width: "100%",
-                  backgroundColor: "white",
+                  color: '#000',
+                  height: '55px',
+                  padding: '14px 20px',
+                  width: '100%',
+                  backgroundColor: 'white',
 
-                  borderRadius: "8px",
-                  "& .MuiFormLabel-asterisk": { color: "#F39200" },
-                  "&.Mui-focused": { color: "#000" },
-                  "&.Mui-error": { color: "#d32f2f" }
+                  borderRadius: '8px',
+                  '& .MuiFormLabel-asterisk': { color: '#F39200' },
+                  '&.Mui-focused': { color: '#000' },
+                  '&.Mui-error': { color: '#d32f2f' }
                 }
               }}
             />

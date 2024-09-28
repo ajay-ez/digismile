@@ -1,8 +1,8 @@
-import { KeyboardArrowRight } from "@mui/icons-material";
-import { Button, Typography } from "@mui/material";
-import Image, { StaticImageData } from "next/image";
+import { KeyboardArrowRight } from '@mui/icons-material';
+import { Button, Typography } from '@mui/material';
+import Image, { StaticImageData } from 'next/image';
 
-import React from "react";
+import React from 'react';
 interface Properties {
   title: string;
   desc: string;

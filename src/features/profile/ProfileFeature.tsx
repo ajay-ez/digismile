@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { Tabs } from "./Tabs/Tabs";
+import { Tabs } from './Tabs/Tabs';
 
 export const ProfileFeature = () => {
   return (
     <div>
-      <Tabs userId="34223" />
+      <Tabs />
     </div>
   );
 };

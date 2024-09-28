@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 export type TabsItems = {
   value: string;
@@ -7,9 +7,9 @@ export type TabsItems = {
 };
 
 export const categories = {
-  prescription: "Prescription",
-  checkups: "Checkups",
-  documents: "Documents"
+  prescription: 'Prescription',
+  checkups: 'Checkups',
+  documents: 'Documents'
 };
 
 export type OptionKey = keyof typeof categories;
@@ -23,20 +23,20 @@ export const useTabOptions = ({ userId }: UseTabOptionsArgs) => {
 
   const menuItems: TabsItems[] = [
     {
-      value: "prescription",
-      title: "Prescription",
+      value: 'prescription',
+      title: 'Prescription',
       onClick: () =>
         router.push(`/profile/${userId}?tab=user-profile&subTab=prescription`)
     },
     {
-      value: "checkups",
-      title: "Checkups",
+      value: 'checkups',
+      title: 'Checkups',
       onClick: () =>
         router.push(`/profile/${userId}?tab=user-profile&subTab=checkups`)
     },
     {
-      value: "documents",
-      title: "Documents",
+      value: 'documents',
+      title: 'Documents',
       onClick: () =>
         router.push(`/profile/${userId}?tab=user-profile&subTab=documents`)
     }

@@ -1,7 +1,7 @@
 // components/Testimonial.tsx
-import React from "react";
-import { Card, CardContent, Typography, Box } from "@mui/material";
-import Image, { StaticImageData } from "next/image";
+import React from 'react';
+import { Card, CardContent, Typography, Box } from '@mui/material';
+import Image, { StaticImageData } from 'next/image';
 
 interface TestimonialProps {
   username: string;

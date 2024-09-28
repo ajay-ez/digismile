@@ -1,8 +1,8 @@
-import React from "react";
-import { UserTabs } from "./Tabs/UserTabs";
-import { Stack } from "@mui/material";
-import { ProfileCard } from "@/features/profile/Tabs/User/Components/ProfileCard";
-import UpcomingAppointmentCalendar from "./Components/UpcomingAppointmentCalendar";
+import React from 'react';
+import { UserTabs } from './Tabs/UserTabs';
+import { Stack } from '@mui/material';
+import { ProfileCard } from '@/features/profile/Tabs/User/Components/ProfileCard';
+import UpcomingAppointmentCalendar from './Components/UpcomingAppointmentCalendar';
 interface UserProfileProps {
   userId: string;
 }

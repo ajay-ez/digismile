@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 export type TabsItems = {
   value: string;
@@ -7,9 +7,9 @@ export type TabsItems = {
 };
 
 export const categories = {
-  "appointment-history": "Appointment History",
-  "upcoming-appointments": "Upcoming Appointments",
-  "quick-appointments": "Quick Appointments"
+  'appointment-history': 'Appointment History',
+  'upcoming-appointments': 'Upcoming Appointments',
+  'quick-appointments': 'Quick Appointments'
 };
 
 export type OptionKey = keyof typeof categories;
@@ -23,24 +23,24 @@ export const useTabOptions = ({ userId }: UseTabOptionsArgs) => {
 
   const menuItems: TabsItems[] = [
     {
-      value: "appointment-history",
-      title: "Appointment History",
+      value: 'appointment-history',
+      title: 'Appointment History',
       onClick: () =>
         router.push(
           `/profile/${userId}?tab=appointments&subTab=appointment-history`
         )
     },
     {
-      value: "upcoming-appointments",
-      title: "Upcoming Appointments",
+      value: 'upcoming-appointments',
+      title: 'Upcoming Appointments',
       onClick: () =>
         router.push(
           `/profile/${userId}?tab=appointments&subTab=upcoming-appointments`
         )
     },
     {
-      value: "quick-appointments",
-      title: "Quick Appointments",
+      value: 'quick-appointments',
+      title: 'Quick Appointments',
       onClick: () =>
         router.push(
           `/profile/${userId}?tab=appointments&subTab=quick-appointments`

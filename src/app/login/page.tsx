@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import { Button, Typography, Box } from "@mui/material";
-import FieldInput from "@/components/common/FieldInput";
-import { emailValidation, passwordValidation } from "@/validations";
-import { LoginFormValues } from "@/types";
-import SignupContainer from "@/components/common/SignupContainer";
-import Link from "next/link";
-import { useLoginMutation } from "@/services/apiServices/authService";
+import React from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { Button, Typography, Box } from '@mui/material';
+import FieldInput from '@/components/common/FieldInput';
+import { emailValidation, passwordValidation } from '@/validations';
+import { LoginFormValues } from '@/types';
+import SignupContainer from '@/components/common/SignupContainer';
+import Link from 'next/link';
+import { useLoginMutation } from '@/services/apiServices/authService';
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
@@ -20,8 +20,8 @@ const LoginPage = () => {
   const [userLogin] = useLoginMutation();
 
   const initialLoginValues: LoginFormValues = {
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   };
 
   const handleLogin = async (values: LoginFormValues) => {
@@ -84,7 +84,7 @@ const LoginPage = () => {
             </Formik>
           </Box>
           <Typography variant="body2" align="center" className="mt-4">
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?{' '}
             <Link href="/signup" className="text-blue-900 text-lg">
               Sign up
             </Link>
