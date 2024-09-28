@@ -238,30 +238,38 @@ def get_user_appointments(user_id):
 @main.route('/get_user_details', methods=['GET'])
 @jwt_required()
 def get_user_details():
-    user_token = get_jwt_identity()
-    user_id = user_token['user_id']
-    print("user_token--->>>>>", user_token)
-    print("user_id ->>>", user_id)
-    user = Users.query.filter_by(user_id=user_id).first()
-    email = user.email
-    name = user.name
-    dob = user.date_of_birth
-    # Parse the date string to a datetime object
-    # date_obj = datetime.strptime(dob, "%a, %d %b %Y %H:%M:%S %Z")
+    try:
+        user_token = get_jwt_identity()
+        user_id = user_token['user_id']
+        print("user_token--->>>>>", user_token)
+        print("user_id ->>>", user_id)
+        user = Users.query.filter_by(user_id=user_id).first()
+        if not user:
+            return jsonify({'message': 'User not found', 'status_code': 404}), 404
 
-    # Format the date as dd-mm-yyyy
-    formatted_date = dob.strftime("%d-%m-%Y")
-    address = user.address
-    problem = user.problem
-    phone_number = user.phone_number
+        email = user.email
+        name = user.name
+        dob = user.date_of_birth
+        # Parse the date string to a datetime object
+        # date_obj = datetime.strptime(dob, "%a, %d %b %Y %H:%M:%S %Z")
 
-    return jsonify({'name': name,
-                    'email': email,
-                    'dob': formatted_date,
-                    'address': address,
-                    'problem': problem,
-                    'phone_number': phone_number
-                    })
+        # Format the date as dd-mm-yyyy
+        formatted_date = dob.strftime("%d-%m-%Y")
+        address = user.address
+        problem = user.problem
+        phone_number = user.phone_number
+
+        return jsonify({'name': name,
+                        'email': email,
+                        'dob': formatted_date,
+                        'address': address,
+                        'problem': problem,
+                        'phone_number': phone_number,
+                        'status_code': 200
+                        }), 200
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'message': 'An error occurred while fetching user details', 'status_code': 500}), 500
 
 @main.route('/new_user_appointment', methods=['POST'])
 def new_user_appointment():
@@ -350,7 +358,7 @@ def change_password():
         user = Users.query.filter_by(user_id=user_id).first()
 
         if not user:
-            return jsonify({'message':'user not found',, 'status_code': 404}), 404
+            return jsonify({'message':'user not found','status_code': 404}), 404
         
         if not bcrypt.check_password_hash(user.password_hash, old_pass):
             return jsonify({'message': 'Old password is incorrect!','status_code': 401}), 401
