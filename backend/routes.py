@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from backend import db, bcrypt, mail
 from backend.models import Users, Appointment, doctor, DoctorAvailabilty, MedicalRecord
 from backend.auth import encode_token
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from backend.utils import generate_random_password
@@ -122,7 +122,7 @@ def book_appointment_existing_user(): #If user has logged in
 def get_appointments():
     try:
         data = request.get_json()
-
+        city = data.get('city')
         appointment_date = data.get('appointment_date')
         if not appointment_date:
             return jsonify({'error': 'appointment_date is required', 'status_code': 400}), 400
@@ -131,20 +131,63 @@ def get_appointments():
             appointment_date = datetime.strptime(appointment_date, '%Y-%m-%d').date()
         except ValueError:
             return jsonify({'error': 'Invalid date format. Use YYYY-MM-DD', 'status_code': 400}), 400
-        # current_appointments = Appointment.query.all()
-        current_appointments = Appointment.query.filter_by(appointment_date=appointment_date).all()
-        print(current_appointments)
-        appointments_data = []
-        for data in current_appointments:
-            appointments_data.append({
-                'appointment_date': data.appointment_date.strftime('%Y-%m-%d'),
-                'start_time': data.start_time.strftime('%H:%M'),
-                'end_time': data.end_time.strftime('%H:%M'),
+        # Office hours based on the city
+        office_hours = {
+            'dc': {
+                'Monday': ('10:00', '17:00'),
+                'Wednesday': ('10:00', '17:00'),
+                'Friday': ('10:00', '17:00')
+            },
+            'burke': {
+                'Tuesday': ('09:00', '16:00'),
+                'Thursday': ('09:00', '16:00'),
+                'Saturday': ('09:00', '16:00')
+            }
+        }
+
+        weekday = appointment_date.strftime('%A')
+        print(weekday)
+
+        if city not in office_hours or weekday not in office_hours[city]:
+            return jsonify({'error': 'Office is closed on this day', 'status_code': 400}), 400
+
+        open_time_str, close_time_str = office_hours[city][weekday]
+        open_time = datetime.strptime(open_time_str, '%H:%M').time()
+        close_time = datetime.strptime(close_time_str, '%H:%M').time()
+
+        current_time = datetime.combine(appointment_date, open_time)
+        close_time = datetime.combine(appointment_date, close_time)
+        available_slots = []
+        while current_time + timedelta(hours=1) <= close_time:
+            available_slots.append({
+                'start_time': current_time.time().strftime('%H:%M'),
+                'end_time': (current_time + timedelta(hours=1)).time().strftime('%H:%M')
             })
-        return jsonify(appointments_data)
+            current_time += timedelta(hours=1)
+
+        
+
+        # current_appointments = Appointment.query.all()
+        booked_appointments = Appointment.query.filter_by(appointment_date=appointment_date).all()
+        print(booked_appointments)
+        booked_slots = []
+        for appointment in booked_appointments:
+            booked_slots.append({
+                'start_time': appointment.start_time.strftime('%H:%M'),
+                'end_time': appointment.end_time.strftime('%H:%M')
+            })
+        print(f'booked_slots{booked_slots}')
+        result_slots = []
+        print(f'availablr_slots {available_slots}')
+        for slot in available_slots:
+            if any(slot['start_time'] == booked['start_time'] and slot['end_time'] == booked['end_time'] for booked in booked_slots):
+                slot['status'] = 'booked'
+            else:
+                slot['status'] = 'available'
+            result_slots.append(slot)
+        return jsonify({'slotss': result_slots, 'status_code': 200}), 200
     except Exception as e:
-        return jsonify({'error': str(e), 'status_code': 500}), 500
-    
+        return jsonify({'error': str(e), 'status_code': 500}), 500    
 
 @main.route('/add_medical_record', methods=['POST'])
 def add_medical_record():
