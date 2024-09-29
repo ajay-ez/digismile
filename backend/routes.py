@@ -29,7 +29,6 @@ def login():
         return jsonify({'message': 'Login Successful', 'token': token, 'user_id': user.user_id, 'status_code': 200}), 200
     return jsonify({'message': 'Invalid Credentials', 'status_code': 401}), 401
     
-
 @main.route('/register', methods=['POST'])
 def register():
     data = request.json
@@ -119,11 +118,22 @@ def book_appointment_existing_user(): #If user has logged in
         print(f"Error: {e}")
         return jsonify({'message': 'An error occurred while booking the appointment', 'status_code': 500}), 500
 
-@main.route('/get_appointments', methods=['GET'])
+@main.route('/get_appointments', methods=['POST'])
 def get_appointments():
     try:
-        current_appointments = Appointment.query.all()
+        data = request.get_json()
 
+        appointment_date = data.get('appointment_date')
+        if not appointment_date:
+            return jsonify({'error': 'appointment_date is required', 'status_code': 400}), 400
+        
+        try:
+            appointment_date = datetime.strptime(appointment_date, '%Y-%m-%d').date()
+        except ValueError:
+            return jsonify({'error': 'Invalid date format. Use YYYY-MM-DD', 'status_code': 400}), 400
+        # current_appointments = Appointment.query.all()
+        current_appointments = Appointment.query.filter_by(appointment_date=appointment_date).all()
+        print(current_appointments)
         appointments_data = []
         for data in current_appointments:
             appointments_data.append({
@@ -133,7 +143,7 @@ def get_appointments():
             })
         return jsonify(appointments_data)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e), 'status_code': 500}), 500
     
 
 @main.route('/add_medical_record', methods=['POST'])
@@ -336,7 +346,7 @@ def new_user_appointment():
         return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id), 'status_code': 201}), 201
     except Exception as e:
         db.session.rollback()
-        return jsonify({'message': 'failed to boook appointment.', 'error': str(e), 'status_code': 500}), 500
+        return jsonify({'message': 'failed to book appointment.', 'error': str(e), 'status_code': 500}), 500
     
 
 @main.route('/change_password', methods=['POST'])
