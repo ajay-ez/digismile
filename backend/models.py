@@ -44,6 +44,7 @@ class Appointment(db.Model):
     # status = db.Column(db.String(20), nullable=False, default='scheduled',
     #                    check='status IN('scheduled', 'completed', 'cancelled')')
     status = db.Column(db.String(20), default='scheduled', index=True)
+    event_id = db.Column(db.String(100), default= '', index=True)
     user = db.relationship('Users', backref='appointments')
     doctor = db.relationship('doctor', backref='appointments')
 

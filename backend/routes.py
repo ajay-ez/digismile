@@ -7,7 +7,7 @@ import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from backend.utils import generate_random_password
 from flask_mail import Mail, Message
-from backend.calender import add_appointment
+from backend.calender import add_appointment, get_google_credentials
 
 main = Blueprint('main', __name__)
 
@@ -93,6 +93,9 @@ def book_appointment_existing_user(): #If user has logged in
 
         except (TypeError, ValueError) as e:
             return jsonify({'message': 'Invalid date or time format. Please provide valid values.', 'status_code': 400}), 400
+        user = Users.query.filter_by(user_id=user_id).first()
+        creds = get_google_credentials()
+        event_id = add_appointment(user.email, appointment_date, start_time, end_time, description)
 
         new_appointment = Appointment(
             user_id=user_id,
@@ -101,7 +104,8 @@ def book_appointment_existing_user(): #If user has logged in
             start_time=start_time,
             end_time=end_time,
             description=description,
-            status='scheduled'
+            status='scheduled',
+            event_id = event_id
         )
 
 
@@ -111,7 +115,7 @@ def book_appointment_existing_user(): #If user has logged in
         email = user.email
 
         print(f'start_time : {start_time}, {appointment_date}')
-        add_appointment(email, appointment_date, start_time, end_time, description)
+        
 
         return jsonify({'message': 'Appointment booked successfully!', 'appointment_id':str(new_appointment.appointment_id), 'status_code': 201}), 201
     except Exception as e:
@@ -381,6 +385,8 @@ def new_user_appointment():
 
         db.session.add(new_appointment)
         db.session.commit()
+        add_appointment(email, appointment_date, start_time, end_time, description)
+
 
         msg = Message('Your Account Details for Digismile',
                     recipients=[email])

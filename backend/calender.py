@@ -131,8 +131,35 @@ def add_appointment(email, appointment_date, start_time, end_time, description):
     }
 
     event = service.events().insert(calendarId="primary", body=event).execute()
-
+    event_id = event.get('id')
     print(f"Event created{event.get('htmllink')}")
+    return event_id
 
   except HttpError as error:
     print(f"An error occurred: {error}")
+
+
+def get_google_credentials():
+    creds = None
+    # Check if token.json exists and load it
+    if os.path.exists("token.json"):
+        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+
+    # Check if the credentials are valid or need to be refreshed
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            try:
+                creds.refresh(Request())
+            except Exception as e:
+                print(f"Error refreshing token: {e}")
+                creds = None
+        if not creds:
+            # If the credentials are not valid, run the authorization flow again
+            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+
+            # Save the credentials to token.json for the next run
+            with open('token.json', 'w') as token_file:
+                token_file.write(creds.to_json())
+    
+    return creds
