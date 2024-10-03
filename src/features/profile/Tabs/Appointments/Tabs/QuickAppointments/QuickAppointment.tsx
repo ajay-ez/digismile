@@ -56,6 +56,7 @@ export const QuickAppointment = () => {
         city: selectedCity
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate, selectedCity]);
 
   const onSelectCity = (e: any) => {

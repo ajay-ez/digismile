@@ -16,6 +16,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const QuickAppointmentForm = React.forwardRef(
+  // eslint-disable-next-line no-unused-vars
   (props: { onSelectCity: (value: any) => void }, ref) => {
     const { onSelectCity } = props;
 

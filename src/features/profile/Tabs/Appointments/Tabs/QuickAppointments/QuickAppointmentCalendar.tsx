@@ -5,6 +5,7 @@ import moment, { Moment } from "moment";
 import { DateCalendar } from "@mui/x-date-pickers";
 
 interface QuickAppointmentProps {
+  // eslint-disable-next-line no-unused-vars
   onChange: (date: string) => void;
 }
 
