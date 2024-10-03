@@ -1,53 +1,57 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { Container, Button, Typography, Box, Grid } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import { Container, Button, Typography, Box, Grid } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-import FieldInput from '@/components/common/FieldInput';
+import FieldInput from "@/components/common/FieldInput";
 import {
   emailValidation,
   passwordValidation,
   requiredCharField,
   contactNumberValidation
-} from '@/validations';
-import { SignupFormValues } from '@/types';
-import SignupContainer from '@/components/common/SignupContainer';
-import Link from 'next/link';
-import { useRegisterMutation } from '@/services/apiServices/authService';
+} from "@/validations";
+import { SignupFormValues } from "@/types";
+import SignupContainer from "@/components/common/SignupContainer";
+import Link from "next/link";
+import { useRegisterMutation } from "@/services/apiServices/authService";
 
 const SignupSchema = Yup.object().shape({
-  name: requiredCharField('Name'),
-  date_of_birth: requiredCharField('Date of Birth'),
-  address: requiredCharField('Address'),
+  name: requiredCharField("Name"),
+  date_of_birth: requiredCharField("Date of Birth"),
+  address: requiredCharField("Address"),
   email: emailValidation,
   password: passwordValidation,
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Confirm Password is required'),
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Confirm Password is required"),
   phone_number: contactNumberValidation
 });
 
 const SignupPage = () => {
   const router = useRouter();
-  const [registerUser] = useRegisterMutation();
+  const [registerUser, { error, isLoading }] = useRegisterMutation();
   const initialSignupValues: SignupFormValues = {
-    name: '',
-    date_of_birth: '',
-    address: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone_number: '',
-    problem: ''
+    name: "",
+    date_of_birth: "",
+    address: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone_number: "",
+    problem: ""
   };
 
   const handleSignup = async (values: SignupFormValues) => {
     delete values.confirmPassword;
 
-    registerUser(values);
+    registerUser(values).then((response) => {
+      if (response.data?.status_code === 201) {
+        router.push("/login");
+      }
+    });
   };
 
   return (
@@ -163,6 +167,13 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
+                  <Grid xs={12}>
+                    {error && (
+                      <Typography className="text-red-500 capitalize my-2 text-center">
+                        {error?.data?.message}
+                      </Typography>
+                    )}
+                  </Grid>
                   <Grid item xs={12}>
                     <Box className="flex justify-between items-center">
                       <Box>
@@ -170,7 +181,7 @@ const SignupPage = () => {
                           type="submit"
                           variant="text"
                           className=" rounded-lg font-bold max-w-md text-black"
-                          onClick={() => router.push('/')}
+                          onClick={() => router.push("/")}
                         >
                           Cancel
                         </Button>
@@ -182,13 +193,13 @@ const SignupPage = () => {
                         className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md  p-2 px-16"
                         size="medium"
                       >
-                        Confirm
+                        {isLoading ? "loading" : "Confirm"}
                       </Button>
                     </Box>
                   </Grid>
                   <Grid item xs={12} mt={2}>
                     <Typography variant="body2" align="center">
-                      Already have an account?{' '}
+                      Already have an account?{" "}
                       <Link href="/login" className="text-blue-900 text-lg">
                         Login
                       </Link>

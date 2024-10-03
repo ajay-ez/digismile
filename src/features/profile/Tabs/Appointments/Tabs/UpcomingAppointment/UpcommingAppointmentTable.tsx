@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   TableBody,
@@ -10,9 +10,14 @@ import {
   Button
 } from "@mui/material";
 import Image from "next/image";
-import { getFormattedDateTime } from "@/utils/dateUtils";
+import {
+  formatTimeToHoursAndMinutes,
+  getFormattedDateTime
+} from "@/utils/dateUtils";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { doctor } from "@/assets/images";
+import CancelBookingPopup from "@/components/common/CancelBookingPopup";
+import { SuccessPopup } from "@/components/common/SuccessPopup";
 
 type UpcommingAppointmentProps = {
   UpcommingAppointmentProps: any;
@@ -20,44 +25,31 @@ type UpcommingAppointmentProps = {
 export const UpcommingAppointmentTable = ({
   upcoming_appointments
 }: UpcommingAppointmentProps) => {
-  const events = [
-    {
-      id: 1,
-      name: "Annual Meetup",
-      type: "Conference",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-09-12",
-      description: "A conference for industry professionals.",
-      handledBy: "John Doe",
-      organisation: "Tech Corp",
-      subEvents: "Workshops, Panels"
-    },
-    {
-      id: 2,
-      name: "Product Launch",
-      type: "Launch",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-10-01",
-      description: "Launch of the new product line.",
-      handledBy: "Jane Smith",
-      organisation: "Innovate Ltd",
-      subEvents: "Live Demo, Q&A"
-    },
-    {
-      id: 3,
-      name: "Charity Auction",
-      type: "Fundraiser",
-      startDate: "2024-09-07 12:34:56",
-      endDate: "2024-11-15",
-      description: "An auction to raise funds for charity.",
-      handledBy: "Emily Brown",
-      organisation: "Helping Hands",
-      subEvents: "Auction, Networking"
-    }
-  ];
+  const [isCancelPopup, setIsCancelPopup] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const handleCancelClick = (rowData: any) => {
+    setIsCancelPopup(true);
+    setSelectedRow(rowData);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedRow(null);
+    setIsCancelPopup(false);
+  };
+
+  const onCancelBooking = () => {
+    handleClosePopup();
+  };
 
   return (
     <Box>
+      <CancelBookingPopup
+        onClose={handleClosePopup}
+        open={isCancelPopup}
+        onCancelBooking={onCancelBooking}
+      />
+
       <TableContainer component={Box} sx={{ borderRadius: 1 }}>
         <Table>
           <TableBody>
@@ -72,7 +64,7 @@ export const UpcommingAppointmentTable = ({
                     className="rounded-full"
                   />
                 </TableCell>
-                <TableCell className="text-center border-none font-semibold text-xl">
+                <TableCell className="border-none font-semibold text-xl text-left">
                   Dr. Mahmood
                   <Typography className="text-xs text-left">
                     Dental Specialist
@@ -81,10 +73,14 @@ export const UpcommingAppointmentTable = ({
                 <TableCell className="text-center border-none text-lg">
                   {event.description}
                 </TableCell>
-                <TableCell className="text-center border-none text-lg">
-                  {getFormattedDateTime(event.startDate, true)}
-                  <Typography className="text-left text-sm">Dc</Typography>
-                  <Button variant="text" className="capitalize text-black">
+                <TableCell className="text-right border-none text-lg">
+                  {`${getFormattedDateTime(event.date)} ${formatTimeToHoursAndMinutes(event.start_time) + "-" + formatTimeToHoursAndMinutes(event.end_time)}`}
+                  <Typography className="text-right text-sm">Dc</Typography>
+                  <Button
+                    variant="text"
+                    className="capitalize text-black"
+                    onClick={() => handleCancelClick(event)}
+                  >
                     <CancelOutlinedIcon className="text-red-500 mx-2" />
                     Cancel
                   </Button>
@@ -94,7 +90,7 @@ export const UpcommingAppointmentTable = ({
           </TableBody>
         </Table>
       </TableContainer>
-      {events.length === 0 && (
+      {upcoming_appointments?.length === 0 && (
         <Typography textAlign={"center"} mt={2}>
           No Appointments Found
         </Typography>

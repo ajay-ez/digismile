@@ -5,30 +5,43 @@ import { Box, Button, Grid } from "@mui/material";
 import {
   requiredCharField,
   contactNumberValidation,
-  booleanValidation
+  booleanValidation,
+  emailValidation
 } from "@/validations";
+import { useUnAuthUserAppointmentMutation } from "@/services/apiServices/appointmentService";
 
 const validationSchema = Yup.object({
-  firstName: requiredCharField("First Name"),
-  lastName: requiredCharField("Last Name"),
-  contact: contactNumberValidation,
+  first_name: requiredCharField("First Name"),
+  last_name: requiredCharField("Last Name"),
+  phone_number: contactNumberValidation,
   problem: requiredCharField("Health Problem"),
-  dob: Yup.date().required("Date of Birth is required").nullable(),
+  date_of_birth: Yup.date().required("Date of Birth is required").nullable(),
+  appointment_date: Yup.date()
+    .required("Appointment Date is required")
+    .nullable(),
+  email: emailValidation,
   privacyPolicy: booleanValidation
 });
 
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  contact: "",
+  first_name: "",
+  last_name: "",
+  phone_number: "",
+  email: "",
   problem: "",
-  dob: "",
+  date_of_birth: "",
+  appointment_date: "",
   privacyPolicy: false
 };
 
 const AppointmentForm = () => {
-  // eslint-disable-next-line no-unused-vars
-  const handleSubmit = (values: any) => {};
+  const [createBooking, { isLoading }] = useUnAuthUserAppointmentMutation();
+
+  const handleSubmit = (values: any) => {
+    delete values.privacyPolicy;
+    (values.start_time = "10:00:00"), (values.end_time = "11:00:00");
+    createBooking(values);
+  };
 
   return (
     <Formik
@@ -40,17 +53,31 @@ const AppointmentForm = () => {
         <Form>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-              <FieldInput label="First Name" name="firstName" type="text" />
+              <FieldInput label="First Name" name="first_name" type="text" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FieldInput label="Last Name" name="lastName" type="text" />
+              <FieldInput label="Last Name" name="last_name" type="text" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FieldInput label="Contact" name="contact" type="text" />
+              <FieldInput label="Contact" name="phone_number" type="text" />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <FieldInput label="Email" name="email" type="text" />
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <FieldInput label="Date of Birth" name="dob" type="date" />
+              <FieldInput
+                label="Date of Birth"
+                name="date_of_birth"
+                type="date"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <FieldInput
+                label="Appointment Date"
+                name="appointment_date"
+                type="date"
+              />
             </Grid>
             <Grid item xs={12} md={12}>
               <FieldInput label="Problem" name="problem" type="text" />
@@ -88,7 +115,7 @@ const AppointmentForm = () => {
                   className="bg-[#065084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800"
                   type="submit"
                 >
-                  Confirm Appointment
+                  {isLoading ? "Confirming..." : "Confirm Appointment"}
                 </Button>
               </Box>
             </Grid>

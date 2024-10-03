@@ -1,4 +1,9 @@
-import { getAppointments } from "@/utils/breakPoints";
+import {
+  appointmentForUnauthUser,
+  appointmentForUser,
+  getAppointments,
+  getSlots
+} from "@/utils/breakPoints";
 import { api } from "../api";
 
 export const appointmentService = api.injectEndpoints({
@@ -7,8 +12,34 @@ export const appointmentService = api.injectEndpoints({
       query: (userId: string) => ({
         url: getAppointments(userId)
       })
+    }),
+    unAuthUserAppointment: builder.mutation({
+      query: (appointmentData) => ({
+        url: appointmentForUnauthUser(),
+        method: "POST",
+        body: appointmentData
+      })
+    }),
+    requestUserAppointment: builder.mutation({
+      query: (userAppointmentData) => ({
+        url: appointmentForUser(),
+        method: "POST",
+        body: userAppointmentData
+      })
+    }),
+    getSlots: builder.mutation({
+      query: (slotsPayload) => ({
+        url: getSlots(),
+        method: "POST",
+        body: slotsPayload
+      })
     })
   })
 });
 
-export const { useGetAppointmentsQuery } = appointmentService;
+export const {
+  useGetAppointmentsQuery,
+  useUnAuthUserAppointmentMutation,
+  useGetSlotsMutation,
+  useRequestUserAppointmentMutation
+} = appointmentService;

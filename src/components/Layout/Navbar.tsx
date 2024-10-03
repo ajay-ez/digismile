@@ -1,32 +1,42 @@
-'use client';
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-
-import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
-import Image from 'next/image';
-import { digismileLogoImage, dummy_profile } from '@/assets/images';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+"use client";
+import React, { useEffect, useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import { Box } from "@mui/material";
+import Image from "next/image";
+import { digismileLogoImage, dummy_profile } from "@/assets/images";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useGetUserDetailsQuery } from "@/services/apiServices/profileService";
 
 export default function Navbar() {
+  const { data, isError } = useGetUserDetailsQuery();
   const router = useRouter();
+  const [userId, setUserId] = useState<string | null>(null);
 
-  const navigateToSection = (id: string) => {
-    router.push(`/${id}`);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUserId = localStorage.getItem("userId");
+      setUserId(storedUserId);
+    }
+  }, []);
+
+  const navigateToSection = (url: string) => {
+    router.push(`/${url}`);
   };
+
   return (
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: '#1E285F'
+        backgroundColor: "#1E285F"
       }}
       className="bg-[#1E285F]"
     >
       <Toolbar className="flex justify-between items-center p-4 rounded-3xl">
         <Image
-          onClick={() => navigateToSection('/')}
+          onClick={() => navigateToSection("/")}
           src={digismileLogoImage}
           height={50}
           alt="digismile"
@@ -34,23 +44,19 @@ export default function Navbar() {
         />
         <Box className="flex">
           <Button
-            onClick={() => navigateToSection('/')}
+            onClick={() => navigateToSection("/")}
             className="font-bold capitalize"
             color="inherit"
           >
             Home
           </Button>
-          <Button
-            // onClick={() => navigateToSection("about-us")}
-            className="font-bold capitalize"
-            color="inherit"
-          >
-            <Link href={'about-us'} prefetch>
+          <Button className="font-bold capitalize" color="inherit">
+            <Link href={"about-us"} prefetch>
               About
             </Link>
           </Button>
           <Button
-            onClick={() => navigateToSection('clinic-services')}
+            onClick={() => navigateToSection("clinic-services")}
             className="font-bold capitalize"
             color="inherit"
           >
@@ -59,31 +65,41 @@ export default function Navbar() {
           <Button className="font-bold capitalize" color="inherit">
             Contact
           </Button>
-          <Button
-            className="font-bold capitalize"
-            color="inherit"
-            onClick={() => navigateToSection('signup')}
-          >
-            Signup
-          </Button>
+          {isError && (
+            <Button
+              className="font-bold capitalize"
+              color="inherit"
+              onClick={() => navigateToSection("signup")}
+            >
+              Signup
+            </Button>
+          )}
         </Box>
         <Box className="flex gap-2">
-          <Image
-            src={dummy_profile}
-            alt="Profile"
-            width={66}
-            height={66}
-            className="rounded-full cursor-pointer"
-            onClick={() =>
-              navigateToSection(
-                'profile/4423?tab=user-profile&subTab=prescription'
-              )
-            }
-          />
+          {data && (
+            <Image
+              src={dummy_profile}
+              alt="Profile"
+              width={66}
+              height={66}
+              className="rounded-full cursor-pointer"
+              onClick={() =>
+                navigateToSection(
+                  `profile/${userId}?tab=user-profile&subTab=prescription`
+                )
+              }
+            />
+          )}
           <Button
             variant="contained"
             className="bg-white text-[#1E285F] hover:bg-white font-bold rounded-xl capitalize p-2 px-4"
-            onClick={() => navigateToSection('#book_appointment')}
+            onClick={() =>
+              navigateToSection(
+                isError
+                  ? "#book_appointment"
+                  : `profile/${userId}?tab=appointments&subTab=quick-appointments`
+              )
+            }
           >
             Request An Appointment
           </Button>
