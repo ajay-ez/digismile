@@ -22,7 +22,7 @@ interface SlotsData {
 interface AvailableSlotsProps {
   data: SlotsData;
   // eslint-disable-next-line no-unused-vars
-  onSlotSelect: (slot) => void;
+  onSlotSelect: (slot: any) => void;
   selectedSlot: TimeSlot | null;
 }
 

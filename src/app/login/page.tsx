@@ -12,11 +12,23 @@ import Link from "next/link";
 import { useLoginMutation } from "@/services/apiServices/authService";
 import useAuthToken from "@/hooks/useAuthToken";
 import { useRouter } from "next/navigation";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
   password: passwordValidation
 });
+
+interface ErrorResponse {
+  message?: string;
+}
+
+// Helper function to check if the error is a FetchBaseQueryError and has data
+const isFetchBaseQueryError = (
+  error: any
+): error is FetchBaseQueryError & { data: ErrorResponse } => {
+  return error?.data !== undefined;
+};
 
 const LoginPage = () => {
   const [userLogin, { isLoading, error }] = useLoginMutation();
@@ -36,6 +48,7 @@ const LoginPage = () => {
       }
     });
   };
+
   return (
     <SignupContainer>
       <Box className="flex justify-center items-center align-middle">
@@ -80,9 +93,12 @@ const LoginPage = () => {
 
                   {error && (
                     <Typography className="text-red-500 capitalize my-2 text-center">
-                      {error?.data?.message}
+                      {isFetchBaseQueryError(error)
+                        ? error.data?.message
+                        : "An unexpected error occurred."}
                     </Typography>
                   )}
+
                   <Box className="flex justify-center">
                     <Button
                       type="submit"

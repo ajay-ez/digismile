@@ -21,7 +21,7 @@ import CancelBookingPopup from "@/components/common/CancelBookingPopup";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
 
 type UpcommingAppointmentProps = {
-  UpcommingAppointmentProps: any;
+  upcoming_appointments: any;
 };
 export const UpcommingAppointmentTable = ({
   upcoming_appointments

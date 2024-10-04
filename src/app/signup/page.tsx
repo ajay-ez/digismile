@@ -17,6 +17,7 @@ import { SignupFormValues } from "@/types";
 import SignupContainer from "@/components/common/SignupContainer";
 import Link from "next/link";
 import { useRegisterMutation } from "@/services/apiServices/authService";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const SignupSchema = Yup.object().shape({
   name: requiredCharField("Name"),
@@ -30,9 +31,22 @@ const SignupSchema = Yup.object().shape({
   phone_number: contactNumberValidation
 });
 
+// Define the expected shape of error data
+interface ErrorResponse {
+  message?: string;
+}
+
+// Type guard to check if error is a FetchBaseQueryError
+const isFetchBaseQueryError = (
+  error: any
+): error is FetchBaseQueryError & { data: ErrorResponse } => {
+  return error?.data !== undefined;
+};
+
 const SignupPage = () => {
   const router = useRouter();
   const [registerUser, { error, isLoading }] = useRegisterMutation();
+
   const initialSignupValues: SignupFormValues = {
     name: "",
     date_of_birth: "",
@@ -45,7 +59,7 @@ const SignupPage = () => {
   };
 
   const handleSignup = async (values: SignupFormValues) => {
-    delete values.confirmPassword;
+    delete values.confirmPassword; // Avoid sending confirmPassword in the request
 
     registerUser(values).then((response) => {
       if (response.data?.status_code === 201) {
@@ -170,7 +184,9 @@ const SignupPage = () => {
                   <Grid xs={12}>
                     {error && (
                       <Typography className="text-red-500 capitalize my-2 text-center">
-                        {error?.data?.message}
+                        {isFetchBaseQueryError(error) && error.data?.message
+                          ? error.data.message
+                          : "An unexpected error occurred."}
                       </Typography>
                     )}
                   </Grid>
@@ -180,7 +196,7 @@ const SignupPage = () => {
                         <Button
                           type="submit"
                           variant="text"
-                          className=" rounded-lg font-bold max-w-md text-black"
+                          className="rounded-lg font-bold max-w-md text-black"
                           onClick={() => router.push("/")}
                         >
                           Cancel
@@ -190,7 +206,7 @@ const SignupPage = () => {
                       <Button
                         type="submit"
                         variant="contained"
-                        className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md  p-2 px-16"
+                        className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md p-2 px-16"
                         size="medium"
                       >
                         {isLoading ? "loading" : "Confirm"}

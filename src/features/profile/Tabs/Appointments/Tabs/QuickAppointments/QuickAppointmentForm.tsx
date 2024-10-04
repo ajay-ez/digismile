@@ -1,9 +1,9 @@
 "use client";
 import { Box } from "@mui/material";
 import FieldInput from "@/components/common/FieldInput";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
-import React from "react";
+import React, { ForwardedRef } from "react";
 import { requiredCharField } from "@/validations";
 import Image from "next/image";
 import { doctor } from "@/assets/images";
@@ -15,9 +15,16 @@ const LoginSchema = Yup.object().shape({
   problem: requiredCharField("Problem")
 });
 
-const QuickAppointmentForm = React.forwardRef(
+interface QuickAppointmentFormProps {
   // eslint-disable-next-line no-unused-vars
-  (props: { onSelectCity: (value: any) => void }, ref) => {
+  onSelectCity: (value: any) => void;
+}
+
+const QuickAppointmentForm = React.forwardRef(
+  (
+    props: QuickAppointmentFormProps,
+    ref: ForwardedRef<FormikProps<{ city: string; problem: string }>>
+  ) => {
     const { onSelectCity } = props;
 
     const initialLoginValues = {
@@ -25,7 +32,7 @@ const QuickAppointmentForm = React.forwardRef(
       problem: ""
     };
 
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: { city: string; problem: string }) => {
       // eslint-disable-next-line no-console
       console.log(values);
     };

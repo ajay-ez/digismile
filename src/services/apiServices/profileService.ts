@@ -3,7 +3,7 @@ import { api } from "../api";
 
 export const profileService = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUserDetails: builder.query({
+    getUserDetails: builder.query<any, void>({
       query: () => ({
         url: getUserDetail()
       })
