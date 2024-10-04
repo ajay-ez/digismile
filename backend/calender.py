@@ -77,6 +77,8 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from flask import jsonify
+
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
@@ -126,13 +128,14 @@ def add_appointment(email, appointment_date, start_time, end_time, description):
     },
       "recurrence":["RRULE:FREQ=DAILY;COUNT=3"],
       "attendees":[
-        {"email": 'digismile.doc@gmail.com'}
+        {"email": 'digismile.doc@gmail.com'},
+        {"email": email}
       ]
     }
 
     event = service.events().insert(calendarId="primary", body=event).execute()
     event_id = event.get('id')
-    print(f"Event created{event.get('htmllink')}")
+    print(f"Event created {event.get('htmlLink')}, event: {event}")
     return event_id
 
   except HttpError as error:
@@ -163,3 +166,15 @@ def get_google_credentials():
                 token_file.write(creds.to_json())
     
     return creds
+
+def cancel_event(event_id, credentials):
+    try:
+      creds = credentials
+      print(f'creds {creds}')
+      service = build('calendar', 'v3', credentials=creds)
+      service.events().delete(calendarId="primary", eventId=event_id).execute()
+      print(f"Event with Id {event_id} deleted from Googlu calender")
+    except Exception as error:
+       print(f"An error occured: {error}")
+       return jsonify({'error': 'Failed to delete event from Googlu calender'})
+    

@@ -7,7 +7,7 @@ import uuid
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from backend.utils import generate_random_password
 from flask_mail import Mail, Message
-from backend.calender import add_appointment, get_google_credentials
+from backend.calender import add_appointment, get_google_credentials, cancel_event
 
 main = Blueprint('main', __name__)
 
@@ -94,7 +94,7 @@ def book_appointment_existing_user(): #If user has logged in
         except (TypeError, ValueError) as e:
             return jsonify({'message': 'Invalid date or time format. Please provide valid values.', 'status_code': 400}), 400
         user = Users.query.filter_by(user_id=user_id).first()
-        creds = get_google_credentials()
+        get_google_credentials()
         event_id = add_appointment(user.email, appointment_date, start_time, end_time, description)
 
         new_appointment = Appointment(
@@ -431,3 +431,30 @@ def change_password():
     except Exception as e:
         print(f"error {e}")
         return jsonify({'message': 'An error occured', 'status_code': 500}), 500
+
+@main.route('/cancel_appointment', methods=['POST'])
+def cancel_appointment():
+    try:
+        data = request.get_json()
+        appointment_id = data.get('appointment_id')
+        if not appointment_id:
+            return jsonify({'error': 'appointment_id is required!!', 'status_code': 400}), 400
+        
+        appointment = Appointment.query.filter_by(appointment_id=appointment_id).first()
+        if not appointment:
+            return jsonify({'error': 'appointment not found', 'status_code': 400}), 400
+        
+        event_id = appointment.event_id
+        if not event_id:
+            return jsonify({'error': 'No event found for given appointment_id', 'status_code': 400}), 400
+        
+        appointment.status = 'cancelled'
+        db.session.commit()
+
+        credentials = get_google_credentials()
+        print('1')
+        cancel_event(event_id, credentials)
+        print('2')
+        return jsonify({'message': 'Appointment cancelled succesfully', 'status_code': 400}), 400
+    except Exception as e:
+        return jsonify({'error': str(e), 'status_code': 500}), 500
