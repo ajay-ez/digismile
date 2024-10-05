@@ -12,14 +12,12 @@ import {
 } from "@mui/material";
 import FieldInput from "@/components/common/FieldInput";
 import { passwordValidation } from "@/validations";
-import SignupContainer from "@/components/common/SignupContainer";
 import { useChangePasswordMutation } from "@/services/apiServices/profileService";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { isFetchBaseQueryError } from "@/app/login/page";
 import { useRouter } from "next/navigation";
-
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 const PasswordChangeSchema = Yup.object().shape({
   old_password: passwordValidation,
   new_password: passwordValidation
@@ -29,6 +27,15 @@ interface PasswordChangeFormValues {
   old_password: string;
   new_password: string;
 }
+
+interface ErrorResponse {
+  message?: string;
+}
+const isFetchBaseQueryError = (
+  error: any
+): error is FetchBaseQueryError & { data: ErrorResponse } => {
+  return error?.data !== undefined;
+};
 
 const PasswordChange = () => {
   const [changePassword, { isLoading, error }] = useChangePasswordMutation();

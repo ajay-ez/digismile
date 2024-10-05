@@ -32,8 +32,7 @@ const LoginSchema = Yup.object().shape({
 interface ErrorResponse {
   message?: string;
 }
-
-export const isFetchBaseQueryError = (
+const isFetchBaseQueryError = (
   error: any
 ): error is FetchBaseQueryError & { data: ErrorResponse } => {
   return error?.data !== undefined;
@@ -44,7 +43,7 @@ const LoginPage = () => {
   const router = useRouter();
   const { setAuthToken } = useAuthToken();
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   const initialLoginValues: LoginFormValues = {
     email: "",
