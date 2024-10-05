@@ -1,9 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Button, Typography, Box, CircularProgress } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Box,
+  CircularProgress,
+  IconButton
+} from "@mui/material";
 import FieldInput from "@/components/common/FieldInput";
 import { emailValidation, passwordValidation } from "@/validations";
 import { LoginFormValues } from "@/types";
@@ -13,6 +19,10 @@ import { useLoginMutation } from "@/services/apiServices/authService";
 import useAuthToken from "@/hooks/useAuthToken";
 import { useRouter } from "next/navigation";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { SuccessPopup } from "@/components/common/SuccessPopup";
+import { ArrowRightIcon } from "@mui/x-date-pickers";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
@@ -23,8 +33,7 @@ interface ErrorResponse {
   message?: string;
 }
 
-// Helper function to check if the error is a FetchBaseQueryError and has data
-const isFetchBaseQueryError = (
+export const isFetchBaseQueryError = (
   error: any
 ): error is FetchBaseQueryError & { data: ErrorResponse } => {
   return error?.data !== undefined;
@@ -34,6 +43,8 @@ const LoginPage = () => {
   const [userLogin, { isLoading, error }] = useLoginMutation();
   const router = useRouter();
   const { setAuthToken } = useAuthToken();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
 
   const initialLoginValues: LoginFormValues = {
     email: "",
@@ -44,13 +55,23 @@ const LoginPage = () => {
     userLogin(values).then((response: any) => {
       if (response?.data?.status_code === 200) {
         setAuthToken(response.data);
-        router.push("/");
+        setShowSuccessPopup(true);
+
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+          router.push("/");
+        }, 1000);
       }
     });
   };
 
   return (
     <SignupContainer>
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        successMessage="Success!"
+      />
       <Box className="flex justify-center items-center align-middle">
         <Box className="shadow-signup-shadow p-8 rounded-lg">
           <Box>
@@ -82,13 +103,26 @@ const LoginPage = () => {
                     />
                   </Box>
                   <Box mb={2}>
-                    <FieldInput
-                      name="password"
-                      type="password"
-                      label="Password"
-                      placeholder="Enter your password"
-                      required
-                    />
+                    <Box position="relative">
+                      <FieldInput
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        label="Password"
+                        placeholder="Enter your password"
+                        required
+                      />
+                      <IconButton
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        style={{
+                          position: "absolute",
+                          right: 0,
+                          top: "70%",
+                          transform: "translateY(-50%)"
+                        }}
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </Box>
                   </Box>
 
                   {error && (
@@ -117,6 +151,12 @@ const LoginPage = () => {
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-blue-900 text-lg">
               Sign up
+            </Link>
+          </Typography>
+
+          <Typography className="text-center mt-2">
+            <Link href="/" className="text-blue-900 text-lg text-center mt-2">
+              Continue Without Account <ArrowRightIcon />
             </Link>
           </Typography>
         </Box>

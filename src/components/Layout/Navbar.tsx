@@ -9,12 +9,17 @@ import { digismileLogoImage, dummy_profile } from "@/assets/images";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useGetUserDetailsQuery } from "@/services/apiServices/profileService";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import useAuthToken from "@/hooks/useAuthToken";
 
 export default function Navbar() {
   const { data, isError } = useGetUserDetailsQuery();
   const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
-
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { clearAuthToken } = useAuthToken();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedUserId = localStorage.getItem("userId");
@@ -24,6 +29,30 @@ export default function Navbar() {
 
   const navigateToSection = (url: string) => {
     router.push(`/${url}`);
+  };
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleProfileVisit = () => {
+    navigateToSection(`profile/${userId}?tab=user-profile&subTab=prescription`);
+    handleClose();
+  };
+
+  const handleChangePassword = () => {
+    handleClose();
+    router.push(`/profile/${userId}?tab=change-password`);
+  };
+
+  const handleLogout = () => {
+    handleClose();
+    clearAuthToken();
+    location.reload();
   };
 
   return (
@@ -77,18 +106,15 @@ export default function Navbar() {
         </Box>
         <Box className="flex gap-2">
           {data && (
-            <Image
-              src={dummy_profile}
-              alt="Profile"
-              width={66}
-              height={66}
-              className="rounded-full cursor-pointer"
-              onClick={() =>
-                navigateToSection(
-                  `profile/${userId}?tab=user-profile&subTab=prescription`
-                )
-              }
-            />
+            <IconButton onClick={handleMenuClick}>
+              <Image
+                src={dummy_profile}
+                alt="Profile"
+                width={66}
+                height={66}
+                className="rounded-full cursor-pointer"
+              />
+            </IconButton>
           )}
           <Button
             variant="contained"
@@ -105,6 +131,11 @@ export default function Navbar() {
           </Button>
         </Box>
       </Toolbar>
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+        <MenuItem onClick={handleProfileVisit}>Visit Profile</MenuItem>
+        <MenuItem onClick={handleChangePassword}>Change Password</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
     </AppBar>
   );
 }

@@ -1,4 +1,4 @@
-import { getUserDetail } from "@/utils/breakPoints";
+import { getUserDetail, passwordChange } from "@/utils/breakPoints";
 import { api } from "../api";
 
 export const profileService = api.injectEndpoints({
@@ -7,8 +7,16 @@ export const profileService = api.injectEndpoints({
       query: () => ({
         url: getUserDetail()
       })
+    }),
+    changePassword: builder.mutation({
+      query: (passwordData) => ({
+        url: passwordChange(),
+        method: "POST",
+        body: passwordData
+      })
     })
   })
 });
 
-export const { useGetUserDetailsQuery } = profileService;
+export const { useGetUserDetailsQuery, useChangePasswordMutation } =
+  profileService;

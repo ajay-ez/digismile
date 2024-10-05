@@ -1,9 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Container, Button, Typography, Box, Grid } from "@mui/material";
+import {
+  Container,
+  Button,
+  Typography,
+  Box,
+  Grid,
+  CircularProgress,
+  IconButton
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 
 import FieldInput from "@/components/common/FieldInput";
@@ -18,7 +26,8 @@ import SignupContainer from "@/components/common/SignupContainer";
 import Link from "next/link";
 import { useRegisterMutation } from "@/services/apiServices/authService";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-
+import { SuccessPopup } from "@/components/common/SuccessPopup";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
 const SignupSchema = Yup.object().shape({
   name: requiredCharField("Name"),
   date_of_birth: requiredCharField("Date of Birth"),
@@ -31,12 +40,10 @@ const SignupSchema = Yup.object().shape({
   phone_number: contactNumberValidation
 });
 
-// Define the expected shape of error data
 interface ErrorResponse {
   message?: string;
 }
 
-// Type guard to check if error is a FetchBaseQueryError
 const isFetchBaseQueryError = (
   error: any
 ): error is FetchBaseQueryError & { data: ErrorResponse } => {
@@ -46,6 +53,9 @@ const isFetchBaseQueryError = (
 const SignupPage = () => {
   const router = useRouter();
   const [registerUser, { error, isLoading }] = useRegisterMutation();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const initialSignupValues: SignupFormValues = {
     name: "",
@@ -59,17 +69,28 @@ const SignupPage = () => {
   };
 
   const handleSignup = async (values: SignupFormValues) => {
-    delete values.confirmPassword; // Avoid sending confirmPassword in the request
+    delete values.confirmPassword;
 
     registerUser(values).then((response) => {
       if (response.data?.status_code === 201) {
-        router.push("/login");
+        setShowSuccessPopup(true);
+
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+          router.push("/login");
+        }, 2000);
       }
     });
   };
 
   return (
     <SignupContainer>
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        successMessage="Account created!"
+        subMessage="Login for an amazing experience."
+      />
       <Container
         maxWidth="md"
         className="p-8 flex justify-center items-center "
@@ -161,24 +182,56 @@ const SignupPage = () => {
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Box mb={2}>
-                      <FieldInput
-                        name="password"
-                        type="password"
-                        label="Password"
-                        placeholder="Enter your password"
-                        required
-                      />
+                      <Box position="relative">
+                        <FieldInput
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          label="Password"
+                          placeholder="Enter your password"
+                          required
+                        />
+                        <IconButton
+                          onClick={() => setShowPassword((prev) => !prev)}
+                          style={{
+                            position: "absolute",
+                            right: 0,
+                            top: "70%",
+                            transform: "translateY(-50%)"
+                          }}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </Box>
                     </Box>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Box mb={2}>
-                      <FieldInput
-                        name="confirmPassword"
-                        type="password"
-                        label="Confirm Password"
-                        placeholder="Confirm your password"
-                        required
-                      />
+                      <Box position="relative">
+                        <FieldInput
+                          name="confirmPassword"
+                          type={showConfirmPassword ? "text" : "password"}
+                          label="Confirm Password"
+                          placeholder="Confirm your password"
+                          required
+                        />
+                        <IconButton
+                          onClick={() =>
+                            setShowConfirmPassword((prev) => !prev)
+                          }
+                          style={{
+                            position: "absolute",
+                            right: 0,
+                            top: "70%",
+                            transform: "translateY(-50%)"
+                          }}
+                        >
+                          {showConfirmPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </Box>
                     </Box>
                   </Grid>
                   <Grid xs={12}>
@@ -206,10 +259,10 @@ const SignupPage = () => {
                       <Button
                         type="submit"
                         variant="contained"
-                        className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md p-2 px-16"
+                        className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md p-2 px-16 capitalize"
                         size="medium"
                       >
-                        {isLoading ? "loading" : "Confirm"}
+                        {isLoading ? <CircularProgress /> : "Confirm"}
                       </Button>
                     </Box>
                   </Grid>
