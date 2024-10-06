@@ -1,11 +1,11 @@
-import React from 'react';
-import { Typography } from '@mui/material';
-import { ClinicSchedule } from '@/components/common/ClinicSchedule';
+import React from "react";
+import { Typography } from "@mui/material";
+import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 
 export const AboutClinic = () => {
   return (
-    <div className="flex gap-8 mt-3 items-center justify-center ">
-      <div className="p-3 w-[50%] rounded-lg">
+    <div className="flex flex-col md:flex-row gap-8 mt-3 items-center justify-center ">
+      <div className="p-3 md:w-[50%] rounded-lg">
         <Typography variant="h4" className="text-left mb-5">
           Our Practice and Services
         </Typography>
