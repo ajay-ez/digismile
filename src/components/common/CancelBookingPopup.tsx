@@ -1,16 +1,24 @@
 import React from "react";
-import { Modal, Box, Typography, Button } from "@mui/material";
+import {
+  Modal,
+  Box,
+  Typography,
+  Button,
+  CircularProgress
+} from "@mui/material";
 
 interface CancelBookingPopupProps {
   open: boolean;
   onClose: () => void;
   onCancelBooking: () => void;
+  isLoading: boolean;
 }
 
 const CancelBookingPopup: React.FC<CancelBookingPopupProps> = ({
   open,
   onClose,
-  onCancelBooking
+  onCancelBooking,
+  isLoading
 }) => {
   return (
     <Modal open={open} onClose={onClose}>
@@ -37,7 +45,7 @@ const CancelBookingPopup: React.FC<CancelBookingPopupProps> = ({
             Close
           </Button>
           <Button variant="contained" color="error" onClick={onCancelBooking}>
-            Confirm Cancellation
+            {isLoading ? <CircularProgress /> : "Confirm Cancellation"}
           </Button>
         </Box>
       </Box>

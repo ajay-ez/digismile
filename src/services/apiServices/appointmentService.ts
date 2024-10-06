@@ -1,4 +1,5 @@
 import {
+  appointmentCancel,
   appointmentForUnauthUser,
   appointmentForUser,
   getAppointments,
@@ -33,6 +34,13 @@ export const appointmentService = api.injectEndpoints({
         method: "POST",
         body: slotsPayload
       })
+    }),
+    cancelAppointment: builder.mutation({
+      query: ({ appointment_id }) => ({
+        url: appointmentCancel(),
+        method: "POST",
+        body: { appointment_id }
+      })
     })
   })
 });
@@ -41,5 +49,6 @@ export const {
   useGetAppointmentsQuery,
   useUnAuthUserAppointmentMutation,
   useGetSlotsMutation,
-  useRequestUserAppointmentMutation
+  useRequestUserAppointmentMutation,
+  useCancelAppointmentMutation
 } = appointmentService;
