@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 import os
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
+from flask_cors import CORS
 
 
 db = SQLAlchemy()
@@ -17,6 +18,7 @@ mail = Mail()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object(config_class)
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587

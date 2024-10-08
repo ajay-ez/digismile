@@ -153,7 +153,7 @@ def get_appointments():
         print(weekday)
 
         if city not in office_hours or weekday not in office_hours[city]:
-            return jsonify({'error': 'Office is closed on this day', 'status_code': 400}), 400
+            return jsonify({'error': 'Office is closed on this day', 'status_code': 200}), 200
 
         open_time_str, close_time_str = office_hours[city][weekday]
         open_time = datetime.strptime(open_time_str, '%H:%M').time()
