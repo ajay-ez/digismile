@@ -283,7 +283,8 @@ def get_user_appointments(user_id):
             'date': str(a.appointment_date),
             'start_time': str(a.start_time),
             'end_time': str(a.end_time),
-            'description': a.description
+            'description': a.description,
+            'appointment_id': a.appointment_id
         })
 
     return jsonify({
