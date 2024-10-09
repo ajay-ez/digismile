@@ -10,7 +10,7 @@ interface UserProfileProps {
 export const UserProfile = ({ userId, userData }: UserProfileProps) => {
   return (
     <Stack>
-      <div className="flex m-4 p-4 gap-8 items-center justify-center">
+      <div className="flex flex-col md:flex-row m-4 p-4 gap-8 items-center justify-center">
         <ProfileCard userData={userData} />
         <UpcomingAppointmentCalendar />
       </div>

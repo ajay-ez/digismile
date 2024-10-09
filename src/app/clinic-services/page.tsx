@@ -1,13 +1,13 @@
-import ServiceCard from '@/features/services/ServiceCard';
-import React from 'react';
-import projectConstants from '@/projectContants';
-import { Stack, Typography } from '@mui/material';
-import DigiLayout from '@/components/Layout';
-import FAQ from '@/features/services/Faqs';
-import { faq } from '@/assets/images';
-import Image from 'next/image';
-import SmileJourney from '@/features/services/SmileJourney';
-import ClinicServiceDetail from '@/features/services/ClinicServiceDetail';
+import ServiceCard from "@/features/services/ServiceCard";
+import React from "react";
+import projectConstants from "@/projectContants";
+import { Stack, Typography } from "@mui/material";
+import DigiLayout from "@/components/Layout";
+import FAQ from "@/features/services/Faqs";
+import { faq } from "@/assets/images";
+import Image from "next/image";
+import SmileJourney from "@/features/services/SmileJourney";
+import ClinicServiceDetail from "@/features/services/ClinicServiceDetail";
 const ClinicServices = () => {
   return (
     <DigiLayout>
@@ -37,13 +37,13 @@ const ClinicServices = () => {
 
         {/* Faqs */}
         <div className="flex gap-10 p-8 ">
-          <div className="w-[50%]">
+          <div className="md:w-[50%]">
             <Typography variant="h3" className="text-center mb-16  underline">
               Frequently Ask Question
             </Typography>
             <FAQ />
           </div>
-          <Image src={faq} alt="Faq's" className="w-[40%]" />
+          <Image src={faq} alt="Faq's" className="w-[40%] hidden sm:block" />
         </div>
 
         {/* Services with video */}

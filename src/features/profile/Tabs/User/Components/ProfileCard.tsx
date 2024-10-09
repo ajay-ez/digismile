@@ -10,8 +10,8 @@ export interface ProfileCardProps {
 }
 export const ProfileCard = ({ userData }: ProfileCardProps) => {
   return (
-    <div className="w-[60%] shadow-2xl rounded-2xl p-4 py-8 m-4">
-      <div className="flex gap-8 items-center">
+    <div className="w-[100%] md:w-[60%]  shadow-2xl rounded-2xl p-4 py-8 m-4">
+      <div className="flex flex-col md:flex-row gap-8 items-center">
         <Image
           src={dummy_profile}
           alt="profile image"

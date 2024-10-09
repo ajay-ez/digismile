@@ -1,12 +1,12 @@
-import { dr_image } from '@/assets/images';
-import { Typography } from '@mui/material';
-import React from 'react';
-import Image from 'next/image';
+import { dr_image } from "@/assets/images";
+import { Typography } from "@mui/material";
+import React from "react";
+import Image from "next/image";
 
 const WhoWeAre = () => {
   return (
-    <div className="flex gap-2 mt-3 items-center justify-center bg-blue-white-gradient">
-      <div className="p-3 w-[50%] rounded-lg">
+    <div className="flex gap-2 flex-col-reverse md:flex-row   mt-3 items-center justify-center bg-blue-white-gradient">
+      <div className="p-3 md:w-[50%] rounded-lg">
         <Typography variant="h4" className="text-left mb-5">
           Dr. Andleeb Mahmood
         </Typography>

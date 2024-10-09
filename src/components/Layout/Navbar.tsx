@@ -3,23 +3,33 @@ import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import { Box } from "@mui/material";
+import {
+  Box,
+  useMediaQuery,
+  useTheme,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText
+} from "@mui/material";
 import Image from "next/image";
+import MenuIcon from "@mui/icons-material/Menu";
 import { digismileLogoImage, dummy_profile } from "@/assets/images";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useGetUserDetailsQuery } from "@/services/apiServices/profileService";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import useAuthToken from "@/hooks/useAuthToken";
 
 export default function Navbar() {
   const { data, isError } = useGetUserDetailsQuery();
   const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [userId, setUserId] = useState<string | null>(null);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const { clearAuthToken } = useAuthToken();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedUserId = localStorage.getItem("userId");
@@ -31,38 +41,24 @@ export default function Navbar() {
     router.push(`/${url}`);
   };
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const handleProfileVisit = () => {
     navigateToSection(`profile/${userId}?tab=user-profile&subTab=prescription`);
-    handleClose();
+    setDrawerOpen(false);
   };
 
   const handleChangePassword = () => {
-    handleClose();
+    setDrawerOpen(false);
     router.push(`/profile/${userId}?tab=change-password`);
   };
 
   const handleLogout = () => {
-    handleClose();
+    setDrawerOpen(false);
     clearAuthToken();
     location.reload();
   };
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        backgroundColor: "#1E285F"
-      }}
-      className="bg-[#1E285F]"
-    >
+    <AppBar position="sticky" sx={{ backgroundColor: "#1E285F" }}>
       <Toolbar className="flex justify-between items-center p-4 rounded-3xl">
         <Image
           onClick={() => navigateToSection("/")}
@@ -71,54 +67,69 @@ export default function Navbar() {
           alt="digismile"
           className="cursor-pointer"
         />
-        <Box className="flex">
-          <Button
-            onClick={() => navigateToSection("/")}
-            className="font-bold capitalize"
-            color="inherit"
-          >
-            Home
-          </Button>
-          <Button className="font-bold capitalize" color="inherit">
-            <Link href={"about-us"} prefetch>
-              About
-            </Link>
-          </Button>
-          <Button
-            onClick={() => navigateToSection("clinic-services")}
-            className="font-bold capitalize"
-            color="inherit"
-          >
-            Services
-          </Button>
-          <Button className="font-bold capitalize" color="inherit">
-            Contact
-          </Button>
-          {isError && (
+
+        {!isMobile ? (
+          // Desktop view
+          <Box className="flex gap-2">
             <Button
               className="font-bold capitalize"
+              onClick={() => navigateToSection("/")}
               color="inherit"
-              onClick={() => navigateToSection("signup")}
             >
-              Signup
+              Home
             </Button>
-          )}
-        </Box>
+            <Button className="font-bold capitalize" color="inherit">
+              <Link href={"about-us"} prefetch>
+                About
+              </Link>
+            </Button>
+            <Button
+              onClick={() => navigateToSection("clinic-services")}
+              className="font-bold capitalize"
+              color="inherit"
+            >
+              Services
+            </Button>
+            <Button className="font-bold capitalize" color="inherit">
+              Contact
+            </Button>
+            {isError && (
+              <Button
+                className="font-bold capitalize"
+                color="inherit"
+                onClick={() => navigateToSection("signup")}
+              >
+                Signup
+              </Button>
+            )}
+          </Box>
+        ) : (
+          <IconButton color="inherit" onClick={() => setDrawerOpen(true)}>
+            <MenuIcon />
+          </IconButton>
+        )}
+
         <Box className="flex gap-2">
           {data && (
-            <IconButton onClick={handleMenuClick}>
+            <IconButton onClick={() => setDrawerOpen(true)}>
               <Image
                 src={dummy_profile}
                 alt="Profile"
-                width={66}
-                height={66}
+                width={40}
+                height={40}
                 className="rounded-full cursor-pointer"
               />
             </IconButton>
           )}
           <Button
             variant="contained"
-            className="bg-white text-[#1E285F] hover:bg-white font-bold rounded-xl capitalize p-2 px-4"
+            sx={{
+              backgroundColor: "white",
+              color: "#1E285F",
+              fontWeight: "bold",
+              padding: "8px 16px",
+              display: isMobile ? "none" : "block" // Hide in mobile
+            }}
             onClick={() =>
               navigateToSection(
                 isError
@@ -131,11 +142,50 @@ export default function Navbar() {
           </Button>
         </Box>
       </Toolbar>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleProfileVisit}>Visit Profile</MenuItem>
-        <MenuItem onClick={handleChangePassword}>Change Password</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      </Menu>
+
+      {/* Drawer for mobile menu */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      >
+        <Box
+          width={250}
+          role="presentation"
+          onClick={() => setDrawerOpen(false)}
+        >
+          <List>
+            <ListItem onClick={() => navigateToSection("/")}>
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem onClick={() => navigateToSection("about-us")}>
+              <ListItemText primary="About" />
+            </ListItem>
+            <ListItem onClick={() => navigateToSection("clinic-services")}>
+              <ListItemText primary="Services" />
+            </ListItem>
+            <ListItem onClick={() => navigateToSection("contact")}>
+              <ListItemText primary="Contact" />
+            </ListItem>
+            {isError && (
+              <ListItem onClick={() => navigateToSection("signup")}>
+                <ListItemText primary="Signup" />
+              </ListItem>
+            )}
+            <ListItem
+              onClick={() =>
+                navigateToSection(
+                  isError
+                    ? "#book_appointment"
+                    : `profile/${userId}?tab=appointments&subTab=quick-appointments`
+                )
+              }
+            >
+              <ListItemText primary="Request An Appointment" />
+            </ListItem>
+          </List>
+        </Box>
+      </Drawer>
     </AppBar>
   );
 }

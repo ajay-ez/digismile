@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  Modal,
   Box,
   Typography,
   Button,
-  CircularProgress
+  CircularProgress,
+  Dialog
 } from "@mui/material";
 
 interface CancelBookingPopupProps {
@@ -21,35 +21,40 @@ const CancelBookingPopup: React.FC<CancelBookingPopupProps> = ({
   isLoading
 }) => {
   return (
-    <Modal open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose}>
       <Box
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
           bgcolor: "background.paper",
           borderRadius: 2,
           boxShadow: 24,
           p: 4
         }}
       >
-        <Typography variant="h6" component="h2">
+        <Typography variant="h6" component="h2" className="font-bold">
           Cancel Booking
         </Typography>
         <Typography sx={{ mt: 2 }}>
           Are you sure you want to cancel this booking?
         </Typography>
         <Box sx={{ mt: 4, display: "flex", justifyContent: "space-between" }}>
-          <Button variant="outlined" onClick={onClose}>
+          <Button
+            variant="outlined"
+            onClick={onClose}
+            className="rounded-lg capitalize font-bold"
+          >
             Close
           </Button>
-          <Button variant="contained" color="error" onClick={onCancelBooking}>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={onCancelBooking}
+            className="rounded-lg capitalize font-bold"
+          >
             {isLoading ? <CircularProgress /> : "Confirm Cancellation"}
           </Button>
         </Box>
       </Box>
-    </Modal>
+    </Dialog>
   );
 };
 

@@ -1,9 +1,9 @@
 "use client";
 
-import { Tabs as MuiTabs } from "@mui/material";
+import { Tabs as MuiTabs, useMediaQuery } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import { useSearchParams } from "next/navigation";
-import { type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { OptionKey, useTabOptions } from "./hooks/useTabOptions";
 import { AppointmentHistoryTable } from "./AppointmentHistory/AppointmentHistoryTable";
 import { UpcommingAppointmentTable } from "./UpcomingAppointment/UpcommingAppointmentTable";
@@ -14,9 +14,10 @@ type TabsProps = {
   userId: string;
 };
 export function AppointmentTabs({ userId }: TabsProps) {
-  const { data } = useGetAppointmentsQuery(userId);
+  const { data, refetch } = useGetAppointmentsQuery(userId);
 
-  const { menuItems } = useTabOptions({ userId });
+  const isMobile = useMediaQuery("(max-width:764px)");
+  const { menuItems } = useTabOptions({ userId, isMobile });
 
   const searchParams = useSearchParams();
 
@@ -31,10 +32,15 @@ export function AppointmentTabs({ userId }: TabsProps) {
     "upcoming-appointments": (
       <UpcommingAppointmentTable
         upcoming_appointments={data?.upcoming_appointments}
+        refetch={refetch}
       />
     ),
     "quick-appointments": <QuickAppointment />
   };
+
+  useEffect(() => {
+    if (tab !== "quick-appointments") refetch();
+  }, [tab, refetch]);
 
   return (
     <>
@@ -51,10 +57,10 @@ export function AppointmentTabs({ userId }: TabsProps) {
         {menuItems.map((item) => (
           <Tab
             sx={{
-              width: "233px",
+              width: isMobile ? "130px" : "233px",
               height: "50px",
               minHeight: "50px",
-              mx: "20px",
+              mx: isMobile ? "8px" : "20px",
               alignItems: "center",
               textTransform: "capitalize",
               p: "3px",
