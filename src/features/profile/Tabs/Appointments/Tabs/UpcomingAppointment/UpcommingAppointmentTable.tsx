@@ -45,9 +45,14 @@ export const UpcommingAppointmentTable = ({
   };
 
   const onCancelBooking = () => {
-    cancelAppointment({ appointment_id: selectedRow?.appointment_id });
-    handleClosePopup();
-    refetch();
+    cancelAppointment({ appointment_id: selectedRow?.appointment_id }).then(
+      (response: any) => {
+        if (response?.data?.status_code === 200) {
+          handleClosePopup();
+          refetch();
+        }
+      }
+    );
   };
   return (
     <Box>

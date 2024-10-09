@@ -11,7 +11,9 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  Menu,
+  MenuItem
 } from "@mui/material";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -28,6 +30,7 @@ export default function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [userId, setUserId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // For profile menu
   const { clearAuthToken } = useAuthToken();
 
   useEffect(() => {
@@ -41,20 +44,28 @@ export default function Navbar() {
     router.push(`/${url}`);
   };
 
+  const handleProfileMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseProfileMenu = () => {
+    setAnchorEl(null);
+  };
+
   const handleProfileVisit = () => {
     navigateToSection(`profile/${userId}?tab=user-profile&subTab=prescription`);
-    setDrawerOpen(false);
+    handleCloseProfileMenu();
   };
 
   const handleChangePassword = () => {
-    setDrawerOpen(false);
-    router.push(`/profile/${userId}?tab=change-password`);
+    navigateToSection(`profile/${userId}?tab=change-password`);
+    handleCloseProfileMenu();
   };
 
   const handleLogout = () => {
-    setDrawerOpen(false);
     clearAuthToken();
     location.reload();
+    handleCloseProfileMenu();
   };
 
   return (
@@ -111,7 +122,7 @@ export default function Navbar() {
 
         <Box className="flex gap-2">
           {data && (
-            <IconButton onClick={() => setDrawerOpen(true)}>
+            <IconButton onClick={handleProfileMenuClick}>
               <Image
                 src={dummy_profile}
                 alt="Profile"
@@ -128,7 +139,7 @@ export default function Navbar() {
               color: "#1E285F",
               fontWeight: "bold",
               padding: "8px 16px",
-              display: isMobile ? "none" : "block" // Hide in mobile
+              display: isMobile ? "none" : "block" // Hide on mobile
             }}
             onClick={() =>
               navigateToSection(
@@ -143,6 +154,17 @@ export default function Navbar() {
         </Box>
       </Toolbar>
 
+      {/* Profile Menu for profile image click */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseProfileMenu}
+      >
+        <MenuItem onClick={handleProfileVisit}>Visit Profile</MenuItem>
+        <MenuItem onClick={handleChangePassword}>Change Password</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
+
       {/* Drawer for mobile menu */}
       <Drawer
         anchor="left"
@@ -155,24 +177,28 @@ export default function Navbar() {
           onClick={() => setDrawerOpen(false)}
         >
           <List>
-            <ListItem onClick={() => navigateToSection("/")}>
+            <ListItem button onClick={() => navigateToSection("/")}>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem onClick={() => navigateToSection("about-us")}>
+            <ListItem button onClick={() => navigateToSection("about-us")}>
               <ListItemText primary="About" />
             </ListItem>
-            <ListItem onClick={() => navigateToSection("clinic-services")}>
+            <ListItem
+              button
+              onClick={() => navigateToSection("clinic-services")}
+            >
               <ListItemText primary="Services" />
             </ListItem>
-            <ListItem onClick={() => navigateToSection("contact")}>
+            <ListItem button onClick={() => navigateToSection("contact")}>
               <ListItemText primary="Contact" />
             </ListItem>
             {isError && (
-              <ListItem onClick={() => navigateToSection("signup")}>
+              <ListItem button onClick={() => navigateToSection("signup")}>
                 <ListItemText primary="Signup" />
               </ListItem>
             )}
             <ListItem
+              button
               onClick={() =>
                 navigateToSection(
                   isError

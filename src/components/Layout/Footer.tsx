@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="flex flex-col  lg:flex-row gap-8 justify-between">
         <div className="lg:w-[20%]">
           <Image src={digismileLogoImage} alt="logo" />
-          <Typography className="mt-2 text-start text-xl">
+          <Typography className="mt-2 text-center text-xl">
             Brighten your smile today
           </Typography>
         </div>
