@@ -15,7 +15,7 @@ const Sidebar = ({ userData }: any) => {
   const tab = searchParams.get("tab");
 
   return (
-    <div className="h-[100vh] w-[320px] p-4 bg-[#104F7C] sticky top-2 rounded-2xl flex flex-col justify-between items-center">
+    <div className="h-[100vh] w-[320px] p-4 bg-[#104F7C]  rounded-2xl flex flex-col justify-between items-center">
       <Image
         src={digismileLogoImage}
         alt="digismile"

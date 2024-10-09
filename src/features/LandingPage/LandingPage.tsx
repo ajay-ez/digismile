@@ -53,7 +53,7 @@ const LandingPage = () => {
           id="schedule"
           data-aos="fade-up"
           data-aos-delay="100"
-          className="mx-8 "
+          className="mx-4 "
         >
           <ClinicSchedule renderToHome={true} />
         </div>

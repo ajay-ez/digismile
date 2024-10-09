@@ -1,7 +1,7 @@
-import { community_care } from '@/assets/images';
-import { Typography } from '@mui/material';
-import React from 'react';
-import Image from 'next/image';
+import { community_care } from "@/assets/images";
+import { Typography } from "@mui/material";
+import React from "react";
+import Image from "next/image";
 
 export const CommunityCare = () => {
   return (
@@ -9,11 +9,11 @@ export const CommunityCare = () => {
       <Typography variant="h4" className="my-8 text-center mb-16 font-bold">
         Excellence in Dentistry and Community Care
       </Typography>
-      <div className="flex gap-4 mt-3 items-center justify-center  ">
-        <div className="bg-white p-3 w-[30%] rounded-lg">
+      <div className="flex flex-col sm:flex-row gap-4 mt-3 items-center justify-center p-3 ">
+        <div className="bg-white p-3 sm:w-[30%] rounded-lg">
           <Image src={community_care} alt="d-1" />
         </div>
-        <div className="w-[50%]">
+        <div className="sm:w-[50%]">
           <Typography variant="h5" className="text-left mb-5">
             Empowering Patients with Knowledge and Care:
           </Typography>

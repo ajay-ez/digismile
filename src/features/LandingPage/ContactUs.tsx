@@ -1,8 +1,8 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-import ContactUsForm from './ContactForm';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import ContactUsForm from "./ContactForm";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Map from "@/components/common/Map";
 const ContactUs = () => {
   return (
     <div>
@@ -10,8 +10,9 @@ const ContactUs = () => {
         Contact Us
       </Typography>
 
-      <div className="flex p-3 justify-between bg-digiLightBlue rounded-xl m-3">
-        <Box width={'50%'} className="flex flex-col justify-center gap-4">
+      <div className="flex p-3 flex-col gap-8 md:flex-row justify-between bg-digiLightBlue rounded-xl m-3">
+        <Box className="flex flex-col justify-center gap-4 md:w-[40%]">
+          <Map />
           <Typography variant="h5">Smile Experts Dental</Typography>
           <Box className="flex items-center gap-2">
             <LocationOnIcon />
@@ -27,7 +28,7 @@ const ContactUs = () => {
             </Typography>
           </Box>
         </Box>
-        <Box width={'40%'}>
+        <Box className="px-4 md:w-[40%]">
           <ContactUsForm />
         </Box>
       </div>

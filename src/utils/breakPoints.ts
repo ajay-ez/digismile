@@ -12,3 +12,4 @@ export const appointmentForUnauthUser = () => "new_user_appointment";
 export const appointmentForUser = () => "book_appointment_existing_user";
 
 export const getSlots = () => "get_appointments";
+export const appointmentCancel = () => "cancel_appointment";

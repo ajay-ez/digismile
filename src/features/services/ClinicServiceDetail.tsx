@@ -1,7 +1,7 @@
-import { YoutubeVideoDialog } from '@/components/common/YoutubeVideoDialog';
-import { Typography } from '@mui/material';
-import Image from 'next/image';
-import React from 'react';
+import { YoutubeVideoDialog } from "@/components/common/YoutubeVideoDialog";
+import { Typography } from "@mui/material";
+import Image from "next/image";
+import React from "react";
 interface Props {
   header: string;
   desc: string;
@@ -18,9 +18,9 @@ const ClinicServiceDetail = ({
 }: Props) => {
   return (
     <div
-      className={`${index % 2 === 0 ? 'flex' : 'flex flex-row-reverse'} justify-between items-center p-3 `}
+      className={`${index % 2 === 0 ? "flex-col-reverse md:flex-row" : "flex-col-reverse md:flex-row-reverse"}  flex justify-between items-center gap-2 p-3 `}
     >
-      <div className="w-[40%]  ">
+      <div className="md:w-[40%]  ">
         <div className="flex gap-3 ">
           <Typography className="text-digiDarkBlue mb-2 text-left" variant="h4">
             {header}
@@ -31,7 +31,7 @@ const ClinicServiceDetail = ({
           <YoutubeVideoDialog videoUrl={videoUrl} />
         </div>
       </div>
-      <div className="w-[50%]">
+      <div className="md:w-[50%]">
         <Image src={asset} alt={header} />
       </div>
     </div>

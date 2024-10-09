@@ -64,7 +64,7 @@ export const AppointmentHistoryTable = ({
       </TableContainer>
       {previous_appointments?.length === 0 && (
         <Typography textAlign={"center"} mt={2}>
-          No Event Found
+          No Appointment Found
         </Typography>
       )}
     </Box>

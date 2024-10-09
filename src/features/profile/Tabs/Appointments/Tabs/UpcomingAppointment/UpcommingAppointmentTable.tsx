@@ -19,15 +19,20 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { doctor } from "@/assets/images";
 import CancelBookingPopup from "@/components/common/CancelBookingPopup";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
+import { useCancelAppointmentMutation } from "@/services/apiServices/appointmentService";
+import { RSC_PREFETCH_SUFFIX } from "next/dist/lib/constants";
 
 type UpcommingAppointmentProps = {
   upcoming_appointments: any;
+  refetch: () => void;
 };
 export const UpcommingAppointmentTable = ({
-  upcoming_appointments
+  upcoming_appointments,
+  refetch
 }: UpcommingAppointmentProps) => {
   const [isCancelPopup, setIsCancelPopup] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState<any>(null);
+  const [cancelAppointment, { isLoading }] = useCancelAppointmentMutation();
 
   const handleCancelClick = (rowData: any) => {
     setIsCancelPopup(true);
@@ -40,15 +45,22 @@ export const UpcommingAppointmentTable = ({
   };
 
   const onCancelBooking = () => {
-    handleClosePopup();
+    cancelAppointment({ appointment_id: selectedRow?.appointment_id }).then(
+      (response: any) => {
+        if (response?.data?.status_code === 200) {
+          handleClosePopup();
+          refetch();
+        }
+      }
+    );
   };
-
   return (
     <Box>
       <CancelBookingPopup
         onClose={handleClosePopup}
         open={isCancelPopup}
         onCancelBooking={onCancelBooking}
+        isLoading={isLoading}
       />
 
       <TableContainer component={Box} sx={{ borderRadius: 1 }}>

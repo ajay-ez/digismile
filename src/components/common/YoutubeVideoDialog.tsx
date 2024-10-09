@@ -1,13 +1,13 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import {
   Button,
   Dialog,
   DialogContent,
   DialogTitle,
   IconButton
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 type YoutubeDialogProps = {
   videoUrl: string;
@@ -30,7 +30,7 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
         variant="contained"
         color="inherit"
         onClick={handleClickOpen}
-        className="capitalize youtube-button"
+        className="capitalize p-4 font-bold bg-digiDarkBlue text-white"
       >
         Watch Here
       </Button>
@@ -41,7 +41,7 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
             aria-label="close"
             onClick={handleClose}
             sx={{
-              position: 'absolute',
+              position: "absolute",
               right: 8,
               top: 8,
               color: (theme) => theme.palette.grey[500]
@@ -52,7 +52,7 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
         </DialogTitle>
         <DialogContent>
           <div
-            style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}
+            style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
           >
             <iframe
               src={videoUrl}
@@ -61,12 +61,12 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
               allowFullScreen
               title="Embedded YouTube"
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
-                width: '100%',
+                width: "100%",
 
-                height: '100%'
+                height: "100%"
               }}
             />
           </div>

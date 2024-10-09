@@ -75,9 +75,9 @@ const SignupPage = () => {
       if (response.data?.status_code === 201) {
         setShowSuccessPopup(true);
 
+        router.push("/login");
         setTimeout(() => {
           setShowSuccessPopup(false);
-          router.push("/login");
         }, 2000);
       }
     });
@@ -93,7 +93,7 @@ const SignupPage = () => {
       />
       <Container
         maxWidth="md"
-        className="p-8 flex justify-center items-center "
+        className="md:p-8 flex justify-center items-center "
       >
         <Box
           mt={8}

@@ -66,7 +66,7 @@ const HomeCarousel = () => {
       {/* Carousel */}
       <Slider {...settings}>
         {carouselItems.map((item, index) => (
-          <div key={index} className="relative h-[90vh]">
+          <div key={index} className="relative h-[100vh]">
             <Image className="w-full" src={item.src} alt={item.alt} />
 
             <div className="absolute inset-0 flex  items-center justify-center text-white text-3xl font-bold">
@@ -87,32 +87,37 @@ const HomeCarousel = () => {
               </Box>
             </div>
 
-            <div className="absolute inset-0 flex flex-col  justify-end m-12">
-              <div className="flex gap-8 items-center">
-                <Button
-                  variant="contained"
-                  className="rounded-xl capitalize p-2 px-4"
-                  onClick={() => {
-                    navigateToSection("/login");
-                  }}
-                >
-                  Login
-                </Button>
-                <Button
-                  variant="contained"
-                  className="rounded-xl capitalize p-2 px-4"
-                  onClick={() => {
-                    navigateToSection("/signup");
-                  }}
-                >
-                  Signup
-                </Button>
-                <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
-                  <Call className="text-blue-600" />
+            <div className="absolute inset-0 flex flex-col  sm:justify-end sm:m-12">
+              <div className="flex flex-col sm:flex-row sm:gap-8 gap-4 sm:items-center items-start justify-start">
+                <div className="flex gap-8">
+                  <Button
+                    variant="contained"
+                    className="rounded-xl capitalize p-2 px-4"
+                    onClick={() => {
+                      navigateToSection("/login");
+                    }}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="contained"
+                    className="rounded-xl capitalize p-2 px-4"
+                    onClick={() => {
+                      navigateToSection("/signup");
+                    }}
+                  >
+                    Signup
+                  </Button>
                 </div>
-                <div>
-                  <Typography className="font-bold">Call us</Typography>
-                  <Typography>(571) 374-8000</Typography>
+
+                <div className="flex   gap-8">
+                  <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
+                    <Call className="text-blue-600" />
+                  </div>
+                  <div>
+                    <Typography className="font-bold">Call us</Typography>
+                    <Typography>(571) 374-8000</Typography>
+                  </div>
                 </div>
               </div>
             </div>
