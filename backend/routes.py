@@ -279,12 +279,15 @@ def get_user_appointments(user_id):
             'description': a.description
             })
         else:
-            upcoming_app.append({
-            'date': str(a.appointment_date),
-            'start_time': str(a.start_time),
-            'end_time': str(a.end_time),
-            'description': a.description,
-            'appointment_id': a.appointment_id
+            if a.status == 'cancelled':
+                pass
+            else:
+                upcoming_app.append({
+                'date': str(a.appointment_date),
+                'start_time': str(a.start_time),
+                'end_time': str(a.end_time),
+                'description': a.description,
+                'appointment_id': a.appointment_id
         })
 
     return jsonify({
@@ -456,6 +459,6 @@ def cancel_appointment():
         print('1')
         cancel_event(event_id, credentials)
         print('2')
-        return jsonify({'message': 'Appointment cancelled succesfully', 'status_code': 400}), 400
+        return jsonify({'message': 'Appointment cancelled succesfully', 'status_code': 200}), 200
     except Exception as e:
         return jsonify({'error': str(e), 'status_code': 500}), 500
