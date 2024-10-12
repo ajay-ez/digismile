@@ -7,10 +7,10 @@ export const AboutDoctor = () => {
   return (
     <div className="flex flex-col-reverse gap-5 md:flex-row md:gap-2 mt-3 items-center justify-center">
       <div className="bg-white p-3 md:w-[50%] rounded-lg">
-        <Typography variant="h4" className="text-left mb-5">
+        <Typography variant="subtitle1" className="text-left mb-5">
           Dr. Andleeb Mahmood
         </Typography>
-        <Typography className="text-left">
+        <Typography variant="body1" className="text-left">
           Dr. Andleeb Mahmood, a dentist with over 15 years of experience,
           treats patients like family, providing personalized, high-quality
           dental treatment. With three offices in DMV, she offers routine

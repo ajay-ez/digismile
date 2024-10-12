@@ -1,13 +1,24 @@
-import { getUserDetail, passwordChange } from "@/utils/breakPoints";
+import {
+  getMedicalRecords,
+  getUserDetail,
+  passwordChange
+} from "@/utils/breakPoints";
 import { api } from "../api";
 
 export const profileService = api.injectEndpoints({
   endpoints: (builder) => ({
+    getUserMedicalRecords: builder.query({
+      query: (userId: string) => ({
+        url: getMedicalRecords(userId)
+      })
+    }),
+
     getUserDetails: builder.query<any, void>({
       query: () => ({
         url: getUserDetail()
       })
     }),
+
     changePassword: builder.mutation({
       query: (passwordData) => ({
         url: passwordChange(),
@@ -18,5 +29,8 @@ export const profileService = api.injectEndpoints({
   })
 });
 
-export const { useGetUserDetailsQuery, useChangePasswordMutation } =
-  profileService;
+export const {
+  useGetUserDetailsQuery,
+  useGetUserMedicalRecordsQuery,
+  useChangePasswordMutation
+} = profileService;

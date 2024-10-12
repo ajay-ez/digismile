@@ -8,7 +8,7 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
     <div
       className={`${renderToHome ? "bg-blue-white-gradient" : ""} flex flex-col items-center`}
     >
-      <Typography variant="h3" className="text-center  mb-2">
+      <Typography variant="h1" className="text-center  mb-2">
         Schedule
       </Typography>
       <div
@@ -18,7 +18,7 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
           className={`${renderToHome ? "flex justify-between flex-col sm:flex-row" : ""}`}
         >
           <div>
-            <Typography variant="h6" className="my-8">
+            <Typography variant="subtitle1" className="my-8">
               DC Office
             </Typography>
             <div className="flex gap-3 justify-between">
@@ -35,7 +35,7 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
             </div>
           </div>
           <div>
-            <Typography variant="h6" className="my-8">
+            <Typography variant="subtitle1" className="my-8">
               Burke Office
             </Typography>
             <div className="flex gap-3 justify-between">
@@ -52,7 +52,7 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
             </div>
           </div>
         </div>
-        <Typography className="text-center my-4">
+        <Typography className="text-center my-4 font-bold">
           Enjoy Your Sunday—We’ll Be Ready to Welcome You Back on Monday😉
         </Typography>
       </div>

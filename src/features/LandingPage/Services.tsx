@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { Typography } from '@mui/material';
-import projectConstants from '@/projectContants';
-import ServiceCard from '../services/ServiceCard';
+import { Typography } from "@mui/material";
+import projectConstants from "@/projectContants";
+import ServiceCard from "../services/ServiceCard";
 
 const Services = () => {
   return (
     <div className="bg-blue-white-gradient py-3">
-      <Typography variant="h3" className="text-center p-3 font-bold">
+      <Typography variant="h1" className="text-center p-3 font-bold">
         Our Services
       </Typography>
-      <Typography className="text-center m-2 font-bold">
+      <Typography variant="subtitle1" className="text-center m-2 ">
         Comprehensive Services for Optimal Oral Health.
       </Typography>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">

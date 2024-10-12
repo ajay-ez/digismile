@@ -12,7 +12,7 @@ const ClinicServices = () => {
   return (
     <DigiLayout>
       <div className="bg-seviceBg min-h-screen ">
-        <Typography variant="h3" className="text-center  underline">
+        <Typography variant="h1" className="text-center p-3  ">
           Services
         </Typography>
 
@@ -38,7 +38,7 @@ const ClinicServices = () => {
         {/* Faqs */}
         <div className="flex gap-10 p-8 ">
           <div className="md:w-[50%]">
-            <Typography variant="h3" className="text-center mb-16  underline">
+            <Typography variant="h1" className="text-center mb-16  ">
               Frequently Ask Question
             </Typography>
             <FAQ />

@@ -48,16 +48,16 @@ export function AppointmentTabs({ userId }: TabsProps) {
         value={tab}
         aria-label="secondary tabs example "
         sx={{
-          margin: "15px",
-          display: "flex",
-          gap: "15px !important"
+          // margin: "15px",
+          display: "flex"
+          // gap: "15px !important"
         }}
         centered
       >
         {menuItems.map((item) => (
           <Tab
             sx={{
-              width: isMobile ? "130px" : "233px",
+              width: isMobile ? "120px" : "233px",
               height: "50px",
               minHeight: "50px",
               mx: isMobile ? "8px" : "20px",

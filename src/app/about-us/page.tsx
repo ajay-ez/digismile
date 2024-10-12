@@ -11,7 +11,7 @@ const AboutUs = () => {
   return (
     <DigiLayout>
       <Stack className="bg-seviceBg min-h-screen gap-8 p-2">
-        <Typography variant="h3" className="text-center underline">
+        <Typography variant="h1" className="text-center mt-2">
           About Us
         </Typography>
         <AboutDoctor />

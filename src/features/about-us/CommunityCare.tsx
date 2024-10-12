@@ -6,7 +6,7 @@ import Image from "next/image";
 export const CommunityCare = () => {
   return (
     <div>
-      <Typography variant="h4" className="my-8 text-center mb-16 font-bold">
+      <Typography variant="h1" className="my-8 text-center mb-16 font-bold">
         Excellence in Dentistry and Community Care
       </Typography>
       <div className="flex flex-col sm:flex-row gap-4 mt-3 items-center justify-center p-3 ">
@@ -14,10 +14,10 @@ export const CommunityCare = () => {
           <Image src={community_care} alt="d-1" />
         </div>
         <div className="sm:w-[50%]">
-          <Typography variant="h5" className="text-left mb-5">
+          <Typography variant="subtitle1" className="text-left mb-5">
             Empowering Patients with Knowledge and Care:
           </Typography>
-          <Typography className="text-left">
+          <Typography variant="body1" className="text-left">
             We extend beyond clinical practice to include continuous learning
             and community engagement. She regularly attends conferences,
             contributes to dental research, and participates in charitable

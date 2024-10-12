@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import projectConstants from '@/projectContants';
-import FadeUp from '@/animations/FadeUp';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import projectConstants from "@/projectContants";
+import FadeUp from "@/animations/FadeUp";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function FAQ() {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -21,13 +21,13 @@ export default function FAQ() {
           <FadeUp
             key={faq._id}
             tag="div"
-            className={`border-b rounded-3xl border-[#666] p-5 ${activeId === faq._id ? 'bg-digiFaqBlue' : ''}`}
+            className={`border-b rounded-3xl border-[#666] p-5 ${activeId === faq._id ? "bg-digiFaqBlue" : ""}`}
           >
             <div
-              className={`flex items-center justify-between cursor-pointer ${activeId === faq._id ? 'text-white' : 'text-[#011632]'}`}
+              className={`flex items-center justify-between cursor-pointer ${activeId === faq._id ? "text-white" : "text-[#011632]"}`}
               onClick={() => toggleActive(faq._id)}
             >
-              <p className="text-xl  md:text-2xl">{faq.question}</p>
+              <p className="text-xl    md:text-xl">{faq.question}</p>
               <div>{activeId === faq._id ? <RemoveIcon /> : <AddIcon />}</div>
             </div>
             {activeId === faq._id && <hr className="my-4" />}
@@ -35,13 +35,11 @@ export default function FAQ() {
               {activeId === faq._id && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
+                  animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-[17px] text-white md:text-[18px]">
-                    {faq.answer}
-                  </p>
+                  <p className="text-[15px] text-white ">{faq.answer}</p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -22,7 +22,10 @@ const ClinicServiceDetail = ({
     >
       <div className="md:w-[40%]  ">
         <div className="flex gap-3 ">
-          <Typography className="text-digiDarkBlue mb-2 text-left" variant="h4">
+          <Typography
+            className="text-digiDarkBlue mb-2 text-left"
+            variant="subtitle1"
+          >
             {header}
           </Typography>
         </div>

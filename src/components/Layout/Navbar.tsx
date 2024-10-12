@@ -134,12 +134,13 @@ export default function Navbar() {
           )}
           <Button
             variant="contained"
+            className="capitalize"
             sx={{
               backgroundColor: "white",
               color: "#1E285F",
               fontWeight: "bold",
               padding: "8px 16px",
-              display: isMobile ? "none" : "block" // Hide on mobile
+              display: isMobile ? "none" : "block"
             }}
             onClick={() =>
               navigateToSection(

@@ -22,16 +22,25 @@ export const ProfileCard = ({ userData }: ProfileCardProps) => {
             {userData?.name}
           </Typography>
           <div className="flex justify-between">
-            <Typography className="font-bold text-xl">
-              Age: {userData ? calculateAge(userData.dob) : ""}
+            <Typography>
+              <span className="font-bold w-[100%] text-end"> Age: </span>
+              {userData ? calculateAge(userData.dob) : ""}
             </Typography>
-            {/* <Typography className="font-bold text-xl">Sex:M</Typography> */}
           </div>
           <Typography variant="body1">
-            Phone Number : {userData?.phone_number}
+            <span className="font-bold w-[100%] text-end"> Phone Number: </span>
+            : {userData?.phone_number}
           </Typography>
-          <Typography variant="body1">Email : {userData?.email}</Typography>
-          <Typography variant="body1">Address : {userData?.address}</Typography>
+          <Typography variant="body1">
+            {" "}
+            <span className="font-bold w-[100%] text-end"> Email: </span>
+            {userData?.email}
+          </Typography>
+          <Typography variant="body1">
+            {" "}
+            <span className="font-bold w-[100%] text-end"> Address:</span>
+            {userData?.address}
+          </Typography>
         </div>
       </div>
     </div>

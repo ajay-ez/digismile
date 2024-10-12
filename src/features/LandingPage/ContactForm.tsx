@@ -32,7 +32,7 @@ const ContactUsForm = () => {
       {() => (
         <Form>
           <Box mb={2}>
-            <Typography variant="h5" className="text-center">
+            <Typography variant="subtitle1" className="text-center">
               Send Us a Message
             </Typography>
           </Box>
