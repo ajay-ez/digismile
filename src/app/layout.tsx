@@ -9,6 +9,7 @@ import "./globals.css";
 import React from "react";
 import { ReduxProvider } from "@/providers/ReduxProvider";
 import { ThemeProvider } from "@/providers/ThemeProvider"; // Import ThemeProvider
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,6 +53,22 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${atkinson.variable} ${bangers.variable} ${league.variable} ${fredoka.variable}`}
     >
+      <head>
+        <Script id="chatbot-config" strategy="beforeInteractive">
+          {`
+            window.embeddedChatbotConfig = {
+              chatbotId: "1ZYPlrW9E56Qhv7BVhwjH",
+              domain: "www.chatbase.co"
+            };
+          `}
+        </Script>
+
+        <Script
+          src="https://www.chatbase.co/embed.min.js"
+          strategy="afterInteractive"
+          defer
+        />
+      </head>
       <body>
         <ReduxProvider>
           <ThemeProvider>{children}</ThemeProvider>

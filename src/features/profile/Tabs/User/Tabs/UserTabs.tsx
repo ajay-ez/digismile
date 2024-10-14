@@ -8,6 +8,7 @@ import { OptionKey, useTabOptions } from "./hooks/useTabOptions";
 import { DocumentTable } from "./Documents/DocumentTable";
 import { CheckupTable } from "./Checkups/CheckupTable";
 import { Prescription } from "./Prescription/Prescription";
+import { useGetUserMedicalRecordsQuery } from "@/services/apiServices/profileService";
 
 type TabsProps = {
   userId: string;
@@ -15,15 +16,16 @@ type TabsProps = {
 export function UserTabs({ userId }: TabsProps) {
   const { menuItems } = useTabOptions({ userId });
   const isMobile = useMediaQuery("(max-width:764px)");
+  const { data } = useGetUserMedicalRecordsQuery(userId);
 
   const searchParams = useSearchParams();
 
   const tab = searchParams.get("subTab");
 
   const categoryRenderer: Record<OptionKey, ReactNode> = {
-    prescription: <Prescription />,
-    checkups: <CheckupTable />,
-    documents: <DocumentTable />
+    prescription: <Prescription medicalRecords={data?.medical_records} />,
+    checkups: <CheckupTable medicalRecords={data?.medical_records} />,
+    documents: <DocumentTable medicalRecords={data?.medical_records} />
   };
 
   return (
