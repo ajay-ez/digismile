@@ -105,13 +105,22 @@ export default function Navbar() {
               Contact
             </Button>
             {isError && (
-              <Button
-                className="font-bold capitalize"
-                color="inherit"
-                onClick={() => navigateToSection("signup")}
-              >
-                Signup
-              </Button>
+              <>
+                <Button
+                  className="font-bold capitalize"
+                  color="inherit"
+                  onClick={() => navigateToSection("signup")}
+                >
+                  Signup
+                </Button>
+                <Button
+                  className="font-bold capitalize"
+                  color="inherit"
+                  onClick={() => navigateToSection("login")}
+                >
+                  Login
+                </Button>
+              </>
             )}
           </Box>
         ) : (
@@ -194,9 +203,14 @@ export default function Navbar() {
               <ListItemText primary="Contact" />
             </ListItem>
             {isError && (
-              <ListItem button onClick={() => navigateToSection("signup")}>
-                <ListItemText primary="Signup" />
-              </ListItem>
+              <>
+                <ListItem onClick={() => navigateToSection("signup")}>
+                  <ListItemText primary="Signup" />
+                </ListItem>
+                <ListItem onClick={() => navigateToSection("login")}>
+                  <ListItemText primary="Login" />
+                </ListItem>
+              </>
             )}
             <ListItem
               button
