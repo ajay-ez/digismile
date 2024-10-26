@@ -12,7 +12,7 @@ import { city } from "./city";
 
 const LoginSchema = Yup.object().shape({
   city: requiredCharField("City"),
-  problem: requiredCharField("Problem")
+  problem: requiredCharField("Reason For Visit")
 });
 
 interface QuickAppointmentFormProps {
@@ -68,8 +68,8 @@ const QuickAppointmentForm = React.forwardRef(
                 <FieldInput
                   name="problem"
                   type="text"
-                  label="Problem"
-                  placeholder="Problem.."
+                  label="Reason for visit"
+                  placeholder="Reason for visit.."
                   required
                 />
               </Box>

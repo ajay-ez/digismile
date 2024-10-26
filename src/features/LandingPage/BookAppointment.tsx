@@ -6,9 +6,9 @@ import AppointmentForm from "./AppointmentForm";
 
 const BookAppointment = () => {
   return (
-    <div className="bg-[#003060] m-4 p-4 rounded-lg">
+    <div className="bg-[#003060] m-4 p-4  py-8 pb-24 rounded-lg">
       <Typography className="text-3xl text-white  font-semibold">
-        Make an <span className="text-5xl font-serif">Appointment</span>
+        Request an <span className="text-5xl font-serif">Appointment</span>
       </Typography>
       <div className="flex flex-col gap-4 md:flex-row justify-around items-center mt-3">
         <Box className="flex md:w-[40%] justify-end ">
@@ -18,7 +18,7 @@ const BookAppointment = () => {
             className="rounded-xl w-full flip"
           />
         </Box>
-        <Box className="bg-seviceBg md:w-[50%] p-3 rounded-lg shadow-appointment-card">
+        <Box className="bg-seviceBg md:w-[50%] p-3 rounded-lg shadow-appointment-card py-8">
           <AppointmentForm />
         </Box>
       </div>

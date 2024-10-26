@@ -48,6 +48,9 @@ const ClinicServices = () => {
 
         {/* Services with video */}
         <div>
+          <Typography variant="h1" className="text-center mb-16  ">
+            Services we provide
+          </Typography>
           <Stack gap={4} className="p-4 ">
             {projectConstants.clinicServiceDetails.map(
               (serviceDetail: any, index: number) => (

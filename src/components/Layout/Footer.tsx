@@ -4,23 +4,20 @@ import { Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-
+import { FollowUsSection } from "./FollowUsSection";
 const Footer = () => {
   const title = "font-bold text-lg text-white";
-  // const value = "";
   return (
-    <footer className="bg-gray-800 text-white py-4 mt-auto p-5">
-      <div className="flex flex-col  lg:flex-row gap-8 justify-between">
-        <div className="lg:w-[20%]">
-          <Image src={digismileLogoImage} alt="logo" />
-          <Typography className="mt-2 text-center text-xl text-white">
-            Brighten your smile today
+    <footer className="bg-[#1E285F] text-white py-4 mt-auto p-5">
+      <div className="flex flex-col    gap-8 justify-between">
+        <div className="flex flex-col justify-center items-center">
+          <Image src={digismileLogoImage} alt="logo" width={200} height={100} />
+          <Typography className="mt-2 text-center text-2xl text-white">
+            Brighten Your Smile Today
           </Typography>
         </div>
 
-        <div className="flex flex-col justify-between lg:flex-row gap-8">
+        <div className="flex flex-col justify-between   gap-8">
           <div className="flex justify-between gap-8">
             <div className="flex flex-col">
               <Typography className={title}>Pages</Typography>
@@ -44,19 +41,7 @@ const Footer = () => {
                 (571) 374-8000 (Burke)
               </Typography>
             </div>
-            <div className="flex flex-col items-center">
-              <Typography className={title}>Follow us</Typography>
-              <div>
-                <p className="text-center text-white">
-                  <FacebookIcon className="mx-2" />
-                  Facebook
-                </p>
-              </div>
-              <div className="text-center">
-                <InstagramIcon className="mx-2" />
-                Instagram
-              </div>
-            </div>
+            <FollowUsSection />
           </div>
           <div className="flex flex-col lg:max-w-[40%]">
             <Typography className={title}>Location</Typography>

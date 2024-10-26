@@ -4,7 +4,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
 import { Call } from "@mui/icons-material";
 
-const HomeCarousel = () => {
+const LandingPageVideo = () => {
   const router = useRouter();
 
   const navigateToSection = (id: string) => {
@@ -57,13 +57,13 @@ const HomeCarousel = () => {
         <Box>
           <Typography
             variant="h5"
-            className="font-bold font-league text-digiDarkBlue text-center"
+            className="font-bold font-league text-[#dfdfc8] text-center"
           >
-            Welcome Back!
+            Welcome!
           </Typography>
           <Typography
             variant="h4"
-            className="font-bold font-league text-digiDarkBlue text-center mt-2"
+            className="font-bold font-league text-[#dfdfc8] text-center mt-2"
           >
             Get your best ever
             <br /> Dental Experience!
@@ -98,9 +98,12 @@ const HomeCarousel = () => {
             <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
               <Call className="text-blue-600" />
             </div>
-            <div>
+            <div className="flex flex-col items-center justify-center  ">
               <Typography className="font-bold">Call us</Typography>
-              <Typography>(571) 374-8000</Typography>
+              <div className="flex gap-2 items-center">
+                <Typography className=" ">(571) 374-8000 (Burke)</Typography>
+                <Typography>(202) 545-6336 (D.C )</Typography>
+              </div>
             </div>
           </div>
         </div>
@@ -109,4 +112,4 @@ const HomeCarousel = () => {
   );
 };
 
-export default HomeCarousel;
+export default LandingPageVideo;

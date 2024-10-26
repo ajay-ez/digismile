@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
-import { Box, Button, CircularProgress, Grid } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import {
   requiredCharField,
   contactNumberValidation,
@@ -12,13 +12,14 @@ import { useUnAuthUserAppointmentMutation } from "@/services/apiServices/appoint
 import { SuccessPopup } from "@/components/common/SuccessPopup";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import OptionsField from "@/components/common/InputFields/OptionsField";
+import { city } from "../profile/Tabs/Appointments/Tabs/QuickAppointments/city";
 
 const validationSchema = Yup.object({
   first_name: requiredCharField("First Name"),
   last_name: requiredCharField("Last Name"),
   phone_number: contactNumberValidation,
-  problem: requiredCharField("Health Problem"),
-  date_of_birth: Yup.date().required("Date of Birth is required").nullable(),
+  problem: requiredCharField("Reason for visit"),
   appointment_date: Yup.date()
     .required("Appointment Date is required")
     .nullable(),
@@ -34,6 +35,7 @@ const initialValues = {
   problem: "",
   date_of_birth: "",
   appointment_date: "",
+  city: "dc",
   privacyPolicy: false
 };
 
@@ -55,7 +57,7 @@ const AppointmentForm = () => {
       }
     });
   };
-
+  const onSelectCity = () => {};
   return (
     <>
       <SuccessPopup
@@ -79,7 +81,11 @@ const AppointmentForm = () => {
                 <FieldInput label="Last Name" name="last_name" type="text" />
               </Grid>
               <Grid item xs={12} md={6}>
-                <FieldInput label="Contact" name="phone_number" type="text" />
+                <FieldInput
+                  label="Contact Number"
+                  name="phone_number"
+                  type="text"
+                />
               </Grid>
               <Grid item xs={12} md={6}>
                 <FieldInput label="Email" name="email" type="text" />
@@ -99,8 +105,21 @@ const AppointmentForm = () => {
                   type="date"
                 />
               </Grid>
+              <Grid item xs={12} md={6}>
+                <OptionsField
+                  options={city}
+                  name="city"
+                  label="Location"
+                  required
+                  handleChange={onSelectCity}
+                />
+              </Grid>
               <Grid item xs={12} md={12}>
-                <FieldInput label="Problem" name="problem" type="text" />
+                <FieldInput
+                  label="Reason For Visit"
+                  name="problem"
+                  type="text"
+                />
               </Grid>
               <Grid item xs={12} md={6}>
                 <Box display="flex flex-col" alignItems="center">
@@ -129,6 +148,9 @@ const AppointmentForm = () => {
                   />
                 </Box>
               </Grid>
+              <Typography className="text-center text-sm mx-8">
+                Your Appointment will be Confirmed once Slot is Available
+              </Typography>
               <Grid item xs={12}>
                 <Box mt={2} className="flex justify-center">
                   <Button
@@ -137,11 +159,11 @@ const AppointmentForm = () => {
                   >
                     {isLoading ? (
                       <>
-                        Confirming..
+                        Requesting..
                         <CircularProgress />
                       </>
                     ) : (
-                      "Confirm Appointment"
+                      "Request Appointment"
                     )}
                   </Button>
                 </Box>

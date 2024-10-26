@@ -11,9 +11,9 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
   Menu,
-  MenuItem
+  MenuItem,
+  Typography
 } from "@mui/material";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -70,11 +70,11 @@ export default function Navbar() {
 
   return (
     <AppBar position="sticky" sx={{ backgroundColor: "#1E285F" }}>
-      <Toolbar className="flex justify-between items-center p-4 rounded-3xl">
+      <Toolbar className="flex justify-between items-center p-4  rounded-3xl">
         <Image
           onClick={() => navigateToSection("/")}
           src={digismileLogoImage}
-          height={50}
+          height={90}
           alt="digismile"
           className="cursor-pointer"
         />
@@ -83,38 +83,39 @@ export default function Navbar() {
           // Desktop view
           <Box className="flex gap-2">
             <Button
-              className="font-bold capitalize"
+              className="font-bold capitalize text-[1rem]"
               onClick={() => navigateToSection("/")}
               color="inherit"
             >
               Home
             </Button>
-            <Button className="font-bold capitalize" color="inherit">
+            <Button
+              className="font-bold capitalize text-[1rem]"
+              color="inherit"
+            >
               <Link href={"about-us"} prefetch>
                 About
               </Link>
             </Button>
             <Button
               onClick={() => navigateToSection("clinic-services")}
-              className="font-bold capitalize"
+              className="font-bold capitalize text-[1rem]"
               color="inherit"
             >
               Services
             </Button>
-            <Button className="font-bold capitalize" color="inherit">
-              Contact
-            </Button>
+
             {isError && (
               <>
                 <Button
-                  className="font-bold capitalize"
+                  className="font-bold capitalize text-[1rem]"
                   color="inherit"
                   onClick={() => navigateToSection("signup")}
                 >
                   Signup
                 </Button>
                 <Button
-                  className="font-bold capitalize"
+                  className="font-bold capitalize text-[1rem]"
                   color="inherit"
                   onClick={() => navigateToSection("login")}
                 >
@@ -143,7 +144,7 @@ export default function Navbar() {
           )}
           <Button
             variant="contained"
-            className="capitalize"
+            className="capitalize hover:bg-white"
             sx={{
               backgroundColor: "white",
               color: "#1E285F",
@@ -177,7 +178,7 @@ export default function Navbar() {
 
       {/* Drawer for mobile menu */}
       <Drawer
-        anchor="left"
+        anchor="bottom"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
@@ -187,33 +188,67 @@ export default function Navbar() {
           onClick={() => setDrawerOpen(false)}
         >
           <List>
-            <ListItem button onClick={() => navigateToSection("/")}>
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button onClick={() => navigateToSection("about-us")}>
-              <ListItemText primary="About" />
+            <ListItem
+              className="cursor-pointer "
+              onClick={() => navigateToSection("/")}
+            >
+              <Typography
+                variant="subtitle1"
+                className="text-[1rem] text-digiDarkBlue font-bold"
+              >
+                Home
+              </Typography>
             </ListItem>
             <ListItem
-              button
+              className="cursor-pointer text-[1rem] text-digiDarkBlue"
+              onClick={() => navigateToSection("about-us")}
+            >
+              <Typography
+                variant="subtitle1"
+                className="text-[1rem] text-digiDarkBluek font-bold"
+              >
+                About Us
+              </Typography>
+            </ListItem>
+            <ListItem
+              className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("clinic-services")}
             >
-              <ListItemText primary="Services" />
+              <Typography
+                variant="subtitle1"
+                className="text-[1rem] text-digiDarkBluek font-bold"
+              >
+                Services
+              </Typography>
             </ListItem>
-            <ListItem button onClick={() => navigateToSection("contact")}>
-              <ListItemText primary="Contact" />
-            </ListItem>
+
             {isError && (
               <>
-                <ListItem onClick={() => navigateToSection("signup")}>
-                  <ListItemText primary="Signup" />
+                <ListItem
+                  className="cursor-pointer text-[1rem] text-digiDarkBlue"
+                  onClick={() => navigateToSection("signup")}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    className="text-[1rem] text-digiDarkBlue font-bold"
+                  >
+                    Signup
+                  </Typography>
                 </ListItem>
-                <ListItem onClick={() => navigateToSection("login")}>
-                  <ListItemText primary="Login" />
+                <ListItem
+                  className="cursor-pointer text-[1rem] text-digiDarkBlue"
+                  onClick={() => navigateToSection("login")}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    className="text-[1rem] text-digiDarkBlue font-bold"
+                  >
+                    Login
+                  </Typography>
                 </ListItem>
               </>
             )}
             <ListItem
-              button
               onClick={() =>
                 navigateToSection(
                   isError
@@ -222,7 +257,12 @@ export default function Navbar() {
                 )
               }
             >
-              <ListItemText primary="Request An Appointment" />
+              <Typography
+                variant="subtitle1"
+                className="text-[1rem] text-digiDarkBlue font-bold"
+              >
+                Request An Appointment
+              </Typography>
             </ListItem>
           </List>
         </Box>

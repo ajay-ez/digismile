@@ -28,10 +28,11 @@ import { useRegisterMutation } from "@/services/apiServices/authService";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { ArrowRightIcon } from "@mui/x-date-pickers";
 const SignupSchema = Yup.object().shape({
-  name: requiredCharField("Name"),
+  name: requiredCharField("First Name"),
+  last_name: requiredCharField("Last Name"),
   date_of_birth: requiredCharField("Date of Birth"),
-  address: requiredCharField("Address"),
   email: emailValidation,
   password: passwordValidation,
   confirmPassword: Yup.string()
@@ -59,6 +60,7 @@ const SignupPage = () => {
 
   const initialSignupValues: SignupFormValues = {
     name: "",
+    last_name: "",
     date_of_birth: "",
     address: "",
     email: "",
@@ -120,7 +122,18 @@ const SignupPage = () => {
                       <FieldInput
                         name="name"
                         type="text"
-                        label="Name"
+                        label="First Name"
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box mb={2}>
+                      <FieldInput
+                        name="last_name"
+                        type="text"
+                        label="Last Name"
                         placeholder="Enter your name"
                         required
                       />
@@ -136,25 +149,23 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  {/* <Grid item xs={12} md={6}>
                     <Box mb={2}>
                       <FieldInput
                         name="address"
                         type="text"
                         label="Address"
                         placeholder="Enter your address"
-                        required
                       />
                     </Box>
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs={12} md={6}>
                     <Box mb={2}>
                       <FieldInput
                         name="problem"
                         type="text"
-                        label="Problem"
-                        placeholder="Enter your Problem"
-                        required
+                        label="Reason For Visit"
+                        placeholder="Enter Reason For Visit"
                       />
                     </Box>
                   </Grid>
@@ -271,6 +282,16 @@ const SignupPage = () => {
                       Already have an account?{" "}
                       <Link href="/login" className="text-blue-900 text-lg">
                         Login
+                      </Link>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography className="text-center">
+                      <Link
+                        href="/"
+                        className="text-blue-900 text-lg text-center"
+                      >
+                        Continue Without Registration <ArrowRightIcon />
                       </Link>
                     </Typography>
                   </Grid>

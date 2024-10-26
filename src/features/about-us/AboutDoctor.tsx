@@ -2,6 +2,7 @@ import { about_1, about_2, dr_image } from "@/assets/images";
 import { Typography } from "@mui/material";
 import React from "react";
 import Image from "next/image";
+import { StarOutline } from "@mui/icons-material";
 
 export const AboutDoctor = () => {
   return (
@@ -31,10 +32,11 @@ export const AboutDoctor = () => {
           <div>
             <Image src={about_2} alt="about-2" />
             <Typography className="text-center font-bold text-2xl text-[#011632]">
-              Success Rate
+              Reviews
             </Typography>
             <Typography className="text-center font-bold text-2xl text-[#011632]">
-              95%
+              204/4.5
+              <StarOutline className="text-yellow-400 mx-1 mb-1" />
             </Typography>
           </div>
         </div>

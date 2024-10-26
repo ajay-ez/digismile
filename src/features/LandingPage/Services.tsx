@@ -6,7 +6,7 @@ import ServiceCard from "../services/ServiceCard";
 
 const Services = () => {
   return (
-    <div className="bg-blue-white-gradient py-3">
+    <div className="bg-blue-white-gradient pb-24">
       <Typography variant="h1" className="text-center p-3 font-bold">
         Our Services
       </Typography>
@@ -24,7 +24,7 @@ const Services = () => {
           />
         ))}
       </div>
-      <Typography className="font-semibold text-center mt-2">
+      <Typography className="font-semibold text-center mt-8">
         Our state-of-the-art facilities are equipped with the latest technology
         to <br />
         ensure optimal care for both children and adults

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "aos/dist/aos.css";
-import HomeCarousel from "./HomeCarousel";
+import LandingPageVideo from "./LandingPageVideo";
 import Services from "./Services";
 import BookAppointment from "./BookAppointment";
 import WhoWeAre from "./WhoWeAre";
@@ -23,9 +23,9 @@ const LandingPage = () => {
 
   return (
     <DigiLayout>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-24">
         <div data-aos="fade-up">
-          <HomeCarousel />
+          <LandingPageVideo />
           {isUserAuthorize && <UserWelcome />}
         </div>
 

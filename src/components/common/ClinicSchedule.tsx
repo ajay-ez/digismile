@@ -8,7 +8,7 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
     <div
       className={`${renderToHome ? "bg-blue-white-gradient" : ""} flex flex-col items-center`}
     >
-      <Typography variant="h1" className="text-center  mb-2">
+      <Typography variant="h1" className="text-center  mb-8">
         Schedule
       </Typography>
       <div
@@ -31,7 +31,7 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
             </div>
             <div className="flex gap-3 justify-between">
               <Typography>Friday</Typography>
-              <Typography> 10:00 am – 5:00 pm</Typography>
+              <Typography> 10:00 am - 5:00 pm</Typography>
             </div>
           </div>
           <div>
@@ -40,19 +40,19 @@ export const ClinicSchedule = ({ renderToHome }: Props) => {
             </Typography>
             <div className="flex gap-3 justify-between">
               <Typography>Tuesday</Typography>
-              <Typography>09:00 am – 4:00 pm</Typography>
+              <Typography>09:00 am - 4:00 pm</Typography>
             </div>
             <div className="flex gap-3 justify-between">
               <Typography>Thursday</Typography>
-              <Typography>09:00 am – 4:00 pm</Typography>
+              <Typography>09:00 am - 4:00 pm</Typography>
             </div>
             <div className="flex gap-3 justify-between">
               <Typography>Saturday</Typography>
-              <Typography>09:00 am – 4:00 pm</Typography>
+              <Typography>09:00 am - 4:00 pm</Typography>
             </div>
           </div>
         </div>
-        <Typography className="text-center my-4 font-bold">
+        <Typography className="text-center my-4 font-bold text-lg">
           Enjoy Your Sunday—We’ll Be Ready to Welcome You Back on Monday😉
         </Typography>
       </div>
