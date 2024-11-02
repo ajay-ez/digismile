@@ -31,7 +31,7 @@ const WhoWeAre = () => {
         </Typography>
       </div>
       <div>
-        <Image src={dr_image} alt="d-1" />
+        <Image src={dr_image} alt="d-1" className="w-[400px] h-[500px]" />
       </div>
     </div>
   );

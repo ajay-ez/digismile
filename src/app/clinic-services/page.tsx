@@ -8,16 +8,14 @@ import { faq } from "@/assets/images";
 import Image from "next/image";
 import SmileJourney from "@/features/services/SmileJourney";
 import ClinicServiceDetail from "@/features/services/ClinicServiceDetail";
+import { TextImageOverlay } from "@/components/common/TextImageOverlay";
 const ClinicServices = () => {
   return (
     <DigiLayout>
       <div className="bg-seviceBg min-h-screen ">
-        <Typography variant="h1" className="text-center p-3  ">
-          Services
-        </Typography>
-
+        <TextImageOverlay title="Services" />
         {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-24">
           {projectConstants.clinicService.map((service) => (
             <ServiceCard
               key={service.alt}
@@ -48,8 +46,11 @@ const ClinicServices = () => {
 
         {/* Services with video */}
         <div>
-          <Typography variant="h1" className="text-center mb-16  ">
-            Services we provide
+          <Typography variant="h1" className="text-center  mb-2  ">
+            Comprehensive Dental SERVICES by Smile Experts Dental
+          </Typography>
+          <Typography variant="subtitle1" className="text-center mb-16  ">
+            Your Path to a Radiant Smile
           </Typography>
           <Stack gap={4} className="p-4 ">
             {projectConstants.clinicServiceDetails.map(

@@ -6,7 +6,7 @@ import { StarOutline } from "@mui/icons-material";
 
 export const AboutDoctor = () => {
   return (
-    <div className="flex flex-col-reverse gap-5 md:flex-row md:gap-2 mt-3 items-center justify-center">
+    <div className="flex flex-col-reverse gap-8 md:flex-row md:gap-2 mt-3 items-center justify-center">
       <div className="bg-white p-3 md:w-[50%] rounded-lg">
         <Typography variant="subtitle1" className="text-left mb-5">
           Dr. Andleeb Mahmood
@@ -42,7 +42,7 @@ export const AboutDoctor = () => {
         </div>
       </div>
       <div>
-        <Image src={dr_image} alt="d-1" />
+        <Image src={dr_image} alt="d-1" className="w-[400px] h-[450px] mx-6" />
       </div>
     </div>
   );

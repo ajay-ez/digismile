@@ -94,18 +94,11 @@ const LandingPageVideo = () => {
             </Button>
           </div>
 
-          <div className="flex gap-8">
+          {/* <div className="flex gap-8">
             <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
               <Call className="text-blue-600" />
             </div>
-            <div className="flex flex-col items-center justify-center  ">
-              <Typography className="font-bold">Call us</Typography>
-              <div className="flex gap-2 items-center">
-                <Typography className=" ">(571) 374-8000 (Burke)</Typography>
-                <Typography>(202) 545-6336 (D.C )</Typography>
-              </div>
-            </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

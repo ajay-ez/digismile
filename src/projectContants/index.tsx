@@ -1,110 +1,134 @@
 import {
   cosmetic,
   dental_mplants,
+  dental_venuer,
+  denture_service,
   emergency_dentistry,
+  filling_service,
   prevention,
   root_canal_clinic,
-  service_detail
+  root_canal_service,
+  // service_detail,
+  teeth_whitening_service
 } from "@/assets/images";
 const projectConstants = {
   clinicService: [
     {
       image: root_canal_clinic,
       alt: "service1",
-      title: "Root Canal Treatment",
-      desc: "Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth.",
+      title: "Root Canal",
+      desc: "Tooth extraction is a dental procedure that involves the removal of a tooth from its socket in the bone. This procedure is often necessary for various reasons, including severe tooth decay, infection, gum disease, or overcrowding. The extraction process typically involves numbing the area with local anesthesia, followed by the dentist gently loosening the tooth using specialized instruments and finally removing it.  ",
       navLink: "l"
     },
     {
       image: cosmetic,
       alt: "service2",
-      title: "Cosmetic Dentist",
-      desc: "Cosmetic dentistry is the branch of dentistry that focuses on improving the appearance of your smile.",
+      title: "Dentures",
+      desc: "Complete dentures are removable prosthetics that replace all natural teeth in an arch. They are custom-fitted to the gums and jaw, restoring functionality and aesthetics for individuals who have lost all their teeth. Partial dentures replace specific missing teeth while preserving existing ones. They use metal clasps or precision attachments for stability, helping maintain a natural appearance and improving chewing and speaking abilities.",
       navLink: "l"
     },
     {
       image: dental_mplants,
       alt: "service87",
-      title: "Dental Implants",
-      desc: "A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or bridge.",
+      title: "Dental veneer",
+      desc: "It is a custom-made cover placed on the front of a tooth to enhance appearance by adjusting shape, size, and color. The procedure begins with cleaning and prepping the tooth, sometimes involving slight reshaping. A temporary veneer is then fitted to ensure comfort and proper alignment, during which the patient avoids hard foods. Once finalized, the permanent veneer is fabricated and securely bonded to the tooth, providing a natural look and seamless fit.",
       navLink: "l"
     },
     {
       image: root_canal_clinic,
       alt: "service109",
-      title: "Teeth Whitening",
-      desc: "It's never been easier to brighten your smile at home. There are all kinds of products you can try.",
+      title: "Teeth whitening",
+      desc: "Teeth whitening is a cosmetic dental procedure that removes stains and discoloration to brighten teeth, often enhancing the overall smile. It involves applying a bleaching agent, usually containing hydrogen peroxide or carbamide peroxide, to the teeth. This process can be done in-office for immediate results or through take-home kits prescribed by a dentist. Whitening is effective for treating stains from foods, drinks, smoking, and aging, though it may be less effective on deeper, intrinsic stains. ",
       navLink: "l"
     },
     {
       image: emergency_dentistry,
       alt: "service13",
-      title: "Emergency Dentistry",
-      desc: "In general, any dental problem that needs immediate treatment to stop bleeding, alleviate severe pain.",
+      title: "Fillings",
+      desc: "Filling is used to restore a tooth damaged by decay, preventing further deterioration and protecting the tooth’s inner structure. The process involves removing the decayed material, cleaning the area, and filling it with a durable composite resin or other material that blends with the tooth. This strengthens the tooth and helps maintain a natural look and function.",
       navLink: "l"
     },
     {
       image: prevention,
       alt: "Prevention",
       title: "Prevention",
-      desc: "Preventive dentistry is dental care that helps maintain good oral health. a combination of regular dental.",
+      desc: "Preventive dentistry is dental care that helps maintain good oral health. A combination of regular dental check-ups, cleanings, and at-home hygiene practices can prevent most dental problems.",
       navLink: "l"
     }
   ],
   clinicServiceDetails: [
     {
       header: "Root Canal",
-      desc: "Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth.",
+      desc: "Tooth extraction is a dental procedure that involves the removal of a tooth from its socket in the bone. This procedure is often necessary for various reasons, including severe tooth decay, infection, gum disease, or overcrowding.The extraction process typically involves numbing the area with local anesthesia, followed by the dentist gently loosening the tooth using specialized instruments and finally removing it. ",
       headerImage: root_canal_clinic,
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      asset: service_detail
+      asset: root_canal_service
     },
     {
-      header: "Teeth Whitening",
-      desc: "It's never been easier to brighten your smile at home. There are all kinds of products you can try.",
+      header: "Dentures",
+      desc: "Complete dentures are removable prosthetics that replace all natural teeth in an arch. They are custom-fitted to the gums and jaw, restoring functionality and aesthetics for individuals who have lost all their teeth.Partial dentures replace specific missing teeth while preserving existing ones. They use metal clasps or precision attachments for stability, helping maintain a natural appearance and improving chewing and speaking abilities.",
       headerImage: root_canal_clinic,
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      asset: service_detail
+      asset: denture_service
     },
     {
-      header: "Dental Implants",
-      desc: "A dental implant is an artificial tooth root that’s placed into your jaw to hold a prosthetic tooth or bridge.",
+      header: "Dental veneer ",
+      desc: "It is a custom-made cover placed on the front of a tooth to enhance appearance by adjusting shape, size, and color. The procedure begins with cleaning and prepping the tooth, sometimes involving slight reshaping. A temporary veneer is then fitted to ensure comfort and proper alignment, during which the patient avoids hard foods. Once finalized, the permanent veneer is fabricated and securely bonded to the tooth, providing a natural look and seamless fit.",
       headerImage: root_canal_clinic,
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      asset: service_detail
+      asset: dental_venuer
     },
     {
-      header: "Prevention",
-      desc: "Preventive dentistry is dental care that helps maintain good oral health. a combination of regular dental. ",
+      header: "Teeth whitening",
+      desc: "Teeth whitening is a cosmetic dental procedure that removes stains and discoloration to brighten teeth, often enhancing the overall smile. It involves applying a bleaching agent, usually containing hydrogen peroxide or carbamide peroxide, to the teeth. This process can be done in-office for immediate results or through take-home kits prescribed by a dentist. Whitening is effective for treating stains from foods, drinks, smoking, and aging, though it may be less effective on deeper, intrinsic stains. Regular maintenance helps preserve results, creating a lasting, whiter smile.",
       headerImage: root_canal_clinic,
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      asset: service_detail
+      asset: teeth_whitening_service
+    },
+    {
+      header: "Fillings",
+      desc: "Filling is used to restore a tooth damaged by decay, preventing further deterioration and protecting the tooth’s inner structure. The process involves removing the decayed material, cleaning the area, and filling it with a durable composite resin or other material that blends with the tooth. This strengthens the tooth and helps maintain a natural look and function.",
+      headerImage: root_canal_clinic,
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      asset: filling_service
     }
   ],
   faqs: [
     {
       _id: "faq1",
-      question: "What causes tooth sensitivity?",
+      question: "Why do you need dental Exam?",
       answer:
-        "Tooth sensitivity can be caused by a variety of factors, including worn enamel, exposed tooth roots, cavities, gum disease, or recent dental procedures."
+        "Regular dental exams are essential for maintaining optimal oral health. During these checkups, your dentist thoroughly examines your teeth, gums, and overall oral health, including screenings for oral cancer and reviewing any past treatments. Regular visits help detect issues early and provide timely advice on treatments to prevent further complications. Prioritizing routine dental exams ensures long-term dental health, cleaner teeth, and stronger gums"
     },
     {
       _id: "faq2",
-      question: "What can I do to prevent cavities?",
+      question: "What to expect during Dental Examination?",
       answer:
-        "To prevent cavities, practice good oral hygiene by brushing twice a day, flossing daily, using fluoride toothpaste, reducing sugary and acidic foods, and visiting your dentist regularly for check-ups."
+        "During a dental examination, you can expect a comprehensive assessment tailored to your oral health history. This typically includes bitewing X-rays to identify tooth decay, specific X-rays for previous dental work, and possibly intraoral or facial photos. Your visit will also include a thorough dental cleaning to remove plaque and tartar. After the examination, your dentist will provide recommendations for any necessary treatments or follow-up procedures to maintain optimal oral health. Regular dental exams help ensure a healthier smile and prevent future dental issues."
     },
     {
       _id: "faq3",
-      question: "Are dental X-rays safe?",
+      question: "What does a thorough cleaning of the mouth mean?",
       answer:
-        "Yes, dental X-rays are generally safe. They use a very low level of radiation, and protective measures such as lead aprons are used to minimize exposure. Dental X-rays are important for diagnosing issues that aren't visible during a regular dental exam."
+        "A thorough dental cleaning is a routine procedure that involves the removal of plaque and tartar without the need for medication. During the cleaning, your dentist uses scalers or sonic handpieces to effectively eliminate built-up calculus. The process concludes with flossing and polishing your teeth, ensuring a clean and healthy smile. Regular professional cleanings are essential for preventing gum disease, cavities, and maintaining optimal oral hygiene."
     },
     {
       _id: "faq4",
-      question: "What are the signs of gum disease?",
+      question: "What is the difference between regular and deep cleaning?",
       answer:
-        "Signs of gum disease include red, swollen, or bleeding gums, persistent bad breath, receding gums, loose teeth, and sensitivity. Early detection and treatment are important to prevent more serious issues."
+        "The primary difference between regular and deep dental cleaning lies in the extent of the procedure. Regular cleaning focuses on removing plaque and tartar from the tooth surface, while deep cleaning addresses periodontal issues like gum disease, deep pockets, and bone loss. After a deep cleaning, a maintenance schedule every three months is typically recommended to ensure ongoing oral health. Regular and deep cleanings are essential for preventing cavities, gum disease, and maintaining optimal dental hygiene."
+    },
+    {
+      _id: "faq5",
+      question: "What do you mean by Pediatric Dentistry?",
+      answer:
+        "Pediatric dentistry specializes in the oral health of children, from infancy through adolescence. This branch of dentistry is crucial for providing comprehensive oral care tailored to children's unique needs. It encompasses a range of services, including routine checkups, oral health exams for infants, cavity risk assessments, fluoride treatments, and sealants to prevent cavities."
+    },
+    {
+      _id: "faq4",
+      question: "Why is pediatric dentistry so important?",
+      answer:
+        "Pediatric dentistry is crucial for ensuring the oral health of children from infancy through adolescence. It provides comprehensive oral care, including routine checkups, oral health exams, and cavity risk assessments, all vital for maintaining healthy oral hygiene. Preventive measures such as fluoride treatments and dental sealants help protect against cavities, while pediatric dentists offer nutritional guidance and address common issues like thumb sucking and pacifier use. Additionally, early orthodontic evaluations assist in teeth straightening and bite correction. Pediatric dentistry also includes immediate treatment for dental emergencies, such as broken or damaged teeth, ensuring children receive the care they need for optimal dental development."
     }
   ]
 };

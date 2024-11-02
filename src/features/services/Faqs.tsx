@@ -39,7 +39,7 @@ export default function FAQ() {
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="text-[15px] text-white ">{faq.answer}</p>
+                  <p className="text-[17px] text-white ">{faq.answer}</p>
                 </motion.div>
               )}
             </AnimatePresence>

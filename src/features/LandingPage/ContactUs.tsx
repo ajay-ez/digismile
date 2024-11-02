@@ -6,7 +6,7 @@ const ContactUs = () => {
   return (
     <div>
       <Typography variant="h1" className="text-center p-4 font-bold">
-        Contact Us
+        Where we are located
       </Typography>
 
       <div className=" bg-digiLightBlue rounded-xl m-3">

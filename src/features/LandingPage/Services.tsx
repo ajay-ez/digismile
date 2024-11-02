@@ -3,6 +3,8 @@ import React from "react";
 import { Typography } from "@mui/material";
 import projectConstants from "@/projectContants";
 import ServiceCard from "../services/ServiceCard";
+import Slider from "react-slick";
+import { settings } from "./Gallery";
 
 const Services = () => {
   return (
@@ -13,18 +15,21 @@ const Services = () => {
       <Typography variant="subtitle1" className="text-center m-2 ">
         Comprehensive Services for Optimal Oral Health.
       </Typography>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        {projectConstants.clinicService.slice(0, 3).map((service) => (
-          <ServiceCard
-            key={service.alt}
-            title={service.title}
-            desc={service.desc}
-            image={service.image}
-            alt={service.alt}
-          />
-        ))}
+      <div className="   p-4">
+        <Slider {...settings} className="relative">
+          {projectConstants.clinicService.map((service) => (
+            <div key={service.alt} className="p-4">
+              <ServiceCard
+                title={service.title}
+                desc={service.desc}
+                image={service.image}
+                alt={service.alt}
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
-      <Typography className="font-semibold text-center mt-8">
+      <Typography className="font-semibold text-center mt-16">
         Our state-of-the-art facilities are equipped with the latest technology
         to <br />
         ensure optimal care for both children and adults

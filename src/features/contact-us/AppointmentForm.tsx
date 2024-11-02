@@ -1,3 +1,4 @@
+"use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
@@ -74,54 +75,53 @@ const AppointmentForm = () => {
         {() => (
           <Form>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <FieldInput label="First Name" name="first_name" type="text" />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <FieldInput label="Last Name" name="last_name" type="text" />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <FieldInput
                   label="Contact Number"
                   name="phone_number"
                   type="text"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <FieldInput label="Email" name="email" type="text" />
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <FieldInput
                   label="Date of Birth"
                   name="date_of_birth"
                   type="date"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <FieldInput
                   label="Appointment Date"
                   name="appointment_date"
                   type="date"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <OptionsField
                   options={city}
                   name="city"
                   label="Location"
-                  required
                   handleChange={onSelectCity}
                 />
               </Grid>
-              <Grid item xs={12} md={12}>
+              <Grid item xs={12} md={8}>
                 <FieldInput
                   label="Reason For Visit"
                   name="problem"
                   type="text"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <Box display="flex flex-col" alignItems="center">
                   <Field name="privacyPolicy">
                     {({ field }: { field: any; meta: any }) => (
@@ -144,17 +144,19 @@ const AppointmentForm = () => {
                   <ErrorMessage
                     name="privacyPolicy"
                     component="div"
-                    className="text-red-600 mt-1"
+                    className="text-red-400 mt-1"
                   />
                 </Box>
               </Grid>
+
               <Typography className="text-center text-sm mx-8">
                 Your Appointment will be Confirmed once Slot is Available
               </Typography>
+
               <Grid item xs={12}>
                 <Box mt={2} className="flex justify-center">
                   <Button
-                    className="bg-[#065084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800"
+                    className="bg-[#045084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800"
                     type="submit"
                   >
                     {isLoading ? (

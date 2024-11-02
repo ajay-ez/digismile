@@ -104,6 +104,13 @@ export default function Navbar() {
             >
               Services
             </Button>
+            <Button
+              onClick={() => navigateToSection("contact-us")}
+              className="font-bold capitalize text-[1rem]"
+              color="inherit"
+            >
+              Contact Us
+            </Button>
 
             {isError && (
               <>
@@ -155,7 +162,7 @@ export default function Navbar() {
             onClick={() =>
               navigateToSection(
                 isError
-                  ? "#book_appointment"
+                  ? "contact-us"
                   : `profile/${userId}?tab=appointments&subTab=quick-appointments`
               )
             }
@@ -178,7 +185,7 @@ export default function Navbar() {
 
       {/* Drawer for mobile menu */}
       <Drawer
-        anchor="bottom"
+        anchor="left"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
@@ -221,6 +228,17 @@ export default function Navbar() {
                 Services
               </Typography>
             </ListItem>
+            <ListItem
+              className="cursor-pointer text-[1rem] text-digiDarkBluek"
+              onClick={() => navigateToSection("contact-us")}
+            >
+              <Typography
+                variant="subtitle1"
+                className="text-[1rem] text-digiDarkBluek font-bold"
+              >
+                Contact Us
+              </Typography>
+            </ListItem>
 
             {isError && (
               <>
@@ -252,7 +270,7 @@ export default function Navbar() {
               onClick={() =>
                 navigateToSection(
                   isError
-                    ? "#book_appointment"
+                    ? "contact-us"
                     : `profile/${userId}?tab=appointments&subTab=quick-appointments`
                 )
               }

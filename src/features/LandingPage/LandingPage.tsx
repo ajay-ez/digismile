@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import LandingPageVideo from "./LandingPageVideo";
 import Services from "./Services";
-import BookAppointment from "./BookAppointment";
+
 import WhoWeAre from "./WhoWeAre";
 import Testimonial from "./Testimonial";
 import ContactUs from "./ContactUs";
@@ -11,6 +11,7 @@ import DigiLayout from "@/components/Layout";
 import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 import useAuthCheck from "@/hooks/useAuthCheck";
 import UserWelcome from "./UserWelcome";
+import Gallery from "./Gallery";
 
 const LandingPage = () => {
   const isUserAuthorize = useAuthCheck();
@@ -33,7 +34,7 @@ const LandingPage = () => {
           <Services />
         </div>
 
-        {!isUserAuthorize && (
+        {/* {!isUserAuthorize && (
           <div
             id="book_appointment"
             data-aos="fade-up"
@@ -42,9 +43,12 @@ const LandingPage = () => {
           >
             <BookAppointment />
           </div>
-        )}
+        )} */}
         <div id="about" data-aos="fade-up" data-aos-delay="100">
           <WhoWeAre />
+        </div>
+        <div id="gallery" data-aos="fade-up" data-aos-delay="100">
+          <Gallery />
         </div>
         <div id="testimonials" data-aos="fade-up" data-aos-delay="100">
           <Testimonial />
