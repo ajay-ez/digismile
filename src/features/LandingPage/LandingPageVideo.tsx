@@ -2,7 +2,6 @@ import React from "react";
 import { AppBar, Typography, Box, Button } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
-import { Call } from "@mui/icons-material";
 
 const LandingPageVideo = () => {
   const router = useRouter();

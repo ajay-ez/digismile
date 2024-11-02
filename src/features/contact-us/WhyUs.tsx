@@ -1,5 +1,4 @@
 import { service_detail } from "@/assets/images";
-import { CheckBox } from "@mui/icons-material";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
