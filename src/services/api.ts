@@ -9,6 +9,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("authToken");
+
     if (token) {
       headers.set("Authorization", `${token}`);
     }
@@ -22,8 +23,8 @@ const baseQueryWithReauth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
-  // If the response status is 404, clear the token
-  if (result?.error && result.error.status === 404) {
+
+  if (result?.error && result.error.status === 401) {
     localStorage.clear();
   }
 
