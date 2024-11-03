@@ -2,7 +2,6 @@ import React from "react";
 import {
   appointment_icon,
   confirmation_icon,
-  cosmetic,
   location_icon
 } from "@/assets/images";
 import { Stack, Typography } from "@mui/material";

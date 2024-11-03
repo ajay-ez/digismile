@@ -31,10 +31,6 @@ const ClinicServiceDetail = ({
         <Typography variant="body1" className="text-gray-700 leading-relaxed">
           {desc}
         </Typography>
-
-        {/* <div className="flex justify-start">
-          <YoutubeVideoDialog videoUrl={videoUrl} />
-        </div> */}
       </div>
 
       <div className="md:w-[50%] p-4 flex justify-center relative">
