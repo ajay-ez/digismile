@@ -1,26 +1,24 @@
-import { smile_journey } from "@/assets/images";
-import { KeyboardArrowRight } from "@mui/icons-material";
-import { Button, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import React from "react";
+import { Typography } from "@mui/material";
 
 const SmileJourney = () => {
   return (
-    <div className="w-[90%] bg-digiDarkBlue p-3 rounded-2xl">
-      <div className="flex flex-col-reverse justify-center items-center align-middle md:flex-row gap-2 md:justify-between">
-        <Stack justifyContent={"space-around"} gap="15px">
-          <Typography className="text-white font-bold text-2xl">
-            Say Goodbye to Braces Clear Aligners Will Transform Your Smile
-            Journey.
-          </Typography>
-          <div>
-            <Button className="capitalize rounded-xl" variant="contained">
-              Learn More <KeyboardArrowRight />
-            </Button>
-          </div>
-        </Stack>
-        <Image src={smile_journey} alt="smile" />
-      </div>
+    <div className="w-[90%] bg-comprehensive-gradient py-24 px-16 rounded-2xl  flex flex-col gap-8">
+      <Typography variant="h1" className="text-center">
+        Comprehensive Exam and Cleaning{" "}
+      </Typography>
+      <Typography variant="body1" className="text-center">
+        A dental emergency exam is necessary for issues like severe tooth pain,
+        signs of infection (such as gum irritation or jaw swelling), or trauma
+        that fractures a tooth. These symptoms require immediate attention to
+        address potential infections or damage effectively.
+      </Typography>
+      <Typography variant="body1" className="text-center">
+        During an emergency visit, the dentist performs targeted X-rays and a
+        focused examination to diagnose the problem and provide immediate
+        relief. In some cases, a referral to a specialist is needed. Regular
+        checkups and cleanings can help prevent such emergencies by catching
+        issues early when they are easier to treat.
+      </Typography>
     </div>
   );
 };

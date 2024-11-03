@@ -55,6 +55,11 @@ import teeth_whitening_service from "@/assets/clinicServices/newImages/Teeth whi
 import denture_service from "@/assets/clinicServices/newImages/Denture1.jpeg";
 import dental_venuer from "@/assets/clinicServices/newImages/Dental veneers.jpeg";
 
+// contact us icons
+import appointment_icon from "@/assets/contactUsIcons/appointment icon.jpeg";
+import confirmation_icon from "@/assets/contactUsIcons/confirmation icon.png";
+import location_icon from "@/assets/contactUsIcons/location icon.png";
+
 export {
   signup_bottom_left,
   appointment,
@@ -99,5 +104,8 @@ export {
   root_canal_service,
   teeth_whitening_service,
   denture_service,
-  dental_venuer
+  dental_venuer,
+  appointment_icon,
+  confirmation_icon,
+  location_icon
 };

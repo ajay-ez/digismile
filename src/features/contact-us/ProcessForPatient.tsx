@@ -1,5 +1,10 @@
 import React from "react";
-import { cosmetic } from "@/assets/images";
+import {
+  appointment_icon,
+  confirmation_icon,
+  cosmetic,
+  location_icon
+} from "@/assets/images";
 import { Stack, Typography } from "@mui/material";
 import { ProcessCard } from "./ProcessCard";
 import ForwardIcon from "@mui/icons-material/Forward";
@@ -14,7 +19,7 @@ export const ProcessForPatient = () => {
         <div className="flex flex-col md:flex-row  items-center">
           <ProcessCard
             alt="image"
-            image={cosmetic}
+            image={appointment_icon}
             desc="Initiate Appointment Request via call or appointment form."
           />
           <ForwardIcon className="w-[110px] h-[40px]" />
@@ -23,7 +28,7 @@ export const ProcessForPatient = () => {
         <div className=" flex flex-col md:flex-row  gap-2 items-center">
           <ProcessCard
             alt="image"
-            image={cosmetic}
+            image={location_icon}
             desc="Select location (Burke or Washington, DC) and an available date ."
           />
           <ForwardIcon className="w-[110px] h-[40px]" />
@@ -31,7 +36,7 @@ export const ProcessForPatient = () => {
         <div className="flex gap-2 items-center">
           <ProcessCard
             alt="image"
-            image={cosmetic}
+            image={confirmation_icon}
             desc="Our team will reach out to confirm your appointment details."
           />
         </div>

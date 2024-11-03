@@ -17,35 +17,35 @@ const projectConstants = {
       image: root_canal_clinic,
       alt: "service1",
       title: "Root Canal",
-      desc: "Tooth extraction is a dental procedure that involves the removal of a tooth from its socket in the bone. This procedure is often necessary for various reasons, including severe tooth decay, infection, gum disease, or overcrowding. The extraction process typically involves numbing the area with local anesthesia, followed by the dentist gently loosening the tooth using specialized instruments and finally removing it.  ",
+      desc: "Root canal treatment to remove infection, cleaning and restore health, keeping your smile strong and pain-free at Smile Experts Dental clinic.",
       navLink: "l"
     },
     {
       image: cosmetic,
       alt: "service2",
       title: "Dentures",
-      desc: "Complete dentures are removable prosthetics that replace all natural teeth in an arch. They are custom-fitted to the gums and jaw, restoring functionality and aesthetics for individuals who have lost all their teeth. Partial dentures replace specific missing teeth while preserving existing ones. They use metal clasps or precision attachments for stability, helping maintain a natural appearance and improving chewing and speaking abilities.",
+      desc: "At Smile Experts Dental, our custom dentures replace missing teeth, restoring function and comfort.",
       navLink: "l"
     },
     {
       image: dental_mplants,
       alt: "service87",
       title: "Dental veneer",
-      desc: "It is a custom-made cover placed on the front of a tooth to enhance appearance by adjusting shape, size, and color. The procedure begins with cleaning and prepping the tooth, sometimes involving slight reshaping. A temporary veneer is then fitted to ensure comfort and proper alignment, during which the patient avoids hard foods. Once finalized, the permanent veneer is fabricated and securely bonded to the tooth, providing a natural look and seamless fit.",
+      desc: "At Smile Experts Dental, our dental veneers cover imperfections like chips, gaps, or discoloration, giving a flawless, natural-looking smile.",
       navLink: "l"
     },
     {
       image: root_canal_clinic,
       alt: "service109",
       title: "Teeth whitening",
-      desc: "Teeth whitening is a cosmetic dental procedure that removes stains and discoloration to brighten teeth, often enhancing the overall smile. It involves applying a bleaching agent, usually containing hydrogen peroxide or carbamide peroxide, to the teeth. This process can be done in-office for immediate results or through take-home kits prescribed by a dentist. Whitening is effective for treating stains from foods, drinks, smoking, and aging, though it may be less effective on deeper, intrinsic stains. ",
+      desc: "Teeth whitening is a cosmetic dental procedure that removes stains and discoloration to brighten teeth, often enhancing the overall smile.   ",
       navLink: "l"
     },
     {
       image: emergency_dentistry,
       alt: "service13",
       title: "Fillings",
-      desc: "Filling is used to restore a tooth damaged by decay, preventing further deterioration and protecting the tooth’s inner structure. The process involves removing the decayed material, cleaning the area, and filling it with a durable composite resin or other material that blends with the tooth. This strengthens the tooth and helps maintain a natural look and function.",
+      desc: "Restore Your Smile and Stop tooth Decay at Smile Experts Dental, our expert fillings repair cavities and prevent future damage, giving you a strong and healthy smile",
       navLink: "l"
     },
     {

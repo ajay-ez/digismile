@@ -8,7 +8,7 @@ import { FollowUsSection } from "./FollowUsSection";
 const Footer = () => {
   const title = "font-bold text-xl mt-4 text-white";
   return (
-    <footer className="bg-[#1E285F] text-white py-4 mt-auto p-5">
+    <footer className="bg-footer-blue-gradient text-white py-4 mt-auto p-5">
       <div className="flex flex-col    gap-8 justify-between">
         <div className="flex flex-col justify-center items-center">
           <Image src={digismileLogoImage} alt="logo" width={200} height={100} />

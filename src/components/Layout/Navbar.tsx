@@ -69,7 +69,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "#1E285F" }}>
+    <AppBar position="sticky" className="bg-footer-blue-gradient">
       <Toolbar className="flex justify-between items-center p-4  rounded-3xl">
         <Image
           onClick={() => navigateToSection("/")}

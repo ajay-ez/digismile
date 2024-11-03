@@ -12,10 +12,10 @@ import { TextImageOverlay } from "@/components/common/TextImageOverlay";
 const ClinicServices = () => {
   return (
     <DigiLayout>
-      <div className="bg-seviceBg min-h-screen ">
+      <div className="bg-seviceBg min-h-screen pb-16  ">
         <TextImageOverlay title="Services" />
         {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mt-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-4 mt-24">
           {projectConstants.clinicService.map((service) => (
             <ServiceCard
               key={service.alt}
@@ -23,6 +23,7 @@ const ClinicServices = () => {
               desc={service.desc}
               image={service.image}
               alt={service.alt}
+              showLearnMore={false}
             />
           ))}
         </div>

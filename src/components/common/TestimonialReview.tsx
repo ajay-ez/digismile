@@ -17,7 +17,7 @@ const TestimonialReview: React.FC<TestimonialProps> = ({
   review
 }) => {
   return (
-    <Card className="max-w-md mx-auto mb-4 shadow-lg">
+    <Card className="max-w-md mx-auto mb-4 shadow-lg rounded-2xl p-4 h-[350px]">
       <CardContent>
         <Box className="flex items-center">
           <Image

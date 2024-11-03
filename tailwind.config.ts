@@ -22,6 +22,8 @@ const config: Config = {
         "orange-gradient": "linear-gradient(to right, #ff7e5f, #feb47b)",
         "blue-white-gradient":
           "linear-gradient(180deg, #FFFFFF 18.6%, #E6F6FE 35.1%)",
+        "footer-blue-gradient": "linear-gradient(90deg, #004aad, #5de0e6)",
+        "comprehensive-gradient": "linear-gradient(90deg, #cdffd8, #94b9ff)",
         "signup-gradient":
           "linear-gradient(90deg, #B2DAE5 5.72%, #63797F 100%)",
         "signup-child-gradient":
