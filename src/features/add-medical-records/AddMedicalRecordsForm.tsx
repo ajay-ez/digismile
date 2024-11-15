@@ -26,7 +26,7 @@ export const AddMedicalRecordForm: React.FC = () => {
       .required("Date is required")
       .typeError("Invalid date format")
   });
-  const [addMedicalRecord, { isLoading, error }] = useAddMedicalRcordMutation();
+  const [addMedicalRecord] = useAddMedicalRcordMutation();
 
   const handleSubmit = async (values: typeof initialValues) => {
     const document = await uploadFileToS3WithCreds(values.document);
