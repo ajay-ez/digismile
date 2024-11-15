@@ -1,7 +1,7 @@
 import AWS from "aws-sdk";
 
 export const uploadFileToS3WithCreds = async (
-  file: File
+  file: any
 ): Promise<string | null> => {
   const S3_BUCKET = process.env.NEXT_PUBLIC_APP_S3_BUCKET;
   const REGION = "us-east-2";

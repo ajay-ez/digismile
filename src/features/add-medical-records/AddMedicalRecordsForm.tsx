@@ -7,7 +7,14 @@ import { uploadFileToS3WithCreds } from "@/utils/uploadToS3";
 import { useAddMedicalRcordMutation } from "@/services/apiServices/profileService";
 
 export const AddMedicalRecordForm: React.FC = () => {
-  const initialValues = {
+  interface FormValues {
+    email: string;
+    prescription: string;
+    problem: string;
+    document: File | null;
+    date: string;
+  }
+  const initialValues: FormValues = {
     email: "",
     prescription: "",
     problem: "",
