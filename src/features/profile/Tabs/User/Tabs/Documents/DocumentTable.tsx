@@ -9,8 +9,10 @@ import {
   TableRow,
   Typography
 } from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
 import { getFormattedDateTime } from "@/utils/dateUtils";
 import { UserTabProps } from "../Prescription/Prescription";
+import { downloadFile } from "@/utils/dowloadUrl";
 
 export const DocumentTable = ({ medicalRecords }: UserTabProps) => {
   return (
@@ -41,8 +43,13 @@ export const DocumentTable = ({ medicalRecords }: UserTabProps) => {
                 <TableCell className="text-center text-sm   border-none">
                   {event.prescription}
                 </TableCell>
-                <TableCell className="text-center text-sm   border-none">
-                  {event.document}
+                <TableCell
+                  className="text-center text-sm   border-none"
+                  onClick={() => {
+                    downloadFile(event.document);
+                  }}
+                >
+                  <DownloadIcon />
                 </TableCell>
               </TableRow>
             ))}

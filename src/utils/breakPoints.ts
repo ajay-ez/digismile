@@ -15,3 +15,4 @@ export const appointmentForUser = () => "book_appointment_existing_user";
 
 export const getSlots = () => "get_appointments";
 export const appointmentCancel = () => "cancel_appointment";
+export const addMedicalRecords = () => "add_medical_record";

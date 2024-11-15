@@ -1,7 +1,8 @@
 import {
   getMedicalRecords,
   getUserDetail,
-  passwordChange
+  passwordChange,
+  addMedicalRecords
 } from "@/utils/breakPoints";
 import { api } from "../api";
 
@@ -25,6 +26,13 @@ export const profileService = api.injectEndpoints({
         method: "POST",
         body: passwordData
       })
+    }),
+    addMedicalRcord: builder.mutation({
+      query: (passwordData) => ({
+        url: addMedicalRecords(),
+        method: "POST",
+        body: passwordData
+      })
     })
   })
 });
@@ -32,5 +40,6 @@ export const profileService = api.injectEndpoints({
 export const {
   useGetUserDetailsQuery,
   useGetUserMedicalRecordsQuery,
-  useChangePasswordMutation
+  useChangePasswordMutation,
+  useAddMedicalRcordMutation
 } = profileService;
