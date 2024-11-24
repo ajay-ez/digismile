@@ -60,7 +60,7 @@ const Testimonial: React.FC = () => {
     <div className="bg-blue-white-gradient py-8">
       <Box className="flex justify-center">
         <Typography variant="h1" className="text-center p-3 font-bold">
-          Testimonials
+          What our patient&apos;s say
         </Typography>
       </Box>
 

@@ -40,10 +40,10 @@ const Footer = () => {
 
             <Grid item sm={6} xs={5} md={3}>
               <Typography className={title}>Contact</Typography>
-              <Typography color="white" variant="body1" mt={2}>
+              <Typography className="text-white mt-2">
                 (202) 545-6336 (D.C)
               </Typography>
-              <Typography color="white" variant="body1" mt={2}>
+              <Typography className="text-white mt-2">
                 (571) 374-8000 (Burke)
               </Typography>
             </Grid>
@@ -54,11 +54,11 @@ const Footer = () => {
 
             <Grid item sm={6} xs={5} md={3}>
               <Typography className={title}>Location</Typography>
-              <Typography color="white" variant="body1" mt={2}>
+              <Typography className="text-white mt-2">
                 <LocationOnOutlined /> Washington D.C. 1747 Pennsylvania Ave NW,
                 Suite 100, Washington, DC 20006
               </Typography>
-              <Typography color="white" variant="body1" mt={2}>
+              <Typography className="text-white mt-2">
                 <LocationOnOutlined /> Burke, VA 9570 Burke Road, Unit A, Burke,
                 VA 22015
               </Typography>
@@ -68,7 +68,8 @@ const Footer = () => {
       </div>
       <div className="container mx-auto mt-6">
         <p className="text-center">
-          &copy; {new Date().getFullYear()} DigiSmile. All rights reserved.
+          &copy; {new Date().getFullYear()} Smile Expert Dental. All rights
+          reserved.
         </p>
       </div>
     </footer>

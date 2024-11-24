@@ -21,6 +21,7 @@ import signup_top_left from "@/assets/SignupImages/signup_top_left.svg";
 import signup_top_right from "@/assets/SignupImages/signup_top_right.svg";
 import signup_bottom_left from "@/assets/SignupImages/signup_bottom_left.svg";
 import signup_teeth from "@/assets/SignupImages/signup_teeth.svg";
+import login_image from "@/assets/SignupImages/login_image.png";
 
 // service icons
 import cosmetic from "@/assets/clinicServices/cosmetic.svg";
@@ -69,6 +70,7 @@ export {
   signup_teeth,
   signup_top_right,
   signup_top_left,
+  login_image,
   digismileLogoImage,
   home_1,
   home_2,

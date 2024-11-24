@@ -20,11 +20,13 @@ export const Title = () => {
           </Typography>
         </div>
         <div>
-          <Typography variant="subtitle2">
-            Washington D.C - (202) 545-6336
+          <Typography variant="body1" className="text-2xl">
+            Burke VA
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(571)
+            374-8000
           </Typography>
-          <Typography variant="subtitle2">
-            Burke VA - (571) 374-8000{" "}
+          <Typography variant="body1" className="text-2xl">
+            Washington D.C &nbsp;(202) 545-6336
           </Typography>
         </div>
       </Stack>

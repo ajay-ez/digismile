@@ -27,13 +27,13 @@ const LandingPageVideo = () => {
           <Box className="flex flex-col gap-2">
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
-              <Typography className="text-white" variant="body1">
+              <Typography className="text-white font-poppins" variant="body1">
                 Washington D.C.
               </Typography>
             </Box>
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
-              <Typography className="text-white" variant="body1">
+              <Typography className="text-white font-poppins" variant="body1">
                 Burke, VA
               </Typography>
             </Box>
@@ -56,16 +56,16 @@ const LandingPageVideo = () => {
         <Box>
           <Typography
             variant="h5"
-            className="font-bold font-league text-[#dfdfc8] text-center"
+            className="font-bold  text-black text-center font-poppins"
           >
-            Welcome!
+            Welcome,
           </Typography>
           <Typography
             variant="h4"
-            className="font-bold font-league text-[#dfdfc8] text-center mt-2"
+            className="font-bold font-poppins text-black text-center mt-2"
           >
             Get your best ever
-            <br /> Dental Experience!
+            <br /> Dental Experience !
           </Typography>
         </Box>
       </div>

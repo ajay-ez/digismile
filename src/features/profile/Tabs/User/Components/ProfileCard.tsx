@@ -39,7 +39,7 @@ export const ProfileCard = ({ userData }: ProfileCardProps) => {
           <Typography variant="body1">
             {" "}
             <span className="font-bold w-[100%] text-end"> Address:</span>
-            {userData?.address}
+            {userData?.address || "NA"}
           </Typography>
         </div>
       </div>

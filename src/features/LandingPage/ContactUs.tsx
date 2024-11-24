@@ -4,8 +4,11 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Map from "@/components/common/Map";
 const ContactUs = () => {
   return (
-    <div>
-      <Typography variant="h1" className="text-center p-4 font-bold">
+    <div className="font-poppins">
+      <Typography
+        variant="h1"
+        className="text-center p-4 font-bold font-poppins"
+      >
         Where we are located
       </Typography>
 
@@ -22,7 +25,7 @@ const ContactUs = () => {
 
             <Box className="flex items-center gap-2">
               <LocationOnIcon />
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle2" className="font-poppins">
                 Washington D.C.1747 Pennsylvania Aven NWSuite 100 Washington, DC
                 20006
                 <br /> (202) 545-6336
@@ -36,7 +39,7 @@ const ContactUs = () => {
             />
             <Box className="flex items-center gap-2">
               <LocationOnIcon />
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle2" className="font-poppins">
                 Burke, VA 9570 Burke Road Unit A Burke, VA 22015 <br /> (571)
                 374-8000
               </Typography>

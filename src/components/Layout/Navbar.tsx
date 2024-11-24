@@ -53,7 +53,13 @@ export default function Navbar() {
   };
 
   const handleProfileVisit = () => {
-    navigateToSection(`profile/${userId}?tab=user-profile&subTab=prescription`);
+    if (data?.user_type === "staff") {
+      navigateToSection("add-medical-records");
+    } else {
+      navigateToSection(
+        `profile/${userId}?tab=appointments&subTab=quick-appointments`
+      );
+    }
     handleCloseProfileMenu();
   };
 
@@ -151,11 +157,11 @@ export default function Navbar() {
           )}
           <Button
             variant="contained"
-            className="capitalize hover:bg-white"
+            className="capitalize hover:bg-white button rounded-4xl font-poppins  "
             sx={{
               backgroundColor: "white",
               color: "#1E285F",
-              fontWeight: "bold",
+              // fontWeight: "bold",
               padding: "8px 16px",
               display: isMobile ? "none" : "block"
             }}
@@ -167,7 +173,7 @@ export default function Navbar() {
               )
             }
           >
-            Request An Appointment
+            Request Appointment
           </Button>
         </Box>
       </Toolbar>
@@ -279,7 +285,7 @@ export default function Navbar() {
                 variant="subtitle1"
                 className="text-[1rem] text-digiDarkBlue font-bold"
               >
-                Request An Appointment
+                Request Appointment
               </Typography>
             </ListItem>
           </List>

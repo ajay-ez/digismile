@@ -8,7 +8,7 @@ export const AboutDoctor = () => {
   return (
     <div className="flex flex-col-reverse gap-8 md:flex-row md:gap-2 mt-3 items-center justify-center">
       <div className="bg-white p-3 md:w-[50%] rounded-lg">
-        <Typography variant="subtitle1" className="text-left mb-5">
+        <Typography variant="subtitle1" className="text-left font-poppins mb-5">
           Dr. Andleeb Mahmood
         </Typography>
         <Typography variant="body1" className="text-left">

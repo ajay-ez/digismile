@@ -44,7 +44,7 @@ export const DocumentTable = ({ medicalRecords }: UserTabProps) => {
                   {event.prescription}
                 </TableCell>
                 <TableCell
-                  className="text-center text-sm   border-none"
+                  className="text-center text-sm cursor-pointer   border-none"
                   onClick={() => {
                     downloadFile(event.document);
                   }}

@@ -24,13 +24,14 @@ export const useTabOptions = ({ userId, isMobile }: UseTabOptionsArgs) => {
 
   const menuItems: TabsItems[] = [
     {
-      value: "appointment-history",
-      title: isMobile ? "History" : "Appointment History",
+      value: "quick-appointments",
+      title: isMobile ? "Quick" : "Quick Appointments",
       onClick: () =>
         router.push(
-          `/profile/${userId}?tab=appointments&subTab=appointment-history`
+          `/profile/${userId}?tab=appointments&subTab=quick-appointments`
         )
     },
+
     {
       value: "upcoming-appointments",
       title: isMobile ? "Upcoming" : "Upcoming Appointments",
@@ -40,11 +41,11 @@ export const useTabOptions = ({ userId, isMobile }: UseTabOptionsArgs) => {
         )
     },
     {
-      value: "quick-appointments",
-      title: isMobile ? "Quick" : "Quick Appointments",
+      value: "appointment-history",
+      title: isMobile ? "History" : "Appointment History",
       onClick: () =>
         router.push(
-          `/profile/${userId}?tab=appointments&subTab=quick-appointments`
+          `/profile/${userId}?tab=appointments&subTab=appointment-history`
         )
     }
   ];

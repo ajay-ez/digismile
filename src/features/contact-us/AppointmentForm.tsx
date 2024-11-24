@@ -11,10 +11,17 @@ import {
 } from "@/validations";
 import { useUnAuthUserAppointmentMutation } from "@/services/apiServices/appointmentService";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import OptionsField from "@/components/common/InputFields/OptionsField";
 import { city } from "../profile/Tabs/Appointments/Tabs/QuickAppointments/city";
+import dayjs from "dayjs";
+
+// Office schedule for validation
+const officeSchedule: Record<string, string[]> = {
+  dc: ["Monday", "Wednesday", "Friday"],
+  burke: ["Tuesday", "Thursday", "Saturday"]
+};
 
 const validationSchema = Yup.object({
   first_name: requiredCharField("First Name"),
@@ -23,7 +30,17 @@ const validationSchema = Yup.object({
   problem: requiredCharField("Reason for visit"),
   appointment_date: Yup.date()
     .required("Appointment Date is required")
-    .nullable(),
+    .nullable()
+    .test(
+      "valid-day",
+      "Selected location is not available on this day",
+      function (value) {
+        const { city } = this.parent;
+        if (!value || !city) return true;
+        const selectedDay = dayjs(value).format("dddd");
+        return officeSchedule[city]?.includes(selectedDay);
+      }
+    ),
   email: emailValidation,
   privacyPolicy: booleanValidation
 });
@@ -43,14 +60,16 @@ const initialValues = {
 const AppointmentForm = () => {
   const [createBooking, { isLoading }] = useUnAuthUserAppointmentMutation();
   const router = useRouter();
+  const formRef = useRef<any>();
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   const handleSubmit = (values: any) => {
     delete values.privacyPolicy;
-    (values.start_time = "10:00:00"), (values.end_time = "11:00:00");
+    values.start_time = "10:00:00";
+    values.end_time = "11:00:00";
     createBooking(values).then((response) => {
       if (response.data?.status_code === 201) {
         setShowSuccessPopup(true);
-
         setTimeout(() => {
           setShowSuccessPopup(false);
           router.push("/login");
@@ -58,7 +77,11 @@ const AppointmentForm = () => {
       }
     });
   };
-  const onSelectCity = () => {};
+
+  const onSelectCity = (e: any) => {
+    formRef?.current?.setFieldValue("city", e.target.value);
+  };
+
   return (
     <>
       <SuccessPopup
@@ -71,8 +94,9 @@ const AppointmentForm = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+        innerRef={formRef}
       >
-        {() => (
+        {({ errors }) => (
           <Form>
             <Grid container spacing={2}>
               <Grid item xs={12} md={4}>
@@ -91,7 +115,6 @@ const AppointmentForm = () => {
               <Grid item xs={12} md={4}>
                 <FieldInput label="Email" name="email" type="text" />
               </Grid>
-
               <Grid item xs={12} md={4}>
                 <FieldInput
                   label="Date of Birth"
@@ -148,15 +171,13 @@ const AppointmentForm = () => {
                   />
                 </Box>
               </Grid>
-
               <Typography className="text-center text-sm mx-8">
                 Your Appointment will be Confirmed once Slot is Available
               </Typography>
-
               <Grid item xs={12}>
                 <Box mt={2} className="flex justify-center">
                   <Button
-                    className="bg-[#045084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800"
+                    className="bg-[#045084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800 animated-hover-button request-btn"
                     type="submit"
                   >
                     {isLoading ? (

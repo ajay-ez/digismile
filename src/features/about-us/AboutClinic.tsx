@@ -5,8 +5,11 @@ import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 export const AboutClinic = () => {
   return (
     <div className="flex flex-col md:flex-row gap-8 mt-3 items-center justify-center ">
-      <div className="p-3 md:w-[50%] rounded-lg">
-        <Typography variant="subtitle1" className="text-left mb-5">
+      <div className="p-3 md:w-[50%] rounded-lg ml-8">
+        <Typography
+          variant="subtitle1"
+          className="text-left mb-5 font-poppins "
+        >
           Our Practice and Services
         </Typography>
         <Typography variant="body1" className="text-left">
@@ -17,7 +20,7 @@ export const AboutClinic = () => {
           excellence and patient-centric approach aim to transform lives, one
           smile at a time.
         </Typography>
-        <Typography variant="subtitle1" className="text-left my-8">
+        <Typography variant="subtitle1" className="text-left my-8 font-poppins">
           Values and Mission
         </Typography>
         <Typography variant="body1" className="text-left">
@@ -29,7 +32,9 @@ export const AboutClinic = () => {
           standard of dental excellence.
         </Typography>
       </div>
-      <ClinicSchedule renderToHome={false} />
+      <div className="mt-28">
+        <ClinicSchedule renderToHome={false} />
+      </div>
     </div>
   );
 };
