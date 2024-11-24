@@ -13,7 +13,6 @@ import {
 import FieldInput from "@/components/common/FieldInput";
 import { emailValidation, passwordValidation } from "@/validations";
 import { LoginFormValues } from "@/types";
-import SignupContainer from "@/components/common/SignupContainer";
 import Link from "next/link";
 import { useLoginMutation } from "@/services/apiServices/authService";
 import useAuthToken from "@/hooks/useAuthToken";
@@ -68,11 +67,11 @@ const LoginPage = () => {
 
   return (
     <div className="flex justify-center  border-red-600 p-8 ">
-      {/* <SuccessPopup
+      <SuccessPopup
         open={showSuccessPopup}
         onClose={() => setShowSuccessPopup(false)}
         successMessage="Success!"
-      /> */}
+      />
       <div className="flex bg-gray-200   mx-8   gap-8 items-center rounded-3xl">
         <div className="w-[40%] ml-6 hidden md:block">
           <Image
