@@ -8,11 +8,11 @@ import { settings } from "./Gallery";
 
 const Services = () => {
   return (
-    <div className="bg-blue-white-gradient pb-24">
+    <div className="bg-blue-white-gradient pb-8">
       <Typography variant="h1" className="text-center p-3 font-bold">
         Our Services
       </Typography>
-      <Typography variant="subtitle1" className="text-center m-2 ">
+      <Typography variant="subtitle1" className="text-center m-2 font-poppins ">
         Comprehensive Services for Optimal Oral Health.
       </Typography>
       <div className="   p-4">
@@ -29,7 +29,7 @@ const Services = () => {
           ))}
         </Slider>
       </div>
-      <Typography className="font-semibold text-center mt-16">
+      <Typography className="font-semibold text-center mt-24">
         Our state-of-the-art facilities are equipped with the latest technology
         to <br />
         ensure optimal care for both children and adults

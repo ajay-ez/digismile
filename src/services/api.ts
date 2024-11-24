@@ -26,6 +26,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result?.error && result.error.status === 401) {
     localStorage.clear();
+    // window.location.href = "/";
   }
 
   return result;

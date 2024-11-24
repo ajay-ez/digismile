@@ -10,7 +10,7 @@ export const NewPatients = () => {
         We’re welcoming new patients <br />
         <span>and can’t wait to meet you.</span>
       </Typography>
-      <Typography variant="body1" className="my-3">
+      <Typography variant="subtitle2" className="my-3">
         Come Experience Care with a Personal Touch!😄
       </Typography>
       <Image src={service_detail} alt="Care with a Personal Touch" />

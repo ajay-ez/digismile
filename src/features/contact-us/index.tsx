@@ -9,7 +9,7 @@ import { ProcessForPatient } from "./ProcessForPatient";
 
 export const ContactUs = () => {
   return (
-    <Stack className="gap-24 bg-seviceBg">
+    <Stack className="gap-12 bg-seviceBg">
       <Title />
       <BookAppointment />
       <ProcessForPatient />

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import { uploadFileToS3WithCreds } from "@/utils/uploadToS3";
 import { useAddMedicalRcordMutation } from "@/services/apiServices/profileService";
+import { SuccessPopup } from "@/components/common/SuccessPopup";
 
 export const AddMedicalRecordForm: React.FC = () => {
   interface FormValues {
@@ -33,15 +34,29 @@ export const AddMedicalRecordForm: React.FC = () => {
       .required("Date is required")
       .typeError("Invalid date format")
   });
-  const [addMedicalRecord] = useAddMedicalRcordMutation();
+  const [addMedicalRecord, { isLoading }] = useAddMedicalRcordMutation();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleSubmit = async (values: typeof initialValues) => {
     const document = await uploadFileToS3WithCreds(values.document);
-    addMedicalRecord({ ...values, document });
+    addMedicalRecord({ ...values, document }).then((response) => {
+      if (response.data?.status_code === 201) {
+        setShowSuccessPopup(true);
+
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+        }, 2000);
+      }
+    });
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        successMessage="Success!"
+      />
       <div className="max-w-4xl    rounded-lg p-16">
         <Typography variant="subtitle1" className="text-center my-8">
           Submit Prescription Details
@@ -93,9 +108,13 @@ export const AddMedicalRecordForm: React.FC = () => {
               <div className="mt-8 flex justify-center">
                 <Button
                   type="submit"
-                  className="w-full max-w-80 bg-blue-500 hover:bg-blue-800 text-white p-3 font-bold rounded-3xl"
+                  className="w-full max-w-80 bg-blue-500 hover:bg-blue-800 text-white p-3 font-bold rounded-3xl capitalize"
                 >
-                  Submit
+                  {isLoading ? (
+                    <CircularProgress className="w-8 h-8 text-white" />
+                  ) : (
+                    "Submit"
+                  )}
                 </Button>
               </div>
             </Form>

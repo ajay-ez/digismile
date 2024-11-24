@@ -1,10 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+@layer base {
+  html {
+    @apply font-poppins;
+  }
+}
+
+.digismile-global {
+  font-family: "Poppins !important";
+}
 .flip {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -30,40 +39,276 @@
 .MuiTabs-indicator {
   display: none !important;
 }
+/* Apply custom font family styles for MUI typography */
+.h1-font-bokor {
+  @apply font-bokor text-4xl font-bold text-[#253858];
+}
 
-/* youtube video button */
-.youtube-button {
-  align-items: center;
-  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-  border: 0;
-  border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  box-sizing: border-box;
-  color: #ffffff;
+.subtitle1-font-bokor {
+  @apply font-bokor text-2xl font-semibold text-[#253858];
+}
+
+.subtitle2-font-bokor {
+  @apply font-bokor text-xl font-semibold text-[#253858];
+}
+
+/* .body1-font-playfair {
+  @apply font-playfair text-lg text-[#253858];
+} */
+
+/* CSS */
+
+html,
+body {
+  height: 100%;
+}
+
+.wrap {
+  height: 100%;
   display: flex;
-  font-family: Phantomsans, sans-serif;
-  font-size: 20px;
+  align-items: center;
   justify-content: center;
-  line-height: 1em;
-  max-width: 100%;
-  min-width: 140px;
-  padding: 19px 24px;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 1.3px;
+  /* font-weight: 700; */
+  color: #313133;
+  background: white;
+  background: white;
+  border: none;
+  border-radius: 80px;
+  box-shadow: 12px 12px 24px #f6d6d6;
+  /* transition: all 0.3s ease-in-out 0s; */
   cursor: pointer;
+  outline: none;
+  position: relative;
+  /* padding: 8px; */
+}
+/* 
+.button::before {
+  content: "";
+  border-radius: 1000px;
+  min-width: calc(250px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #f6d6d6;
+  box-shadow: 0 0 60px #f6d6d6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
 }
 
-.youtube-button:active,
-.youtube-button:hover {
-  outline: 0;
+.button:hover,
+.button:focus {
+  color: #313133;
+  transform: translateY(-6px);
 }
 
-@media (min-width: 768px) {
-  .youtube-button {
-    font-size: 24px;
-    min-width: 196px;
+.button:hover::before,
+.button:focus::before {
+  opacity: 1;
+} */
+
+.button::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid white;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+.button:hover::after,
+.button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 140px;
+    height: 140px;
+    opacity: 0;
+  }
+}
+
+.animated-hover-button {
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  font-family: "Comfortaa", cursive;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  border-radius: 4px;
+  box-shadow:
+    inset 0px 3px 5px rgba(255, 255, 255, 0.5),
+    0px 0px 10px rgba(0, 0, 0, 0.15);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    45deg,
+    rgba(2, 0, 36, 0) 5%,
+    rgba(255, 255, 255, 0.5) 6%,
+    rgba(255, 255, 255, 0) 9%,
+    rgba(255, 255, 255, 0.5) 10%,
+    rgba(255, 255, 255, 0) 17%,
+    rgba(255, 255, 255, 0.5) 19%,
+    rgba(255, 255, 255, 0) 21%
+  );
+  background-size: 150%;
+  background-position: right;
+  transition: 1s;
+}
+
+.animated-hover-button:hover {
+  background-position: left;
+  color: white;
+  box-shadow:
+    inset 0px 3px 5px rgba(255, 255, 255, 1),
+    0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.animated-hover-button:focus {
+  outline: none;
+}
+
+.request-btn {
+  font-family: Hack, monospace;
+  background: #0f0f6d;
+  color: #ffffff;
+  cursor: pointer;
+  /* font-size: 2em;
+  padding: 1.5rem; */
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: auto;
+  position: relative;
+
+  &::after {
+    content: " ";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    position: absolute;
+    left: 85%;
+    top: 31%;
+    right: 5%;
+    bottom: 0;
+    opacity: 0;
+  }
+
+  &:hover {
+    background: #2b2bff;
+    transition: all 0.5s;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px #0000ff61;
+    padding: 1.5rem 3.5rem 1.5rem 1.5rem;
+
+    &::after {
+      opacity: 1;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.login-btn {
+  font-family: Hack, monospace;
+  background: #bbff00;
+  color: #1d1d1d;
+  cursor: pointer;
+  font-size: 2em;
+  padding: 1.5rem;
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: auto;
+  position: relative;
+  min-width: 250px;
+
+  &::after {
+    content: "\f2f6";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    position: absolute;
+    left: 80%;
+    top: 54%;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover {
+    background: #2b2bff;
+    transition: all 0.5s;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px #0000ff61;
+    padding: 1.5rem 3rem 1.5rem 1.5rem;
+    color: #ffffff;
+
+    &::after {
+      opacity: 1;
+      transition: all 0.5s;
+      color: #ffffff;
+    }
+  }
+}
+
+.logout-btn {
+  font-family: Hack, monospace;
+  background: #d3d3d3;
+  color: #2c2c2c;
+  cursor: pointer;
+  font-size: 2em;
+  padding: 1.5rem;
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: auto;
+  position: relative;
+  min-width: 250px;
+
+  &::after {
+    content: "\f2f5";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    position: absolute;
+    left: 80%;
+    top: 54%;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover {
+    background: #2b2bff;
+    transition: all 0.5s;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px #0000ff61;
+    padding: 1.5rem 3rem 1.5rem 1.5rem;
+    color: #ffffff;
+    &::after {
+      opacity: 1;
+      transition: all 0.5s;
+      color: #ffffff;
+    }
   }
 }

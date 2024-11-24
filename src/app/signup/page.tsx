@@ -30,7 +30,7 @@ import { SuccessPopup } from "@/components/common/SuccessPopup";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { ArrowRightIcon } from "@mui/x-date-pickers";
 const SignupSchema = Yup.object().shape({
-  name: requiredCharField("First Name"),
+  first_name: requiredCharField("First Name"),
   last_name: requiredCharField("Last Name"),
   date_of_birth: requiredCharField("Date of Birth"),
   email: emailValidation,
@@ -59,7 +59,7 @@ const SignupPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const initialSignupValues: SignupFormValues = {
-    name: "",
+    first_name: "",
     last_name: "",
     date_of_birth: "",
     address: "",
@@ -120,7 +120,7 @@ const SignupPage = () => {
                   <Grid item xs={12} md={6}>
                     <Box mb={2}>
                       <FieldInput
-                        name="name"
+                        name="first_name"
                         type="text"
                         label="First Name"
                         placeholder="Enter your name"
