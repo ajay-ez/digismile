@@ -155,26 +155,43 @@ export default function Navbar() {
               />
             </IconButton>
           )}
-          <Button
-            variant="contained"
-            className="capitalize hover:bg-white button rounded-4xl font-poppins  "
-            sx={{
-              backgroundColor: "white",
-              color: "#1E285F",
-              // fontWeight: "bold",
-              padding: "8px 16px",
-              display: isMobile ? "none" : "block"
-            }}
-            onClick={() =>
-              navigateToSection(
-                isError
-                  ? "contact-us"
-                  : `profile/${userId}?tab=appointments&subTab=quick-appointments`
-              )
-            }
-          >
-            Request Appointment
-          </Button>
+          {data?.user_type !== "staff" ? (
+            <Button
+              variant="contained"
+              className="capitalize hover:bg-white button rounded-4xl font-poppins  "
+              sx={{
+                backgroundColor: "white",
+                color: "#1E285F",
+                // fontWeight: "bold",
+                padding: "8px 16px",
+                display: isMobile ? "none" : "block"
+              }}
+              onClick={() =>
+                navigateToSection(
+                  isError
+                    ? "contact-us"
+                    : `profile/${userId}?tab=appointments&subTab=quick-appointments`
+                )
+              }
+            >
+              Request Appointment
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              className="capitalize hover:bg-white button rounded-4xl font-poppins  "
+              sx={{
+                backgroundColor: "white",
+                color: "#1E285F",
+                // fontWeight: "bold",
+                padding: "8px 16px",
+                display: isMobile ? "none" : "block"
+              }}
+              onClick={() => navigateToSection("add-medical-records")}
+            >
+              Add Medical Record
+            </Button>
+          )}
         </Box>
       </Toolbar>
 
