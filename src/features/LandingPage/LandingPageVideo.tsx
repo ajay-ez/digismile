@@ -1,7 +1,7 @@
 import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 const LandingPageVideo = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const LandingPageVideo = () => {
   };
 
   return (
-    <div className="relative h-[90vh]">
+    <Box>
       {/* <div
         color="transparent"
       >
@@ -19,50 +19,78 @@ const LandingPageVideo = () => {
           <Box className="flex flex-col gap-2">
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
-              <h1 className="text-white font-poppins" >
+              <Text as={'h1'} className="text-white font-poppins" >
                 Washington D.C.
-              </h1>
+              </Text>
             </Box>
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
-              <h1 className="text-white font-poppins" >
+              <Text as={'h1'} className="text-white font-poppins" >
                 Burke, VA
-              </h1>
+              </Text>
             </Box>
           </Box>
         </Box>
       </div> */}
-
       {/* Video Background */}
-      <video
-        className="w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        src="/landing_page_video.mp4"
-      />
+      <Box height={"100vh"} width={"100vw"} position={"relative"}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          // src="/landing_page_video.mp4"
+          src="/landing_page4.mp4"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            filter: "brightness(50%)"
+          }}
+        />
+        <Flex
+          flexDir={"column"}
+          width={"-webkit-fill-available"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          position={"absolute"}
+          transform={"translate(0, -50%)"}
+          top={"50%"}
+          zIndex={2}
+          marginX={"4rem"}
+          color={"white.800"}
+        >
+          {/* <Text as={"h1"} className="heading">
+            Your smile deserves the best.
+          </Text>
+          <Text as={"h1"} className="heading">
+            crafted just for you
+          </Text> */}
+          <Text as={"h1"} className="heading">
+            Transform your smile with care as unique as you
+          </Text>
+          {/* <Text as={"h1"} className="heading">
+            crafted just for you
+          </Text> */}
+          {/* <Text as={"h4"} mt={8}>
+            Your smile deserves the best—gentle cleanings and personalized
+            whitening, crafted just for you.
+          </Text> */}
+          <Text as={"h4"} mt={8}>
+            Your smile deserves the best—gentle jkkjuih uhui hiuhiuh
+          </Text>
+          <Text as={"h4"}>Your smile deserves the best—gentle</Text>
+          <Button mt={8} variant={"brand"}>
+            Request Appointment
+          </Button>
+          {/* <Button mt={3} variant={"brand-second"}>
+            Request Appointment
+          </Button> */}
+        </Flex>
+      </Box>
 
       {/* Overlay Content */}
-      <div className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-        <Box>
-          <h1
-            
-            className="font-bold  text-black text-center font-poppins"
-          >
-            Welcome,
-          </h1>
-          <h1
-            
-            className="font-bold font-poppins text-black text-center mt-2"
-          >
-            Get your best ever
-            <br /> Dental Experience !
-          </h1>
-        </Box>
-      </div>
-
-      <div className="absolute inset-0 flex flex-col justify-end m-12">
+      {/* <div className="absolute inset-0 flex flex-col justify-end m-12">
         <div className="flex flex-col sm:flex-row sm:gap-8 gap-4 sm:items-center items-start justify-start">
           <div className="flex gap-8">
             <Button
@@ -84,15 +112,9 @@ const LandingPageVideo = () => {
               Signup
             </Button>
           </div>
-
-          {/* <div className="flex gap-8">
-            <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
-              <Call className="text-blue-600" />
-            </div>
-          </div> */}
         </div>
-      </div>
-    </div>
+      </div> */}
+    </Box>
   );
 };
 

@@ -10,6 +10,12 @@
   font-size: 16px;
 }
 
+.heading {
+  text-align: center;
+  line-height: 1;
+  font-size: clamp(2rem, 2vw + 3rem, 4rem) !important;
+}
+
 h1 {
   font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem) !important;
 }
@@ -55,6 +61,5 @@ p {
 ::-webkit-scrollbar-thumb:hover {
   background: #d9d9d9;
 }
-
 
 /* CSS */

@@ -6,11 +6,11 @@ export default {
     boxSizing: "border-box",
     backgroundColor: "transparent !important",
     _focus: {
-      boxShadow: "none",
+      boxShadow: "none"
     },
     _active: {
-      boxShadow: "none",
-    },
+      boxShadow: "none"
+    }
   },
   variants: {
     default_color: {
@@ -21,14 +21,14 @@ export default {
       bgColor: "brand.200",
       color: "white.900",
       _focus: {
-        boxShadow: "none",
+        boxShadow: "none"
       },
       _active: {
-        boxShadow: "none",
+        boxShadow: "none"
       },
       _hover: {
-        background: "brand.200",
-      },
+        background: "brand.200"
+      }
     },
     default: {
       borderRadius: "sm",
@@ -38,27 +38,55 @@ export default {
       bgColor: "gray.400",
       color: "black.900",
       _focus: {
-        boxShadow: "none",
+        boxShadow: "none"
       },
       _active: {
-        boxShadow: "none",
+        boxShadow: "none"
       },
       _hover: {
-        background: "gray.400",
-      },
+        background: "gray.400"
+      }
     },
     brand: {
-      bg: "brand.200",
+      bgColor: "brand.100",
       color: "white",
-      height: "50",
       fontWeight: "500",
-      width: "180px",
+      borderRadius: "md",
+      fontSize: "md",
+      width: "350px",
       _hover: {
         _disabled: {
-          bg: "brand.200",
-        },
-      },
+          bg: "brand.200"
+        }
+      }
     },
+    "brand-second": {
+      bgColor: "white",
+      color: "brand.100",
+      fontWeight: "500",
+      borderRadius: "md",
+      fontSize: "md",
+      width: "350px",
+      _hover: {
+        _disabled: {
+          bg: "brand.200"
+        }
+      }
+    },
+    header: {
+      color: "white",
+      fontSize: "sm",
+      fontWeight: "800",
+      padding: "0"
+    },
+    appointment: {
+      backgroundColor: "brand.100",
+      color: "white",
+      fontSize: "sm",
+      fontWeight: "800",
+      borderRadius: "md",
+      padding: "1rem 1.5rem"
+    }
   },
-  sizes: {},
+  sizes: {}
 };

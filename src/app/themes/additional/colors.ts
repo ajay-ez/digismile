@@ -1,6 +1,6 @@
 export default {
   brand: {
-    100: "#E2D5E2", // light
+    100: "#1976d2", // light
     200: "#702F6F", // dark
     300: "#422AFB",
     400: "#7551FF",
@@ -53,8 +53,8 @@ export default {
     900: "#0b1437"
   },
   white: {
-    900: "#FFFFFF",
-    800: "#faf7f5"
+    800: "#faf7f5",
+    900: "#FFFFFF"
   },
   black: {
     100: "#434242",

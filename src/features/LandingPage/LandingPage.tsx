@@ -25,14 +25,14 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Box border={"1px red solid"} position={"relative"}>
+    <Box position={"relative"}>
       <Navbar />
-      <div data-aos="fade-up">
+      <>
         <LandingPageVideo />
         {isUserAuthorize && <UserWelcome />}
-      </div>
+      </>
 
-      <div id="services" data-aos="fade-up" data-aos-delay="100">
+      <div>
         <Services />
       </div>
 
@@ -46,13 +46,13 @@ const LandingPage = () => {
             <BookAppointment />
           </div>
         )} */}
-      <div id="about" data-aos="fade-up" data-aos-delay="100">
+      <div>
         <WhoWeAre />
       </div>
-      <div id="gallery" data-aos="fade-up" data-aos-delay="100">
+      <div>
         <Gallery />
       </div>
-      <div id="testimonials" data-aos="fade-up" data-aos-delay="100">
+      <div>
         <Testimonial />
       </div>
       <div
@@ -63,7 +63,7 @@ const LandingPage = () => {
       >
         <ClinicSchedule renderToHome={true} />
       </div>
-      <div id="contact" data-aos="fade-up" data-aos-delay="100">
+      <div>
         <ContactUs />
       </div>
       <Footer />

@@ -61,7 +61,7 @@ export default function Navbar() {
 
   return (
     <Box position={"fixed"} top={0} zIndex={1} width={"100%"}>
-      <Flex justifyContent={"space-between"} p={4}>
+      <Flex justifyContent={"space-between"} px={8} py={4}>
         <Image
           onClick={() => navigateToSection("/")}
           src={digismileLogoImage}
@@ -71,35 +71,31 @@ export default function Navbar() {
 
         {!isMobile ? (
           // Desktop view
-          <Flex alignItems={"center"}>
-            <Button color="inherit">
-              <Link href={"about-us"} prefetch>
-                ABOUT
-              </Link>
-            </Button>
+          <Flex alignItems={"center"} gap={8}>
+            <Button variant={"header"}>ABOUT</Button>
             <Button
+              variant={"header"}
               onClick={() => navigateToSection("clinic-services")}
-              color="inherit"
             >
               SERVICES
             </Button>
             <Button
+              variant={"header"}
               onClick={() => navigateToSection("contact-us")}
-              color="inherit"
             >
               CONTACT US
             </Button>
             {isError && (
               <>
                 <Button
+                  variant={"header"}
                   className="font-bold capitalize text-[1rem]"
-                  color="inherit"
                   onClick={() => navigateToSection("signup")}
                 >
                   SIGNUP
                 </Button>
                 <Button
-                  color="inherit"
+                  variant={"header"}
                   onClick={() => navigateToSection("login")}
                 >
                   LOGIN
@@ -123,14 +119,7 @@ export default function Navbar() {
               )}
               {data?.user_type !== "staff" ? (
                 <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "white",
-                    color: "#1E285F",
-                    // fontWeight: "bold",
-                    padding: "8px 16px",
-                    display: isMobile ? "none" : "block"
-                  }}
+                  variant="appointment"
                   onClick={() =>
                     navigateToSection(
                       isError

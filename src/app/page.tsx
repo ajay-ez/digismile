@@ -1,14 +1,9 @@
-'use client';
-import React from 'react';
-import LandingPage from '@/features/LandingPage/LandingPage';
-import { Box } from '@chakra-ui/react';
+"use client";
+import React from "react";
+import LandingPage from "@/features/LandingPage/LandingPage";
 
 const HomePage: React.FC = () => {
-  return (
-    <Box>
-      <LandingPage />
-    </Box>
-  );
+  return <LandingPage />;
 };
 
 export default HomePage;
