@@ -3,15 +3,6 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import {
-  Container,
-  Button,
-  Typography,
-  Box,
-  Grid,
-  CircularProgress,
-  IconButton
-} from "@mui/material";
 import { useRouter } from "next/navigation";
 
 import FieldInput from "@/components/common/FieldInput";
@@ -27,8 +18,7 @@ import Link from "next/link";
 import { useRegisterMutation } from "@/services/apiServices/authService";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { ArrowRightIcon } from "@mui/x-date-pickers";
+import { Box, Button, CircularProgress, Container, Grid, IconButton } from "@chakra-ui/react";
 const SignupSchema = Yup.object().shape({
   first_name: requiredCharField("First Name"),
   last_name: requiredCharField("Last Name"),
@@ -102,12 +92,12 @@ const SignupPage = () => {
           className="overflow-scroll shadow-signup-shadow p-8 rounded-lg bg-signup-child-gradient"
         >
           <Box className="mb-4">
-            <Typography variant="h4" component="h1">
+            <h1>
               Create an Account
-            </Typography>
-            <Typography variant="body1" className="text-[#737373]">
+            </h1>
+            <h1 className="text-[#737373]">
               Enter your details below to create your account and get started
-            </Typography>
+            </h1>
           </Box>
           <Formik
             initialValues={initialSignupValues}
@@ -116,8 +106,8 @@ const SignupPage = () => {
           >
             {() => (
               <Form>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md={6}>
+                <Grid >
+                  <Grid>
                     <Box mb={2}>
                       <FieldInput
                         name="first_name"
@@ -128,7 +118,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid>
                     <Box mb={2}>
                       <FieldInput
                         name="last_name"
@@ -139,7 +129,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid >
                     <Box mb={2}>
                       <FieldInput
                         name="date_of_birth"
@@ -149,7 +139,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  {/* <Grid item xs={12} md={6}>
+                  {/* <Grid >
                     <Box mb={2}>
                       <FieldInput
                         name="address"
@@ -159,7 +149,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid> */}
-                  <Grid item xs={12} md={6}>
+                  <Grid >
                     <Box mb={2}>
                       <FieldInput
                         name="problem"
@@ -169,7 +159,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid >
                     <Box mb={2}>
                       <FieldInput
                         name="email"
@@ -180,7 +170,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid >
                     <Box mb={2}>
                       <FieldInput
                         name="phone_number"
@@ -191,7 +181,7 @@ const SignupPage = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid >
                     <Box mb={2}>
                       <Box position="relative">
                         <FieldInput
@@ -202,6 +192,7 @@ const SignupPage = () => {
                           required
                         />
                         <IconButton
+                          aria-label="toggle password visibility"
                           onClick={() => setShowPassword((prev) => !prev)}
                           style={{
                             position: "absolute",
@@ -210,12 +201,12 @@ const SignupPage = () => {
                             transform: "translateY(-50%)"
                           }}
                         >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                          {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
                         </IconButton>
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid >
                     <Box mb={2}>
                       <Box position="relative">
                         <FieldInput
@@ -226,6 +217,7 @@ const SignupPage = () => {
                           required
                         />
                         <IconButton
+                          aria-label="toggle password visibility"
                           onClick={() =>
                             setShowConfirmPassword((prev) => !prev)
                           }
@@ -236,25 +228,25 @@ const SignupPage = () => {
                             transform: "translateY(-50%)"
                           }}
                         >
-                          {showConfirmPassword ? (
+                          {/* {showConfirmPassword ? (
                             <VisibilityOff />
                           ) : (
                             <Visibility />
-                          )}
+                          )} */}
                         </IconButton>
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid xs={12}>
+                  <Grid >
                     {error && (
-                      <Typography className="text-red-500 capitalize my-2 text-center">
+                      <h1 className="text-red-500 capitalize my-2 text-center">
                         {isFetchBaseQueryError(error) && error.data?.message
                           ? error.data.message
                           : "An unexpected error occurred."}
-                      </Typography>
+                      </h1>
                     )}
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid>
                     <Box className="flex justify-between items-center">
                       <Box>
                         <Button
@@ -277,23 +269,23 @@ const SignupPage = () => {
                       </Button>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} mt={2}>
-                    <Typography variant="body2" align="center">
+                  <Grid>
+                    <h1>
                       Already have an account?{" "}
                       <Link href="/login" className="text-blue-900 text-lg">
                         Login
                       </Link>
-                    </Typography>
+                    </h1>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Typography className="text-center">
+                  <Grid>
+                    <h1 className="text-center">
                       <Link
                         href="/"
                         className="text-blue-900 text-lg text-center"
                       >
-                        Continue Without Registration <ArrowRightIcon />
+                        Continue Without Registration 
                       </Link>
-                    </Typography>
+                    </h1>
                   </Grid>
                 </Grid>
               </Form>

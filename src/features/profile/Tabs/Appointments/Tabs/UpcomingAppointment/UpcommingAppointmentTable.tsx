@@ -1,15 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import {
-  Box,
-  TableBody,
-  Table,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-  Button
-} from "@mui/material";
 import Image from "next/image";
 import {
   formatTimeToHoursAndMinutes,
@@ -21,6 +11,7 @@ import CancelBookingPopup from "@/components/common/CancelBookingPopup";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
 import { useCancelAppointmentMutation } from "@/services/apiServices/appointmentService";
 import { RSC_PREFETCH_SUFFIX } from "next/dist/lib/constants";
+import { Box, Button, Table, TableContainer, Tbody, Td, Tr } from "@chakra-ui/react";
 
 type UpcommingAppointmentProps = {
   upcoming_appointments: any;
@@ -63,12 +54,12 @@ export const UpcommingAppointmentTable = ({
         isLoading={isLoading}
       />
 
-      <TableContainer component={Box} sx={{ borderRadius: 1 }}>
+      <TableContainer>
         <Table>
-          <TableBody>
+          <Tbody>
             {upcoming_appointments?.map((event: any, index: number) => (
-              <TableRow key={index}>
-                <TableCell className="text-center border-none">
+              <Tr key={index}>
+                <Td className="text-center border-none">
                   <Image
                     src={doctor}
                     alt="Doctor"
@@ -76,19 +67,19 @@ export const UpcommingAppointmentTable = ({
                     width={158}
                     className="rounded-full"
                   />
-                </TableCell>
-                <TableCell className="border-none font-semibold text-xl text-left">
+                </Td>
+                <Td className="border-none font-semibold text-xl text-left">
                   Dr. Mahmood
-                  <Typography className="text-xs text-left">
+                  <h1 className="text-xs text-left">
                     Dental Specialist
-                  </Typography>
-                </TableCell>
-                <TableCell className="text-center border-none text-lg">
+                  </h1>
+                </Td>
+                <Td className="text-center border-none text-lg">
                   {event.description}
-                </TableCell>
-                <TableCell className="text-right border-none text-lg">
+                </Td>
+                <Td className="text-right border-none text-lg">
                   {`${getFormattedDateTime(event.date)} ${formatTimeToHoursAndMinutes(event.start_time) + "-" + formatTimeToHoursAndMinutes(event.end_time)}`}
-                  <Typography className="text-right text-sm">Dc</Typography>
+                  <h1 className="text-right text-sm">Dc</h1>
                   <Button
                     variant="text"
                     className="capitalize text-black"
@@ -97,16 +88,16 @@ export const UpcommingAppointmentTable = ({
                     <CancelOutlinedIcon className="text-red-500 mx-2" />
                     Cancel
                   </Button>
-                </TableCell>
-              </TableRow>
+                </Td>
+              </Tr>
             ))}
-          </TableBody>
+          </Tbody>
         </Table>
       </TableContainer>
       {upcoming_appointments?.length === 0 && (
-        <Typography textAlign={"center"} mt={2}>
+        <h1>
           No Appointments Found
-        </Typography>
+        </h1>
       )}
     </Box>
   );

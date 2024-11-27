@@ -3,13 +3,6 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import {
-  Button,
-  Typography,
-  Box,
-  CircularProgress,
-  IconButton
-} from "@mui/material";
 import FieldInput from "@/components/common/FieldInput";
 import { passwordValidation } from "@/validations";
 import { useChangePasswordMutation } from "@/services/apiServices/profileService";
@@ -18,6 +11,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useRouter } from "next/navigation";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { Box, Button, CircularProgress, IconButton } from "@chakra-ui/react";
 const PasswordChangeSchema = Yup.object().shape({
   old_password: passwordValidation,
   new_password: passwordValidation
@@ -73,15 +67,14 @@ const PasswordChange = () => {
           <Box className="shadow-signup-shadow p-8 rounded-lg">
             <Box>
               <Box className="mb-4">
-                <Typography variant="h4" component="h1" className="text-center">
+                <h1 className="text-center">
                   Change Password
-                </Typography>
-                <Typography
-                  variant="body1"
+                </h1>
+                <h1
                   className="text-[#737373] text-center"
                 >
                   Secure your account with a new password.
-                </Typography>
+                </h1>
               </Box>
               <Formik
                 initialValues={initialPasswordChangeValues}
@@ -100,6 +93,7 @@ const PasswordChange = () => {
                           required
                         />
                         <IconButton
+                        aria-label="toggle password visibility"
                           onClick={() => setShowOldPassword((prev) => !prev)}
                           style={{
                             position: "absolute",
@@ -122,6 +116,7 @@ const PasswordChange = () => {
                           required
                         />
                         <IconButton
+                        aria-label="toggle password visibility"
                           onClick={() => setShowNewPassword((prev) => !prev)}
                           style={{
                             position: "absolute",
@@ -136,11 +131,11 @@ const PasswordChange = () => {
                     </Box>
 
                     {error && (
-                      <Typography className="text-red-500 capitalize my-2 text-center">
+                      <h1 className="text-red-500 capitalize my-2 text-center">
                         {isFetchBaseQueryError(error)
                           ? error.data?.message
                           : "An unexpected error occurred."}
-                      </Typography>
+                      </h1>
                     )}
 
                     <Box className="flex justify-center">
@@ -148,7 +143,7 @@ const PasswordChange = () => {
                         type="submit"
                         variant="contained"
                         className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md"
-                        fullWidth
+                        // fullWidth
                       >
                         {isLoading ? <CircularProgress /> : "Change Password"}
                       </Button>

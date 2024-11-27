@@ -1,13 +1,5 @@
+import { Box, FormControl, Grid, RadioGroup } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import {
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  FormControl,
-  Box,
-  Typography,
-  Grid
-} from "@mui/material";
 
 export interface TimeSlot {
   end_time: string;
@@ -47,20 +39,17 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({
 
   return (
     <Box>
-      <Typography fontSize="1.2rem" my="16px" fontWeight="700" color="#4B3E3D">
+      <h1>
         Choose a Time Slot
-      </Typography>
+      </h1>
       <Box>
         {sortedSlots?.length > 0 ? (
           <Box>
             <Grid
-              container
-              spacing={1}
-              direction="column"
               gap={2}
               justifyContent="end"
             >
-              <FormControl component="fieldset">
+              <FormControl>
                 <RadioGroup
                   aria-label="time slot"
                   name="time slot"
@@ -69,8 +58,6 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({
                   <Box maxHeight="240px" overflow="auto" paddingRight="2px">
                     {sortedSlots?.map((session: TimeSlot) => (
                       <Grid
-                        item
-                        xs={12}
                         key={session.start_time}
                         margin={1}
                         display="flex"
@@ -88,12 +75,12 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({
                           }
                         }}
                       >
-                        <FormControlLabel
+                        {/* <FormControlLabel
                           control={<Radio />}
                           label={session.start_time + "-" + session.end_time}
                           value={session.start_time}
                           onChange={() => handleChange(session)}
-                        />
+                        /> */}
                       </Grid>
                     ))}
                   </Box>
@@ -102,11 +89,11 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({
             </Grid>
           </Box>
         ) : (
-          <Typography>
+          <h1>
             {data?.slotss?.length > 0
               ? "Slots Not Available"
               : "Office is closed on this day"}
-          </Typography>
+          </h1>
         )}
       </Box>
     </Box>

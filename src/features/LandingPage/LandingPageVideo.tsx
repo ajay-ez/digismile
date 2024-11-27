@@ -1,7 +1,7 @@
 import React from "react";
-import { AppBar, Typography, Box, Button } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
+import { Box, Button } from "@chakra-ui/react";
 
 const LandingPageVideo = () => {
   const router = useRouter();
@@ -12,34 +12,26 @@ const LandingPageVideo = () => {
 
   return (
     <div className="relative h-[90vh]">
-      <AppBar
-        position="absolute"
+      {/* <div
         color="transparent"
-        elevation={0}
-        sx={{
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 10
-        }}
       >
         <Box className="flex justify-end items-center p-3">
           <Box className="flex flex-col gap-2">
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
-              <Typography className="text-white font-poppins" variant="body1">
+              <h1 className="text-white font-poppins" >
                 Washington D.C.
-              </Typography>
+              </h1>
             </Box>
             <Box className="flex items-center gap-2">
               <LocationOnIcon color="error" />
-              <Typography className="text-white font-poppins" variant="body1">
+              <h1 className="text-white font-poppins" >
                 Burke, VA
-              </Typography>
+              </h1>
             </Box>
           </Box>
         </Box>
-      </AppBar>
+      </div> */}
 
       {/* Video Background */}
       <video
@@ -54,19 +46,19 @@ const LandingPageVideo = () => {
       {/* Overlay Content */}
       <div className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
         <Box>
-          <Typography
-            variant="h5"
+          <h1
+            
             className="font-bold  text-black text-center font-poppins"
           >
             Welcome,
-          </Typography>
-          <Typography
-            variant="h4"
+          </h1>
+          <h1
+            
             className="font-bold font-poppins text-black text-center mt-2"
           >
             Get your best ever
             <br /> Dental Experience !
-          </Typography>
+          </h1>
         </Box>
       </div>
 

@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
   IconButton
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { Button } from "@chakra-ui/react";
 
 type YoutubeDialogProps = {
   videoUrl: string;

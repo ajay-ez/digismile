@@ -1,8 +1,8 @@
 import { service_detail } from "@/assets/images";
-import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
+import { Stack } from "@chakra-ui/react";
 
 export const WhyUs = () => {
   return (
@@ -12,33 +12,33 @@ export const WhyUs = () => {
       className="flex flex-col-reverse md:flex-row mb-48 items-center"
     >
       <div className="md:w-[40%] mt-20">
-        <Typography variant="body1">
+        <h1 >
           At Smile Experts Dental, we simplify patient care by creating a
           personalized account for each patient, enabling easy access to their
           profile, can make appointment in just a click, and ongoing care all in
           one place.
-        </Typography>
+        </h1>
         <div className="flex flex-col gap-28 mt-10 ">
           <div className="flex gap-10  ">
             <div>
-              <Typography>
+              <h1>
                 <CheckIcon className="mx-2 shadow-blue-500" />
                 Treatment History
-              </Typography>
-              <Typography>
+              </h1>
+              <h1>
                 <CheckIcon className="mx-2" />
                 Seamless Access
-              </Typography>
+              </h1>
             </div>
             <div>
-              <Typography>
+              <h1>
                 <CheckIcon className="mx-2" />
                 Treatment History
-              </Typography>
-              <Typography>
+              </h1>
+              <h1>
                 <CheckIcon className="mx-2" />
                 Seamless Access
-              </Typography>
+              </h1>
             </div>
           </div>
           <div></div>

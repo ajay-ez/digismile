@@ -1,7 +1,6 @@
 import ServiceCard from "@/features/services/ServiceCard";
 import React from "react";
 import projectConstants from "@/projectContants";
-import { Stack, Typography } from "@mui/material";
 import DigiLayout from "@/components/Layout";
 import FAQ from "@/features/services/Faqs";
 import { faq } from "@/assets/images";
@@ -9,6 +8,7 @@ import Image from "next/image";
 import SmileJourney from "@/features/services/SmileJourney";
 import ClinicServiceDetail from "@/features/services/ClinicServiceDetail";
 import { TextImageOverlay } from "@/components/common/TextImageOverlay";
+import { Stack } from "@chakra-ui/react";
 const ClinicServices = () => {
   return (
     <DigiLayout>
@@ -37,9 +37,9 @@ const ClinicServices = () => {
         {/* Faqs */}
         <div className="flex gap-10 p-8 ">
           <div className="md:w-[50%]">
-            <Typography variant="h1" className="text-center mb-16  ">
+            <h1 className="text-center mb-16  ">
               Frequently Ask Question
-            </Typography>
+            </h1>
             <FAQ />
           </div>
           <Image src={faq} alt="Faq's" className="w-[40%] hidden sm:block" />
@@ -47,12 +47,12 @@ const ClinicServices = () => {
 
         {/* Services with video */}
         <div>
-          <Typography variant="h1" className="text-center  mb-2  ">
+          <h1 className="text-center  mb-2  ">
             Comprehensive Dental SERVICES by Smile Experts Dental
-          </Typography>
-          <Typography variant="subtitle1" className="text-center mb-16  ">
+          </h1>
+          <h1 className="text-center mb-16  ">
             Your Path to a Radiant Smile
-          </Typography>
+          </h1>
           <Stack gap={4} className="p-4 ">
             {projectConstants.clinicServiceDetails.map(
               (serviceDetail: any, index: number) => (

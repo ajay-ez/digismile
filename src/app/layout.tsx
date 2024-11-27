@@ -5,18 +5,16 @@ import {
   League_Spartan,
   Fredoka,
   Poppins,
-  Nunito_Sans,
   Bokor,
   Merriweather,
   Josefin_Sans,
   Noto_Sans,
   Raleway
 } from "next/font/google";
-import "./globals.css";
+import "./global.scss";
 import React from "react";
-import { ReduxProvider } from "@/providers/ReduxProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider"; // Import ThemeProvider
 import Script from "next/script";
+import AppWrappers from "./AppWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,13 +55,6 @@ const poppins = Poppins({
   weight: ["400"] // Specify the required font weights
 });
 
-const nunito = Nunito_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-nunito-sans",
-  weight: ["400", "600"] // Specify the required font weights
-});
-
 const bokor = Bokor({
   subsets: ["latin"],
   display: "swap",
@@ -102,10 +93,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${atkinson.variable} ${bangers.variable} ${league.variable} ${fredoka.variable} ${poppins.variable} ${nunito.variable} ${bokor.variable} ${merriweather.variable} ${josefin.variable} ${noto.variable} ${raleway.variable}`}
-    >
+    <html lang="en">
       <head>
         <Script id="chatbot-config" strategy="beforeInteractive">
           {`
@@ -115,17 +103,16 @@ export default function RootLayout({
             };
           `}
         </Script>
-
         <Script
           src="https://www.chatbase.co/embed.min.js"
           strategy="afterInteractive"
           defer
         />
       </head>
-      <body className="font-poppins digismile-global">
-        <ReduxProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </ReduxProvider>
+      <body
+        className={`${inter.variable} ${atkinson.variable} ${bangers.variable} ${league.variable} ${fredoka.variable} ${poppins.variable} ${bokor.variable} ${merriweather.variable} ${josefin.variable} ${noto.variable} ${raleway.variable}`}
+      >
+        <AppWrappers>{children}</AppWrappers>
       </body>
     </html>
   );

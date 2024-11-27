@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
-import { Box, Button, Typography } from "@mui/material";
 import { emailValidation, requiredCharField } from "@/validations";
+import { Box, Button } from "@chakra-ui/react";
 
 const validationSchema = Yup.object({
   name: requiredCharField("Name"),
@@ -32,9 +32,9 @@ const ContactUsForm = () => {
       {() => (
         <Form>
           <Box mb={2}>
-            <Typography variant="subtitle1" className="text-center">
+            <h1 className="text-center">
               Send Us a Message
-            </Typography>
+            </h1>
           </Box>
           <Box mb={2}>
             <FieldInput label="Name" name="name" type="text" required />
@@ -75,7 +75,7 @@ const ContactUsForm = () => {
           </Box>
 
           <Button
-            fullWidth
+            // fullWidth
             className="bg-digiSkyBlue text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-500"
             type="submit"
           >

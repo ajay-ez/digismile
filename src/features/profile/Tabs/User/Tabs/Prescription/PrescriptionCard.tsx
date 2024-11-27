@@ -1,5 +1,5 @@
 import { getFormattedDateTime } from "@/utils/dateUtils";
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@chakra-ui/react";
 import React from "react";
 interface CardProps {
   doctorName?: string;
@@ -14,16 +14,16 @@ export const PrescriptionCard = ({
   return (
     <Stack className="gap-4 bg-[#ADF0D1] m-5 p-10 rounded-2xl">
       <Stack className="flex-row justify-between items-center">
-        <Typography className="text-xl font-semibold text-[#282828]">
+        <h1 className="text-xl font-semibold text-[#282828]">
           {doctorName}
-        </Typography>
-        <Typography className="text-[#282828]">
+        </h1>
+        <h1 className="text-[#282828]">
           {getFormattedDateTime(date, true)}
-        </Typography>
+        </h1>
       </Stack>
-      <Typography className="text-lg font-semibold text-blue-500">
+      <h1 className="text-lg font-semibold text-blue-500">
         {prescription}
-      </Typography>
+      </h1>
     </Stack>
   );
 };

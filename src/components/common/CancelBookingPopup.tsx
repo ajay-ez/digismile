@@ -1,11 +1,8 @@
 import React from "react";
 import {
-  Box,
-  Typography,
-  Button,
-  CircularProgress,
   Dialog
 } from "@mui/material";
+import { Box, Button, CircularProgress } from "@chakra-ui/react";
 
 interface CancelBookingPopupProps {
   open: boolean;
@@ -30,12 +27,12 @@ const CancelBookingPopup: React.FC<CancelBookingPopupProps> = ({
           p: 4
         }}
       >
-        <Typography variant="h6" component="h2" className="font-bold">
+        <h1>
           Cancel Booking
-        </Typography>
-        <Typography sx={{ mt: 2 }}>
+        </h1>
+        <h1>
           Are you sure you want to cancel this booking?
-        </Typography>
+        </h1>
         <Box sx={{ mt: 4, display: "flex", justifyContent: "space-between" }}>
           <Button
             variant="outlined"

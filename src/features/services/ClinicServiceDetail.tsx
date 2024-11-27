@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
@@ -25,12 +24,12 @@ const ClinicServiceDetail = ({
       `}
     >
       <div className="md:w-[45%] relative p-4 space-y-4  rounded-lg shadow-md backdrop-blur-md   px-8 lg:mx-16">
-        <Typography variant="h5" className="font-bold text-blue-900">
+        <h1 className="font-bold text-blue-900">
           {header}
-        </Typography>
-        <Typography variant="body1" className="text-gray-700 leading-relaxed">
+        </h1>
+        <h1 className="text-gray-700 leading-relaxed">
           {desc}
-        </Typography>
+        </h1>
       </div>
 
       <div className="md:w-[50%] p-4 flex justify-center relative">

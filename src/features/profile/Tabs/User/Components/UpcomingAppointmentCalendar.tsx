@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { Box } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import {
@@ -11,6 +10,7 @@ import {
 } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
+import { Box } from '@chakra-ui/react';
 
 function AppointmentDay(props: PickersDayProps<Dayjs>) {
   const { day, ...other } = props;

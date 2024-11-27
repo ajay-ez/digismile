@@ -1,20 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import {
-  Box,
-  useMediaQuery,
-  useTheme,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  Menu,
-  MenuItem,
-  Typography
-} from "@mui/material";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import { digismileLogoImage, dummy_profile } from "@/assets/images";
@@ -22,12 +7,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useGetUserDetailsQuery } from "@/services/apiServices/profileService";
 import useAuthToken from "@/hooks/useAuthToken";
+import { Box, Button, Flex, IconButton, useMediaQuery } from "@chakra-ui/react";
 
 export default function Navbar() {
   const { data, isError } = useGetUserDetailsQuery();
   const router = useRouter();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [isMobile] = useMediaQuery("(max-width: 780px)");
   const [userId, setUserId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // For profile menu
@@ -75,49 +60,35 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="sticky" className="bg-footer-blue-gradient">
-      <Toolbar className="flex justify-between items-center p-4  rounded-3xl">
+    <Box position={"fixed"} top={0} zIndex={1} width={"100%"}>
+      <Flex justifyContent={"space-between"} p={4}>
         <Image
           onClick={() => navigateToSection("/")}
           src={digismileLogoImage}
-          height={90}
+          height={60}
           alt="digismile"
-          className="cursor-pointer"
         />
 
         {!isMobile ? (
           // Desktop view
-          <Box className="flex gap-2">
-            <Button
-              className="font-bold capitalize text-[1rem]"
-              onClick={() => navigateToSection("/")}
-              color="inherit"
-            >
-              Home
-            </Button>
-            <Button
-              className="font-bold capitalize text-[1rem]"
-              color="inherit"
-            >
+          <Flex alignItems={"center"}>
+            <Button color="inherit">
               <Link href={"about-us"} prefetch>
-                About
+                ABOUT
               </Link>
             </Button>
             <Button
               onClick={() => navigateToSection("clinic-services")}
-              className="font-bold capitalize text-[1rem]"
               color="inherit"
             >
-              Services
+              SERVICES
             </Button>
             <Button
               onClick={() => navigateToSection("contact-us")}
-              className="font-bold capitalize text-[1rem]"
               color="inherit"
             >
-              Contact Us
+              CONTACT US
             </Button>
-
             {isError && (
               <>
                 <Button
@@ -125,94 +96,90 @@ export default function Navbar() {
                   color="inherit"
                   onClick={() => navigateToSection("signup")}
                 >
-                  Signup
+                  SIGNUP
                 </Button>
                 <Button
-                  className="font-bold capitalize text-[1rem]"
                   color="inherit"
                   onClick={() => navigateToSection("login")}
                 >
-                  Login
+                  LOGIN
                 </Button>
               </>
             )}
-          </Box>
+            <Box>
+              {data && (
+                <IconButton
+                  aria-label="profile"
+                  onClick={handleProfileMenuClick}
+                >
+                  <Image
+                    src={dummy_profile}
+                    alt="Profile"
+                    width={40}
+                    height={40}
+                    className="rounded-full cursor-pointer"
+                  />
+                </IconButton>
+              )}
+              {data?.user_type !== "staff" ? (
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "white",
+                    color: "#1E285F",
+                    // fontWeight: "bold",
+                    padding: "8px 16px",
+                    display: isMobile ? "none" : "block"
+                  }}
+                  onClick={() =>
+                    navigateToSection(
+                      isError
+                        ? "contact-us"
+                        : `profile/${userId}?tab=appointments&subTab=quick-appointments`
+                    )
+                  }
+                >
+                  Request Appointment
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "white",
+                    color: "#1E285F",
+                    // fontWeight: "bold",
+                    padding: "8px 16px",
+                    display: isMobile ? "none" : "block"
+                  }}
+                  onClick={() => navigateToSection("add-medical-records")}
+                >
+                  Add Medical Record
+                </Button>
+              )}
+            </Box>
+          </Flex>
         ) : (
-          <IconButton color="inherit" onClick={() => setDrawerOpen(true)}>
+          <IconButton
+            aria-label="menu"
+            color="inherit"
+            onClick={() => setDrawerOpen(true)}
+          >
             <MenuIcon />
           </IconButton>
         )}
-
-        <Box className="flex gap-2">
-          {data && (
-            <IconButton onClick={handleProfileMenuClick}>
-              <Image
-                src={dummy_profile}
-                alt="Profile"
-                width={40}
-                height={40}
-                className="rounded-full cursor-pointer"
-              />
-            </IconButton>
-          )}
-          {data?.user_type !== "staff" ? (
-            <Button
-              variant="contained"
-              className="capitalize hover:bg-white button rounded-4xl font-poppins  "
-              sx={{
-                backgroundColor: "white",
-                color: "#1E285F",
-                // fontWeight: "bold",
-                padding: "8px 16px",
-                display: isMobile ? "none" : "block"
-              }}
-              onClick={() =>
-                navigateToSection(
-                  isError
-                    ? "contact-us"
-                    : `profile/${userId}?tab=appointments&subTab=quick-appointments`
-                )
-              }
-            >
-              Request Appointment
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              className="capitalize hover:bg-white button rounded-4xl font-poppins  "
-              sx={{
-                backgroundColor: "white",
-                color: "#1E285F",
-                // fontWeight: "bold",
-                padding: "8px 16px",
-                display: isMobile ? "none" : "block"
-              }}
-              onClick={() => navigateToSection("add-medical-records")}
-            >
-              Add Medical Record
-            </Button>
-          )}
-        </Box>
-      </Toolbar>
+      </Flex>
 
       {/* Profile Menu for profile image click */}
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+      {/* <Menu
         onClose={handleCloseProfileMenu}
       >
         <MenuItem onClick={handleProfileVisit}>Visit Profile</MenuItem>
         <MenuItem onClick={handleChangePassword}>Change Password</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      </Menu>
+      </Menu> */}
 
       {/* Drawer for mobile menu */}
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
-        <Box
+      {/* <Box
           width={250}
           role="presentation"
           onClick={() => setDrawerOpen(false)}
@@ -222,45 +189,41 @@ export default function Navbar() {
               className="cursor-pointer "
               onClick={() => navigateToSection("/")}
             >
-              <Typography
-                variant="subtitle1"
+              <h1
                 className="text-[1rem] text-digiDarkBlue font-bold"
               >
                 Home
-              </Typography>
+              </h1>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBlue"
               onClick={() => navigateToSection("about-us")}
             >
-              <Typography
-                variant="subtitle1"
+              <h1
                 className="text-[1rem] text-digiDarkBluek font-bold"
               >
                 About Us
-              </Typography>
+              </h1>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("clinic-services")}
             >
-              <Typography
-                variant="subtitle1"
+              <h1
                 className="text-[1rem] text-digiDarkBluek font-bold"
               >
                 Services
-              </Typography>
+              </h1>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("contact-us")}
             >
-              <Typography
-                variant="subtitle1"
+              <h1
                 className="text-[1rem] text-digiDarkBluek font-bold"
               >
                 Contact Us
-              </Typography>
+              </h1>
             </ListItem>
 
             {isError && (
@@ -269,23 +232,21 @@ export default function Navbar() {
                   className="cursor-pointer text-[1rem] text-digiDarkBlue"
                   onClick={() => navigateToSection("signup")}
                 >
-                  <Typography
-                    variant="subtitle1"
+                  <h1
                     className="text-[1rem] text-digiDarkBlue font-bold"
                   >
                     Signup
-                  </Typography>
+                  </h1>
                 </ListItem>
                 <ListItem
                   className="cursor-pointer text-[1rem] text-digiDarkBlue"
                   onClick={() => navigateToSection("login")}
                 >
-                  <Typography
-                    variant="subtitle1"
+                  <h1
                     className="text-[1rem] text-digiDarkBlue font-bold"
                   >
                     Login
-                  </Typography>
+                  </h1>
                 </ListItem>
               </>
             )}
@@ -298,16 +259,14 @@ export default function Navbar() {
                 )
               }
             >
-              <Typography
-                variant="subtitle1"
+              <h1
                 className="text-[1rem] text-digiDarkBlue font-bold"
               >
                 Request Appointment
-              </Typography>
+              </h1>
             </ListItem>
           </List>
-        </Box>
-      </Drawer>
-    </AppBar>
+        </Box> */}
+    </Box>
   );
 }

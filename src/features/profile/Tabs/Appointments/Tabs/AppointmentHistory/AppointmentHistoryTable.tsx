@@ -1,19 +1,10 @@
 import React from "react";
-import {
-  Box,
-  TableBody,
-  Table,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-  Button
-} from "@mui/material";
 import { getFormattedDateTime } from "@/utils/dateUtils";
 import Image from "next/image";
 import { doctor } from "@/assets/images";
 import CalendarMonth from "@mui/icons-material/CalendarMonth";
 import { formatTimeToHoursAndMinutes } from "@/utils/dateUtils";
+import { Box, Button, Table, TableContainer, Tbody, Td, Tr } from "@chakra-ui/react";
 type AppointmentHistoryTableProps = {
   previous_appointments?: any;
 };
@@ -23,12 +14,12 @@ export const AppointmentHistoryTable = ({
 }: AppointmentHistoryTableProps) => {
   return (
     <Box>
-      <TableContainer component={Box} sx={{ borderRadius: 1 }}>
+      <TableContainer  sx={{ borderRadius: 1 }}>
         <Table>
-          <TableBody>
+          <Tbody>
             {previous_appointments?.map((event: any, index: number) => (
-              <TableRow key={index}>
-                <TableCell className="text-center border-none">
+              <Tr key={index}>
+                <Td className="text-center border-none">
                   <Image
                     src={doctor}
                     alt="Doctor"
@@ -36,19 +27,19 @@ export const AppointmentHistoryTable = ({
                     width={158}
                     className="rounded-full"
                   />
-                </TableCell>
-                <TableCell className="text-center border-none font-semibold text-xl">
+                </Td>
+                <Td className="text-center border-none font-semibold text-xl">
                   Dr. Mahmood
-                  <Typography className="text-xs text-left">
+                  <h1 className="text-xs text-left">
                     Dental Specialist
-                  </Typography>
-                </TableCell>
-                <TableCell className="text-center border-none text-lg ">
+                  </h1>
+                </Td>
+                <Td className="text-center border-none text-lg ">
                   {event.description}
-                </TableCell>
-                <TableCell className="text-left border-none text-lg ">
+                </Td>
+                <Td className="text-left border-none text-lg ">
                   {`${getFormattedDateTime(event.date)} ${formatTimeToHoursAndMinutes(event.start_time) + "-" + formatTimeToHoursAndMinutes(event.end_time)}`}
-                  <Typography className="text-left text-sm">Dc</Typography>
+                  <h1 className="text-left text-sm">Dc</h1>
                   <Button
                     variant="text"
                     className="capitalize text-black text-left"
@@ -56,16 +47,16 @@ export const AppointmentHistoryTable = ({
                     <CalendarMonth className="text-blue-500 mx-2" />
                     Reschedule
                   </Button>
-                </TableCell>
-              </TableRow>
+                </Td>
+              </Tr>
             ))}
-          </TableBody>
+          </Tbody>
         </Table>
       </TableContainer>
       {previous_appointments?.length === 0 && (
-        <Typography textAlign={"center"} mt={2}>
+        <h1>
           No Appointment Found
-        </Typography>
+        </h1>
       )}
     </Box>
   );

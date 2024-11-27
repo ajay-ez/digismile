@@ -1,11 +1,11 @@
 "use client";
 import { digismileLogoImage, dummy_profile } from "@/assets/images";
-import { Button, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SingleBedIcon from "@mui/icons-material/SingleBed";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@chakra-ui/react";
 
 const Sidebar = ({ userData }: any) => {
   const router = useRouter();
@@ -25,7 +25,7 @@ const Sidebar = ({ userData }: any) => {
       <div className="flex flex-col gap-8 justify-end items-end">
         <div>
           <Button
-            fullWidth
+            // fullWidth
             onClick={() =>
               router.push(
                 `/profile/${userId}?tab=user-profile&subTab=prescription`
@@ -45,7 +45,7 @@ const Sidebar = ({ userData }: any) => {
                 `/profile/${userId}?tab=appointments&subTab=appointment-history`
               )
             }
-            fullWidth
+            // fullWidth
             variant={tab === "appointments" ? "contained" : "outlined"}
             className="w-[320px] text-white   capitalize p-3 text-lg rounded-bl-full rounded-tl-full"
           >
@@ -56,12 +56,12 @@ const Sidebar = ({ userData }: any) => {
       </div>
       <div>
         <Image src={dummy_profile} alt="profile picture" className="mb-4" />
-        <Typography className="font-bold text-white text-xl ">
+        <h1 className="font-bold text-white text-xl ">
           {userData?.name}
-        </Typography>
-        <Typography className="text-white text-center">
+        </h1>
+        <h1 className="text-white text-center">
           {userData?.email}
-        </Typography>
+        </h1>
       </div>
     </div>
   );

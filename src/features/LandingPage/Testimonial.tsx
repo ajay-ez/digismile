@@ -1,7 +1,6 @@
 // pages/index.tsx
 import React from "react";
 import Slider from "react-slick";
-import { Typography, Box } from "@mui/material";
 import TestimonialReview from "@/components/common/TestimonialReview";
 import {
   testimonial_1,
@@ -9,6 +8,7 @@ import {
   testimonial_3,
   testimonial_4
 } from "@/assets/images";
+import { Box } from "@chakra-ui/react";
 
 const testimonials = [
   {
@@ -59,9 +59,9 @@ const Testimonial: React.FC = () => {
   return (
     <div className="bg-blue-white-gradient py-8">
       <Box className="flex justify-center">
-        <Typography variant="h1" className="text-center p-3 font-bold">
+        <h1 className="text-center p-3 font-bold">
           What our patient&apos;s say
-        </Typography>
+        </h1>
       </Box>
 
       <div className="p-4">

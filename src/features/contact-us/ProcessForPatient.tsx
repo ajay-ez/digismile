@@ -4,16 +4,16 @@ import {
   confirmation_icon,
   location_icon
 } from "@/assets/images";
-import { Stack, Typography } from "@mui/material";
 import { ProcessCard } from "./ProcessCard";
 import ForwardIcon from "@mui/icons-material/Forward";
+import { Stack } from "@chakra-ui/react";
 
 export const ProcessForPatient = () => {
   return (
     <div className=" flex flex-col gap-8 items-center">
-      <Typography variant="h1" className="text-center">
+      <h1 className="text-center">
         Process For New Patients
-      </Typography>
+      </h1>
       <Stack className="flex flex-col md:flex-row  items-center  justify-center">
         <div className="flex flex-col md:flex-row  items-center">
           <ProcessCard
