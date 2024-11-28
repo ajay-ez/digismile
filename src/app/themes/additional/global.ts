@@ -20,7 +20,8 @@ export default {
     width: "100vw",
     maxHeight: "100vh",
     maxWidth: "100vw",
-    overflow: "auto"
+    overflowY: "auto",
+    overflowX: "hidden"
   },
   ".scroll": {
     "::-webkit-scrollbar": {
@@ -36,7 +37,7 @@ export default {
     },
     "::-webkit-scrollbar-corner": {},
     "::-webkit-scrollbar-thumb:hover": {
-  background: "#d9d9d9"
-}
+      background: "#d9d9d9"
+    }
   }
 };

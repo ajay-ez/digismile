@@ -17,6 +17,7 @@ import Footer from "@/components/Layout/Footer";
 
 const LandingPage = () => {
   const isUserAuthorize = useAuthCheck();
+
   useEffect(() => {
     AOS.init({
       duration: 1000,

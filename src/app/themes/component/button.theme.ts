@@ -48,12 +48,21 @@ export default {
       }
     },
     brand: {
-      bgColor: "brand.100",
-      color: "white",
-      fontWeight: "500",
+      bgColor: {
+        base: "white.800",
+        responsive: "brand.100"
+      },
+      color: {
+        base: "brand.100",
+        responsive: "white.800"
+      },
+      fontWeight: "800",
       borderRadius: "md",
       fontSize: "md",
-      width: "350px",
+      width: {
+        base: "100%",
+        responsive: "350px"
+      },
       _hover: {
         _disabled: {
           bg: "brand.200"
@@ -61,12 +70,24 @@ export default {
       }
     },
     "brand-second": {
-      bgColor: "white",
-      color: "brand.100",
-      fontWeight: "500",
+      // bgColor: "white",
+      // color: "brand.100",
+      bgColor: {
+        base: "transparent",
+        responsive: "white.800"
+      },
+      color: {
+        base: "white.100",
+        responsive: "brand.100"
+      },
+      border: "1px white solid",
+      fontWeight: "800",
       borderRadius: "md",
       fontSize: "md",
-      width: "350px",
+      width: {
+        base: "100%",
+        responsive: "350px"
+      },
       _hover: {
         _disabled: {
           bg: "brand.200"
@@ -74,7 +95,6 @@ export default {
       }
     },
     header: {
-      color: "white",
       fontSize: "sm",
       fontWeight: "800",
       padding: "0"
