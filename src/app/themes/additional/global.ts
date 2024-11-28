@@ -1,7 +1,7 @@
 export default {
   body: {
     overflowX: "hidden",
-    bg: "white.800",
+    bg: "brand.200",
     // color: "white",
     fontFamily: "DM Sans",
     letterSpacing: "-0.5px"
@@ -23,21 +23,4 @@ export default {
     overflowY: "auto",
     overflowX: "hidden"
   },
-  ".scroll": {
-    "::-webkit-scrollbar": {
-      height: 1.5,
-      width: 1.5
-    },
-    "::-webkit-scrollbar-track": {
-      bgColor: "transparent"
-    },
-    "::-webkit-scrollbar-thumb": {
-      bgColor: "#d9d9d9",
-      borderRadius: "8px"
-    },
-    "::-webkit-scrollbar-corner": {},
-    "::-webkit-scrollbar-thumb:hover": {
-      background: "#d9d9d9"
-    }
-  }
 };

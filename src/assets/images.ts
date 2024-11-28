@@ -1,4 +1,6 @@
 import digismileLogoImage from "@/assets/digismile-logo.png";
+import digismileDarkLogoImage from "@/assets/digismile-logo-dark.png";
+import logo from "@/assets/utils/logo.svg";
 
 import home_1 from "@/assets/homepageImages/home_1.svg";
 import home_2 from "@/assets/homepageImages/home_2.svg";
@@ -40,14 +42,14 @@ import smile_journey from "@/assets/clinicServices/smile_journey.svg";
 import service_detail from "@/assets/clinicServices/service_detail.svg";
 
 //  gallery images
-import gallery_1 from "@/assets/galleryImages/IMG_1738.jpeg";
-import gallery_2 from "@/assets/galleryImages/IMG_1740.jpeg";
-import gallery_3 from "@/assets/galleryImages/IMG_1741.jpeg";
-import gallery_4 from "@/assets/galleryImages/IMG_1743.jpeg";
-import gallery_5 from "@/assets/galleryImages/IMG_1744.jpeg";
-import gallery_6 from "@/assets/galleryImages/IMG_1994.jpeg";
-import gallery_7 from "@/assets/galleryImages/IMG_2026.jpeg";
-import gallery_8 from "@/assets/galleryImages/IMG_2033.jpeg";
+import gallery_1 from "@/assets/galleryImages/1.svg";
+import gallery_2 from "@/assets/galleryImages/2.svg";
+import gallery_3 from "@/assets/galleryImages/3.svg";
+import gallery_4 from "@/assets/galleryImages/4.svg";
+import gallery_5 from "@/assets/galleryImages/5.svg";
+import gallery_6 from "@/assets/galleryImages/6.svg";
+import gallery_7 from "@/assets/galleryImages/7.svg";
+import gallery_8 from "@/assets/galleryImages/8.svg";
 
 // detailed service images
 import filling_service from "@/assets/clinicServices/newImages/Filling.jpeg";
@@ -61,6 +63,10 @@ import appointment_icon from "@/assets/contactUsIcons/appointment icon.jpeg";
 import confirmation_icon from "@/assets/contactUsIcons/confirmation icon.png";
 import location_icon from "@/assets/contactUsIcons/location icon.png";
 
+// utils images
+import right_arrow from "@/assets/utils/right-arrow.png";
+import left_arrow from "@/assets/utils/left-arrow.png";
+
 export {
   signup_bottom_left,
   appointment,
@@ -72,6 +78,7 @@ export {
   signup_top_left,
   login_image,
   digismileLogoImage,
+  digismileDarkLogoImage,
   home_1,
   home_2,
   home_3,
@@ -109,5 +116,8 @@ export {
   dental_venuer,
   appointment_icon,
   confirmation_icon,
-  location_icon
+  location_icon,
+  right_arrow,
+  left_arrow,
+  logo
 };

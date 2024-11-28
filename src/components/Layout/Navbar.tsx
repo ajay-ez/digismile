@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
-import { digismileLogoImage, dummy_profile } from "@/assets/images";
+import { digismileLogoImage, dummy_profile, logo } from "@/assets/images";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useGetUserDetailsQuery } from "@/services/apiServices/profileService";
 import useAuthToken from "@/hooks/useAuthToken";
 import {
@@ -14,17 +13,24 @@ import {
   IconButton,
   List,
   ListItem,
+  Text,
   useMediaQuery
 } from "@chakra-ui/react";
 import { HEADER_HEIGHT } from "@/utils/constant";
+import { useSelector } from "react-redux";
+import { getHeaderStatus } from "@/redux/SharedSlice";
 
 export default function Navbar() {
   const { data, isError } = useGetUserDetailsQuery();
   const router = useRouter();
   const [isMobile] = useMediaQuery("(max-width: 1000px)");
+
   const [userId, setUserId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // For profile menu
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const headerStatus = useSelector(getHeaderStatus);
+
   const { clearAuthToken } = useAuthToken();
 
   const navigateToSection = (url: string) => {
@@ -63,12 +69,13 @@ export default function Navbar() {
 
   return (
     <Box
-      id="header"
+      className={`header-container ${isMobile ? "mobile-header" : "desktop-header"} ${headerStatus === true ? "sticky-header" : ""}`}
       position={"fixed"}
       top={0}
       zIndex={3}
       width={"100%"}
-      bg={isMobile ? "brand.100" : "transparent"}
+      bg={"transparent"}
+      borderBottom={isMobile ? "1px white solid" : "unset"}
     >
       <Flex
         alignItems={"center"}
@@ -77,10 +84,13 @@ export default function Navbar() {
         py={4}
       >
         <Image
+          id="header-sticky-image"
           onClick={() => navigateToSection("/")}
-          src={digismileLogoImage}
-          height={60}
+          src={headerStatus === true ? logo : digismileLogoImage}
+          width={110}
+          height={70}
           alt="digismile"
+          style={{ cursor: "pointer" }}
         />
 
         {!isMobile ? (
@@ -164,7 +174,7 @@ export default function Navbar() {
         ) : (
           <IconButton
             aria-label="menu"
-            color="white.800"
+            color={headerStatus === true ? "brand.100" : "white.800"}
             onClick={() => setDrawerOpen(!drawerOpen)}
           >
             <MenuIcon />
@@ -184,67 +194,89 @@ export default function Navbar() {
       {/* Drawer for mobile menu */}
       {isMobile && drawerOpen && (
         <Box
-          border={"1px red solid"}
+          backgroundColor={"#faf7f5"}
           width={"100%"}
           position={"fixed"}
           display={"inherit"}
           top={HEADER_HEIGHT}
           role="presentation"
           onClick={() => setDrawerOpen(!drawerOpen)}
+          padding={8}
+          className="responsive-header"
         >
-          <List>
+          <List
+            display={"flex"}
+            flexDir={"column"}
+            alignItems={"center"}
+            gap={4}
+          >
             <ListItem
               className="cursor-pointer "
               onClick={() => navigateToSection("/")}
+              marginY={2}
             >
-              <h1 className="text-[1rem] text-digiDarkBlue font-bold">Home</h1>
+              <Text as={"h4"} fontWeight={"bold"}>
+                Home
+              </Text>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBlue"
               onClick={() => navigateToSection("about-us")}
+              marginY={2}
             >
-              <h1 className="text-[1rem] text-digiDarkBluek font-bold">
+              <Text as={"h4"} fontWeight={"bold"}>
                 About Us
-              </h1>
+              </Text>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("clinic-services")}
+              marginY={2}
             >
-              <h1 className="text-[1rem] text-digiDarkBluek font-bold">
+              <Text as={"h4"} fontWeight={"bold"}>
                 Services
-              </h1>
+              </Text>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("contact-us")}
+              marginY={2}
             >
-              <h1 className="text-[1rem] text-digiDarkBluek font-bold">
+              <Text as={"h4"} fontWeight={"bold"}>
                 Contact Us
-              </h1>
+              </Text>
             </ListItem>
 
             {isError && (
               <>
                 <ListItem
-                  className="cursor-pointer text-[1rem] text-digiDarkBlue"
                   onClick={() => navigateToSection("signup")}
+                  width={"fit-content"}
+                  background={"#963f36"}
+                  color={"#fff"}
+                  padding={".7rem 5rem"}
+                  borderRadius={"lg"}
                 >
-                  <h1 className="text-[1rem] text-digiDarkBlue font-bold">
+                  <Text as={"h4"} fontWeight={"bold"}>
                     Signup
-                  </h1>
+                  </Text>
                 </ListItem>
                 <ListItem
-                  className="cursor-pointer text-[1rem] text-digiDarkBlue"
                   onClick={() => navigateToSection("login")}
+                  width={"fit-content"}
+                  background={"#fff"}
+                  color={"#963f36"}
+                  padding={".7rem 5.3rem"}
+                  borderRadius={"lg"}
+                  border={"1px black solid"}
                 >
-                  <h1 className="text-[1rem] text-digiDarkBlue font-bold">
+                  <Text as={"h4"} fontWeight={"bold"}>
                     Login
-                  </h1>
+                  </Text>
                 </ListItem>
               </>
             )}
-            <ListItem
+            {/* <ListItem
               onClick={() =>
                 navigateToSection(
                   isError
@@ -256,7 +288,7 @@ export default function Navbar() {
               <h1 className="text-[1rem] text-digiDarkBlue font-bold">
                 Request Appointment
               </h1>
-            </ListItem>
+            </ListItem> */}
           </List>
         </Box>
       )}

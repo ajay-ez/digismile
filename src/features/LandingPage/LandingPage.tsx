@@ -14,6 +14,12 @@ import Gallery from "./Gallery";
 import { Box } from "@chakra-ui/react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
+import ImageGallery from "../Image-gallery";
+import dynamic from "next/dynamic";
+// import PatientReviews from "../patient-reviews";
+const PatientReviews = dynamic(() => import("../patient-reviews"), {
+  ssr: false
+});
 
 const LandingPage = () => {
   const isUserAuthorize = useAuthCheck();
@@ -28,45 +34,23 @@ const LandingPage = () => {
   return (
     <Box position={"relative"}>
       <Navbar />
-      <>
-        <LandingPageVideo />
-        {isUserAuthorize && <UserWelcome />}
-      </>
-
-      <div>
-        <Services />
-      </div>
-
-      {/* {!isUserAuthorize && (
-          <div
-            id="book_appointment"
-            data-aos="fade-up"
-            data-aos-delay="100"
-            className="bg-blue-white-gradient"
-          >
-            <BookAppointment />
-          </div>
-        )} */}
-      <div>
-        <WhoWeAre />
-      </div>
-      <div>
-        <Gallery />
-      </div>
-      <div>
-        <Testimonial />
-      </div>
-      <div
+      <LandingPageVideo />
+      <ImageGallery />
+      {/* <PatientReviews /> */}
+      {/* {isUserAuthorize && <UserWelcome />} */}
+      {/* <Services /> */}
+      {/* <WhoWeAre /> */}
+      {/* <Gallery /> */}
+      {/* <Testimonial /> */}
+      {/* <div
         id="schedule"
         data-aos="fade-up"
         data-aos-delay="100"
         className="mx-4 "
       >
         <ClinicSchedule renderToHome={true} />
-      </div>
-      <div>
-        <ContactUs />
-      </div>
+      </div> */}
+      {/* <ContactUs /> */}
       <Footer />
     </Box>
   );

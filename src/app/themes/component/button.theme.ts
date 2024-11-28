@@ -99,6 +99,11 @@ export default {
       fontWeight: "800",
       padding: "0"
     },
+    'reviews-button': {
+      fontSize: "sm",
+      fontWeight: "800",
+      padding: "0",
+    },
     appointment: {
       backgroundColor: "brand.100",
       color: "white",

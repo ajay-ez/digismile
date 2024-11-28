@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Inter,
   Atkinson_Hyperlegible,
@@ -13,9 +15,11 @@ import {
   DM_Sans
 } from "next/font/google";
 import "./global.scss";
-import React from "react";
+import React, { Suspense } from "react";
 import Script from "next/script";
 import AppWrappers from "./AppWrapper";
+import { Provider } from "react-redux";
+import store from "@/redux/store";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -53,7 +57,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${poppins.className} ${dmSans.className}`}>
-        <AppWrappers>{children}</AppWrappers>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Provider store={store}>
+            <AppWrappers>{children}</AppWrappers>
+          </Provider>
+        </Suspense>
       </body>
     </html>
   );

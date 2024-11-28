@@ -1,32 +1,31 @@
 "use client";
-import React, { ReactNode, Suspense } from "react";
+
+import React, { ReactNode } from "react";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import { CacheProvider } from "@chakra-ui/next-js";
 
-import { Provider } from "react-redux";
-import store from "@/redux/store";
+import { useDispatch } from "react-redux";
 import themes from "./themes";
+import { toggleHeader } from "@/redux/SharedSlice";
 
 export default function AppWrappers({ children }: { children: ReactNode }) {
+  const dispatch = useDispatch();
+
   const handleScroll = (e: any) => {
     if (e.target.scrollTop > 50) {
-      document.getElementById("header")?.classList.add("sticky-header");
+      dispatch(toggleHeader(true));
     } else {
-      document.getElementById("header")?.classList.remove("sticky-header");
+      dispatch(toggleHeader(false));
     }
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Provider store={store}>
-        <CacheProvider>
-          <ChakraProvider theme={themes}>
-            <Box onScroll={(e) => handleScroll(e)} className="container">
-              {children}
-            </Box>
-          </ChakraProvider>
-        </CacheProvider>
-      </Provider>
-    </Suspense>
+    <CacheProvider>
+      <ChakraProvider theme={themes}>
+        <Box onScroll={(e) => handleScroll(e)} className="container">
+          {children}
+        </Box>
+      </ChakraProvider>
+    </CacheProvider>
   );
 }

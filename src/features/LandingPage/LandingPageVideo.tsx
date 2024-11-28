@@ -34,14 +34,22 @@ const LandingPageVideo = () => {
         color={"white.800"}
         bg={isMobile ? "brand.100" : "transparent"}
       >
-        <Text as={"h1"} className="heading">
-          Your smile deserves the best.
-        </Text>
-        <Text as={"h1"} className="heading">
-          crafted just for you
-        </Text>
-        <Text as={"h4"} mt={8}>
-          Your smile deserves the best—gentle jkkjuih uhui hiuhiuh
+        {isMobile ? (
+          <Text as={"h1"} className="heading" lineHeight={1.2}>
+            Your smile deserves the best. crafted just for you
+          </Text>
+        ) : (
+          <>
+            <Text as={"h1"} className="heading">
+              Your smile deserves the best.
+            </Text>
+            <Text as={"h1"} className="heading">
+              crafted just for you
+            </Text>
+          </>
+        )}
+        <Text as={"h4"} mt={4} textAlign={"center"}>
+          Your smile deserves the best—gentle care best—gentle best—gentle
         </Text>
         <Text as={"h4"}>Your smile deserves the best—gentle</Text>
         <Button mt={8} variant={"brand"}>
