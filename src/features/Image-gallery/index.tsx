@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
 import {
   gallery_1,
@@ -27,7 +27,7 @@ const ImageGallery = () => {
 
   const [imageIndex, setImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const MotionBox = motion("Box");
+  const MotionBox = motion("div");
 
   const handleNext = () => {
     setDirection(1);
@@ -109,9 +109,9 @@ const ImageGallery = () => {
                 src={images[imageIndex].src}
                 alt={images[imageIndex].alt}
                 // layout="fill"
-                objectFit="cover"
                 style={{
-                  borderRadius: "10px"
+                  borderRadius: "10px",
+                  objectFit: "cover"
                 }}
               />
             </MotionBox>

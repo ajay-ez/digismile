@@ -194,7 +194,8 @@ export default function Navbar() {
       {/* Drawer for mobile menu */}
       {isMobile && drawerOpen && (
         <Box
-          backgroundColor={"#faf7f5"}
+          backgroundColor={headerStatus === true ? "#963f36" : "#faf7f5"}
+          color={headerStatus === true ? "#fff" : "#963f36"}
           width={"100%"}
           position={"fixed"}
           display={"inherit"}
@@ -256,6 +257,7 @@ export default function Navbar() {
                   color={"#fff"}
                   padding={".7rem 5rem"}
                   borderRadius={"lg"}
+                  border={"1px #faf7f5 solid"}
                 >
                   <Text as={"h4"} fontWeight={"bold"}>
                     Signup
@@ -268,7 +270,9 @@ export default function Navbar() {
                   color={"#963f36"}
                   padding={".7rem 5.3rem"}
                   borderRadius={"lg"}
-                  border={"1px black solid"}
+                  border={
+                    headerStatus === true ? "1px #fff solid" : "1px black solid"
+                  }
                 >
                   <Text as={"h4"} fontWeight={"bold"}>
                     Login

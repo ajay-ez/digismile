@@ -68,8 +68,8 @@ const LandingPageVideo = () => {
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "cover",
-          filter: "brightness(50%)"
+          filter: "brightness(50%)",
+          objectFit: "cover"
         }}
       />
     </Box>

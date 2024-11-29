@@ -12,13 +12,10 @@ export const TextImageOverlay = ({ title }: TextImageOverlayProps) => {
         src={service_detail}
         alt="Background Image"
         layout="fill"
-        objectFit="cover"
-        className="z-0  "
+        style={{ objectFit: "cover" }}
       />
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <h1 className="text-4xl font-poppins">
-          {title}
-        </h1>
+        <h1 className="text-4xl font-poppins">{title}</h1>
       </div>
     </div>
   );

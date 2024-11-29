@@ -39,16 +39,11 @@ const AvailableSlots: React.FC<AvailableSlotsProps> = ({
 
   return (
     <Box>
-      <h1>
-        Choose a Time Slot
-      </h1>
+      <h1>Choose a Time Slot</h1>
       <Box>
         {sortedSlots?.length > 0 ? (
           <Box>
-            <Grid
-              gap={2}
-              justifyContent="end"
-            >
+            <Grid gap={2} justifyContent="end">
               <FormControl>
                 <RadioGroup
                   aria-label="time slot"
