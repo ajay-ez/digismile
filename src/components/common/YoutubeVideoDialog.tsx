@@ -1,13 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton
-} from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { Button } from "@chakra-ui/react";
 
 type YoutubeDialogProps = {
   videoUrl: string;
@@ -34,7 +29,7 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
       >
         Watch Here
       </Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+      {/* <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
         <DialogTitle>
           Watch this Video
           <IconButton
@@ -71,7 +66,7 @@ export const YoutubeVideoDialog = ({ videoUrl }: YoutubeDialogProps) => {
             />
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 };

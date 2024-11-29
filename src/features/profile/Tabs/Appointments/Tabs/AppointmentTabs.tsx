@@ -1,7 +1,5 @@
 "use client";
 
-import { Tabs as MuiTabs, useMediaQuery } from "@mui/material";
-import Tab from "@mui/material/Tab";
 import { useSearchParams } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 import { OptionKey, useTabOptions } from "./hooks/useTabOptions";
@@ -15,9 +13,6 @@ type TabsProps = {
 };
 export function AppointmentTabs({ userId }: TabsProps) {
   const { data, refetch } = useGetAppointmentsQuery(userId);
-
-  const isMobile = useMediaQuery("(max-width:764px)");
-  const { menuItems } = useTabOptions({ userId, isMobile });
 
   const searchParams = useSearchParams();
 
@@ -44,7 +39,7 @@ export function AppointmentTabs({ userId }: TabsProps) {
 
   return (
     <>
-      <MuiTabs
+      {/* <MuiTabs
         value={tab}
         aria-label="secondary tabs example "
         sx={{
@@ -76,7 +71,7 @@ export function AppointmentTabs({ userId }: TabsProps) {
             onClick={item.onClick}
           />
         ))}
-      </MuiTabs>
+      </MuiTabs> */}
       {tab && categoryRenderer[tab as OptionKey]}
     </>
   );

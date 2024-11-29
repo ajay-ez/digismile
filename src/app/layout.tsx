@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Inter,
   Atkinson_Hyperlegible,
@@ -5,50 +7,19 @@ import {
   League_Spartan,
   Fredoka,
   Poppins,
-  Nunito_Sans,
   Bokor,
   Merriweather,
   Josefin_Sans,
   Noto_Sans,
-  Raleway
+  Raleway,
+  DM_Sans
 } from "next/font/google";
-import "./globals.css";
-import React from "react";
-import { ReduxProvider } from "@/providers/ReduxProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider"; // Import ThemeProvider
+import "./global.scss";
+import React, { Suspense } from "react";
 import Script from "next/script";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter"
-});
-
-const atkinson = Atkinson_Hyperlegible({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-atkinson",
-  weight: "400"
-});
-
-const bangers = Bangers({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-bangers",
-  weight: "400"
-});
-
-const league = League_Spartan({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-league"
-});
-
-const fredoka = Fredoka({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-fredoka"
-});
+import AppWrappers from "./AppWrapper";
+import { Provider } from "react-redux";
+import store from "@/redux/store";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -57,43 +28,10 @@ const poppins = Poppins({
   weight: ["400"] // Specify the required font weights
 });
 
-const nunito = Nunito_Sans({
-  subsets: ["latin"],
+const dmSans = DM_Sans({
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
-  variable: "--font-nunito-sans",
-  weight: ["400", "600"] // Specify the required font weights
-});
-
-const bokor = Bokor({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-bokor",
-  weight: "400" // Bokor typically supports a single weight
-});
-
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-merriweather",
-  weight: ["300", "400", "700"] // Specify weights based on usage
-});
-
-const josefin = Josefin_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-josefin-sans"
-});
-
-const noto = Noto_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-noto-sans"
-});
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-raleway"
+  subsets: ["latin"]
 });
 
 export default function RootLayout({
@@ -102,10 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${atkinson.variable} ${bangers.variable} ${league.variable} ${fredoka.variable} ${poppins.variable} ${nunito.variable} ${bokor.variable} ${merriweather.variable} ${josefin.variable} ${noto.variable} ${raleway.variable}`}
-    >
+    <html lang="en">
       <head>
         <Script id="chatbot-config" strategy="beforeInteractive">
           {`
@@ -115,17 +50,18 @@ export default function RootLayout({
             };
           `}
         </Script>
-
         <Script
           src="https://www.chatbase.co/embed.min.js"
           strategy="afterInteractive"
           defer
         />
       </head>
-      <body className="font-poppins digismile-global">
-        <ReduxProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </ReduxProvider>
+      <body className={`${poppins.className} ${dmSans.className}`}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Provider store={store}>
+            <AppWrappers>{children}</AppWrappers>
+          </Provider>
+        </Suspense>
       </body>
     </html>
   );

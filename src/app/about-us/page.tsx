@@ -3,10 +3,10 @@ import { AboutDoctor } from "@/features/about-us/AboutDoctor";
 import { CommunityCare } from "@/features/about-us/CommunityCare";
 import { NewPatients } from "@/features/about-us/NewPatients";
 import { AboutClinic } from "@/features/about-us/AboutClinic";
-import { Stack } from "@mui/material";
 
 import React from "react";
 import { TextImageOverlay } from "@/components/common/TextImageOverlay";
+import { Stack } from "@chakra-ui/react";
 
 const AboutUs = () => {
   return (

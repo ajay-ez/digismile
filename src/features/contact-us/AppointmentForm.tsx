@@ -2,7 +2,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
-import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import {
   requiredCharField,
   contactNumberValidation,
@@ -16,6 +15,7 @@ import { useRouter } from "next/navigation";
 import OptionsField from "@/components/common/InputFields/OptionsField";
 import { city } from "../profile/Tabs/Appointments/Tabs/QuickAppointments/city";
 import dayjs from "dayjs";
+import { Box, Button, CircularProgress, Grid } from "@chakra-ui/react";
 
 // Office schedule for validation
 const officeSchedule: Record<string, string[]> = {
@@ -98,38 +98,38 @@ const AppointmentForm = () => {
       >
         {() => (
           <Form>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={4}>
+            <Grid  >
+              <Grid>
                 <FieldInput label="First Name" name="first_name" type="text" />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <FieldInput label="Last Name" name="last_name" type="text" />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <FieldInput
                   label="Contact Number"
                   name="phone_number"
                   type="text"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <FieldInput label="Email" name="email" type="text" />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <FieldInput
                   label="Date of Birth"
                   name="date_of_birth"
                   type="date"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <FieldInput
                   label="Appointment Date"
                   name="appointment_date"
                   type="date"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <OptionsField
                   options={city}
                   name="city"
@@ -137,14 +137,14 @@ const AppointmentForm = () => {
                   handleChange={onSelectCity}
                 />
               </Grid>
-              <Grid item xs={12} md={8}>
+              <Grid>
                 <FieldInput
                   label="Reason For Visit"
                   name="problem"
                   type="text"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid>
                 <Box display="flex flex-col" alignItems="center">
                   <Field name="privacyPolicy">
                     {({ field }: { field: any; meta: any }) => (
@@ -171,10 +171,10 @@ const AppointmentForm = () => {
                   />
                 </Box>
               </Grid>
-              <Typography className="text-center text-sm mx-8">
+              <h1 className="text-center text-sm mx-8">
                 Your Appointment will be Confirmed once Slot is Available
-              </Typography>
-              <Grid item xs={12}>
+              </h1>
+              <Grid>
                 <Box mt={2} className="flex justify-center">
                   <Button
                     className="bg-[#045084] text-lg text-white rounded-lg p-2 px-8 capitalize hover:bg-blue-800 animated-hover-button request-btn"

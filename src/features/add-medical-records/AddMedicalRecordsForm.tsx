@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FieldInput from "@/components/common/FieldInput";
-import { Button, CircularProgress, Typography } from "@mui/material";
 import { uploadFileToS3WithCreds } from "@/utils/uploadToS3";
 import { useAddMedicalRcordMutation } from "@/services/apiServices/profileService";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
+import { Button, CircularProgress } from "@chakra-ui/react";
 
 export const AddMedicalRecordForm: React.FC = () => {
   interface FormValues {
@@ -58,9 +58,9 @@ export const AddMedicalRecordForm: React.FC = () => {
         successMessage="Success!"
       />
       <div className="max-w-4xl    rounded-lg p-16">
-        <Typography variant="subtitle1" className="text-center my-8">
+        <h1 className="text-center my-8">
           Submit Prescription Details
-        </Typography>
+        </h1>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

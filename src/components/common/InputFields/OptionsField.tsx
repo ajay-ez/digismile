@@ -1,4 +1,4 @@
-import { Box, FormLabel, TextField, MenuItem } from "@mui/material";
+import { Box, FormLabel } from "@chakra-ui/react";
 import { Field, ErrorMessage } from "formik";
 import React from "react";
 
@@ -41,7 +41,7 @@ const OptionsField = ({
         {required && <span className="text-red-500"> *</span>}
       </FormLabel>
       <Box mt={1}>
-        <Field name={name}>
+        {/* <Field name={name}>
           {({ field }: { field: any; meta: any }) => (
             <TextField
               {...field}
@@ -72,7 +72,7 @@ const OptionsField = ({
               ))}
             </TextField>
           )}
-        </Field>
+        </Field> */}
         <ErrorMessage
           name={name}
           component="div"

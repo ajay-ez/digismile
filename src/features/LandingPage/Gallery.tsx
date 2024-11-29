@@ -12,7 +12,6 @@ import {
   gallery_7,
   gallery_8
 } from "@/assets/images";
-import { Typography } from "@mui/material";
 
 const images = [
   { id: 1, src: gallery_1, alt: "Image 1" },
@@ -39,12 +38,11 @@ export const settings = {
     { breakpoint: 640, settings: { slidesToShow: 1 } }
   ]
 };
+
 const Gallery = () => {
   return (
     <div className="container mx-auto p-6">
-      <Typography variant="h1" className=" font-bold text-center mb-6">
-        Image Gallery
-      </Typography>
+      <h1 className=" font-bold text-center mb-6">Image Gallery</h1>
       <Slider {...settings} className="relative">
         {images.map((image) => (
           <motion.div

@@ -4,7 +4,7 @@ import {
   signup_top_right,
   signup_teeth
 } from "@/assets/images";
-import { Container } from "@mui/material";
+import { Container } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 

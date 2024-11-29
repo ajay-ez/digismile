@@ -1,6 +1,5 @@
 "use client";
-import { KeyboardArrowRight } from "@mui/icons-material";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -32,18 +31,16 @@ const ServiceCard = ({
         alt={alt}
         className="bg-blue-300 rounded-lg transition-transform duration-500 hover:scale-125 hover:rotate-3"
       />
-      <Typography
-        variant="subtitle1"
+      <h1
         className="text-gray-800 font-semibold transition-colors duration-300 hover:text-blue-700"
       >
         {title}
-      </Typography>
-      <Typography
-        variant="body1"
+      </h1>
+      <h1
         className="text-center font-poppins text-gray-600 transition-transform duration-300 hover:scale-105"
       >
         {desc}
-      </Typography>
+      </h1>
       {showLearnMore && (
         <Button
           className="capitalize text-blue-600 hover:text-blue-800 hover:underline transition-transform duration-300 hover:translate-x-2"
@@ -51,7 +48,7 @@ const ServiceCard = ({
           onClick={() => router.push("clinic-services")}
         >
           Learn More
-          <KeyboardArrowRight />
+          {/* <KeyboardArrowRight /> */}
         </Button>
       )}
     </div>

@@ -1,11 +1,11 @@
 "use client";
 import { digismileLogoImage } from "@/assets/images";
-import { Button } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SingleBedIcon from "@mui/icons-material/SingleBed";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@chakra-ui/react";
 
 const MobileSidebar = () => {
   const router = useRouter();

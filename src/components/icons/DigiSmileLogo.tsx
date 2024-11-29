@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import { Box } from '@mui/material';
 import Image from 'next/image';
 import { digismileLogoImage } from '@/assets/images';
+import { Box } from '@chakra-ui/react';
 
 interface LogoProps {
   width?: string;

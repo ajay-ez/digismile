@@ -1,21 +1,20 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Map from "@/components/common/Map";
+import { Box } from "@chakra-ui/react";
 const ContactUs = () => {
   return (
     <div className="font-poppins">
-      <Typography
-        variant="h1"
+      <h1
         className="text-center p-4 font-bold font-poppins"
       >
         Where we are located
-      </Typography>
+      </h1>
 
       <div className=" bg-digiLightBlue rounded-xl m-3">
-        <Typography variant="subtitle1" className="text-center py-8">
+        <h1 className="text-center py-8">
           Smile Experts Dental Clinic
-        </Typography>
+        </h1>
         <div className="flex p-3 flex-col gap-8 md:flex-row justify-around">
           <Box className="flex flex-col justify-center gap-4 md:w-[40%]">
             <Map
@@ -25,11 +24,11 @@ const ContactUs = () => {
 
             <Box className="flex items-center gap-2">
               <LocationOnIcon />
-              <Typography variant="subtitle2" className="font-poppins">
+              <h1 className="font-poppins">
                 Washington D.C.1747 Pennsylvania Aven NWSuite 100 Washington, DC
                 20006
                 <br /> (202) 545-6336
-              </Typography>
+              </h1>
             </Box>
           </Box>
           <Box className="flex flex-col justify-center gap-4 md:w-[40%]">
@@ -39,10 +38,10 @@ const ContactUs = () => {
             />
             <Box className="flex items-center gap-2">
               <LocationOnIcon />
-              <Typography variant="subtitle2" className="font-poppins">
+              <h1 className="font-poppins">
                 Burke, VA 9570 Burke Road Unit A Burke, VA 22015 <br /> (571)
                 374-8000
-              </Typography>
+              </h1>
             </Box>
           </Box>
         </div>

@@ -1,5 +1,4 @@
 "use client";
-import { Box } from "@mui/material";
 import FieldInput from "@/components/common/FieldInput";
 import { Form, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
@@ -9,6 +8,7 @@ import Image from "next/image";
 import { doctor } from "@/assets/images";
 import OptionsField from "@/components/common/InputFields/OptionsField";
 import { city } from "./city";
+import { Box } from "@chakra-ui/react";
 
 const LoginSchema = Yup.object().shape({
   city: requiredCharField("City"),

@@ -1,106 +1,78 @@
 import React from "react";
-import { AppBar, Typography, Box, Button } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useRouter } from "next/navigation";
+import { Box, Button, Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import { HEADER_HEIGHT } from "@/utils/constant";
 
 const LandingPageVideo = () => {
   const router = useRouter();
+
+  const [isMobile] = useMediaQuery("(max-width: 1000px)");
 
   const navigateToSection = (id: string) => {
     router.push(`${id}`);
   };
 
   return (
-    <div className="relative h-[90vh]">
-      <AppBar
-        position="absolute"
-        color="transparent"
-        elevation={0}
-        sx={{
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 10
-        }}
+    <Box
+      height={isMobile ? "initial" : "100vh"}
+      marginTop={isMobile ? HEADER_HEIGHT : "unset"}
+      width={"100vw"}
+      position={"relative"}
+    >
+      <Flex
+        flexDir={"column"}
+        width={"-webkit-fill-available"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        position={isMobile ? "relative" : "absolute"}
+        transform={isMobile ? "unset" : "translate(0, -50%)"}
+        top={isMobile ? "unset" : "50%"}
+        zIndex={2}
+        marginX={isMobile ? "0" : "4rem"}
+        padding={isMobile ? "3rem 1rem" : "0"}
+        color={"white.800"}
+        bg={isMobile ? "brand.100" : "transparent"}
       >
-        <Box className="flex justify-end items-center p-3">
-          <Box className="flex flex-col gap-2">
-            <Box className="flex items-center gap-2">
-              <LocationOnIcon color="error" />
-              <Typography className="text-white font-poppins" variant="body1">
-                Washington D.C.
-              </Typography>
-            </Box>
-            <Box className="flex items-center gap-2">
-              <LocationOnIcon color="error" />
-              <Typography className="text-white font-poppins" variant="body1">
-                Burke, VA
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
-      </AppBar>
-
-      {/* Video Background */}
+        {isMobile ? (
+          <Text as={"h1"} className="heading" lineHeight={1.2}>
+            Your smile deserves the best. crafted just for you
+          </Text>
+        ) : (
+          <>
+            <Text as={"h1"} className="heading">
+              Your smile deserves the best.
+            </Text>
+            <Text as={"h1"} className="heading">
+              crafted just for you
+            </Text>
+          </>
+        )}
+        <Text as={"h4"} mt={4} textAlign={"center"}>
+          Your smile deserves the best—gentle care best—gentle best—gentle
+        </Text>
+        <Text as={"h4"}>Your smile deserves the best—gentle</Text>
+        <Button mt={8} variant={"brand"}>
+          Request Appointment
+        </Button>
+        <Button mt={3} variant={"brand-second"}>
+          Services
+        </Button>
+      </Flex>
       <video
-        className="w-full h-full object-cover"
         autoPlay
         loop
         muted
         playsInline
-        src="/landing_page_video.mp4"
+        src="/landing_page4.mp4"
+        style={{
+          width: "100%",
+          height: "100%",
+          filter: "brightness(50%)",
+          objectFit: "cover"
+        }}
       />
-
-      {/* Overlay Content */}
-      <div className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-        <Box>
-          <Typography
-            variant="h5"
-            className="font-bold  text-black text-center font-poppins"
-          >
-            Welcome,
-          </Typography>
-          <Typography
-            variant="h4"
-            className="font-bold font-poppins text-black text-center mt-2"
-          >
-            Get your best ever
-            <br /> Dental Experience !
-          </Typography>
-        </Box>
-      </div>
-
-      <div className="absolute inset-0 flex flex-col justify-end m-12">
-        <div className="flex flex-col sm:flex-row sm:gap-8 gap-4 sm:items-center items-start justify-start">
-          <div className="flex gap-8">
-            <Button
-              variant="contained"
-              className="rounded-xl capitalize p-2 px-4"
-              onClick={() => {
-                navigateToSection("/login");
-              }}
-            >
-              Login
-            </Button>
-            <Button
-              variant="contained"
-              className="rounded-xl capitalize p-2 px-4"
-              onClick={() => {
-                navigateToSection("/signup");
-              }}
-            >
-              Signup
-            </Button>
-          </div>
-
-          {/* <div className="flex gap-8">
-            <div className="border-[1px] border-blue-600 p-2 px-4 bg-blue-white-gradient rounded-2xl">
-              <Call className="text-blue-600" />
-            </div>
-          </div> */}
-        </div>
-      </div>
-    </div>
+    </Box>
   );
 };
 

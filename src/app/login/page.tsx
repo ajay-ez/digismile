@@ -3,13 +3,6 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import {
-  Button,
-  Typography,
-  Box,
-  CircularProgress,
-  IconButton
-} from "@mui/material";
 import FieldInput from "@/components/common/FieldInput";
 import { emailValidation, passwordValidation } from "@/validations";
 import { LoginFormValues } from "@/types";
@@ -19,11 +12,9 @@ import useAuthToken from "@/hooks/useAuthToken";
 import { useRouter } from "next/navigation";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
-import { ArrowRightIcon } from "@mui/x-date-pickers";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Image from "next/image";
 import { login_image } from "@/assets/images";
+import { Box, Button, CircularProgress, IconButton } from "@chakra-ui/react";
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
@@ -84,15 +75,14 @@ const LoginPage = () => {
           <Box className="  p-8 rounded-lg">
             <Box>
               <Box className="mb-4">
-                <Typography variant="h4" component="h1" className="text-center">
+                <h1 className="text-center">
                   Welcome Back
-                </Typography>
-                <Typography
-                  variant="body1"
+                </h1>
+                <h1
                   className="text-[#737373] text-center"
                 >
                   Glad to See You Again!
-                </Typography>
+                </h1>
               </Box>
               <Formik
                 initialValues={initialLoginValues}
@@ -120,6 +110,7 @@ const LoginPage = () => {
                           required
                         />
                         <IconButton
+                        aria-label="toggle password visibility"
                           onClick={() => setShowPassword((prev) => !prev)}
                           style={{
                             position: "absolute",
@@ -128,17 +119,17 @@ const LoginPage = () => {
                             transform: "translateY(-50%)"
                           }}
                         >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                          {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
                         </IconButton>
                       </Box>
                     </Box>
 
                     {error && (
-                      <Typography className="text-red-500 capitalize my-2 text-center">
+                      <h1 className="text-red-500 capitalize my-2 text-center">
                         {isFetchBaseQueryError(error)
                           ? error.data?.message
                           : "An unexpected error occurred."}
-                      </Typography>
+                      </h1>
                     )}
 
                     <Box className="flex justify-center">
@@ -146,7 +137,7 @@ const LoginPage = () => {
                         type="submit"
                         variant="contained"
                         className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md"
-                        fullWidth
+                        // fullWidth
                       >
                         {isLoading ? <CircularProgress /> : "Login"}
                       </Button>
@@ -155,18 +146,18 @@ const LoginPage = () => {
                 )}
               </Formik>
             </Box>
-            <Typography variant="body2" align="center" className="mt-4">
+            <h1 className="mt-4">
               Don&apos;t have an account?{" "}
               <Link href="/signup" className="text-blue-900 text-lg">
                 Sign up
               </Link>
-            </Typography>
+            </h1>
 
-            <Typography className="text-center mt-2">
+            <h1 className="text-center mt-2">
               <Link href="/" className="text-blue-900 text-lg text-center mt-2">
-                Continue Without Account <ArrowRightIcon />
+                Continue Without Account 
               </Link>
-            </Typography>
+            </h1>
           </Box>
         </Box>
       </div>

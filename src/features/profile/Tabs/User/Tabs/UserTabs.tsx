@@ -1,7 +1,5 @@
 "use client";
 
-import { Tabs as MuiTabs, useMediaQuery } from "@mui/material";
-import Tab from "@mui/material/Tab";
 import { useSearchParams } from "next/navigation";
 import { type ReactNode } from "react";
 import { OptionKey, useTabOptions } from "./hooks/useTabOptions";
@@ -9,6 +7,7 @@ import { DocumentTable } from "./Documents/DocumentTable";
 import { CheckupTable } from "./Checkups/CheckupTable";
 import { Prescription } from "./Prescription/Prescription";
 import { useGetUserMedicalRecordsQuery } from "@/services/apiServices/profileService";
+import { TabList, TabPanel, Tabs, useMediaQuery } from "@chakra-ui/react";
 
 type TabsProps = {
   userId: string;
@@ -30,16 +29,18 @@ export function UserTabs({ userId }: TabsProps) {
 
   return (
     <>
-      <MuiTabs
-        value={tab}
+      <Tabs
         aria-label="secondary tabs example "
         sx={{
           marginBottom: "15px"
         }}
-        centered
       >
         {menuItems.map((item) => (
-          <Tab
+          <Tabs
+          index={0}
+            key={0}
+            // value={0}
+            onChange={() => {}}
             sx={{
               width: isMobile ? "130px" : "233px",
               height: "50px",
@@ -54,13 +55,16 @@ export function UserTabs({ userId }: TabsProps) {
               backgroundColor: item.value === tab ? "#65C0FF" : "",
               color: item.value === tab ? "white !important" : ""
             }}
-            key={item.value}
-            value={item.value}
-            label={item.title}
+            // key={item.value}
+            // value={item.value}
+            // label={item.title}
             onClick={item.onClick}
-          />
+          >
+            <TabList></TabList>
+            <TabPanel></TabPanel>
+          </Tabs>
         ))}
-      </MuiTabs>
+      </Tabs>
       {tab && categoryRenderer[tab as OptionKey]}
     </>
   );

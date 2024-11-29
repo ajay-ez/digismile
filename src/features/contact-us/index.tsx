@@ -1,4 +1,3 @@
-import { Stack } from "@mui/material";
 import React from "react";
 import { Title } from "./Title";
 import { Discount } from "./Discount";
@@ -6,6 +5,7 @@ import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 import { WhyUs } from "./WhyUs";
 import BookAppointment from "./BookAppointment";
 import { ProcessForPatient } from "./ProcessForPatient";
+import { Stack } from "@chakra-ui/react";
 
 export const ContactUs = () => {
   return (

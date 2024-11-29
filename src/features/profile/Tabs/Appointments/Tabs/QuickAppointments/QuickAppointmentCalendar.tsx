@@ -3,7 +3,6 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import moment, { Moment } from "moment";
 import { DateCalendar } from "@mui/x-date-pickers";
-import { Typography } from "@mui/material";
 interface QuickAppointmentProps {
   // eslint-disable-next-line no-unused-vars
   onChange: (date: string) => void;
@@ -23,9 +22,9 @@ export const QuickAppointmentCalendar = ({
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
-      <Typography fontSize="1.2rem" my="16px" fontWeight="700" color="#4B3E3D">
+      <h1>
         Choose a Date
-      </Typography>
+      </h1>
       <DateCalendar
         onChange={handleDateChange}
         value={selectedDate}

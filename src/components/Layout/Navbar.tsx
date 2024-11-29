@@ -1,44 +1,37 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import {
-  Box,
-  useMediaQuery,
-  useTheme,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  Menu,
-  MenuItem,
-  Typography
-} from "@mui/material";
+import React, { useState } from "react";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
-import { digismileLogoImage, dummy_profile } from "@/assets/images";
+import { digismileLogoImage, dummy_profile, logo } from "@/assets/images";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useGetUserDetailsQuery } from "@/services/apiServices/profileService";
 import useAuthToken from "@/hooks/useAuthToken";
+import {
+  Box,
+  Button,
+  Flex,
+  IconButton,
+  List,
+  ListItem,
+  Text,
+  useMediaQuery
+} from "@chakra-ui/react";
+import { HEADER_HEIGHT } from "@/utils/constant";
+import { useSelector } from "react-redux";
+import { getHeaderStatus } from "@/redux/SharedSlice";
 
 export default function Navbar() {
   const { data, isError } = useGetUserDetailsQuery();
   const router = useRouter();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [isMobile] = useMediaQuery("(max-width: 1000px)");
+
   const [userId, setUserId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // For profile menu
-  const { clearAuthToken } = useAuthToken();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedUserId = localStorage.getItem("userId");
-      setUserId(storedUserId);
-    }
-  }, []);
+  const headerStatus = useSelector(getHeaderStatus);
+
+  const { clearAuthToken } = useAuthToken();
 
   const navigateToSection = (url: string) => {
     router.push(`/${url}`);
@@ -75,221 +68,219 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="sticky" className="bg-footer-blue-gradient">
-      <Toolbar className="flex justify-between items-center p-4  rounded-3xl">
+    <Box
+      className={`header-container ${isMobile ? "mobile-header" : "desktop-header"} ${headerStatus === true ? "sticky-header" : ""}`}
+      position={"fixed"}
+      top={0}
+      zIndex={3}
+      width={"100%"}
+      bg={"transparent"}
+      borderBottom={isMobile ? "1px white solid" : "unset"}
+    >
+      <Flex
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        px={8}
+        py={4}
+      >
         <Image
+          id="header-sticky-image"
           onClick={() => navigateToSection("/")}
-          src={digismileLogoImage}
-          height={90}
+          src={headerStatus === true ? logo : digismileLogoImage}
+          width={110}
+          height={70}
           alt="digismile"
-          className="cursor-pointer"
+          style={{ cursor: "pointer" }}
         />
 
         {!isMobile ? (
           // Desktop view
-          <Box className="flex gap-2">
+          <Flex alignItems={"center"} gap={8}>
+            <Button variant={"header"}>ABOUT</Button>
             <Button
-              className="font-bold capitalize text-[1rem]"
-              onClick={() => navigateToSection("/")}
-              color="inherit"
-            >
-              Home
-            </Button>
-            <Button
-              className="font-bold capitalize text-[1rem]"
-              color="inherit"
-            >
-              <Link href={"about-us"} prefetch>
-                About
-              </Link>
-            </Button>
-            <Button
+              variant={"header"}
               onClick={() => navigateToSection("clinic-services")}
-              className="font-bold capitalize text-[1rem]"
-              color="inherit"
             >
-              Services
+              SERVICES
             </Button>
             <Button
+              variant={"header"}
               onClick={() => navigateToSection("contact-us")}
-              className="font-bold capitalize text-[1rem]"
-              color="inherit"
             >
-              Contact Us
+              CONTACT US
             </Button>
-
             {isError && (
               <>
                 <Button
+                  variant={"header"}
                   className="font-bold capitalize text-[1rem]"
-                  color="inherit"
                   onClick={() => navigateToSection("signup")}
                 >
-                  Signup
+                  SIGNUP
                 </Button>
                 <Button
-                  className="font-bold capitalize text-[1rem]"
-                  color="inherit"
+                  variant={"header"}
                   onClick={() => navigateToSection("login")}
                 >
-                  Login
+                  LOGIN
                 </Button>
               </>
             )}
-          </Box>
+            <Box>
+              {data && (
+                <IconButton
+                  aria-label="profile"
+                  onClick={handleProfileMenuClick}
+                >
+                  <Image
+                    src={dummy_profile}
+                    alt="Profile"
+                    width={40}
+                    height={40}
+                    className="rounded-full cursor-pointer"
+                  />
+                </IconButton>
+              )}
+              {data?.user_type !== "staff" ? (
+                <Button
+                  variant="appointment"
+                  onClick={() =>
+                    navigateToSection(
+                      isError
+                        ? "contact-us"
+                        : `profile/${userId}?tab=appointments&subTab=quick-appointments`
+                    )
+                  }
+                >
+                  Request Appointment
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "white",
+                    color: "#1E285F",
+                    // fontWeight: "bold",
+                    padding: "8px 16px",
+                    display: isMobile ? "none" : "block"
+                  }}
+                  onClick={() => navigateToSection("add-medical-records")}
+                >
+                  Add Medical Record
+                </Button>
+              )}
+            </Box>
+          </Flex>
         ) : (
-          <IconButton color="inherit" onClick={() => setDrawerOpen(true)}>
+          <IconButton
+            aria-label="menu"
+            color={headerStatus === true ? "brand.100" : "white.800"}
+            onClick={() => setDrawerOpen(!drawerOpen)}
+          >
             <MenuIcon />
           </IconButton>
         )}
-
-        <Box className="flex gap-2">
-          {data && (
-            <IconButton onClick={handleProfileMenuClick}>
-              <Image
-                src={dummy_profile}
-                alt="Profile"
-                width={40}
-                height={40}
-                className="rounded-full cursor-pointer"
-              />
-            </IconButton>
-          )}
-          {data?.user_type !== "staff" ? (
-            <Button
-              variant="contained"
-              className="capitalize hover:bg-white button rounded-4xl font-poppins  "
-              sx={{
-                backgroundColor: "white",
-                color: "#1E285F",
-                // fontWeight: "bold",
-                padding: "8px 16px",
-                display: isMobile ? "none" : "block"
-              }}
-              onClick={() =>
-                navigateToSection(
-                  isError
-                    ? "contact-us"
-                    : `profile/${userId}?tab=appointments&subTab=quick-appointments`
-                )
-              }
-            >
-              Request Appointment
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              className="capitalize hover:bg-white button rounded-4xl font-poppins  "
-              sx={{
-                backgroundColor: "white",
-                color: "#1E285F",
-                // fontWeight: "bold",
-                padding: "8px 16px",
-                display: isMobile ? "none" : "block"
-              }}
-              onClick={() => navigateToSection("add-medical-records")}
-            >
-              Add Medical Record
-            </Button>
-          )}
-        </Box>
-      </Toolbar>
+      </Flex>
 
       {/* Profile Menu for profile image click */}
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+      {/* <Menu
         onClose={handleCloseProfileMenu}
       >
         <MenuItem onClick={handleProfileVisit}>Visit Profile</MenuItem>
         <MenuItem onClick={handleChangePassword}>Change Password</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      </Menu>
+      </Menu> */}
 
       {/* Drawer for mobile menu */}
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
+      {isMobile && drawerOpen && (
         <Box
-          width={250}
+          backgroundColor={headerStatus === true ? "#963f36" : "#faf7f5"}
+          color={headerStatus === true ? "#fff" : "#963f36"}
+          width={"100%"}
+          position={"fixed"}
+          display={"inherit"}
+          top={HEADER_HEIGHT}
           role="presentation"
-          onClick={() => setDrawerOpen(false)}
+          onClick={() => setDrawerOpen(!drawerOpen)}
+          padding={8}
+          className="responsive-header"
         >
-          <List>
+          <List
+            display={"flex"}
+            flexDir={"column"}
+            alignItems={"center"}
+            gap={4}
+          >
             <ListItem
               className="cursor-pointer "
               onClick={() => navigateToSection("/")}
+              marginY={2}
             >
-              <Typography
-                variant="subtitle1"
-                className="text-[1rem] text-digiDarkBlue font-bold"
-              >
+              <Text as={"h4"} fontWeight={"bold"}>
                 Home
-              </Typography>
+              </Text>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBlue"
               onClick={() => navigateToSection("about-us")}
+              marginY={2}
             >
-              <Typography
-                variant="subtitle1"
-                className="text-[1rem] text-digiDarkBluek font-bold"
-              >
+              <Text as={"h4"} fontWeight={"bold"}>
                 About Us
-              </Typography>
+              </Text>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("clinic-services")}
+              marginY={2}
             >
-              <Typography
-                variant="subtitle1"
-                className="text-[1rem] text-digiDarkBluek font-bold"
-              >
+              <Text as={"h4"} fontWeight={"bold"}>
                 Services
-              </Typography>
+              </Text>
             </ListItem>
             <ListItem
               className="cursor-pointer text-[1rem] text-digiDarkBluek"
               onClick={() => navigateToSection("contact-us")}
+              marginY={2}
             >
-              <Typography
-                variant="subtitle1"
-                className="text-[1rem] text-digiDarkBluek font-bold"
-              >
+              <Text as={"h4"} fontWeight={"bold"}>
                 Contact Us
-              </Typography>
+              </Text>
             </ListItem>
 
             {isError && (
               <>
                 <ListItem
-                  className="cursor-pointer text-[1rem] text-digiDarkBlue"
                   onClick={() => navigateToSection("signup")}
+                  width={"fit-content"}
+                  background={"#963f36"}
+                  color={"#fff"}
+                  padding={".7rem 5rem"}
+                  borderRadius={"lg"}
+                  border={"1px #faf7f5 solid"}
                 >
-                  <Typography
-                    variant="subtitle1"
-                    className="text-[1rem] text-digiDarkBlue font-bold"
-                  >
+                  <Text as={"h4"} fontWeight={"bold"}>
                     Signup
-                  </Typography>
+                  </Text>
                 </ListItem>
                 <ListItem
-                  className="cursor-pointer text-[1rem] text-digiDarkBlue"
                   onClick={() => navigateToSection("login")}
+                  width={"fit-content"}
+                  background={"#fff"}
+                  color={"#963f36"}
+                  padding={".7rem 5.3rem"}
+                  borderRadius={"lg"}
+                  border={
+                    headerStatus === true ? "1px #fff solid" : "1px black solid"
+                  }
                 >
-                  <Typography
-                    variant="subtitle1"
-                    className="text-[1rem] text-digiDarkBlue font-bold"
-                  >
+                  <Text as={"h4"} fontWeight={"bold"}>
                     Login
-                  </Typography>
+                  </Text>
                 </ListItem>
               </>
             )}
-            <ListItem
+            {/* <ListItem
               onClick={() =>
                 navigateToSection(
                   isError
@@ -298,16 +289,13 @@ export default function Navbar() {
                 )
               }
             >
-              <Typography
-                variant="subtitle1"
-                className="text-[1rem] text-digiDarkBlue font-bold"
-              >
+              <h1 className="text-[1rem] text-digiDarkBlue font-bold">
                 Request Appointment
-              </Typography>
-            </ListItem>
+              </h1>
+            </ListItem> */}
           </List>
         </Box>
-      </Drawer>
-    </AppBar>
+      )}
+    </Box>
   );
 }

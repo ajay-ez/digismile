@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import QuickAppointmentForm from "./QuickAppointmentForm";
-import { Box, Button, CircularProgress } from "@mui/material";
 import AvailableSlots, { TimeSlot } from "./AvailableSlots";
 import {
   useGetSlotsMutation,
@@ -12,6 +11,7 @@ import { getFormattedDateTime } from "@/utils/dateUtils";
 import { useParams, useRouter } from "next/navigation";
 import moment from "moment";
 import { SuccessPopup } from "@/components/common/SuccessPopup";
+import { Box, Button, CircularProgress } from "@chakra-ui/react";
 export const QuickAppointment = () => {
   const [requestAppointment, { isLoading }] =
     useRequestUserAppointmentMutation();
@@ -106,7 +106,7 @@ export const QuickAppointment = () => {
             type="submit"
             variant="contained"
             className="bg-green-400 hover:bg-green-500 rounded-lg font-bold max-w-md capitalize"
-            fullWidth
+            // fullWidth
             onClick={handleRequestAppointment}
             disabled={isButtonDisabled() || isLoading}
           >
