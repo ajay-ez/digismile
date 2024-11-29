@@ -24,6 +24,19 @@
   }
 }
 
+.footer-heading {
+  text-align: left;
+  line-height: 1;
+  color: #fff;
+  font-size: clamp(1rem, 2vw + 2rem, 4rem) !important;
+}
+
+@media screen and (max-width: 1000px) {
+  .footer-heading {
+    font-size: 2rem !important;
+  }
+}
+
 h1 {
   font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem) !important;
 }
@@ -81,7 +94,7 @@ p {
 }
 
 .home-section {
-  padding: 6vw 0;
+  padding: 5vw 0;
 }
 
 .responsive-section {
@@ -91,6 +104,19 @@ p {
 
 @media screen and (max-width: 1000px) {
   .responsive-section {
+    padding: 0 1rem;
+  }
+}
+
+.responsive-footer-section {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 1480px;
+  color: white;
+}
+
+@media screen and (max-width: 1000px) {
+  .responsive-footer-section {
     padding: 0 1rem;
   }
 }
