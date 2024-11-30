@@ -4,8 +4,8 @@ import Image from "next/image";
 import ServiceCard from "./ServiceCard";
 
 const ServiceSection = () => {
-  const [isLaptop] = useMediaQuery("(max-width: 1315px)");
   const [isTablet] = useMediaQuery("(max-width: 1000px)");
+  const [isMobile] = useMediaQuery("(max-width: 680px)");
 
   const leftItems = [
     {
@@ -61,8 +61,16 @@ const ServiceSection = () => {
           <Text as={"h6"}>Our services</Text>
           <Text as={"h1"}>Comprehensive Services for Optimal Oral Health.</Text>
         </Box>
-        <Flex paddingTop={"4rem"} gap={8}>
-          <Flex width={"40%"} flexDir={"column"} gap={20}>
+        <Flex
+          paddingTop={"4rem"}
+          gap={10}
+          flexWrap={isMobile ? "wrap" : "nowrap"}
+        >
+          <Flex
+            width={isTablet ? "100%" : "40%"}
+            flexDir={"column"}
+            gap={isMobile ? 10 : 20}
+          >
             {leftItems.map((item, index) => (
               <ServiceCard
                 key={item.id}
@@ -73,8 +81,14 @@ const ServiceSection = () => {
               />
             ))}
           </Flex>
-          <Image src={userImage1} alt="" style={{ width: "20%" }}></Image>
-          <Flex width={"40%"} flexDir={"column"} gap={20}>
+          {!isTablet && (
+            <Image src={userImage1} alt="" style={{ width: "20%" }}></Image>
+          )}
+          <Flex
+            width={isTablet ? "100%" : "40%"}
+            flexDir={"column"}
+            gap={isMobile ? 10 : 20}
+          >
             {rightItems.map((item, index) => (
               <ServiceCard
                 key={item.id}

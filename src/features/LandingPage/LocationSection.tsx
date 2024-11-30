@@ -36,15 +36,17 @@ const LocationSection = () => {
           flexWrap={"wrap"}
         >
           <Flex flexDir={"column"} alignItems={"center"}>
-            <Text as={"h1"}>DC Office</Text>
-            <Text as={"h5"}>Mon, Tue, Fri: 8am-5pm Hours</Text>
+            <Text as={"h1"}>Washington D.C</Text>
+            <Text as={"h5"}>Mon, Wed, Fri: 10am-5pm Hours</Text>
+            <Text as={"h5"}>(202) 545-6336</Text>
             <Button mt={4} variant={"location-section-button"}>
               Book a consultation
             </Button>
           </Flex>
           <Flex flexDir={"column"} alignItems={"center"}>
-            <Text as={"h1"}>DC Office</Text>
-            <Text as={"h5"}>Mon, Tue, Fri: 8am-5pm Hours</Text>
+            <Text as={"h1"}>Burke, VA</Text>
+            <Text as={"h5"}>Tue, Thu, Sat: 9am-4pm Hours</Text>
+            <Text as={"h5"}>(571) 374-8000</Text>
             <Button mt={4} variant={"location-section-button"}>
               Book a consultation
             </Button>
