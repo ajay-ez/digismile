@@ -1,0 +1,62 @@
+.patient-reviews-section {
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    width: 60%;
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .slide-image {
+    border: 10px #963f36 solid;
+    border-radius: 50%;
+    padding: 0.5rem;
+  }
+  .slide-text {
+    width: 100%;
+    background-color: #963f36;
+    padding: 1.5rem 1rem;
+    color: #faf7f5;
+    border-radius: 10px;
+  }
+  .swiper-slide-prev ::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ) !important;
+  }
+  .swiper-slide-next ::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ) !important;
+  }
+}

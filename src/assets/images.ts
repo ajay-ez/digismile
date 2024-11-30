@@ -21,6 +21,20 @@ import testimonial_2 from "@/assets/testimonialImages/testimonial_2.webp";
 import testimonial_3 from "@/assets/testimonialImages/testimonial_3.jpg";
 import testimonial_4 from "@/assets/testimonialImages/testimonial_4.jpg";
 
+import userImage_1 from "@/assets/userImages/1.jpg";
+import userImage_2 from "@/assets/userImages/2.jpg";
+import userImage_3 from "@/assets/userImages/3.jpg";
+import userImage_4 from "@/assets/userImages/4.jpg";
+import userImage_5 from "@/assets/userImages/5.jpg";
+
+import teeth1 from "@/assets/teeths/1.svg";
+import teeth2 from "@/assets/teeths/2.svg";
+import teeth3 from "@/assets/teeths/3.svg";
+import teeth4 from "@/assets/teeths/4.svg";
+import teeth5 from "@/assets/teeths/5.svg";
+import teeth6 from "@/assets/teeths/6.svg";
+import slider from "@/assets/utils/slider.png";
+
 import signup_top_left from "@/assets/SignupImages/signup_top_left.svg";
 import signup_top_right from "@/assets/SignupImages/signup_top_right.svg";
 import signup_bottom_left from "@/assets/SignupImages/signup_bottom_left.svg";
@@ -124,4 +138,16 @@ export {
   logo,
   userImage,
   userImage1,
+  teeth1,
+  teeth2,
+  teeth3,
+  teeth4,
+  teeth5,
+  teeth6,
+  slider,
+  userImage_1,
+  userImage_2,
+  userImage_3,
+  userImage_4,
+  userImage_5
 };
