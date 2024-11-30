@@ -85,7 +85,6 @@ const ImageGallery = () => {
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  // layout="fill"
                   style={{
                     borderRadius: "10px",
                     objectFit: "cover"

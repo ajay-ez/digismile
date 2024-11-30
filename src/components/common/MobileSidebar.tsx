@@ -19,7 +19,6 @@ const MobileSidebar = () => {
         src={digismileLogoImage}
         alt="digismile"
         onClick={() => router.push("/")}
-        className="cursor-pointer h-[60px] w-auto"
       />
       {/* <div className="flex gap-4"> */}
       <Button

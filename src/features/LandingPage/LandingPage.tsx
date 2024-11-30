@@ -18,6 +18,7 @@ import ImageGallery from "../Image-gallery";
 import dynamic from "next/dynamic";
 import PatientReviews from "../patient-reviews";
 import ServiceSection from "../services-section";
+import SmileGallery from "../smile-gallery";
 // import PatientReviews from "../patient-reviews";
 
 const LandingPage = () => {
@@ -38,7 +39,10 @@ const LandingPage = () => {
       <ImageGallery />
       <Divider />
       <ServiceSection />
-      {/* <PatientReviews /> */}
+      <Divider />
+      <SmileGallery />
+      <Divider />
+      <PatientReviews />
       {/* {isUserAuthorize && <UserWelcome />} */}
       {/* <WhoWeAre /> */}
       {/* <Gallery /> */}

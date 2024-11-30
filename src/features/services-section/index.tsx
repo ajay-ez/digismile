@@ -50,12 +50,18 @@ const ServiceSection = () => {
   ];
 
   return (
-    <Box className="service-section" background={"#F7F7F7"} color={"brand.100"}>
+    <Box
+      className="service-section"
+      background={"#F7F7F7"}
+      color={"brand.100"}
+      position={"relative"}
+    >
       <Flex
         flexDir={"column"}
         className="responsive-service-section"
         width={"100%"}
         textAlign={"center"}
+        zIndex={3}
       >
         <Box textAlign={"center"} width={"100%"}>
           <Text as={"h6"}>Our services</Text>
@@ -82,7 +88,11 @@ const ServiceSection = () => {
             ))}
           </Flex>
           {!isTablet && (
-            <Image src={userImage1} alt="" style={{ width: "20%" }}></Image>
+            <Image
+              src={userImage1}
+              alt=""
+              style={{ width: "30%", zIndex: 2 }}
+            ></Image>
           )}
           <Flex
             width={isTablet ? "100%" : "40%"}
