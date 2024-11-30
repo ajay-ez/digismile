@@ -97,14 +97,19 @@ p {
   padding: 5vw 0;
 }
 
+.location-section {
+  padding: 2vw 0 !important;
+}
+
 .responsive-section {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 @media screen and (max-width: 1000px) {
-  .responsive-section {
-    padding: 0 1rem;
+  .location-section {
+    padding: 5vw 0 !important;
   }
 }
 
@@ -113,6 +118,20 @@ p {
   margin: 0 auto;
   max-width: 1480px;
   color: white;
+}
+
+.responsive-service-section {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 1480px;
+}
+
+.service-section {
+  // background-image: url("../assets/utils/user_background.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  margin: 5rem 0;
 }
 
 @media screen and (max-width: 1000px) {
@@ -204,4 +223,36 @@ p {
   left: 9px;
   top: 14px;
   transform: rotate(135deg);
+}
+
+//
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.item {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease-in-out,
+    filter 0.3s ease-in-out;
+}
+
+.owl-item {
+  filter: blur(4px);
+  transform: scale(0.8);
+  opacity: 0.5;
+}
+
+.owl-item.center {
+  filter: blur(0);
+  transform: scale(1);
+  opacity: 1;
 }

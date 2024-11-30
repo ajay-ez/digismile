@@ -50,10 +50,10 @@ const PatientReviews = () => {
 
   return (
     <section className="testimonials-section">
-      <div className="container">
+      <div>
         <h2 className="text-center mb-5">What Say Our Patients!</h2>
         <Swiper
-          modules={[Navigation, Pagination, Autoplay]} // Correct usage
+          modules={[Navigation, Pagination, Autoplay]}
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
@@ -96,3 +96,44 @@ const PatientReviews = () => {
 };
 
 export default PatientReviews;
+
+// import React from "react";
+// import dynamic from "next/dynamic";
+
+// // Dynamically import OwlCarousel (to avoid SSR issues)
+// const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
+
+// const PatientReviews = () => {
+//   const options = {
+//     items: 3, // Show three items
+//     loop: true,
+//     center: true, // Center the active item
+//     margin: 10,
+//     autoplay: true,
+//     autoplayTimeout: 3000,
+//     autoplayHoverPause: true,
+//     smartSpeed: 800,
+//     responsive: {
+//       0: {
+//         items: 1 // Show 1 item for small screens
+//       },
+//       768: {
+//         items: 3 // Show 3 items for medium+ screens
+//       }
+//     }
+//   };
+
+//   return (
+//     <div className={"carouselWrapper"}>
+//       <OwlCarousel className="owl-theme" {...options}>
+//         <div className={"item"}>Item 1</div>
+//         <div className={"item"}>Item 2</div>
+//         <div className={"item"}>Item 3</div>
+//         <div className={"item"}>Item 4</div>
+//         <div className={"item"}>Item 5</div>
+//       </OwlCarousel>
+//     </div>
+//   );
+// };
+
+// export default PatientReviews;

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import LandingPageVideo from "./LandingPageVideo";
-import Services from "./Services";
+import LocationSection from "./LocationSection";
 
 import WhoWeAre from "./WhoWeAre";
 import Testimonial from "./Testimonial";
@@ -11,15 +11,14 @@ import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 import useAuthCheck from "@/hooks/useAuthCheck";
 import UserWelcome from "./UserWelcome";
 import Gallery from "./Gallery";
-import { Box } from "@chakra-ui/react";
+import { Box, Divider } from "@chakra-ui/react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import ImageGallery from "../Image-gallery";
 import dynamic from "next/dynamic";
+import PatientReviews from "../patient-reviews";
+import ServiceSection from "../services-section";
 // import PatientReviews from "../patient-reviews";
-const PatientReviews = dynamic(() => import("../patient-reviews"), {
-  ssr: false
-});
 
 const LandingPage = () => {
   const isUserAuthorize = useAuthCheck();
@@ -35,10 +34,12 @@ const LandingPage = () => {
     <Box position={"relative"}>
       <Navbar />
       <LandingPageVideo />
+      <LocationSection />
       <ImageGallery />
+      <Divider />
+      <ServiceSection />
       {/* <PatientReviews /> */}
       {/* {isUserAuthorize && <UserWelcome />} */}
-      {/* <Services /> */}
       {/* <WhoWeAre /> */}
       {/* <Gallery /> */}
       {/* <Testimonial /> */}

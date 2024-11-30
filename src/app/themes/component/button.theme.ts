@@ -113,6 +113,15 @@ export default {
       height: "100%",
       borderRadius: "xl"
     },
+    "location-section-button": {
+      backgroundColor: "white",
+      color: "#963f36",
+      fontSize: "md",
+      fontWeight: "800",
+      padding: ".5rem 1rem",
+      height: "100%",
+      borderRadius: "xl"
+    },
     appointment: {
       backgroundColor: "brand.100",
       color: "white",

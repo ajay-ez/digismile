@@ -1,3 +1,5 @@
+"use client";
+
 import { digismileLogoImage } from "@/assets/images";
 import { LocationOnOutlined } from "@mui/icons-material";
 import Image from "next/image";
@@ -6,7 +8,8 @@ import { FollowUsSection } from "./FollowUsSection";
 import { Box, Button, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 
 const Footer = () => {
-  const [isMobile] = useMediaQuery("(max-width: 1000px)");
+  const [isLaptop] = useMediaQuery("(max-width: 1000px)");
+  const [isMobile] = useMediaQuery("(max-width: 580px)");
 
   return (
     <Box background={"brand.100"} className="home-section">
@@ -25,44 +28,45 @@ const Footer = () => {
           gap={20}
           width={"100%"}
           padding={"0 2rem"}
-          flexDir={isMobile ? "column" : "row"}
+          flexDir={isLaptop ? "column" : "row"}
         >
           <Flex width={"100%"} flexDir={"column"} gap={8}>
             <Flex
               flexDir={"column"}
               width={"100%"}
               padding={"0 0 2rem 0"}
-              alignItems={isMobile ? "center" : "start"}
+              alignItems={isLaptop ? "center" : "start"}
               borderBottom={"1px white solid"}
             >
               <Text as={"h1"} className="footer-heading">
                 Washington D.C
               </Text>
               <Text as={"h1"} className="footer-heading">
-                Dental Studio
+                Dental Clinic
               </Text>
             </Flex>
-            <Flex justifyContent={"space-between"}>
-              <Flex width={"100%"} flexDir={"column"} gap={6}>
-                <Text as={"h5"}>hello@test.com</Text>
-                <Text as={"h5"}>+1 415-857-0150</Text>
-                <Text as={"h5"}>hello@test.com</Text>
+            <Flex
+              justifyContent={"space-between"}
+              flexWrap={isMobile ? "wrap" : "nowrap"}
+              gap={2}
+            >
+              <Flex width={"100%"} flexDir={"column"} gap={2}>
+                <Text as={"h5"}>Smilexpertsdc@gmail.com</Text>
+                <Text as={"h5"}>(202) 545-6336</Text>
               </Flex>
               <Flex width={"100%"} flexDir={"column"} gap={2}>
                 <Text as={"h5"}>
-                  Washington D.C. 1747 Pennsylvania Ave NW, Suite 100,
-                  Washington, DC 20006
+                  1747 Pennsylvania Avenue NW Suite 100 Washington, DC 20006
                 </Text>
                 <div className="footer-location-hours">
-                  Hours <br /> Mon, Tue, Fri: 8am-5pm Hours <br /> Mon, Tue,
-                  Fri: 8am-5pm
+                  Mon, Wed, Fri: 10am-5pm Hours
                 </div>
               </Flex>
             </Flex>
             <Button
               mt={4}
               variant={"footer-button"}
-              width={isMobile ? "100%" : "300px"}
+              width={isLaptop ? "100%" : "300px"}
             >
               Book a consultation
             </Button>
@@ -72,37 +76,38 @@ const Footer = () => {
               flexDir={"column"}
               width={"100%"}
               padding={"0 0 2rem 0"}
-              alignItems={isMobile ? "center" : "start"}
+              alignItems={isLaptop ? "center" : "start"}
               borderBottom={"1px white solid"}
             >
               <Text as={"h1"} className="footer-heading">
-                Washington D.C
+                Burke, VA
               </Text>
               <Text as={"h1"} className="footer-heading">
-                Dental Studio
+                Dental Clinic
               </Text>
             </Flex>
-            <Flex justifyContent={"space-between"}>
-              <Flex width={"100%"} flexDir={"column"} gap={6}>
-                <Text as={"h5"}>hello@test.com</Text>
-                <Text as={"h5"}>+1 415-857-0150</Text>
-                <Text as={"h5"}>hello@test.com</Text>
+            <Flex
+              justifyContent={"space-between"}
+              flexWrap={isMobile ? "wrap" : "nowrap"}
+              gap={2}
+            >
+              <Flex width={"100%"} flexDir={"column"} gap={2}>
+                <Text as={"h5"}>Smilexpertsdc@gmail.com</Text>
+                <Text as={"h5"}>(571) 374-8000</Text>
               </Flex>
               <Flex width={"100%"} flexDir={"column"} gap={2}>
                 <Text as={"h5"}>
-                  Washington D.C. 1747 Pennsylvania Ave NW, Suite 100,
-                  Washington, DC 20006
+                  9570 Burke Road Unit A Burke, VIRGINIA 22015
                 </Text>
                 <div className="footer-location-hours">
-                  Hours <br /> Mon, Tue, Fri: 8am-5pm Hours <br /> Mon, Tue,
-                  Fri: 8am-5pm
+                  Tue, Thu, Sat: 9am-4pm Hours
                 </div>
               </Flex>
             </Flex>
             <Button
               mt={4}
               variant={"footer-button"}
-              width={isMobile ? "100%" : "300px"}
+              width={isLaptop ? "100%" : "300px"}
             >
               Book a consultation
             </Button>

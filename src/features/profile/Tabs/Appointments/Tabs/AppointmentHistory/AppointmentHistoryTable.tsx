@@ -4,7 +4,15 @@ import Image from "next/image";
 import { doctor } from "@/assets/images";
 import CalendarMonth from "@mui/icons-material/CalendarMonth";
 import { formatTimeToHoursAndMinutes } from "@/utils/dateUtils";
-import { Box, Button, Table, TableContainer, Tbody, Td, Tr } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Tr
+} from "@chakra-ui/react";
 type AppointmentHistoryTableProps = {
   previous_appointments?: any;
 };
@@ -14,7 +22,7 @@ export const AppointmentHistoryTable = ({
 }: AppointmentHistoryTableProps) => {
   return (
     <Box>
-      <TableContainer  sx={{ borderRadius: 1 }}>
+      <TableContainer>
         <Table>
           <Tbody>
             {previous_appointments?.map((event: any, index: number) => (
@@ -30,9 +38,7 @@ export const AppointmentHistoryTable = ({
                 </Td>
                 <Td className="text-center border-none font-semibold text-xl">
                   Dr. Mahmood
-                  <h1 className="text-xs text-left">
-                    Dental Specialist
-                  </h1>
+                  <h1 className="text-xs text-left">Dental Specialist</h1>
                 </Td>
                 <Td className="text-center border-none text-lg ">
                   {event.description}
@@ -53,11 +59,7 @@ export const AppointmentHistoryTable = ({
           </Tbody>
         </Table>
       </TableContainer>
-      {previous_appointments?.length === 0 && (
-        <h1>
-          No Appointment Found
-        </h1>
-      )}
+      {previous_appointments?.length === 0 && <h1>No Appointment Found</h1>}
     </Box>
   );
 };

@@ -3,12 +3,20 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { getFormattedDateTime } from "@/utils/dateUtils";
 import { UserTabProps } from "../Prescription/Prescription";
 import { downloadFile } from "@/utils/dowloadUrl";
-import { Box, Table, TableContainer, Tbody, Td, Thead, Tr } from "@chakra-ui/react";
+import {
+  Box,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Thead,
+  Tr
+} from "@chakra-ui/react";
 
 export const DocumentTable = ({ medicalRecords }: UserTabProps) => {
   return (
     <Box>
-      <TableContainer component={Box} sx={{ borderRadius: 1 }}>
+      <TableContainer>
         <Table>
           <Thead>
             <Tr>
@@ -47,11 +55,7 @@ export const DocumentTable = ({ medicalRecords }: UserTabProps) => {
           </Tbody>
         </Table>
       </TableContainer>
-      {medicalRecords?.length === 0 && (
-        <h1>
-          No Documents Found
-        </h1>
-      )}
+      {medicalRecords?.length === 0 && <h1>No Documents Found</h1>}
     </Box>
   );
 };

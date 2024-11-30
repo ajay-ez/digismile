@@ -1,12 +1,20 @@
 import React from "react";
 
 import { UserTabProps } from "../Prescription/Prescription";
-import { Box, Table, TableContainer, Tbody, Td, Thead, Tr } from "@chakra-ui/react";
+import {
+  Box,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Thead,
+  Tr
+} from "@chakra-ui/react";
 
 export const CheckupTable = ({ medicalRecords }: UserTabProps) => {
   return (
     <Box>
-      <TableContainer component={Box} sx={{ borderRadius: 1 }}>
+      <TableContainer>
         <Table>
           <Thead>
             <Tr>
@@ -38,19 +46,13 @@ export const CheckupTable = ({ medicalRecords }: UserTabProps) => {
                   {event.prescription}
                 </Td>
 
-                <Td className="text-center text-sm border-none">
-                  Dr. Mahmood
-                </Td>
+                <Td className="text-center text-sm border-none">Dr. Mahmood</Td>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
-      {medicalRecords?.length === 0 && (
-        <h1>
-          No Checkups Found
-        </h1>
-      )}
+      {medicalRecords?.length === 0 && <h1>No Checkups Found</h1>}
     </Box>
   );
 };

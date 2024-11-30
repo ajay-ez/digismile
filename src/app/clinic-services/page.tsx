@@ -9,6 +9,7 @@ import SmileJourney from "@/features/services/SmileJourney";
 import ClinicServiceDetail from "@/features/services/ClinicServiceDetail";
 import { TextImageOverlay } from "@/components/common/TextImageOverlay";
 import { Stack } from "@chakra-ui/react";
+
 const ClinicServices = () => {
   return (
     <DigiLayout>
@@ -37,9 +38,7 @@ const ClinicServices = () => {
         {/* Faqs */}
         <div className="flex gap-10 p-8 ">
           <div className="md:w-[50%]">
-            <h1 className="text-center mb-16  ">
-              Frequently Ask Question
-            </h1>
+            <h1 className="text-center mb-16  ">Frequently Ask Question</h1>
             <FAQ />
           </div>
           <Image src={faq} alt="Faq's" className="w-[40%] hidden sm:block" />
@@ -50,9 +49,7 @@ const ClinicServices = () => {
           <h1 className="text-center  mb-2  ">
             Comprehensive Dental SERVICES by Smile Experts Dental
           </h1>
-          <h1 className="text-center mb-16  ">
-            Your Path to a Radiant Smile
-          </h1>
+          <h1 className="text-center mb-16  ">Your Path to a Radiant Smile</h1>
           <Stack gap={4} className="p-4 ">
             {projectConstants.clinicServiceDetails.map(
               (serviceDetail: any, index: number) => (

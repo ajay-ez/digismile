@@ -81,7 +81,7 @@ export default function Navbar() {
         alignItems={"center"}
         justifyContent={"space-between"}
         px={8}
-        py={4}
+        py={2}
       >
         <Image
           id="header-sticky-image"

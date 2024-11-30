@@ -1,6 +1,8 @@
 import digismileLogoImage from "@/assets/digismile-logo.png";
 import digismileDarkLogoImage from "@/assets/digismile-logo-dark.png";
 import logo from "@/assets/utils/logo.svg";
+import userImage from "@/assets/utils/user_full_image.png";
+import userImage1 from "@/assets/utils/user_full_image1.svg";
 
 import home_1 from "@/assets/homepageImages/home_1.svg";
 import home_2 from "@/assets/homepageImages/home_2.svg";
@@ -119,5 +121,7 @@ export {
   location_icon,
   right_arrow,
   left_arrow,
-  logo
+  logo,
+  userImage,
+  userImage1,
 };
