@@ -19,6 +19,7 @@ import dynamic from "next/dynamic";
 import PatientReviews from "../patient-reviews";
 import ServiceSection from "../services-section";
 import SmileGallery from "../smile-gallery";
+import { ProcessForPatient } from "../contact-us/ProcessForPatient";
 // import PatientReviews from "../patient-reviews";
 
 const LandingPage = () => {
@@ -39,10 +40,11 @@ const LandingPage = () => {
       <ImageGallery />
       <Divider />
       <ServiceSection />
-      <Divider />
       <SmileGallery />
       <Divider />
       <PatientReviews />
+      <Divider />
+      <ProcessForPatient />
       {/* {isUserAuthorize && <UserWelcome />} */}
       {/* <WhoWeAre /> */}
       {/* <Gallery /> */}

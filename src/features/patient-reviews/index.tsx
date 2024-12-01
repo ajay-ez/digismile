@@ -21,9 +21,7 @@ const PatientReviews = () => {
         <Text as={"h1"} color={"brand.100"} fontWeight={900}>
           What Our Patients Say...
         </Text>
-        {/* <Flex width={"100%"}> */}
         <ReviewCard />
-        {/* </Flex> */}
       </Flex>
     </Box>
   );

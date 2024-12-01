@@ -80,8 +80,8 @@ const ImageGallery = () => {
             style={{ width: "100%" }}
             onSwiper={setSwiperRef}
           >
-            {images.map((image) => (
-              <SwiperSlide key={image.src}>
+            {images.map((image, index) => (
+              <SwiperSlide key={index}>
                 <Image
                   src={image.src}
                   alt={image.alt}

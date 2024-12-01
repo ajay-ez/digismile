@@ -1,27 +1,30 @@
-"use client";
-
-import React from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import SmileCard from "./SmileCard";
+import {
+  teeth1,
+  teeth2,
+  teeth3,
+  teeth4,
+  teeth5,
+  teeth6
+} from "@/assets/images";
 
-// const SmileGallery = ({ beforeImage, afterImage }) => {
 const SmileGallery = () => {
   return (
-    <Box className="home-section" background={"#F7F7F7"} color={"brand.100"}>
+    <Box className="home-section">
       <Flex
         flexDir={"column"}
-        className="responsive-service-section"
-        width={"100%"}
-        textAlign={"center"}
-        gap={10}
+        className="responsive-section"
+        alignItems={"center"}
+        justifyContent={"center"}
       >
         <Text as={"h1"} color={"brand.100"} fontWeight={900}>
           Smile Gallery
         </Text>
         <Flex gap={10} justifyContent={"space-between"}>
-          <SmileCard />
-          <SmileCard />
-          <SmileCard />
+          <SmileCard key={1} beforeImage={teeth1} afterImage={teeth2} />
+          <SmileCard key={2} beforeImage={teeth3} afterImage={teeth4} />
+          <SmileCard key={3} beforeImage={teeth5} afterImage={teeth6} />
         </Flex>
       </Flex>
     </Box>

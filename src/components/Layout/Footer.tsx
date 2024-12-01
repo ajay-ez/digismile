@@ -13,6 +13,7 @@ const Footer = () => {
 
   return (
     <Box background={"brand.100"} className="home-section">
+      {/* <Box background={"#577361"} className="home-section"> */}
       <Flex
         flexDir={"column"}
         className="responsive-footer-section"

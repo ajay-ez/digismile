@@ -1,136 +1,128 @@
-// import React, { useRef, useState } from "react";
-// import "./smilecard.scss";
-// import { Box } from "@chakra-ui/react";
-
-// // Importing images
-
-// const SmileCard = () => {
-//   const sliderRef = useRef<HTMLDivElement | null>(null); // Ref for the slider container
-//   const [sliderPosition, setSliderPosition] = useState<number>(50); // Initial slider position at 50%
-
-//   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-//     if (!sliderRef.current) return;
-
-//     const bounds = sliderRef.current.getBoundingClientRect();
-//     const x = e.clientX - bounds.left; // Mouse X position relative to slider
-//     const newPosition = (x / bounds.width) * 100; // Convert to percentage
-//     setSliderPosition(Math.max(0, Math.min(newPosition, 100))); // Clamp between 0 and 100
-//   };
-
-//   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-//     if (!sliderRef.current) return;
-
-//     const bounds = sliderRef.current.getBoundingClientRect();
-//     const x = e.touches[0].clientX - bounds.left; // Touch X position relative to slider
-//     const newPosition = (x / bounds.width) * 100; // Convert to percentage
-//     setSliderPosition(Math.max(0, Math.min(newPosition, 100))); // Clamp between 0 and 100
-//   };
-
-//   return (
-//     <Box
-//       ref={sliderRef}
-//       className="slider-container"
-//       onMouseMove={handleMouseMove}
-//       onTouchMove={handleTouchMove}
-//     >
-//       <Box
-//         className="slider-before"
-//         style={{
-//           width: `${sliderPosition}%`
-//         }}
-//       ></Box>
-//       <Box className="slider-after"></Box>
-//       <Box
-//         className="slider-handle"
-//         style={{ left: `${sliderPosition}%` }}
-//         draggable="false"
-//       ></Box>
-//     </Box>
-//   );
-// };
-
-// export default SmileCard;
-
-import React, { useRef, useState } from "react";
-import "./smilecard.scss";
-import { Box } from "@chakra-ui/react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { slider } from "@/assets/images";
+import { sliderImage } from "@/assets/images";
+import "./smilecard.scss";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
-const SmileCard = () => {
-  const sliderRef = useRef<HTMLDivElement | null>(null); // Ref for the slider container
-  const [sliderPosition, setSliderPosition] = useState<number>(50); // Initial slider position at 50%
-  const [isDragging, setIsDragging] = useState<boolean>(false); // To track drag state
+interface Properties {
+  beforeImage: string;
+  afterImage: string;
+}
 
-  const updatePosition = (clientX: number) => {
-    if (!sliderRef.current) return;
+const SmileCard = ({ beforeImage, afterImage }: Properties) => {
+  const [isResizing, setIsResizing] = useState(false);
+  const topImageRef = useRef<HTMLDivElement | null>(null);
+  const handleRef = useRef<HTMLDivElement | null>(null);
 
-    const bounds = sliderRef.current.getBoundingClientRect();
-    const x = clientX - bounds.left; // Mouse X position relative to slider
-    const newPosition = (x / bounds.width) * 100; // Convert to percentage
-    setSliderPosition(Math.max(0, Math.min(newPosition, 100))); // Clamp between 0 and 100
-  };
+  const setPositioning = useCallback((x: number) => {
+    if (!topImageRef.current || !handleRef.current) return;
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    updatePosition(e.clientX);
-  };
+    const { left, width } = topImageRef.current.getBoundingClientRect();
+    const handleWidth = handleRef.current.offsetWidth;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return; // Only update position if dragging
-    updatePosition(e.clientX);
-  };
+    if (x >= left && x <= width + left - handleWidth) {
+      const percentage = ((x - left) / width) * 100;
+      handleRef.current.style.left = `${percentage}%`;
+      topImageRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    }
+  }, []);
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  const handleResize = useCallback(
+    (e: MouseEvent | TouchEvent) => {
+      if (e instanceof MouseEvent) {
+        setPositioning(e.clientX);
+      } else if (e.touches[0]?.clientX) {
+        setPositioning(e.touches[0].clientX);
+      }
+    },
+    [setPositioning]
+  );
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    updatePosition(e.touches[0].clientX);
-  };
+  useEffect(() => {
+    if (!topImageRef.current || !handleRef.current) return;
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!isDragging) return; // Only update position if dragging
-    updatePosition(e.touches[0].clientX);
-  };
+    const { left, width } = topImageRef.current.getBoundingClientRect();
+    const handleWidth = handleRef.current.offsetWidth;
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+    setPositioning(width / 8 + left - handleWidth / 2);
+  }, [setPositioning]);
+
+  const handleResizeEnd = useCallback(() => {
+    setIsResizing(false);
+
+    window.removeEventListener("mousemove", handleResize);
+    window.removeEventListener("touchmove", handleResize);
+    window.removeEventListener("mouseup", handleResizeEnd);
+    window.removeEventListener("touchend", handleResizeEnd);
+  }, [handleResize]);
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (!handleRef.current || !handleRef.current.offsetParent) return;
+
+      const { offsetLeft } = handleRef.current;
+      const { offsetLeft: parentOffsetLeft } = handleRef.current
+        .offsetParent as HTMLElement;
+
+      if (e.code === "ArrowLeft") {
+        setPositioning(offsetLeft + parentOffsetLeft - 10);
+      }
+
+      if (e.code === "ArrowRight") {
+        setPositioning(offsetLeft + parentOffsetLeft + 10);
+      }
+    },
+    [setPositioning]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onKeyDown]);
+
+  useEffect(() => {
+    if (isResizing) {
+      window.addEventListener("mousemove", handleResize);
+      window.addEventListener("touchmove", handleResize);
+      window.addEventListener("mouseup", handleResizeEnd);
+      window.addEventListener("touchend", handleResizeEnd);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleResize);
+      window.removeEventListener("touchmove", handleResize);
+      window.removeEventListener("mouseup", handleResizeEnd);
+      window.removeEventListener("touchend", handleResizeEnd);
+    };
+  }, [isResizing, handleResize, handleResizeEnd]);
 
   return (
-    <Box
-      ref={sliderRef}
-      className="slider-container"
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp} // Stop dragging if the mouse leaves the slider area
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <Box
-        className="slider-before"
-        style={{
-          width: `${sliderPosition}%`
-        }}
-      ></Box>
-      <Box className="slider-after"></Box>
-      <Box
-        className="slider-handle"
-        style={{ left: `${sliderPosition}%` }}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        draggable="false"
-      >
-        <Image
-          className="slider-icon"
-          src={slider}
-          alt=""
-          height={40}
-          width={40}
-        ></Image>
-      </Box>
+    <Box className="comparison-container">
+      <div className="comparison-slider">
+        <Flex className="comparison-overlay">
+          <Text className="overlay-text">Before</Text>
+          <Text className="overlay-text">After</Text>
+        </Flex>
+        <div
+          ref={handleRef}
+          className="handle"
+          onMouseDown={() => setIsResizing(true)}
+          onTouchStart={() => setIsResizing(true)}
+        >
+          <Image
+            className="handle-image"
+            src={sliderImage}
+            draggable="true"
+            alt=""
+          />
+        </div>
+        <div ref={topImageRef} className="comparison-item top">
+          <Image draggable="false" src={afterImage} alt={""} />
+        </div>
+        <div className="comparison-item">
+          <Image draggable="false" src={beforeImage} alt={""} />
+        </div>
+      </div>
     </Box>
   );
 };

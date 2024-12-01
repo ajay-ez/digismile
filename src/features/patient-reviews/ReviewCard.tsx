@@ -1,11 +1,14 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import "./patient-reviews.scss";
 import { Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { logo } from "@/assets/images";
-import { motion } from "framer-motion";
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
+import { useCallback, useState } from "react";
+import { Pagination } from "swiper/modules";
 
 const ReviewCard = () => {
+  const [swiperRef, setSwiperRef] = useState<SwiperClass>();
   const testimonials = [
     {
       text: "The team at this dental clinic is absolutely incredible! I came in for a root canal and was honestly a bit nervous, but they explained everything thoroughly and made me feel at ease. The process was painless, and the results were outstanding. Their professionalism and care really stood out. ",
@@ -39,15 +42,21 @@ const ReviewCard = () => {
     }
   ];
 
+  const handlePrevious = useCallback(() => {
+    swiperRef?.slidePrev();
+  }, [swiperRef]);
+
+  const handleNext = useCallback(() => {
+    swiperRef?.slideNext();
+  }, [swiperRef]);
+
   return (
     <Swiper
       slidesPerView={"auto"}
       centeredSlides={true}
       spaceBetween={30}
       loop={true}
-      pagination={{
-        clickable: true
-      }}
+      onSwiper={setSwiperRef}
       breakpoints={{
         640: {
           slidesPerView: 1
@@ -62,22 +71,58 @@ const ReviewCard = () => {
     >
       {testimonials.map((testimonial, index) => (
         <SwiperSlide key={index}>
-          <Image
-            className="slide-image"
-            src={testimonial.image}
-            alt=""
-            style={{
-              height: "120px",
-              width: "120px"
-            }}
-          ></Image>
-          <Flex className="slide-text" flexDir={"column"}>
-            <Text as={"h5"}>{testimonial.text}</Text>
-            <Text as={"h4"} mt={4} fontWeight={900}>
-              {testimonial.name}
-            </Text>
-            <Text as={"h6"}>{testimonial.profession}</Text>
-          </Flex>
+          {({ isActive }) => (
+            <>
+              <Flex
+                alignItems={"center"}
+                gap={10}
+                _hover={{ ".nav-buttons": { opacity: 1 } }}
+              >
+                {isActive && (
+                  <GrLinkPrevious
+                    style={{
+                      transition: "all .3s ease-in"
+                    }}
+                    className="nav-buttons"
+                    opacity={0}
+                    onClick={handlePrevious}
+                    size={40}
+                    color="#963f36"
+                    cursor={"pointer"}
+                  />
+                )}
+                <Image
+                  className="slide-image"
+                  src={testimonial.image}
+                  alt=""
+                  style={{
+                    height: "120px",
+                    width: "120px"
+                  }}
+                ></Image>
+                {isActive && (
+                  <GrLinkNext
+                    style={{
+                      transition: "all .3s ease-in"
+                    }}
+                    className="nav-buttons"
+                    opacity={0}
+                    onClick={handleNext}
+                    size={40}
+                    color="#963f36"
+                    cursor={"pointer"}
+                  />
+                )}
+              </Flex>
+              <Flex className="slide-text" flexDir={"column"}>
+                <Text as={"h5"}>{testimonial.text}</Text>
+                <Text as={"h4"} mt={4} fontWeight={900}>
+                  {testimonial.name}
+                </Text>
+                <Text as={"h6"}>{testimonial.profession}</Text>
+              </Flex>
+            </>
+          )}
         </SwiperSlide>
       ))}
     </Swiper>

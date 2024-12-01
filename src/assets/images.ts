@@ -3,6 +3,7 @@ import digismileDarkLogoImage from "@/assets/digismile-logo-dark.png";
 import logo from "@/assets/utils/logo.svg";
 import userImage from "@/assets/utils/user_full_image.png";
 import userImage1 from "@/assets/utils/user_full_image1.svg";
+import sliderImage from "@/assets/utils/slider.svg";
 
 import home_1 from "@/assets/homepageImages/home_1.svg";
 import home_2 from "@/assets/homepageImages/home_2.svg";
@@ -149,5 +150,6 @@ export {
   userImage_2,
   userImage_3,
   userImage_4,
-  userImage_5
+  userImage_5,
+  sliderImage
 };
