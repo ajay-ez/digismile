@@ -28,6 +28,19 @@ import userImage_3 from "@/assets/userImages/3.jpg";
 import userImage_4 from "@/assets/userImages/4.jpg";
 import userImage_5 from "@/assets/userImages/5.jpg";
 
+import review1 from "@/assets/utils/review1.jpg";
+import review2 from "@/assets/utils/review2.jpg";
+import review3 from "@/assets/utils/review3.jpg";
+import review4 from "@/assets/utils/review4.jpg";
+import review5 from "@/assets/utils/review5.jpg";
+
+import teeth_1 from "@/assets/utils/teeth1.png";
+import teeth_2 from "@/assets/utils/teeth2.png";
+import teeth_3 from "@/assets/utils/teeth3.png";
+import teeth_4 from "@/assets/utils/teeth4.png";
+import teeth_5 from "@/assets/utils/teeth5.png";
+import teeth_6 from "@/assets/utils/teeth6.png";
+
 import teeth1 from "@/assets/teeths/1.svg";
 import teeth2 from "@/assets/teeths/2.svg";
 import teeth3 from "@/assets/teeths/3.svg";
@@ -151,5 +164,16 @@ export {
   userImage_3,
   userImage_4,
   userImage_5,
-  sliderImage
+  sliderImage,
+  teeth_1,
+  teeth_2,
+  teeth_3,
+  teeth_4,
+  teeth_5,
+  teeth_6,
+  review1,
+  review2,
+  review3,
+  review4,
+  review5
 };

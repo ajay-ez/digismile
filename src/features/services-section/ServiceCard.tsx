@@ -1,12 +1,13 @@
 import { logo } from "@/assets/images";
 import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface Properties {
   alignment: String;
   isLeftCenter?: boolean;
   isRightCenter?: boolean;
   heading: String;
+  image: StaticImageData;
   description: String;
 }
 
@@ -15,6 +16,7 @@ const ServiceCard = ({
   isLeftCenter,
   isRightCenter,
   description,
+  image,
   heading
 }: Properties) => {
   const [isLaptop] = useMediaQuery("(max-width: 1315px)");
@@ -36,7 +38,7 @@ const ServiceCard = ({
       }
     >
       <Image
-        src={logo}
+        src={image}
         alt=""
         style={{
           borderRadius: "50%",

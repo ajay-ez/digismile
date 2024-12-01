@@ -2,43 +2,49 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import "./patient-reviews.scss";
 import { Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { logo } from "@/assets/images";
+import {
+  logo,
+  review1,
+  review2,
+  review3,
+  review4,
+  review5
+} from "@/assets/images";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { useCallback, useState } from "react";
-import { Pagination } from "swiper/modules";
 
 const ReviewCard = () => {
   const [swiperRef, setSwiperRef] = useState<SwiperClass>();
   const testimonials = [
     {
+      text: "I went in for an exam and cleaning, and I was so impressed with the attention to detail. The dentist was thorough, kind, and explained everything in a way that made sense. It’s rare to find a place where you feel genuinely cared for. I’ll definitely return for all my dental needs!",
+      name: "Rajesh Kumar",
+      profession: "Software Engineer",
+      image: review4
+    },
+    {
       text: "The team at this dental clinic is absolutely incredible! I came in for a root canal and was honestly a bit nervous, but they explained everything thoroughly and made me feel at ease. The process was painless, and the results were outstanding. Their professionalism and care really stood out. ",
       name: "Michael Brown",
       profession: "Teacher",
-      image: logo
+      image: review1
     },
     {
       text: "I couldn’t be happier with the teeth whitening service! My teeth are brighter, and I’ve been getting compliments on my smile ever since. The clinic is spotless, and the staff are so welcoming. I loved how easy it was to book through their app. It's refreshing to find a place that combines technology with excellent service.",
       name: "Sarah Lee",
       profession: "Graphic Designer",
-      image: logo
-    },
-    {
-      text: "I went in for an exam and cleaning, and I was so impressed with the attention to detail. The dentist was thorough, kind, and explained everything in a way that made sense. It’s rare to find a place where you feel genuinely cared for. I’ll definitely return for all my dental needs!",
-      name: "Rajesh Kumar",
-      profession: "Software Engineer",
-      image: logo
+      image: review2
     },
     {
       text: "The orthodontic services here are top-notch. After two years of braces, I now have the perfect smile, and it’s all thanks to this amazing team. They were with me every step of the way, ensuring I was comfortable and informed. I couldn’t be more grateful. The results are truly life-changing!",
       name: "Emily Carter",
       profession: "Student",
-      image: logo
+      image: review3
     },
     {
       text: "I recently got a set of dentures here, and the experience was fantastic. The dentist took the time to ensure they fit perfectly and even gave me tips on how to care for them. It’s clear they prioritize their patients' comfort and satisfaction. I’m beyond grateful for their exceptional care and professionalism.",
-      name: "Thomas Mitchell",
-      profession: "Retiree",
-      image: logo
+      name: "Sophia",
+      profession: "Designer",
+      image: review5
     }
   ];
 

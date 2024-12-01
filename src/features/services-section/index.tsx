@@ -1,4 +1,12 @@
-import { userImage, userImage1 } from "@/assets/images";
+import {
+  teeth_1,
+  teeth_2,
+  teeth_3,
+  teeth_4,
+  teeth_5,
+  teeth_6,
+  userImage1
+} from "@/assets/images";
 import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
 import ServiceCard from "./ServiceCard";
@@ -11,18 +19,21 @@ const ServiceSection = () => {
     {
       id: 1,
       heading: "Root Canals",
+      image: teeth_5,
       description:
         "Save your tooth with a root canal! Remove infection, decay, and preserve your smile."
     },
     {
       id: 2,
       heading: "Exam & Cleaning",
+      image: teeth_1,
       description:
         "Regular checkups ensure optimal oral health, detect issues early, and keep your smile fresh."
     },
     {
       id: 3,
       heading: "Fillings",
+      image: teeth_3,
       description:
         "Restore your teeth with durable fillings, stopping decay, and preventing further damage to your smile."
     }
@@ -32,18 +43,21 @@ const ServiceSection = () => {
     {
       id: 1,
       heading: "Dentures",
+      image: teeth_4,
       description:
         "Custom dentures offer a natural look and comfortable fit, replacing missing teeth and restoring confidence."
     },
     {
       id: 2,
       heading: "Teeth Whitening",
+      image: teeth_2,
       description:
         "Achieve a bright, radiant smile by removing stains from smoking, coffee, and daily habits."
     },
     {
       id: 3,
       heading: "Orthodontics",
+      image: teeth_6,
       description:
         "Straighten your teeth with braces or aligners, achieving a beautiful, aligned smile over time."
     }
@@ -81,6 +95,7 @@ const ServiceSection = () => {
               <ServiceCard
                 key={item.id}
                 heading={item.heading}
+                image={item.image}
                 description={item.description}
                 alignment={"left"}
                 isLeftCenter={index === 1}
@@ -103,6 +118,7 @@ const ServiceSection = () => {
               <ServiceCard
                 key={item.id}
                 heading={item.heading}
+                image={item.image}
                 description={item.description}
                 alignment={"right"}
                 isRightCenter={index === 1}
