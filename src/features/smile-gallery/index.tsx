@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import SmileCard from "./SmileCard";
 import {
   teeth1,
@@ -10,6 +10,8 @@ import {
 } from "@/assets/images";
 
 const SmileGallery = () => {
+  const [isMobile] = useMediaQuery("(max-width: 1000px)");
+
   return (
     <Box className="home-section">
       <Flex
@@ -21,7 +23,12 @@ const SmileGallery = () => {
         <Text as={"h1"} color={"brand.100"} fontWeight={900}>
           Smile Gallery
         </Text>
-        <Flex gap={10} justifyContent={"space-between"}>
+        <Flex
+          gap={10}
+          justifyContent={"space-between"}
+          // flexDir={isMobile ? "row" : "column"}
+          // width={"100%"}
+        >
           <SmileCard key={1} beforeImage={teeth1} afterImage={teeth2} />
           <SmileCard key={2} beforeImage={teeth3} afterImage={teeth4} />
           <SmileCard key={3} beforeImage={teeth5} afterImage={teeth6} />

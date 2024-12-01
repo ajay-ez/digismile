@@ -11,7 +11,7 @@ import { ClinicSchedule } from "@/components/common/ClinicSchedule";
 import useAuthCheck from "@/hooks/useAuthCheck";
 import UserWelcome from "./UserWelcome";
 import Gallery from "./Gallery";
-import { Box, Divider } from "@chakra-ui/react";
+import { Box, Divider, useMediaQuery } from "@chakra-ui/react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import ImageGallery from "../Image-gallery";
@@ -24,6 +24,7 @@ import { ProcessForPatient } from "../contact-us/ProcessForPatient";
 
 const LandingPage = () => {
   const isUserAuthorize = useAuthCheck();
+  const [isMobile] = useMediaQuery("(max-width: 1000px)");
 
   useEffect(() => {
     AOS.init({
@@ -40,6 +41,7 @@ const LandingPage = () => {
       <ImageGallery />
       <Divider />
       <ServiceSection />
+      {isMobile && <Divider />}
       <SmileGallery />
       <Divider />
       <PatientReviews />
