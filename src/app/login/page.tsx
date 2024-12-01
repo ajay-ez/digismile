@@ -20,8 +20,11 @@ import {
   CircularProgress,
   Flex,
   IconButton,
+  Spinner,
   Text
 } from "@chakra-ui/react";
+import FormField from "@/components/common/FormFields";
+import PasswordField from "@/components/common/PasswordField";
 
 const LoginSchema = Yup.object().shape({
   email: emailValidation,
@@ -31,6 +34,7 @@ const LoginSchema = Yup.object().shape({
 interface ErrorResponse {
   message?: string;
 }
+
 const isFetchBaseQueryError = (
   error: any
 ): error is FetchBaseQueryError & { data: ErrorResponse } => {
@@ -42,7 +46,6 @@ const LoginPage = () => {
   const router = useRouter();
   const { setAuthToken } = useAuthToken();
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const initialLoginValues: LoginFormValues = {
     email: "",
@@ -69,94 +72,89 @@ const LoginPage = () => {
       width={"100vw"}
       alignItems="center"
       justifyContent="center"
+      p={2}
     >
       <Flex
         flexDir={"column"}
         background={"#fff"}
         color={"black.200"}
+        width={"500px"}
         px={16}
-        py={12}
+        py={8}
         borderRadius={"sm"}
         boxShadow={"45px 76px 113px 7px rgba(112, 144, 176, 0.08)"}
       >
         <Box>
-          <Text as={"h1"} mb="1rem">
+          <Text as={"h1"} mb="1rem" textAlign={"center"}>
             Sign In
           </Text>
-          <Formik
-            initialValues={initialLoginValues}
-            validationSchema={LoginSchema}
-            onSubmit={handleLogin}
+          <Flex
+            zIndex="2"
+            direction="column"
+            w={"100%"}
+            maxW="100%"
+            background="transparent"
+            borderRadius="15px"
+            mx={{ base: "auto", lg: "unset" }}
+            mb={{ base: "20px", md: "auto" }}
           >
-            {() => (
-              <Form>
-                <Box mb={2}>
-                  <FieldInput
+            <Formik
+              initialValues={initialLoginValues}
+              validationSchema={LoginSchema}
+              onSubmit={handleLogin}
+            >
+              {({ errors, touched, isSubmitting }: any) => (
+                <Form>
+                  <FormField
+                    label="Email address*"
                     name="email"
-                    type="email"
-                    label="Email"
-                    placeholder="Enter your email"
-                    required
+                    type="text"
+                    placeholder="mail@trellis.com"
+                    disabled={isSubmitting}
+                    error={errors.email}
+                    touched={touched.email}
+                    styles={{ marginBottom: "1.5rem" }}
                   />
-                </Box>
-                <Box mb={2}>
-                  <Box position="relative">
-                    <FieldInput
-                      name="password"
-                      type={showPassword ? "text" : "password"}
-                      label="Password"
-                      placeholder="Enter your password"
-                      required
-                    />
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                      style={{
-                        position: "absolute",
-                        right: 0,
-                        top: "70%",
-                        transform: "translateY(-50%)"
-                      }}
-                    >
-                      {/* {showPassword ? <VisibilityOff /> : <Visibility />} */}
-                    </IconButton>
-                  </Box>
-                </Box>
-
-                {error && (
+                  <PasswordField
+                    label="Password*"
+                    name="password"
+                    placeholder="Min. 8 characters"
+                    disabled={isSubmitting}
+                    error={errors.password}
+                    touched={touched.password}
+                    styles={{ marginBottom: "1.5rem" }}
+                  />
+                  <Button
+                    type="submit"
+                    variant="authentication"
+                    w="100%"
+                    isDisabled={isSubmitting}
+                  >
+                    Sign In {isSubmitting && <Spinner ml={"4"} />}
+                  </Button>
+                  <Text
+                    mt={2}
+                    as={"h5"}
+                    textAlign={"center"}
+                    cursor={"pointer"}
+                    onClick={() => {
+                      router.push("/signup");
+                    }}
+                  >
+                    Don&apos;t have an account? Sign UP
+                  </Text>
+                  {/* {error && (
                   <h1 className="text-red-500 capitalize my-2 text-center">
                     {isFetchBaseQueryError(error)
                       ? error.data?.message
                       : "An unexpected error occurred."}
                   </h1>
-                )}
-
-                <Box className="flex justify-center">
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    className="bg-[#00A1FC9C] rounded-lg font-bold max-w-md"
-                    // fullWidth
-                  >
-                    {isLoading ? <CircularProgress /> : "Login"}
-                  </Button>
-                </Box>
-              </Form>
-            )}
-          </Formik>
+                )} */}
+                </Form>
+              )}
+            </Formik>
+          </Flex>
         </Box>
-        <h1 className="mt-4">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-blue-900 text-lg">
-            Sign up
-          </Link>
-        </h1>
-
-        <h1 className="text-center mt-2">
-          <Link href="/" className="text-blue-900 text-lg text-center mt-2">
-            Continue Without Account
-          </Link>
-        </h1>
       </Flex>
     </Flex>
   );

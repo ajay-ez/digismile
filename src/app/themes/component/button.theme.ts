@@ -69,6 +69,19 @@ export default {
         }
       }
     },
+    authentication: {
+      bgColor: "brand.100",
+      color: "white.800",
+      fontWeight: "800",
+      borderRadius: "sm",
+      fontSize: "md",
+      width: "100%",
+      _hover: {
+        _disabled: {
+          bg: "brand.200"
+        }
+      }
+    },
     "brand-second": {
       // bgColor: "white",
       // color: "brand.100",
