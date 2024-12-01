@@ -5,7 +5,8 @@ import React from "react";
 const ContactUsPage = () => {
   return (
     <DigiLayout>
-      <ContactUs />
+      {/* <ContactUs /> */}
+      <p>a</p>
     </DigiLayout>
   );
 };
