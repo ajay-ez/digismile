@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import React from "react";
 import Image from "next/image";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, useMediaQuery } from "@chakra-ui/react";
 
 interface ProcessCardProps {
   image: StaticImageData;
@@ -10,10 +10,12 @@ interface ProcessCardProps {
 }
 
 export const ProcessCard = ({ image, alt, desc }: ProcessCardProps) => {
+  const [isMobile] = useMediaQuery("(max-width: 1000px)");
+
   return (
     <Flex
       flexDir={"column"}
-      width={"300px"}
+      maxW={isMobile ? "100%" : "300px"}
       alignItems={"center"}
       p={8}
       gap={4}

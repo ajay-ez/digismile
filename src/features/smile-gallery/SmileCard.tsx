@@ -117,10 +117,20 @@ const SmileCard = ({ beforeImage, afterImage }: Properties) => {
           />
         </div>
         <div ref={topImageRef} className="comparison-item top">
-          <Image draggable="false" src={afterImage} alt={""} />
+          <Image
+            className="comparison-image"
+            draggable="false"
+            src={afterImage}
+            alt={""}
+          />
         </div>
         <div className="comparison-item">
-          <Image draggable="false" src={beforeImage} alt={""} />
+          <Image
+            className="comparison-image"
+            draggable="false"
+            src={beforeImage}
+            alt={""}
+          />
         </div>
       </div>
     </Box>

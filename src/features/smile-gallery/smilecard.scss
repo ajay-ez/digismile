@@ -34,8 +34,8 @@
   .handle {
     position: absolute;
     width: 3px;
-    height: 100%;
-    background: white;
+    height: 300px;
+    background: #faf7f5;
     z-index: 3;
     cursor: col-resize;
     top: 0;
@@ -46,6 +46,11 @@
     .overlay-text {
       border: 1px red solid;
     }
+  }
+
+  .comparison-image {
+    width: 400px;
+    height: 250px;
   }
 }
 
