@@ -19,6 +19,7 @@ const SmileGallery = () => {
         className="responsive-section"
         alignItems={"center"}
         justifyContent={"center"}
+        gap={10}
       >
         <Text as={"h1"} color={"brand.100"} fontWeight={900}>
           Smile Gallery
@@ -26,8 +27,8 @@ const SmileGallery = () => {
         <Flex
           gap={10}
           justifyContent={"space-between"}
-          // flexDir={isMobile ? "row" : "column"}
-          // width={"100%"}
+          flexDir={isMobile ? "column" : "row"}
+          width={"100%"}
         >
           <SmileCard key={1} beforeImage={teeth1} afterImage={teeth2} />
           <SmileCard key={2} beforeImage={teeth3} afterImage={teeth4} />

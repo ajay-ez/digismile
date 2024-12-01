@@ -12,8 +12,8 @@ const Footer = () => {
   const [isMobile] = useMediaQuery("(max-width: 580px)");
 
   return (
-    // <Box background={"brand.100"} className="home-section">
-    <Box background={"#577361"} className="home-section">
+    <Box background={"brand.100"} className="home-section">
+      {/* <Box background={"#577361"} className="home-section"> */}
       <Flex
         flexDir={"column"}
         className="responsive-footer-section"

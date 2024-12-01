@@ -1,10 +1,9 @@
 .comparison-slider {
-  // margin: 50px auto;
   position: relative;
   overflow: hidden;
   user-select: none;
-  width: 300px;
-  height: 180px;
+  width: 400px;
+  height: 250px;
   img {
     width: 100%;
     height: auto;
@@ -19,8 +18,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 180px;
+    width: 400px;
+    height: 250px;
     overflow: hidden;
   }
 
@@ -28,8 +27,8 @@
     z-index: 2;
     top: 0;
     left: 0;
-    height: 180px;
-    width: 300px;
+    width: 400px;
+    height: 250px;
   }
 
   .handle {
@@ -47,5 +46,32 @@
     .overlay-text {
       border: 1px red solid;
     }
+  }
+}
+
+@media screen and (max-width: 1386px) {
+  .comparison-slider {
+    width: 300px !important;
+  }
+  .comparison-item {
+    width: 300px !important;
+  }
+  .comparison-item.top {
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .comparison-slider {
+    height: 300px !important;
+    width: 100% !important;
+  }
+  .comparison-item {
+    height: 300px !important;
+    width: 100% !important;
+  }
+  .comparison-item.top {
+    height: 300px !important;
+    width: 100% !important;
   }
 }
