@@ -87,7 +87,7 @@ const ServiceSection = () => {
           flexWrap={isMobile ? "wrap" : "nowrap"}
         >
           <Flex
-            width={isTablet ? "100%" : "40%"}
+            width={isTablet ? "100%" : "33%"}
             flexDir={"column"}
             gap={isMobile ? 10 : 20}
           >
@@ -106,11 +106,11 @@ const ServiceSection = () => {
             <Image
               src={userImage1}
               alt=""
-              style={{ width: "30%", zIndex: 2 }}
+              style={{ width: "24%", zIndex: 2 }}
             ></Image>
           )}
           <Flex
-            width={isTablet ? "100%" : "40%"}
+            width={isTablet ? "100%" : "33%"}
             flexDir={"column"}
             gap={isMobile ? 10 : 20}
           >
