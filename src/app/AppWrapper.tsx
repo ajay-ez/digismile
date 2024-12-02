@@ -22,7 +22,7 @@ export default function AppWrappers({ children }: { children: ReactNode }) {
   return (
     <CacheProvider>
       <ChakraProvider theme={themes}>
-        <Box onScroll={(e) => handleScroll(e)} className="container">
+        <Box onScroll={(e) => handleScroll(e)} className="container scroll">
           {children}
         </Box>
       </ChakraProvider>

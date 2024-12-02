@@ -52,19 +52,26 @@ const LoginPage = () => {
     password: ""
   };
 
-  const handleLogin = async (values: LoginFormValues) => {
+  const handleLogin = async (
+    values: LoginFormValues,
+    setSubmitting: (data: boolean) => void
+  ) => {
     userLogin(values).then((response: any) => {
-      if (response?.data?.status_code === 200) {
-        setAuthToken(response.data);
-        setShowSuccessPopup(true);
+      console.log("response", response);
+      // if (response?.data?.status_code === 200) {
+      //   setAuthToken(response.data);
+      //   setShowSuccessPopup(true);
 
-        setTimeout(() => {
-          setShowSuccessPopup(false);
-          router.push("/");
-        }, 1000);
-      }
+      //   setTimeout(() => {
+      //     setShowSuccessPopup(false);
+      //     router.push("/");
+      //   }, 1000);
+      // }
     });
   };
+
+  console.log("error", error);
+  console.log("error2", isFetchBaseQueryError(error));
 
   return (
     <Flex
@@ -84,77 +91,77 @@ const LoginPage = () => {
         borderRadius={"sm"}
         boxShadow={"45px 76px 113px 7px rgba(112, 144, 176, 0.08)"}
       >
-        <Box>
-          <Text as={"h1"} mb="1rem" textAlign={"center"}>
-            Sign In
-          </Text>
-          <Flex
-            zIndex="2"
-            direction="column"
-            w={"100%"}
-            maxW="100%"
-            background="transparent"
-            borderRadius="15px"
-            mx={{ base: "auto", lg: "unset" }}
-            mb={{ base: "20px", md: "auto" }}
+        <Text as={"h1"} mb="1rem" textAlign={"center"}>
+          Sign In
+        </Text>
+        <Flex
+          zIndex="2"
+          direction="column"
+          w={"100%"}
+          maxW="100%"
+          background="transparent"
+          borderRadius="15px"
+          mx={{ base: "auto", lg: "unset" }}
+          mb={{ base: "20px", md: "auto" }}
+        >
+          <Formik
+            initialValues={initialLoginValues}
+            validationSchema={LoginSchema}
+            onSubmit={(form, { setSubmitting }) => {
+              handleLogin(form, setSubmitting);
+            }}
           >
-            <Formik
-              initialValues={initialLoginValues}
-              validationSchema={LoginSchema}
-              onSubmit={handleLogin}
-            >
-              {({ errors, touched, isSubmitting }: any) => (
-                <Form>
-                  <FormField
-                    label="Email address*"
-                    name="email"
-                    type="text"
-                    placeholder="mail@trellis.com"
-                    disabled={isSubmitting}
-                    error={errors.email}
-                    touched={touched.email}
-                    styles={{ marginBottom: "1.5rem" }}
-                  />
-                  <PasswordField
-                    label="Password*"
-                    name="password"
-                    placeholder="Min. 8 characters"
-                    disabled={isSubmitting}
-                    error={errors.password}
-                    touched={touched.password}
-                    styles={{ marginBottom: "1.5rem" }}
-                  />
-                  <Button
-                    type="submit"
-                    variant="authentication"
-                    w="100%"
-                    isDisabled={isSubmitting}
-                  >
-                    Sign In {isSubmitting && <Spinner ml={"4"} />}
-                  </Button>
-                  <Text
-                    mt={2}
-                    as={"h5"}
-                    textAlign={"center"}
-                    cursor={"pointer"}
-                    onClick={() => {
-                      router.push("/signup");
-                    }}
-                  >
-                    Don&apos;t have an account? Sign UP
-                  </Text>
-                  {/* {error && (
-                  <h1 className="text-red-500 capitalize my-2 text-center">
+            {({ errors, touched, isSubmitting }: any) => (
+              <Form>
+                <FormField
+                  label="Email address*"
+                  name="email"
+                  type="text"
+                  placeholder="mail@trellis.com"
+                  disabled={isSubmitting}
+                  error={errors.email}
+                  touched={touched.email}
+                  styles={{ marginBottom: "1.5rem" }}
+                />
+                <PasswordField
+                  label="Password*"
+                  name="password"
+                  placeholder="Min. 8 characters"
+                  disabled={isSubmitting}
+                  error={errors.password}
+                  touched={touched.password}
+                  styles={{ marginBottom: "1.5rem" }}
+                />
+                <Button
+                  type="submit"
+                  variant="authentication"
+                  w="100%"
+                  isDisabled={isSubmitting}
+                >
+                  Sign In {isSubmitting && <Spinner ml={"4"} />}
+                </Button>
+                <Text
+                  mt={2}
+                  as={"h5"}
+                  textAlign={"center"}
+                  cursor={"pointer"}
+                  onClick={() => {
+                    router.push("/signup");
+                  }}
+                >
+                  Don&apos;t have an account? Sign UP
+                </Text>
+                {error && (
+                  <Text as={"h5"}>
                     {isFetchBaseQueryError(error)
                       ? error.data?.message
                       : "An unexpected error occurred."}
-                  </h1>
-                )} */}
-                </Form>
-              )}
-            </Formik>
-          </Flex>
-        </Box>
+                  </Text>
+                )}
+              </Form>
+            )}
+          </Formik>
+        </Flex>
       </Flex>
     </Flex>
   );

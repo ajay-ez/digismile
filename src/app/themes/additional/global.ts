@@ -23,4 +23,18 @@ export default {
     overflowY: "auto",
     overflowX: "hidden"
   },
+  ".scroll": {
+    "::-webkit-scrollbar": {
+      height: 1.5,
+      width: 1.5
+    },
+    "::-webkit-scrollbar-track": {
+      bgColor: "#fff"
+    },
+    "::-webkit-scrollbar-thumb": {
+      bgColor: "#cfc2c2",
+      borderRadius: "8px"
+    },
+    "::-webkit-scrollbar-corner": {}
+  }
 };
