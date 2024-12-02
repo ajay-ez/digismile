@@ -106,7 +106,7 @@ const ServiceSection = () => {
             <Image
               src={userImage1}
               alt=""
-              style={{ width: "24%", zIndex: 2 }}
+              style={{ width: "26%", zIndex: 2 }}
             ></Image>
           )}
           <Flex
