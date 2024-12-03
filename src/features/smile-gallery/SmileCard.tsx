@@ -18,9 +18,8 @@ const SmileCard = ({ beforeImage, afterImage }: Properties) => {
     if (!topImageRef.current || !handleRef.current) return;
 
     const { left, width } = topImageRef.current.getBoundingClientRect();
-    const handleWidth = handleRef.current.offsetWidth;
 
-    if (x >= left && x <= width + left - handleWidth) {
+    if (x >= left && x <= width + left) {
       const percentage = ((x - left) / width) * 100;
       handleRef.current.style.left = `${percentage}%`;
       topImageRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
@@ -44,7 +43,7 @@ const SmileCard = ({ beforeImage, afterImage }: Properties) => {
     const { left, width } = topImageRef.current.getBoundingClientRect();
     const handleWidth = handleRef.current.offsetWidth;
 
-    setPositioning(width / 8 + left - handleWidth / 2);
+    setPositioning(width / 4 + left - handleWidth / 2);
   }, [setPositioning]);
 
   const handleResizeEnd = useCallback(() => {
@@ -99,16 +98,13 @@ const SmileCard = ({ beforeImage, afterImage }: Properties) => {
   return (
     <Box className="comparison-container">
       <div className="comparison-slider">
-        <Flex className="comparison-overlay">
-          <Text className="overlay-text">Before</Text>
-          <Text className="overlay-text">After</Text>
-        </Flex>
         <div
           ref={handleRef}
           className="handle"
           onMouseDown={() => setIsResizing(true)}
           onTouchStart={() => setIsResizing(true)}
         >
+          <div className="handle-shadow"></div>
           <Image
             className="handle-image"
             src={sliderImage}
@@ -124,7 +120,7 @@ const SmileCard = ({ beforeImage, afterImage }: Properties) => {
             alt={""}
           />
         </div>
-        <div className="comparison-item">
+        <div className="comparison-item bottom">
           <Image
             className="comparison-image"
             draggable="false"
@@ -138,3 +134,82 @@ const SmileCard = ({ beforeImage, afterImage }: Properties) => {
 };
 
 export default SmileCard;
+
+// import React, { useState, useRef, useCallback, useEffect } from "react";
+// import Image from "next/image";
+// import { sliderImage } from "@/assets/images";
+// import "./smilecard.scss";
+// import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+
+// interface Properties {
+//   beforeImage: string;
+//   afterImage: string;
+// }
+
+// const SmileCard = ({ beforeImage, afterImage }: Properties) => {
+//   const topImageRef = useRef<HTMLDivElement | null>(null);
+//   const handleRef = useRef<HTMLDivElement | null>(null);
+//   const containerRef = useRef<HTMLDivElement | null>(null);
+
+//   const setPositioning = useCallback((x: number) => {
+//     if (!topImageRef.current || !handleRef.current || !containerRef.current)
+//       return;
+
+//     const { left, width } = containerRef.current.getBoundingClientRect();
+
+//     if (x >= left && x <= left + width) {
+//       const percentage = ((x - left) / width) * 100;
+//       handleRef.current.style.left = `${percentage}%`;
+//       topImageRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+//     }
+//   }, []);
+
+//   const handleMouseMove = useCallback(
+//     (e: React.MouseEvent) => {
+//       setPositioning(e.clientX);
+//     },
+//     [setPositioning]
+//   );
+
+//   return (
+//     <Box
+//       className="comparison-container"
+//       ref={containerRef}
+//       onMouseMove={handleMouseMove}
+//     >
+//       <div className="comparison-slider">
+//         <Flex className="comparison-overlay">
+//           <Text className="overlay-text">Before</Text>
+//           <Text className="overlay-text">After</Text>
+//         </Flex>
+//         <div ref={handleRef} className="handle">
+//           <div className="handle-shadow"></div>
+//           <Image
+//             className="handle-image"
+//             src={sliderImage}
+//             draggable="true"
+//             alt=""
+//           />
+//         </div>
+//         <div ref={topImageRef} className="comparison-item top">
+//           <Image
+//             className="comparison-image"
+//             draggable="false"
+//             src={afterImage}
+//             alt={""}
+//           />
+//         </div>
+//         <div className="comparison-item">
+//           <Image
+//             className="comparison-image"
+//             draggable="false"
+//             src={beforeImage}
+//             alt={""}
+//           />
+//         </div>
+//       </div>
+//     </Box>
+//   );
+// };
+
+// export default SmileCard;

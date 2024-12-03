@@ -14,6 +14,10 @@
     pointer-events: none;
   }
 
+  &:hover:not(.handle) {
+    cursor: pointer;
+  }
+
   .comparison-item {
     position: absolute;
     top: 0;
@@ -30,21 +34,33 @@
     width: 400px;
     height: 250px;
   }
-
   .handle {
     position: absolute;
-    width: 3px;
-    height: 300px;
-    background: #faf7f5;
+    left: 1rem;
+    height: 100%;
+    width: 40px;
     z-index: 3;
     cursor: col-resize;
-    top: 0;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
-  .comparison-overlay {
-    display: none;
-    .overlay-text {
-      border: 1px red solid;
+    img {
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      background: #faf7f5;
+      position: absolute;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .handle-shadow {
+      height: 100%;
+      width: 3px;
+      background: #faf7f5;
     }
   }
 
