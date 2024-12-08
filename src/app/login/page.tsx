@@ -70,9 +70,6 @@ const LoginPage = () => {
     });
   };
 
-  console.log("error", error);
-  console.log("error2", isFetchBaseQueryError(error));
-
   return (
     <Flex
       height={"100vh"}

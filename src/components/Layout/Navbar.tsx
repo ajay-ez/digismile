@@ -105,6 +105,12 @@ export default function Navbar() {
             </Button>
             <Button
               variant={"header"}
+              onClick={() => navigateToSection("locations")}
+            >
+              LOCATIONS
+            </Button>
+            <Button
+              variant={"header"}
               onClick={() => navigateToSection("contact-us")}
             >
               CONTACT US
@@ -147,7 +153,7 @@ export default function Navbar() {
                   onClick={() =>
                     navigateToSection(
                       isError
-                        ? "contact-us"
+                        ? "appointment"
                         : `profile/${userId}?tab=appointments&subTab=quick-appointments`
                     )
                   }
@@ -236,6 +242,15 @@ export default function Navbar() {
             >
               <Text as={"h4"} fontWeight={"bold"}>
                 Services
+              </Text>
+            </ListItem>
+            <ListItem
+              className="cursor-pointer text-[1rem] text-digiDarkBluek"
+              onClick={() => navigateToSection("locations")}
+              marginY={2}
+            >
+              <Text as={"h4"} fontWeight={"bold"}>
+                Locations
               </Text>
             </ListItem>
             <ListItem

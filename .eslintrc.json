@@ -5,10 +5,9 @@
     "JSX": "readonly"
   },
   "rules": {
-    "no-console": "error",
     "no-debugger": "error",
-    "no-unused-vars": "warn",
-        "import/no-anonymous-default-export": [
+    "no-unused-vars": "off",
+    "import/no-anonymous-default-export": [
       "error",
       {
         "allowArray": true,
@@ -20,6 +19,5 @@
         "allowObject": true
       }
     ]
-   
   }
 }
