@@ -107,6 +107,12 @@ p {
   padding: 0 2rem;
 }
 
+.responsive-services-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
 @media screen and (max-width: 1000px) {
   .location-section {
     padding: 5vw 0 !important;
@@ -151,6 +157,13 @@ p {
   background-size: contain;
   filter: opacity(0.1);
   z-index: 1;
+}
+
+.locations-bg-image {
+  background-image: url("../assets/galleryImages/2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(0.8);
 }
 
 .slider-before {

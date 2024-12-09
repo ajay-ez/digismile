@@ -49,12 +49,12 @@ export default {
     },
     brand: {
       bgColor: {
-        base: "white.800",
+        base: "brand.200",
         responsive: "brand.100"
       },
       color: {
         base: "brand.100",
-        responsive: "white.800"
+        responsive: "brand.200"
       },
       fontWeight: "800",
       borderRadius: "md",
@@ -71,7 +71,7 @@ export default {
     },
     authentication: {
       bgColor: "brand.100",
-      color: "white.800",
+      color: "brand.200",
       fontWeight: "800",
       borderRadius: "sm",
       fontSize: "md",
@@ -87,7 +87,7 @@ export default {
       // color: "brand.100",
       bgColor: {
         base: "transparent",
-        responsive: "white.800"
+        responsive: "brand.200"
       },
       color: {
         base: "white.100",

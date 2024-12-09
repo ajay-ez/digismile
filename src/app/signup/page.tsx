@@ -155,15 +155,6 @@ const SignupPage = () => {
                   touched={touched.last_name}
                   styles={{ marginBottom: "1.5rem" }}
                 />
-                <FormCalendar
-                  label="Date of Birth*"
-                  name="date_of_birth"
-                  placeholder="Enter your last name"
-                  disabled={isSubmitting}
-                  error={errors.date_of_birth}
-                  touched={touched.date_of_birth}
-                  styles={{ marginBottom: "1.5rem" }}
-                />
                 <FormField
                   label="Reason For Visit"
                   name="problem"

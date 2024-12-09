@@ -1,5 +1,9 @@
 import React from "react";
-import { appointment_icon } from "@/assets/images";
+import {
+  appointment_icon,
+  confirmation_icon,
+  location_icon
+} from "@/assets/images";
 import { ProcessCard } from "./ProcessCard";
 import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import { FaArrowDownLong, FaArrowRight } from "react-icons/fa6";
@@ -28,7 +32,7 @@ export const ProcessForPatient = () => {
           <ProcessCard
             alt="image"
             image={appointment_icon}
-            desc="Initiate Appointment Request via call or appointment form."
+            desc="Initiate An Appointment Request via call or appointment form."
           />
           {isMobile ? (
             <FaArrowDownLong size={20} />
@@ -37,8 +41,10 @@ export const ProcessForPatient = () => {
           )}
           <ProcessCard
             alt="image"
-            image={appointment_icon}
-            desc="Initiate Appointment Request via call or appointment form."
+            height={60}
+            width={60}
+            image={location_icon}
+            desc="Select location (Burke or Washington, DC) and an available date."
           />
           {isMobile ? (
             <FaArrowDownLong size={20} />
@@ -46,9 +52,9 @@ export const ProcessForPatient = () => {
             <FaArrowRight size={40} />
           )}
           <ProcessCard
+            image={confirmation_icon}
             alt="image"
-            image={appointment_icon}
-            desc="Initiate Appointment Request via call or appointment form."
+            desc="Our team will reach out to confirm your appointment details."
           />
         </Flex>
       </Flex>

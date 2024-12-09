@@ -180,7 +180,7 @@ export default function Navbar() {
         ) : (
           <IconButton
             aria-label="menu"
-            color={headerStatus === true ? "brand.100" : "white.800"}
+            color={headerStatus === true ? "brand.100" : "brand.200"}
             onClick={() => setDrawerOpen(!drawerOpen)}
           >
             <MenuIcon />

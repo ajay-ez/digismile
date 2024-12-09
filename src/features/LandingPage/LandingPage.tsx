@@ -13,6 +13,8 @@ import PatientReviews from "../patient-reviews";
 import ServiceSection from "../services-section";
 import SmileGallery from "../smile-gallery";
 import { ProcessForPatient } from "../contact-us/ProcessForPatient";
+import MissionComponent from "../mission";
+import WhyChooseUsComponent from "../why-choose-us";
 
 const LandingPage = () => {
   const isUserAuthorize = useAuthCheck();
@@ -31,9 +33,10 @@ const LandingPage = () => {
       <LandingPageVideo />
       <LocationSection />
       <ImageGallery />
-      <Divider />
+      <MissionComponent />
       <ServiceSection />
       {isMobile && <Divider />}
+      <WhyChooseUsComponent />
       <SmileGallery />
       <Divider />
       <PatientReviews />

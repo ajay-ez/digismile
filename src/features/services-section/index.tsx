@@ -78,7 +78,7 @@ const ServiceSection = () => {
         zIndex={3}
       >
         <Box textAlign={"center"} width={"100%"}>
-          <Text as={"h6"}>Our services</Text>
+          <Text as={"h4"}>Our services</Text>
           <Text as={"h1"}>Comprehensive Services for Optimal Oral Health.</Text>
         </Box>
         <Flex

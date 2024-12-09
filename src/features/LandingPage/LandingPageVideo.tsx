@@ -31,7 +31,7 @@ const LandingPageVideo = () => {
         zIndex={2}
         marginX={isMobile ? "0" : "4rem"}
         padding={isMobile ? "3rem 1rem" : "0"}
-        color={"white.800"}
+        color={"brand.200"}
         bg={isMobile ? "brand.100" : "transparent"}
       >
         {isMobile ? (

@@ -2,7 +2,9 @@ export default {
   brand: {
     100: "#963f36",
     200: "#faf7f5",
-    300: "#fbf6ef"
+    300: "#fbf6ef",
+    400: "#e7e7e7",
+    500: "#dac4c2"
   },
   gray: {
     100: "#E0E5F2",
@@ -47,7 +49,6 @@ export default {
     900: "#0b1437"
   },
   white: {
-    800: "#faf7f5",
     900: "#FFFFFF"
   },
   black: {

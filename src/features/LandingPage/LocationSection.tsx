@@ -8,7 +8,7 @@ const LocationSection = () => {
     <Box
       className="home-section location-section"
       background={"brand.100"}
-      color={"white.800"}
+      color={"brand.200"}
     >
       <Flex
         flexDir={"row"}
