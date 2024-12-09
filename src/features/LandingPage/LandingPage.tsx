@@ -5,7 +5,7 @@ import LocationSection from "./LocationSection";
 
 import AOS from "aos";
 import useAuthCheck from "@/hooks/useAuthCheck";
-import { Box, Divider, useMediaQuery } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import ImageGallery from "../Image-gallery";
@@ -35,7 +35,6 @@ const LandingPage = () => {
       <ImageGallery />
       <MissionComponent />
       <ServiceSection />
-      {isMobile && <Divider />}
       <WhyChooseUsComponent />
       <SmileGallery />
       <Divider />

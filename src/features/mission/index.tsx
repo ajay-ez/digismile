@@ -2,23 +2,25 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 
 const MissionComponent = () => {
   return (
-    <Box className="home-section" background={"brand.400"} color={"brand.100"}>
+    <Box width={"100%"} bg={"#F4DFCF"} color={"#000"}>
       <Flex
-        flexDir={"column"}
-        className="responsive-section"
+        className="responsive-dental-section"
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Text as={"h1"} fontWeight={900}>
-          We are on a mission
-        </Text>
-        <Text textAlign={"center"} as={"h4"} mt={4}>
-          Dr. Andleeb Mahmood is a visionary leader in dentistry, dedicated to
-          patient care, continuous learning, and community involvement. Her
-          mission is to enhance lives one smile at a time with personalized
-          care. At Smile Experts Dental, we uphold her values with state of the
-          art technology and a compassionate approach, ensuring the highest
-          standard of dental excellence.
+        <Flex gap={2} className="responsive-dental-heading">
+          <Text whiteSpace={"nowrap"} as={"h1"} fontWeight={800}>
+            Dental services
+          </Text>
+          <Text as={"h1"} fontWeight={800}>
+            with a smile
+          </Text>
+        </Flex>
+        <Text as={"h4"}>
+          Time for a dental cleaning? Need a crown, root canal, or dental
+          implant? Dr. Morgan, Dr. Hubbard, and our team of orthodontists, oral
+          surgeons, and periodontists offer all the dental services you could
+          ever need to keep your family healthy and smiling.
         </Text>
       </Flex>
     </Box>

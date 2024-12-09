@@ -110,12 +110,34 @@ p {
 .responsive-services-section {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 5rem;
+}
+
+.responsive-dental-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem;
+  gap: 5rem;
+  .responsive-dental-heading {
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 1000px) {
+  .responsive-dental-section {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    .responsive-dental-heading {
+      flex-direction: row;
+    }
+  }
   .location-section {
     padding: 5vw 0 !important;
+  }
+  .responsive-services-section {
+    padding: 2rem;
   }
 }
 

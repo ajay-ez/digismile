@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import DigiLayout from "@/components/Layout";
 import {
@@ -10,16 +12,13 @@ import {
   Button,
   Divider,
   Flex,
-  Text
+  Text,
+  useMediaQuery
 } from "@chakra-ui/react";
 import { clinicServices } from "@/utils";
 
 const ClinicServices = () => {
-  const items = [
-    { value: "a", title: "First Item", text: "Some value 1..." },
-    { value: "b", title: "Second Item", text: "Some value 2..." },
-    { value: "c", title: "Third Item", text: "Some value 3..." }
-  ];
+  const [isLaptop] = useMediaQuery("(max-width: 1000px)");
 
   return (
     <DigiLayout>
@@ -54,16 +53,18 @@ const ClinicServices = () => {
             style={{ borderCollapse: "collapse" }}
             border={"1px #963f36 solid"}
             justifyContent={"space-between"}
+            flexWrap={isLaptop ? "wrap" : "nowrap"}
           >
             {clinicServices.map((service, index) => (
               <Flex
                 key={index}
                 flexDir={"column"}
                 width={"100%"}
-                borderRight={"1px #963f36 solid"}
+                borderRight={isLaptop ? "none" : "1px #963f36 solid"}
               >
                 <Text
-                  borderBottom={"1px #963f36 solid"}
+                  borderBottom={isLaptop ? "none" : "1px #963f36 solid"}
+                  borderTop={isLaptop ? "1px #963f36 solid" : "none"}
                   as={"h3"}
                   p={4}
                   color={"brand.100"}
@@ -77,7 +78,7 @@ const ClinicServices = () => {
                   {service.heading}
                 </Text>
                 <Flex
-                  p={8}
+                  padding={isLaptop ? "0 2rem 2rem 2rem" : "2rem"}
                   justifyContent={"center"}
                   textAlign={"center"}
                   flexDir={"column"}
@@ -85,7 +86,12 @@ const ClinicServices = () => {
                   <Text as={"h5"} fontWeight={500}>
                     {service.description}
                   </Text>
-                  <Text as={"h4"} fontWeight={600} mt={16} color={"brand.100"}>
+                  <Text
+                    as={"h4"}
+                    fontWeight={600}
+                    mt={isLaptop ? 4 : 16}
+                    color={"brand.100"}
+                  >
                     {service.time}
                   </Text>
                   <Text as={"h4"} mt={2}>
@@ -104,6 +110,28 @@ const ClinicServices = () => {
             ))}
           </Flex>
         </Flex>
+        <Box width={"100%"} bg={"#F4DFCF"} color={"#000"}>
+          <Flex
+            className="responsive-dental-section"
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Flex gap={2} className="responsive-dental-heading">
+              <Text whiteSpace={"nowrap"} as={"h1"} fontWeight={800}>
+                Dental services
+              </Text>
+              <Text as={"h1"} fontWeight={800}>
+                with a smile
+              </Text>
+            </Flex>
+            <Text as={"h4"}>
+              Time for a dental cleaning? Need a crown, root canal, or dental
+              implant? Dr. Morgan, Dr. Hubbard, and our team of orthodontists,
+              oral surgeons, and periodontists offer all the dental services you
+              could ever need to keep your family healthy and smiling.
+            </Text>
+          </Flex>
+        </Box>
         <Flex
           flexDir={"column"}
           className="responsive-services-section"
@@ -116,17 +144,21 @@ const ClinicServices = () => {
           <Text as={"h3"} textAlign={"center"} mt={2}>
             one stop shop for all your needs one stop shop for all your needs
           </Text>
-          <Flex mt={20} gap={10} flexDir={"column"}>
+          <Flex mt={isLaptop ? 8 : 20} gap={10} flexDir={"column"}>
             <Flex
-              gap={10}
+              gap={isLaptop ? 4 : 10}
               justifyContent={"space-between"}
               borderBottom={"1px #963f36 solid"}
+              flexDir={isLaptop ? "column" : "row"}
             >
-              <Box width={"100%"}>
-                <Text as={"h1"} textAlign={"center"} fontWeight={800}>
-                  General Dentistry Services
-                </Text>
-              </Box>
+              <Text
+                as={"h1"}
+                textAlign={isLaptop ? "start" : "center"}
+                fontWeight={800}
+                width={"100%"}
+              >
+                General Dentistry Services
+              </Text>
               <Flex width={"100%"} flexDir={"column"}>
                 <Text as={"h4"} fontWeight={800}>
                   Maintain Excellent Oral Health with our General Dentistry
@@ -190,12 +222,20 @@ const ClinicServices = () => {
                 </Accordion>
               </Flex>
             </Flex>
-            <Flex gap={10} justifyContent={"space-between"}>
-              <Box width={"100%"}>
-                <Text as={"h1"} textAlign={"center"} fontWeight={800}>
-                  General Dentistry Services
-                </Text>
-              </Box>
+            <Flex
+              gap={isLaptop ? 4 : 10}
+              justifyContent={"space-between"}
+              borderBottom={"1px #963f36 solid"}
+              flexDir={isLaptop ? "column" : "row"}
+            >
+              <Text
+                as={"h1"}
+                textAlign={isLaptop ? "start" : "center"}
+                fontWeight={800}
+                width={"100%"}
+              >
+                General Dentistry Services
+              </Text>
               <Flex width={"100%"} flexDir={"column"}>
                 <Text as={"h4"} fontWeight={800}>
                   Maintain Excellent Oral Health with our General Dentistry
