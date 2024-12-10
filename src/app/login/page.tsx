@@ -56,6 +56,7 @@ const LoginPage = () => {
     values: LoginFormValues,
     setSubmitting: (data: boolean) => void
   ) => {
+    console.log(values);
     userLogin(values).then((response: any) => {
       console.log("response", response);
       // if (response?.data?.status_code === 200) {

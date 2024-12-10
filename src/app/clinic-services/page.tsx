@@ -22,7 +22,24 @@ const ClinicServices = () => {
 
   return (
     <DigiLayout>
-      <Box height={"60vh"} width={"100%"} className="locations-bg-image"></Box>
+      <Box
+        height={"60vh"}
+        width={"100%"}
+        className="locations-bg-image"
+        position={"relative"}
+      >
+        <Text
+          position={"absolute"}
+          top={"50%"}
+          left={"50%"}
+          transform={"translate(-50%, -50%)"}
+          color={"white.900"}
+          fontWeight={900}
+          as={"h1"}
+        >
+          Services
+        </Text>
+      </Box>
       <Flex
         className="home-section location-section"
         flexDir={"column"}
@@ -50,7 +67,6 @@ const ClinicServices = () => {
           <Flex
             mt={8}
             borderRadius={"md"}
-            style={{ borderCollapse: "collapse" }}
             border={"1px #963f36 solid"}
             justifyContent={"space-between"}
             flexWrap={isLaptop ? "wrap" : "nowrap"}
@@ -60,7 +76,13 @@ const ClinicServices = () => {
                 key={index}
                 flexDir={"column"}
                 width={"100%"}
-                borderRight={isLaptop ? "none" : "1px #963f36 solid"}
+                borderRight={
+                  clinicServices.length - 1 === index || isLaptop
+                    ? "none"
+                    : isLaptop
+                      ? "none"
+                      : "1px #963f36 solid"
+                }
               >
                 <Text
                   borderBottom={isLaptop ? "none" : "1px #963f36 solid"}
